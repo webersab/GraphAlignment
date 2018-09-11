@@ -31,29 +31,69 @@ def printClustersAfterWhisper(G):
     for i,j in labelDict.items():
         print(i,j)
     
-    max_key, max_value = max(d.items(), key = lambda x: len(set(x[1])))
-    print(max_key,max_value)
+    #max_key, max_value = max(d.items(), key = lambda x: len(set(x[1])))
+    #print(max_key,max_value)
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
 
-    #parse entity pairs, predicates and their counts
+    #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, entitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
-    entitySet.printEntitySetToFile()
+    discardThisVectorMap, germanEntitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
     
+    #extract the English only entity set
+    freshVectorMap = VectorMap()
+    freshEntitySet = EntitySet()
+    discardThisVectorMap, englishEntitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", freshEntitySet, freshVectorMap)
+    
+    #calculate the intersection of those sets. This is the overlap of entities
+    intersection=list(englishEntitySet.intersection(germanEntitySet.toSet()))
+    print(len(intersection))
+    
+    ###Extract the combined entity set and the according vector maps for English and German
+    entitySet = EntitySet()
+    vectorMap = VectorMap()
+    germanVectorMap, entitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
+    freshVectorMap = VectorMap()
+    englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
+    print(entitySet.length())
+    
+    #create Vector Maps that consider only the overlapping entities
+    overlapEnglishVectorMap=englishVectorMap.changeVectorsToOverlap(entitySet,intersection)
+    overlapGermanVectorMap=germanVectorMap.changeVectorsToOverlap(entitySet,intersection)
+    
+    print(overlapEnglishVectorMap)
+    print(overlapGermanVectorMap)
+    
+    #pickling overlap vector Maps for faster degbugging
+    with open("overlapGermanVectorMap.dat", "wb") as f:
+        pickle.dump(overlapGermanVectorMap, f)
+    with open("overlapEnglishVectorMap.dat", "wb") as f:
+        pickle.dump(overlapEnglishVectorMap, f)
+    with open("intersection.dat", "wb") as f:
+        pickle.dump(intersection, f)
+    """   
+    #unpickle
+    with open("overlapGermanVectorMap.dat", "rb") as f:
+        overlapGermanVectorMap=pickle.load(f)
+    with open("overlapEnglishVectorMap.dat", "rb") as f:
+        overlapEnglishVectorMap=pickle.load(f)
+    with open("intersection.dat", "rb") as f:
+        intersection=pickle.load(f)
+    print("done unpickling")
+    """
+    
+    #create German graph
     d = GraphCreator()
-    entitySetLength=entitySet.length()+1
-    G = d.createGraph(germanVectorMap, entitySetLength)
+    entitySetLength=len(intersection)+1
+    G = d.createGraph(overlapGermanVectorMap, entitySetLength)
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
-    freshVectorMap = VectorMap()
-    englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
     entitySetLength=entitySet.length()+1
-    G = d.createGraph(englishVectorMap, entitySetLength)
+    G = d.createGraph(overlapEnglishVectorMap, entitySetLength)
     G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
 
     
@@ -77,7 +117,7 @@ if __name__ == "__main__":
     print(G2.nodes())
     with open("entitySet.dat", "rb") as f:
         entitySet=pickle.load(f)
-    """
+   """
     #printClustersAfterWhisper(G1)
 
 
@@ -127,5 +167,5 @@ if __name__ == "__main__":
         clusterTupel[1].printClusterPredicates()
         print(clusterTupel[2])
         print("------------------------------")
-
+        
     print (sys.version)

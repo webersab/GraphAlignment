@@ -28,3 +28,9 @@ class EntitySet:
     
     def length(self):
         return len(self.list)
+    
+    def toSet(self):
+        return set(self.list)
+    
+    def intersection(self,otherSet):
+        return set(self.list).intersection(otherSet)
