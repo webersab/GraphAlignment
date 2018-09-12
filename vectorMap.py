@@ -23,6 +23,7 @@ class VectorMap:
             print(str(key),str(value))
             
     def changeVectorsToOverlap(self,entitySet,intersection):
+        #tMap maps the index of the entitySet to the index of the overlap set
         tMap=self.createTMap(entitySet,intersection)
         newVectorMap={}
         for key,value in self.items():

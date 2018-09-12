@@ -27,7 +27,7 @@ class Aligner:
             iterationList.remove(winningTuple[1])
         return listOfTuplesOfClusters
     
-    def alignClustersNew(self,listOfClusters1,listOfClusters2,entitySetLength):
+    def alignClustersNew(self,listOfClusters1,listOfClusters2,entitySetLength,intersection):
         gc = GraphCreator()
         listOfTuplesOfClusters=[] 
         internalClusterList1 = listOfClusters1
@@ -60,11 +60,20 @@ class Aligner:
             with open('alignmentOutputWithcosineSim.txt', 'a') as f:
                 sys.stdout = f   
                 print(winningTuple[0].predicates)
+                print(self.getEntities(winningTuple[0],intersection))
                 print(winningTuple[1].predicates)
+                print(self.getEntities(winningTuple[1],intersection))
                 print(winningTuple[2])
                 print("------------------------------")
                 f.close()
             sys.stdout = orig_stdout
         return listOfTuplesOfClusters   
+    
+    def getEntities(self,cluster,intersection):
+        entitiyList=[]
+        for i in cluster.vector:
+            entitiyList.append(intersection[i[0]])
+        return entitiyList
+            
         
         

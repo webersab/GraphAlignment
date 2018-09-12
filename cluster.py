@@ -51,9 +51,17 @@ class Cluster:
             else:
                 newTuple=a
             if not isinstance(newTuple, list):
-                newTuple=[newTuple]   
+                newTuple=[newTuple]  
             newListOfTuples.extend(newTuple)
-            listOfTuples.remove(tup)
+            #listOfTuples.remove(tup)
+        newListOfTuples=list(set(newListOfTuples))
+        return newListOfTuples
+    
+    def removeAllDuplicatesOfTuple(self, listOfTuples, tup):
+        newListOfTuples=[tup]
+        for j in listOfTuples:
+            if j != tup:
+                newListOfTuples.extend(j)
         return newListOfTuples
     
     def collectPredicates(self,listOfVectorMaps):

@@ -36,7 +36,7 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         pickle.dump(overlapEnglishVectorMap, f)
     with open("intersection.dat", "wb") as f:
         pickle.dump(intersection, f)
-    """   
+      
     #unpickle
     with open("overlapGermanVectorMap.dat", "rb") as f:
         overlapGermanVectorMap=pickle.load(f)
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
     print("done unpickling")
-    """
+
     
     #create German graph
     d = GraphCreator()
@@ -92,15 +92,15 @@ if __name__ == "__main__":
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
-    entitySetLength=entitySet.length()+1
+    #entitySetLength=entitySet.length()+1
     G = d.createGraph(overlapEnglishVectorMap, entitySetLength)
     G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
 
     
     #print entity set line by line to file for translation for linking
-    entitySet.printEntitySetToFile()
-    print("PRINTED ENTITY SET")
-    print("entity Set length: ",entitySet.length()) 
+    #entitySet.printEntitySetToFile()
+    #print("PRINTED ENTITY SET")
+    #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
     nx.write_gpickle(G1, "germanPickle")
@@ -112,12 +112,12 @@ if __name__ == "__main__":
     #unpickle
     G1=nx.read_gpickle("germanPickle")
     G2=nx.read_gpickle("englishPickle")
-    entitySetLength=26664
+    entitySetLength=552
     print(G1.nodes())
     print(G2.nodes())
-    with open("entitySet.dat", "rb") as f:
-        entitySet=pickle.load(f)
-   """
+    with open("intersection.dat", "rb") as f:
+        intersection=pickle.load(f)
+    
     #printClustersAfterWhisper(G1)
 
 
@@ -141,31 +141,34 @@ if __name__ == "__main__":
     
     """
     #unpickle
-    entitySetLength=26664
+    
     with open("clusteredGerman.dat", "rb") as f:
         germanClusterList=pickle.load(f)
         
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
+    
+    with open("intersection.dat", "rb") as f:
+        intersection=pickle.load(f)
     print("done unpickling")
     #for cluster in germanClusterList:
         #print(cluster.predicates)
+    entitySetLength=len(intersection)+1
     """
-    
     #alignment of clusters begins here
     a = Aligner()
     print("begin aligning: ",datetime.datetime.now())
-    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength)
+    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection)
     print("done aligning: ",datetime.datetime.now())
     
     #pickling of final list
     with open("alignedList.dat", "wb") as f:
         pickle.dump(clusterTupleList, f)
     
-    for clusterTupel in clusterTupleList:
-        clusterTupel[0].printClusterPredicates()
-        clusterTupel[1].printClusterPredicates()
-        print(clusterTupel[2])
-        print("------------------------------")
-        
+    #for clusterTupel in clusterTupleList:
+    #    clusterTupel[0].printClusterPredicates()
+    #    clusterTupel[1].printClusterPredicates()
+    #    print(clusterTupel[2])
+    #    print("------------------------------")
+    print("final result in alignmentOutputEithcosineSim.txt")
     print (sys.version)
