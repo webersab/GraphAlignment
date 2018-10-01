@@ -1,0 +1,983 @@
+['(bringt.außer.1,bringt.außer.2)', '(gleichsetzen.in.1,gleichsetzen.in.2)', '(betragen.1,betragen.2)', '(gewinnen.vor.1,gewinnen.vor.2)']
+['NEG__(be.for.2,be.for.2)']
+[[0.3441236]]
+------------------------------
+['(führen.durch.1,führen.durch.2)']
+['(win.1,win.in.2)', '(lock.1,lock.2)', '(more.1,more.to.2)', '(fly.in.2,fly.to.2)']
+[[0.33333333]]
+------------------------------
+['(ausgelief.wie.nach.1,ausgelief.wie.nach.2)', '(entsenden.in.1,entsenden.in.2)']
+['(join.1,join.country.including.2)', '(export.from.2,export.to.2)', '(become.1,become.2)']
+[[0.3325644]]
+------------------------------
+['(verkaufen.in.1,verkaufen.in.2)', '(entschlossen.engagieren.in.1,entschlossen.engagieren.in.2)', '(passieren.in.1,passieren.in.2)']
+['(settle.1,settle.in.2)', '(seek.1,seek.agreement.with.2)', '(like.1,like.2)', '(visit.2,visit.to.2)', '(deliver.2,deliver.in.2)', '(meeting.with.1,meeting.with.leader.in.2)', '(have.across.2,have.in.2)']
+[[0.33176018]]
+------------------------------
+['(gehören.statt.1,gehören.statt.2)', '(folgen.von.1,folgen.von.2)', '(mitbringen.nach.1,mitbringen.nach.2)']
+["(win.'s.2,win.against.2)", '(downgrade.1,downgrade.2)']
+[[0.3122499]]
+------------------------------
+['(zurückgehalten.in.1,zurückgehalten.in.2)', '(machen.bekommen.in.1,machen.bekommen.in.2)', '(sein.in.1,sein.in.2)']
+['(decide.1,decide.in.2)', '(include.1,include.destination.like.2)', '(stage.of.1,stage.of.2)', '(spread.across.2,spread.from.2)', '(manufacture.2,manufacture.in.2)', "(''.of.1,''.of.2)", '(team.from.1,team.from.2)', '(have.1,have.connection.with.2)', '(including.1,including.2)']
+[[0.30642437]]
+------------------------------
+['(tun.mit.1,tun.mit.2)', '(lassen.über.1,lassen.über.2)']
+['(accelerate.1,accelerate.in.2)', "(fall.1,fall.in.'s.2)", '(as.1,as.2)', '(return.from.2,return.in.2)']
+[[0.30356247]]
+------------------------------
+['(bringen_zusammen.1,bringen_zusammen.2)', '(erleben.gegen.1,erleben.gegen.2)']
+['(tie.2,tie.with.2)', 'NEG__(s.2,s.2)']
+[[0.30151134]]
+------------------------------
+['(fordern_auf.einzuhalten.von.1,fordern_auf.einzuhalten.von.2)']
+['(join.1,join.samoa.by.2)', '(be.against.2,be.on.2)']
+[[0.30151134]]
+------------------------------
+['(treten_ein.neben.1,treten_ein.neben.2)', '(erheben.außer.1,erheben.außer.2)', '(schnappen.in.1,schnappen.in.2)']
+['(have.1,have.for.2)', '(use.1,use.after.2)', '(make.1,make.from.2)', "('s.2,against.'s.2)", '(find.before.2,find.in.2)', '(hold.1,hold.lead.over.2)']
+[[0.29559878]]
+------------------------------
+['(rufen_auf.1,rufen_auf.2)', '(gehen_zu.auf.1,gehen_zu.auf.2)', '(lösen.gelöst.nach.1,lösen.gelöst.nach.2)', '(haben.ermahnen.1,haben.ermahnen.2)']
+['(draw.2,draw.to.2)', "(relation.'s.1,relation.with.2)", '(fly.1,fly.to.2)']
+[[0.29361011]]
+------------------------------
+['(halten.schließen.in.1,halten.schließen.in.2)', '(treffen.nach.1,treffen.nach.2)']
+['(appoint.1,appoint.to.2)', '(relation.with.1,relation.with.2)']
+[[0.28603878]]
+------------------------------
+['(bannen.nach.1,bannen.nach.2)', '(blicken.nach.1,blicken.nach.2)']
+['(part.of.1,part.of.2)', '(remain.1,remain.at.heart.of.2)', '(economy.in.1,economy.in.2)', '(sign.1,sign.agreement.with.2)']
+[[0.28201447]]
+------------------------------
+['(passen.als.1,passen.als.2)', '(ausbauen.auf.1,ausbauen.auf.2)']
+['(about.1,in.2)', '(welcome.1,welcome.2)', '(drop.1,drop.to.2)', '(write.1,write.about.2)', '(correspondent.from.1,correspondent.from.2)']
+[[0.27854301]]
+------------------------------
+['(lesen.1,lesen.2)']
+['(win.1,win.title.by.2)', '(include.2,include.with.2)']
+[[0.2773501]]
+------------------------------
+['(kritisieren.1,kritisieren.2)', '(zugedrehen.1,zugedrehen.2)']
+['(impose.1,impose.sanction.on.2)', 'work.in__(respond.1,respond.to.action.by.2)', "(accept.1,accept.weapon.'s.2)", '(consider.1,consider.sanction.on.2)', "(exploit.1,exploit.test.'s.2)", '(warn.1,warn.3)', 'attempting__(foment.1,foment.discord.between.2)', '(press.1,press.for.sanction.against.2)', '(foment.1,foment.discord.between.2)', "tells__(exploit.1,exploit.test.'s.2)", 'trying__(negotiate.1,negotiate.deal.with.2)', 'NEG__(mention.2,mention.2)', '(face.1,face.beyond.2)', '(negotiate.1,negotiate.deal.with.2)', '(respond.1,respond.to.action.by.2)', '(exploit.1,exploit.test.by.2)', "(deal.1,deal.with.programme.'s.2)", "(condemn.1,condemn.action.'s.2)", '(release.1,release.2)', '(take.1,take.towards.sanction.on.2)', "(condemn.1,condemn.test.'s.2)"]
+[[0.26676179]]
+------------------------------
+['(aussteigen.neben.1,aussteigen.neben.2)', '(treiben_auf.in.1,treiben_auf.in.2)', '(stehen.aus.1,stehen.aus.2)']
+['(begin.1,begin.with.2)', '(say.1,say.2)', "(opposition.'s.2,opposition.to.intervention.in.2)", '(approve.1,approve.to.2)', 'NEG__(sell.1,sell.unlike.2)', '(ferry.1,ferry.troops.to.2)', '(need.2,need.in.2)', '(send.1,send.plane.to.2)', '(support.1,support.mission.in.2)', '(announce.1,announce.following.move.by.2)', '(border.1,border.lake-constance.by.2)']
+[[0.26297584]]
+------------------------------
+['(abschließen.mit.1,abschließen.mit.2)', '(angefragen.in.1,angefragen.in.2)']
+['(lead.1,lead.country.by.2)']
+[[0.25]]
+------------------------------
+['(ergreifen.in.1,ergreifen.in.2)']
+['(take.1,take.to.2)', '(let.1,let.3)', '(region.for.1,region.for.2)', '(grant.1,grant.3)']
+[[0.2495671]]
+------------------------------
+['(belegen.in.1,belegen.in.2)', '(brauchen.1,brauchen.2)', '(isolieren.in.1,isolieren.in.2)']
+["(destination.'s.2,destination.including.2)", '(erupt.across.2,erupt.in.2)', '(intervene.1,intervene.in.proxy.of.2)', '(in.1,in.2)', '(stay.1,stay.in.2)']
+[[0.24744642]]
+------------------------------
+['(stehen.neben.1,stehen.neben.2)', '(verhindern.1,verhindern.2)', '(rittern.mit.1,rittern.mit.2)']
+['(add.1,add.2)', '(play.1,play.against.2)', '(v.1,v.2)', '(defeat.1,defeat.2)', '(contract.1,contract.2)', '(pose.1,pose.2)']
+[[0.24203573]]
+------------------------------
+['(belieferen.1,belieferen.2)', '(bauen.in.1,bauen.in.2)']
+['(spread.outside.2,spread.to.2)', '(result.1,result.1)', '(account.1,account.1)']
+[[0.2285818]]
+------------------------------
+['(befinden.hinter.1,befinden.hinter.2)', '(besitzen.vor.1,besitzen.vor.2)', '(verspielen.gegen.1,verspielen.gegen.2)']
+['(draw.1,draw.with.2)', '(be.debut.in.2,be.on.2)', '(territory.of.1,territory.of.2)', '(rebuff.1,rebuff.proposal.by.2)', '(now.in.1,now.in.2)']
+[[0.22485951]]
+------------------------------
+['(treffen.auf.1,treffen.auf.2)', '(überrollen.nach.1,überrollen.nach.2)', '(zurücknehmen.aus.1,zurücknehmen.aus.2)', '(treffen.verstehen.auf.1,treffen.verstehen.auf.2)']
+['(draw.1,draw.in.2)', '(produce.1,produce.in.2)', '(sell.of.2,sell.to.buying.in.2)']
+[[0.22269967]]
+------------------------------
+['(austauschen.mit.1,austauschen.mit.2)', '(verweigern.neben.1,verweigern.neben.2)']
+['(force.1,force.3)', '(want.1,want.1)', "(tie.'s.2,tie.with.2)", 'NEG__(have.to.2,have.to.2)', '(ship.from.2,ship.to.2)', '(detect.1,detect.earthquake.by.2)', '(be.in.2,be.like.2)', '(monitor.1,monitor.punggye-ri.by.2)', 'NEG__(expect.1,expect.1)', '(roll.out.2,roll.out.in.2)', '(condemn.1,condemn.test.by.2)', '(support.1,support.us.by.2)']
+[[0.22175003]]
+------------------------------
+['(befürworten.gegen.1,befürworten.gegen.2)', '(bekommen.tun.neben.1,bekommen.tun.neben.2)', '(hören.neben.1,hören.neben.2)']
+['(bring.1,bring.from.2)', '(stretch.from.2,stretch.to.2)', '(implicate.from.2,implicate.to.2)', '(prompt.1,prompt.2)']
+[[0.21414918]]
+------------------------------
+['(werfen.neben.1,werfen.neben.2)', '(leiden.1,leiden.2)']
+['(be.1,be.like.2)', '(continue.1,continue.to.2)']
+[[0.21081851]]
+------------------------------
+['(versuchen.anzuwerben.aus.1,versuchen.anzuwerben.aus.2)', '(helfen.reduzieren.1,helfen.reduzieren.2)', '(bereiterklärt.abzunehmen.1,bereiterklärt.abzunehmen.2)', '(einbeziehen.1,einbeziehen.2)', '(werfen_vor.gefährden.1,werfen_vor.gefährden.2)']
+['NEG__(far.1,far.behind.2)', '(launch.in.2,launch.with.2)', '(happy.1,happy.1)', '(offer.in.2,offer.to.manufacturer.in.2)', '(resemble.1,resemble.2)', '(similar.1,similar.to.2)', '(demand.in.1,demand.in.2)', '(follow.1,follow.by.2)', '(follow.1,follow.2)', '(close.to.1,close.to.2)', '(continue.1,continue.1)', '(see.1,see.1)']
+[[0.20741293]]
+------------------------------
+['(belegte.gegen.1,belegte.gegen.2)', '(beweren.als.1,beweren.als.2)', '(freuen.mit.1,freuen.mit.2)', '(stimmen.mit.1,stimmen.mit.2)', '(währen.1,währen.2)', '(schneiden_ab.wie.1,schneiden_ab.wie.2)']
+['(more.1,more.than.2)', '(escape.2,escape.to.2)']
+[[0.18376917]]
+------------------------------
+['(gelingen.wie.1,gelingen.wie.2)', '(hinnehmen.wie.1,hinnehmen.wie.2)', '(reißen.nach.1,reißen.nach.2)', '(lösen.neben.1,lösen.neben.2)', '(zählen.neben.1,zählen.neben.2)', '(beliefern.durch.1,beliefern.durch.2)']
+['NEG__(look.beyond.2,look.beyond.2)', '(expansion.in.1,expansion.in.2)', '(occur.in.2,occur.to.2)', '(reduce.1,reduce.in.2)']
+[[0.18090681]]
+------------------------------
+['(trauern.mit.1,trauern.mit.2)', '(vorgeworfen.1,vorgeworfen.2)']
+['(intervention.in.1,intervention.in.2)', '(conduct.1,conduct.hacking.by.2)', '(caution.1,caution.2)', 'noted__(conduct.1,conduct.hacking.by.2)', '(dispatch.1,dispatch.official.to.2)']
+[[0.16990207]]
+------------------------------
+['(anerkennen.in.1,anerkennen.in.2)', '(kommen_vor.bei.1,kommen_vor.bei.2)']
+["(confrontation.on.2,confrontation.on.right.'s.2)", '(punish.1,punish.2)', '(tighten.1,tighten.sanction.against.2)', '(aim.2,aim.at.2)', 'needed__(speak.1,speak.with.voice.on.2)', '(speak.1,speak.with.voice.on.2)', '(watch.1,watch.development.in.2)']
+[[0.16387725]]
+------------------------------
+['(zugestimmt.schicken.nach.1,zugestimmt.schicken.nach.2)']
+['(get.1,get.from.2)', '(turn.2,turn.to.2)', '(have.1,have.tie.with.2)']
+[[0.16384638]]
+------------------------------
+['(lassen.abkaufen.in.1,lassen.abkaufen.in.2)']
+['(allow.1,allow.in.2)', "(victory.'s.2,victory.against.2)", '(market.of.1,market.of.2)']
+[[0.16012815]]
+------------------------------
+['(starten.mit.1,starten.mit.2)', '(bleiben.in.1,bleiben.in.2)']
+['(break.1,break.2)', '(about.1,about.2)', '(import.1,import.from.2)', '(confrontation.with.1,confrontation.with.2)', '(cross.1,cross.into.2)', '(travel.to.2,travel.via.2)', '(smuggle.1,smuggle.to.2)', '(from.1,from.2)']
+[[0.15929738]]
+------------------------------
+['(aussetzen.in.1,aussetzen.in.2)', '(haben.während.in.1,haben.während.in.2)']
+['(exclude.2,exclude.3)', '(avoid.1,avoid.involvement.in.2)', '(join.1,join.nation.including.2)']
+[[0.15811388]]
+------------------------------
+['(schauen_an.gegen.1,schauen_an.gegen.2)', '(zurückgestanden.hinter.1,zurückgestanden.hinter.2)', '(laufen_her.hinter.1,laufen_her.hinter.2)', '(erstarkt.wie.1,erstarkt.wie.2)']
+['(take.1,take.besides.2)', "('s.2,against.2)"]
+[[0.15617376]]
+------------------------------
+['(wenden_zu.auf.1,wenden_zu.auf.2)', '(nehmen_teil.neben.1,nehmen_teil.neben.2)']
+['(help.1,help.2)', '(send.1,send.in.2)', '(scrap.1,scrap.2)', '(announce.1,announce.in.2)']
+[[0.15401028]]
+------------------------------
+['(nehmen.vor.1,nehmen.vor.2)', '(spielen.gegen.1,spielen.gegen.2)', '(beenden.hinter.1,beenden.hinter.2)']
+['(have.1,have.1)', '(export.2,export.to.2)']
+[[0.15088762]]
+------------------------------
+['(isolieren.auf.1,isolieren.auf.2)', '(aufhetzen.in.1,aufhetzen.in.2)']
+['(play.2,play.for.2)', '(include.2,include.in.2)']
+[[0.15075567]]
+------------------------------
+['(disziplinieren.1,disziplinieren.2)']
+['(expand.from.2,expand.to.2)', '(travel.1,travel.to.2)']
+[[0.14285714]]
+------------------------------
+['(liegen.vor.1,liegen.vor.2)', '(altern.als.1,altern.als.2)', '(lernen.von.1,lernen.von.2)']
+["(between.'s.2,between.2)", "('s.1,'s.2)", '(in.2,in.in.2)', '(look.at.2,look.in.2)']
+[[0.13865953]]
+------------------------------
+['(einstellen.durch.1,einstellen.durch.2)', '(auffordern.1,auffordern.2)', '(schicken.in.1,schicken.in.2)', '(umgehen.1,umgehen.2)']
+['NEG__(ally.of.1,ally.of.2)', "(stance.'s.2,stance.on.2)", '(form.1,form.1)', '(along.1,with.2)', '(lose.2,lose.to.2)']
+[[0.1338549]]
+------------------------------
+['(werfen_vor.durchzugreifen.in.1,werfen_vor.durchzugreifen.in.2)', '(intervenieren.in.1,intervenieren.in.2)', '(unterhalten.in.1,unterhalten.in.2)', '(sehen_an.in.1,sehen_an.in.2)', '(haben.verantworten.gegen.1,haben.verantworten.gegen.2)', '(führen_an.1,führen_an.2)', '(verhobe.in.1,verhobe.in.2)']
+["(commitment.of.2,commitment.of.partner.'s.2)", '(seek.1,seek.talk.with.2)', '(provide.1,provide.like.2)', '(provide.1,provide.2)', '(agree.1,agree.on.2)']
+[[0.13024665]]
+------------------------------
+['(stationieren.in.1,stationieren.in.2)', '(planen.nehmen.auf.1,planen.nehmen.auf.2)']
+['(look.1,look.into.2)', '(need.1,need.relation.with.2)', "(summon.1,summon.envoy.'s.2)", "(export.'s.2,export.to.2)", '(across.1,across.2)', '(fight.1,fight.war.against.2)', '(enter.1,enter.2)', '(tell.1,tell.2)', '(shoot.1,shoot.2)', '(relationship.with.1,relationship.with.2)', '(pay.1,pay.visit.to.2)', "(series.'s.2,series.against.2)", '(hold.1,hold.meeting.with.2)', '(affect.1,affect.3)', '(make.1,make.2)', '(protest.1,protest.to.2)', "(relationship.'s.1,relationship.with.2)", '(grant.1,grant.to.2)', '(normalize.1,normalize.relation.with.2)', "(tour.'s.2,tour.of.2)", '(agreement.between.1,agreement.between.2)', "(arrival.'s.2,arrival.in.2)", '(killing.of.1,killing.of.2)', "(process.'s.2,process.with.2)", '(tension.with.1,tension.with.2)', '(repeat.1,repeat.2)', '(pursue.1,pursue.with.2)', "(reject.1,reject.allegation.'s.2)", '(ahead.1,ahead.of.2)', '(wage.1,wage.war.against.2)', '(make.1,make.visit.to.2)', '(launch.1,launch.war.against.2)', '(affect.1,affect.2)', '(bring.2,bring.to.2)', '(define.1,define.2)', "(dependence.'s.2,dependence.on.2)", '(convey.1,convey.concern.to.2)', '(state.including.1,state.including.2)', '(hurt.1,hurt.2)', '(take.1,take.during.2)', '(stepping.1,stepping.pressure.by.2)', '(as.1,of.2)', '(come.1,come.to.2)', '(come.people.from.2,come.to.2)', 'NEG__(sign.1,sign.1)', '(land.1,land.in.2)', '(visit.1,visit.3)', "(accept.1,accept.request.'s.2)", '(transport.from.2,transport.to.2)', '(have.1,have.presence.in.2)', '(have.1,have.to.2)', '(friend.of.1,friend.of.2)', '(place.2,place.of.2)', '(represent.2,represent.during.protest.in.2)']
+[[0.12402146]]
+------------------------------
+['(zählen.nach.1,zählen.nach.2)', '(unterscheide.von.1,unterscheide.von.2)', '(messen.nach.1,messen.nach.2)', '(kommen.nach.1,kommen.nach.2)', '(unterscheide.als.1,unterscheide.als.2)']
+['(close.1,close.come.1)', '(close.1,close.1)', '(sign.1,sign.1)']
+[[0.11691788]]
+------------------------------
+['(auffordern.aussetzen.1,auffordern.aussetzen.2)', '(eilen.nach.1,eilen.nach.2)']
+['(use.1,use.on.2)', '(involve.1,involve.2)', '(become.1,become.force.in.2)']
+[[0.11162911]]
+------------------------------
+['(erkennen_an.in.1,erkennen_an.in.2)', '(bombardieren.in.1,bombardieren.in.2)']
+['(give.1,give.3)', '(visit.1,visit.2)', '(be.by.2,be.in.2)', '(apply.1,apply.to.2)']
+[[0.11113017]]
+------------------------------
+['(heranrück.an.1,heranrück.an.2)', '(gehören.nach.1,gehören.nach.2)', '(abzweigen.nach.1,abzweigen.nach.2)']
+['(press.1,press.2)', 'plans__(add.in.2,add.to.in.2)', '(cut.1,cut.to.2)']
+[[0.11006164]]
+------------------------------
+['(erwischen.neben.1,erwischen.neben.2)', '(angefragen.1,angefragen.2)']
+['(*.2,*.with.2)', 'NEG__(have.in.2,have.in.2)']
+[[0.10369517]]
+------------------------------
+['(bremsen.aus.1,bremsen.aus.2)', '(fühlen_an.in.1,fühlen_an.in.2)', '(sprechen_vor.in.1,sprechen_vor.in.2)', '(laufen.zwischen.1,laufen.zwischen.2)', '(spielen.gen.1,spielen.gen.2)', '(lassen.regieren.von.1,lassen.regieren.von.2)', '(bedeuten.in.1,bedeuten.in.2)', '(wünschen.von.1,wünschen.von.2)']
+['(pull.1,pull.troops.of.2)', 'NEG__(be.1,be.like.2)', '(differ.1,differ.from.2)', '(convince.1,convince.2)', '(call.1,call.2)', '(rank.2,rank.below.2)', '(event.in.1,event.in.2)', '(become.1,become.in.2)']
+[[0.10353609]]
+------------------------------
+['(bearbeiten_zusammen.wie.1,bearbeiten_zusammen.wie.2)', '(exportieren.nach.1,exportieren.nach.2)']
+["(condemn.1,condemn.plan.'s.2)", '(base.in.2,base.of.1)', '(to.1,to.from.2)', '(democracy.of.1,democracy.of.2)']
+[[0.10259784]]
+------------------------------
+['(lösen_auf.gegen.1,lösen_auf.gegen.2)', '(überholen.von.1,überholen.von.2)', '(sein.neben.1,sein.neben.2)', '(fallen|fällen.gegen.1,fallen|fällen.gegen.2)', '(kündigen_an.einzuberufen.nach.1,kündigen_an.einzuberufen.nach.2)', '(gehören.wie.1,gehören.wie.2)', '(bauen_aus.auf.1,bauen_aus.auf.2)', '(rannen_fest.gegen.1,rannen_fest.gegen.2)']
+['(have.for.2,have.with.2)', 'NEG__(cover.2,cover.2)', '(threaten.1,threaten.to.2)', '(per.1,per.2)']
+[[0.09930631]]
+------------------------------
+['(kündigen_an.in.1,kündigen_an.in.2)', '(weisen_auf.1,weisen_auf.2)']
+['(centre.in.1,centre.in.2)', '(host.1,host.2)', '(shock.1,shock.2)', '(begin.1,begin.2)', '(upset.1,upset.2)', '(give.2,give.over.2)']
+[[0.09627458]]
+------------------------------
+['(handeln.als.1,handeln.als.2)', '(aufholen.auf.1,aufholen.auf.2)', '(antreten.gegen.1,antreten.gegen.2)', '(spalten.gegen.1,spalten.gegen.2)']
+['(back.1,back.islamists.by.2)']
+[[0.09449112]]
+------------------------------
+['(aussteigen.als.1,aussteigen.als.2)', '(angewiesen.neben.1,angewiesen.neben.2)', '(liegen.hinter.1,liegen.hinter.2)', '(auskommen.nach.1,auskommen.nach.2)', '(stützen.wie.1,stützen.wie.2)']
+['(flood.in.1,flood.in.2)', '(underpin.2,underpin.after.datum.from.2)', '(settle.2,settle.in.2)', '(to.1,to.2)', '(1,for.2)', '(be.1,be.of.importance.to.2)', 'NEG__(become.2,become.2)']
+[[0.09334223]]
+------------------------------
+['(machen.ohne.1,machen.ohne.2)', '(brauchen.in.1,brauchen.in.2)', '(führen.1,führen.2)', '(geben_auf.in.1,geben_auf.in.2)', '(vorangehen.in.1,vorangehen.in.2)']
+['(face.1,face.1)', '(with.1,with.2)', '(withdrawal.from.1,withdrawal.from.2)', '(hold.1,hold.in.2)', '(welcome.1,welcome.1)']
+[[0.09129407]]
+------------------------------
+['(verholfen.ohne.1,verholfen.ohne.2)']
+['(avoid.1,avoid.2)', '(between.1,between.2)']
+[[0.09128709]]
+------------------------------
+['(schließen_aus.schicken.nach.1,schließen_aus.schicken.nach.2)', '(unterstützen.1,unterstützen.2)']
+['(lose.1,lose.to.2)', 'NEG__(reach.out.in.2,reach.out.in.2)', '(lag.1,lag.behind.2)', '(drive.1,drive.equipment.by.2)']
+[[0.09107052]]
+------------------------------
+['(fertigen_ab.1,fertigen_ab.2)', '(besiegen.1,besiegen.2)']
+['(discover.2,discover.in.2)']
+[[0.09090909]]
+------------------------------
+['(zählen.außer.1,zählen.außer.2)', '(kritisieren.neben.1,kritisieren.neben.2)', '(ablösen.damit.1,ablösen.damit.2)']
+['(forge.1,forge.agreement.with.2)', '(of.1,of.2)', "(conflict.'s.2,conflict.with.2)"]
+[[0.08812102]]
+------------------------------
+['(ausgeben.1,ausgeben.2)', '(machen.mit.1,machen.mit.2)']
+['(of.1,of.country.with.2)', '(near.1,near.2)']
+[[0.0862796]]
+------------------------------
+['(zählen.aus.1,zählen.aus.2)', '(teilen.in.1,teilen.in.2)']
+['(launch.1,launch.into.2)', '(fire.1,fire.into.2)', '(into.1,into.2)']
+[[0.08247861]]
+------------------------------
+['(stehen_fest.gegen.1,stehen_fest.gegen.2)', '(tät.in.1,tät.in.2)', '(wackelten.1,wackelten.2)', '(liegen.mit.1,liegen.mit.2)']
+['(be.1,be.for.2)', '(go.1,go.1)', '(fall.1,fall.across.2)', '(turn.1,turn.around.2)', '(talk.in.2,talk.to.2)', '(game.outside.1,game.outside.continent.in.2)']
+[[0.07838416]]
+------------------------------
+['(nehmen_wider_auf.1,nehmen_wider_auf.2)']
+['(suffer.1,suffer.1)', '(follow.1,follow.1)', "(occupation.'s.2,occupation.of.2)", '(work.1,work.with.2)', '(attack.2,attack.through.2)']
+[[0.07314898]]
+------------------------------
+['(exportieren.zusammengenommen.nach.1,exportieren.zusammengenommen.nach.2)', '(bemühen.mit.1,bemühen.mit.2)', '(pocht.mit.1,pocht.mit.2)', '(versuchen.durchsetzen.mit.1,versuchen.durchsetzen.mit.2)', '(walzen.1,walzen.2)', '(reagieren.mit.1,reagieren.mit.2)']
+['NEG__(retaliate.1,retaliate.1)', '(follow.1,follow.reserve.by.2)', 'said__(market.including.2,market.on.top.of.2)', 'NEG__(sit.out.1,sit.out.1)', "(match.'s.2,match.against.2)", '(bring.1,bring.2)', '(market.including.2,market.on.top.of.2)', "(producer.'s.2,producer.after.2)", '(cross.1,cross.2)', "(''.in.1,''.in.2)"]
+[[0.07100018]]
+------------------------------
+['(gewinnen.gegen.1,gewinnen.gegen.2)', '(messen.mit.1,messen.mit.2)', '(verwickeln.mit.1,verwickeln.mit.2)']
+["(source.'s.2,source.of.1)", '(do.1,do.2)', '(enter.1,enter.consider.1)']
+[[0.07067842]]
+------------------------------
+['(debattieren.über.1,debattieren.über.2)']
+['(learn.1,learn.from.2)', 'NEG__(be.1,be.2)', '(engage.1,engage.with.2)', "(museum.'s.2,museum.in.2)", '(remain.1,remain.in.2)', '(be.1,be.2)']
+[[0.06954214]]
+------------------------------
+['(starren.nach.1,starren.nach.2)', '(n.in.1,n.in.2)', '(erobern_zurück.1,erobern_zurück.2)', '(ausüben.aufnehmen.auf.1,ausüben.aufnehmen.auf.2)', '(gesandt.nach.1,gesandt.nach.2)']
+["(election.'s.2,election.in.2)", '(go.1,go.of.2)']
+[[0.06651901]]
+------------------------------
+['(verstärkt.in.1,verstärkt.in.2)', '(attackieren.1,attackieren.2)', '(abberufen.aus.1,abberufen.aus.2)', '(werfen_vor.einkreisen.1,werfen_vor.einkreisen.2)', '(zusammenarbeiten.in.1,zusammenarbeiten.in.2)', '(bereit.einzugreifen.in.1,bereit.einzugreifen.in.2)', '(beginnen.bombardieren.in.1,beginnen.bombardieren.in.2)', '(stellen_vor.für.1,stellen_vor.für.2)', '(werfen_vor.begehen.1,werfen_vor.begehen.2)', '(beschließen.koordinieren.in.1,beschließen.koordinieren.in.2)']
+['(conspire.against.2,conspire.in.2)']
+[[0.06651901]]
+------------------------------
+['(rangieren.mit.1,rangieren.mit.2)', '(belege.nach.1,belege.nach.2)', '(belegen.nach.1,belegen.nach.2)', '(stärken.mit.1,stärken.mit.2)', '(beschäftigen.nach.1,beschäftigen.nach.2)', '(vorbeikommen.an.1,vorbeikommen.an.2)', '(hören.einnehmen.auf.1,hören.einnehmen.auf.2)', '(landen.zwischen.1,landen.zwischen.2)', '(blühen_auf.nach.1,blühen_auf.nach.2)', '(rangieren.nach.1,rangieren.nach.2)', '(sein_zusammen.1,sein_zusammen.2)', '(abgehängen.neben.1,abgehängen.neben.2)', '(schaffen.erobern.nach.1,schaffen.erobern.nach.2)']
+['(other.in.1,other.in.2)', '(travel.from.2,travel.to.2)', '(show.1,show.with.2)', '(remove.2,remove.from.agenda.in.2)', '(enter.1,enter.chain.in.2)']
+[[0.06437839]]
+------------------------------
+['(tauschen_aus.gegen.1,tauschen_aus.gegen.2)', '(reden.mit.1,reden.mit.2)', '(verlassen.auf.1,verlassen.auf.2)', '(erzüchten.in.1,erzüchten.in.2)', '(bezwingen.1,bezwingen.2)', '(importieren.aus.1,importieren.aus.2)', '(auffordern.nutzen.auf.1,auffordern.nutzen.auf.2)', '(führen.mit.1,führen.mit.2)', '(stellen.1,stellen.2)', '(verhalten.gegenüber.1,verhalten.gegenüber.2)', '(nutzen.zu.1,nutzen.zu.2)', '(verjagen.aus.1,verjagen.aus.2)', '(hinnehmen.durch.1,hinnehmen.durch.2)']
+['(run.1,run.of.2)', '(destabilise.1,destabilise.2)', '(invade.1,invade.2)']
+[[0.06419297]]
+------------------------------
+['(vorwerfen.isolieren.in.1,vorwerfen.isolieren.in.2)', '(finden.1,finden.2)', '(ertragen.haben.aus.1,ertragen.haben.aus.2)']
+['(oversee.1,oversee.2)', 'NEG__(be.1,be.1)', '(opt.for.2,opt.over.2)', '(participate.1,participate.in.2)']
+[[0.05978145]]
+------------------------------
+['(zugesagen.liefern.1,zugesagen.liefern.2)', '(zulassen.mit.1,zulassen.mit.2)', '(ankündigen_vor.1,ankündigen_vor.2)', '(sichern.vor.1,sichern.vor.2)', '(arbeiten.zerstören.mit.1,arbeiten.zerstören.mit.2)', '(schicken_an.machen.mit.1,schicken_an.machen.mit.2)', '(weigern.stoppen.nach.1,weigern.stoppen.nach.2)', '(stehen.liefern.1,stehen.liefern.2)', '(fliegen.neben.1,fliegen.neben.2)', '(machen.aufmerksam.1,machen.aufmerksam.2)', '(verdoppeln.auf.1,verdoppeln.auf.2)', '(streiten.mit.1,streiten.mit.2)']
+['(as.1,in.2)', '(come.from.2,come.in.2)', '(nation.of.1,nation.of.2)', '(service.in.2,service.throughout.2)', '(receive.1,receive.to.professor.from.2)', "(deal.'s.2,deal.with.2)", '(asset.under.1,asset.under.management.in.2)', '(travel.1,travel.in.2)']
+[[0.05531673]]
+------------------------------
+['(haben.beenden.gegen.1,haben.beenden.gegen.2)', '(aufsteigen.neben.1,aufsteigen.neben.2)', '(finden.mit.1,finden.mit.2)', '(erlauben.neben.1,erlauben.neben.2)', '(befürworten.als.1,befürworten.als.2)', '(setzen_durch.vor.1,setzen_durch.vor.2)', '(verlieren.wie.1,verlieren.wie.2)', '(bekommen.wie.1,bekommen.wie.2)', '(fürchten.1,fürchten.2)', '(ziehen_gleich.gegen.1,ziehen_gleich.gegen.2)', '(untersagen.neben.1,untersagen.neben.2)', '(haben.eingebüßen.wie.1,haben.eingebüßen.wie.2)']
+['(edge.1,edge.2)', '(overcome.1,overcome.2)', 'NEG__(go.1,go.1)', '(available.in.2,available.in.besides.2)', '(commit.1,commit.after.2)', '(pledge.1,pledge.from.2)', '(enjoy.1,enjoy.surplus.with.2)', '(go.from.2,go.to.2)']
+[[0.05336886]]
+------------------------------
+['(sein.ausschließen.in.1,sein.ausschließen.in.2)']
+['(use.1,use.1)', '(on.1,on.2)']
+[[0.05227084]]
+------------------------------
+['(abgucken.von.1,abgucken.von.2)', '(zeihen|ziehen.an.1,zeihen|ziehen.an.2)']
+["(ambassador.'s.2,ambassador.in.2)", '(spanning.from.2,spanning.to.2)', '(live.1,live.in.2)', '(flock.1,flock.to.2)']
+[[0.04908807]]
+------------------------------
+['(erhalten.gegen.1,erhalten.gegen.2)']
+['(send.1,send.c-17-globemaster.to.2)', '(move.in.2,move.to.2)', 'NEG__(wish.1,wish.1)', '(launch.in.2,launch.including.country.of.2)', '(become.1,become.province.of.2)', '(online.in.1,online.in.2)']
+[[0.04703604]]
+------------------------------
+['(dichtmachen.zu.1,dichtmachen.zu.2)', '(beitreten.1,beitreten.2)', '(benötigen.nach.1,benötigen.nach.2)', '(eingelösen.1,eingelösen.2)', '(haben.einführen.neben.1,haben.einführen.neben.2)', '(errichten.als.1,errichten.als.2)', '(ausscheren.außer.1,ausscheren.außer.2)', '(werden.nach.1,werden.nach.2)', '(helfen.machen.effizient.1,helfen.machen.effizient.2)', '(bezahlen.nach.1,bezahlen.nach.2)', '(drücken.nach.1,drücken.nach.2)', '(bemühen.um.1,bemühen.um.2)', '(ächzen.wie.1,ächzen.wie.2)', '(befinden.nach.1,befinden.nach.2)', '(rück.nach.1,rück.nach.2)', '(schulden.als.1,schulden.als.2)', '(stehen.vor.1,stehen.vor.2)', '(durchgewunken.wie.1,durchgewunken.wie.2)', '(fühlen.allein.lassen.wie.1,fühlen.allein.lassen.wie.2)', '(empfängen.1,empfängen.2)', '(verzeichnen.nach.1,verzeichnen.nach.2)', '(enden.wie.1,enden.wie.2)', '(fordern.besetzen.in.1,fordern.besetzen.in.2)', '(ausgesprochen.neben.1,ausgesprochen.neben.2)', '(kämpfen.wie.1,kämpfen.wie.2)', '(weisen_auf.neben.1,weisen_auf.neben.2)', '(leben.wie.1,leben.wie.2)', '(spielen.mit.1,spielen.mit.2)', '(drohen.folgen.1,drohen.folgen.2)', '(befreien.nach.1,befreien.nach.2)', '(verfügen.als.1,verfügen.als.2)', '(wandeln.wie.1,wandeln.wie.2)', '(haben.hinter.1,haben.hinter.2)', '(helfen.als.1,helfen.als.2)', '(betrachten.als.1,betrachten.als.2)', '(ermutigen.kaufen.nach.1,ermutigen.kaufen.nach.2)', '(übernehmen.von.1,übernehmen.von.2)']
+["managed__(respond.1,respond.to.launch.'s.2)", "(respond.1,respond.to.launch.'s.2)", 'force.if__(promote.1,promote.on.2)', '(face.1,face.2)']
+[[0.04656821]]
+------------------------------
+['(klammern.an.1,klammern.an.2)']
+['(hospitalize.2,hospitalize.in.2)', '(attack.1,attack.2)']
+[[0.04612656]]
+------------------------------
+['(enthalten.mit.1,enthalten.mit.2)', '(einwirken.auf.1,einwirken.auf.2)', '(verlieren.gegen.1,verlieren.gegen.2)', '(zusammenarbeiten.mit.1,zusammenarbeiten.mit.2)']
+['(take.1,take.from.2)', '(inform.1,inform.2)', '(take.during.2,take.from.2)', 'NEG__(inform.1,inform.2)']
+[[0.04507422]]
+------------------------------
+['(beginnen.räumen.auf.1,beginnen.räumen.auf.2)', '(haben.zusagen.1,haben.zusagen.2)']
+['(be.1,be.in.2)', '(spread.in.2,spread.to.2)', '(march.1,march.through.2)', '(refer.as.2,refer.to.2)', '(shift.1,shift.to.2)', '(ban.1,ban.in.2)', '(remain.1,remain.2)', '(invest.1,invest.in.2)', "(death.'s.2,death.in.2)", '(slam.1,slam.into.2)']
+[[0.04146321]]
+------------------------------
+['(sehen_an.1,sehen_an.2)', '(stehen.zu.1,stehen.zu.2)']
+["('s.2,to.1)", '(follow.as.2,follow.into.2)', '(use.by.2,use.in.2)']
+[[0.03987261]]
+------------------------------
+['(fürchen.neben.1,fürchen.neben.2)', '(ziehen_ein.neben.1,ziehen_ein.neben.2)', '(lassen.leiden.1,lassen.leiden.2)', '(animieren.reisen.nach.1,animieren.reisen.nach.2)', '(haben.gegen.1,haben.gegen.2)', '(gehören_an.neben.1,gehören_an.neben.2)', '(feiern.in.1,feiern.in.2)', '(angehen.mit.1,angehen.mit.2)', '(bleiben.nach.1,bleiben.nach.2)', '(sein.vor.1,sein.vor.2)']
+['(capture.from.2,capture.in.2)', '(be.in.2,be.of.2)', '(fall.1,fall.to.2)', '(break.1,break.into.2)', '(strike.1,strike.2)', '(have.1,have.treaty.with.2)', '(tell.1,tell.reporter.in.2)', "('s.1,'s.in.2)", '(build.2,build.in.2)', '(beat.2,beat.at.2)', '(talk.1,talk.to.2)', '(tell.1,tell.in.2)', '(give.2,give.3)', '(retaliate.1,retaliate.for.2)', '(attribute.2,attribute.to.2)']
+[[0.03813778]]
+------------------------------
+['(mitfinanzieren.1,mitfinanzieren.2)']
+['(maintain.1,maintain.presence.in.2)', '(lead.1,lead.3)', '(traumatize.1,traumatize.people.by.2)', '(in.2,than.1)']
+[[0.03322277]]
+------------------------------
+['(holn.in.1,holn.in.2)', '(ergreife.gegen.1,ergreife.gegen.2)', '(entschlüsseln.1,entschlüsseln.2)', '(holen.in.1,holen.in.2)']
+['(maintain.1,maintain.on.par.with.2)', '(become.1,become.like.2)', '(get.from.2,get.to.2)', '(showcase.from.2,showcase.to.2)', 'struggled__(maintain.1,maintain.on.par.with.2)', "('s.2,in.2)", '(settlement.in.2,settlement.in.than.2)', "('s.1,in.2)", '(stint.at.02.in.2,stint.at.1)', '(headquarter.in.2,headquarter.with.office.in.2)', '(vie.1,vie.with.2)', '(launch.1,launch.operation.by.2)', '(watch.1,watch.2)', '(bear.2,bear.in.2)']
+[[0.03052076]]
+------------------------------
+['(klagen.gegen.1,klagen.gegen.2)', '(haben.1,haben.2)', '(zusammenarbeiten.über.1,zusammenarbeiten.über.2)', '(liefern.wie.1,liefern.wie.2)', '(werfen_vor.schwächen.1,werfen_vor.schwächen.2)']
+['(play.2,play.in.2)', '(finance.1,finance.2)', 'NEG__(sell.unlike.2,sell.unlike.2)']
+[[0.02765006]]
+------------------------------
+['(betroffen.neben.1,betroffen.neben.2)', '(entwickeln.nach.1,entwickeln.nach.2)', '(bekommen.tun.mit.1,bekommen.tun.mit.2)', '(bitten.wie.1,bitten.wie.2)', '(betreiben.über.1,betreiben.über.2)', '(verpflichten.aufnehmen.aus.1,verpflichten.aufnehmen.aus.2)', '(haben_zusammen.als.1,haben_zusammen.als.2)', '(bewerkstellig.wie.1,bewerkstellig.wie.2)']
+['NEG__(fickle.in.2,fickle.in.2)', '(declare.1,declare.on.2)', '(expel.1,expel.in.response.to.2)', '(rescind.1,rescind.in.2)', '(support.1,support.intervention.by.2)']
+[[0.02474197]]
+------------------------------
+['(verkaufen.an.1,verkaufen.an.2)', '(hoffen.erhalten.von.1,hoffen.erhalten.von.2)', '(erlauben.transportieren.nach.1,erlauben.transportieren.nach.2)', '(einigen.nach.1,einigen.nach.2)', '(fühlen_zurück.drängen.aus.1,fühlen_zurück.drängen.aus.2)', '(öffne.nach.1,öffne.nach.2)', '(öffnen.nach.1,öffnen.nach.2)', '(rupfen.mit.1,rupfen.mit.2)', '(zwingen.in.1,zwingen.in.2)', '(versuchen.ausdehnen.auf.1,versuchen.ausdehnen.auf.2)', '(erleben.1,erleben.2)', '(bereiten.1,bereiten.2)', '(unterhalten.über.1,unterhalten.über.2)', '(dementieren.bestätigen.in.1,dementieren.bestätigen.in.2)']
+['(expect.1,expect.1)', '(contribute.1,contribute.2)', '(at.1,at.2)', '(for.1,for.2)', '(size.of.1,size.of.2)', '(appeal.1,appeal.to.2)']
+[[0.02357543]]
+------------------------------
+['(liefern.von.1,liefern.von.2)']
+['(have.1,have.population.in.2)', '(give.in.2,give.on.2)', '(investor.in.1,investor.in.2)', '(man.of.1,man.of.2)', '(lead.1,lead.2)', '(centre.of.1,centre.of.2)']
+[[0.02329364]]
+------------------------------
+['(verbinden.mit.1,verbinden.mit.2)', '(verurteilen.in.1,verurteilen.in.2)']
+['(compete.1,compete.with.2)', "(dispute.'s.2,dispute.with.2)"]
+[[0.02302656]]
+------------------------------
+['(verteidig.in.1,verteidig.in.2)', '(helfen.1,helfen.2)']
+['(lose.1,lose.2)', '(follow.by.2,follow.with.2)', "(share.'s.2,share.in.2)", '(sell.2,sell.in.2)', '(be.1,be.with.2)', '(export.1,export.to.2)', '(fight.1,fight.2)', 'NEG__(sport.in.2,sport.in.country.as.2)', '(favor.1,favor.2)', 'said__(sport.in.2,sport.in.country.as.2)', '(be.1,be.of.2)']
+[[0.02207875]]
+------------------------------
+['(ausliefern.in.1,ausliefern.in.2)']
+['(find.1,find.1)', '(beat.1,beat.2)', '(over.1,over.2)', '(head.for.1,head.for.2)', '(exploit.1,exploit.1)', '(seize.1,seize.with.3)']
+[[0.02192645]]
+------------------------------
+['(kommen.zu.1,kommen.zu.2)']
+['(consumer.after.2,consumer.of.1)', '(expect.3,expect.in.market.including.2)', '(court.1,court.2)', '(concentrate.in.2,concentrate.in.addition.to.2)', '(lease.1,lease.to.2)', '(emitter.of.1,emitter.of.gas.after.2)', "(problem.'s.2,problem.in.2)", '(place.as.1,place.as.2)', '(sell.in.2,sell.in.addition.to.2)', "(remain.1,remain.partner.'s.2)", '(begin.1,begin.in.2)', '(hand.1,hand.to.2)', '(hand.2,hand.to.2)', 'NEG__(exist.in.2,exist.in.2)', 'announced__(sell.in.2,sell.in.addition.to.2)', '(aim.1,aim.at.construction.in.2)', '(continue.1,continue.let.2)']
+[[0.01957026]]
+------------------------------
+['(liegen_zurück.hinter.1,liegen_zurück.hinter.2)', '(liegen.auf.1,liegen.auf.2)']
+['(strengthen.1,strengthen.1)', 'NEG__(share.1,share.1)', '(seek.1,seek.1)']
+[[0.01795329]]
+------------------------------
+['(sonnt.in.1,sonnt.in.2)']
+['(normalize.1,normalize.with.2)', '(warn.1,warn.2)', '(against.1,against.2)', '(immigrate.from.2,immigrate.to.2)', '(become.1,become.for.2)', '(resumption.of.1,resumption.of.talk.between.2)']
+[[0.01634956]]
+------------------------------
+['(drohen.1,drohen.2)', '(freuen.auf.1,freuen.auf.2)']
+['(catch.from.2,catch.to.2)', '(country.across.1,country.across.2)', '(enjoy.1,enjoy.with.2)', '(partner.in.1,partner.in.2)', "(partner.'s.1,partner.in.2)", '(under.1,under.2)', '(market.across.1,market.across.2)', '(become.1,become.in.market.as.2)', '(sweep.2,sweep.through.2)', 'NEG__(country.from.2,country.from.2)']
+[[0.01405341]]
+------------------------------
+['(ablehnen.aus.1,ablehnen.aus.2)', '(treffen.1,treffen.2)', '(singen.in.1,singen.in.2)', '(geben.bringen.1,geben.bringen.2)', '(verzichten.in.1,verzichten.in.2)', '(zerstreten.mit.1,zerstreten.mit.2)', '(fliegen.in.1,fliegen.in.2)', '(unterzeichnen.von.1,unterzeichnen.von.2)', '(beantragen.nach.1,beantragen.nach.2)', '(vorstellen.in.1,vorstellen.in.2)', '(setzen.lassen.durch.1,setzen.lassen.durch.2)', '(nachholen.bis.1,nachholen.bis.2)', '(lösen.in.1,lösen.in.2)', '(stimmen.in.1,stimmen.in.2)', '(versuchen.sorgen.in.1,versuchen.sorgen.in.2)', '(treten_an.in.1,treten_an.in.2)', '(kommen_nach.aus.1,kommen_nach.aus.2)', '(scheitern.in.1,scheitern.in.2)']
+['(follow.1,follow.u.s.by.2)', '(be.1,be.on.side.with.2)', '(rule.1,rule.on.2)']
+[[0.01341647]]
+------------------------------
+['(erhalten.von.1,erhalten.von.2)', '(erwarten.aus.1,erwarten.aus.2)', '(hoffen.auf.1,hoffen.auf.2)']
+["(envoy.'s.2,envoy.to.2)", '(return.1,return.to.2)']
+[[0.01294668]]
+------------------------------
+['(stützen.wie.für.1,stützen.wie.für.2)', '(holen.aus.1,holen.aus.2)', '(unterstützen.in.1,unterstützen.in.2)', '(fordern_auf.1,fordern_auf.2)', '(schieben_ab.nach.1,schieben_ab.nach.2)', '(ausricht.in.1,ausricht.in.2)', '(aussetzen.nach.1,aussetzen.nach.2)', '(leisten.an.1,leisten.an.2)']
+['(specialist.from.1,specialist.from.2)', '(say.1,say.to.2)', '(accept.1,accept.2)', "(capture.2,capture.to.'s.2)", '(co-operating.1,co-operating.with.2)', '(role.of.1,role.of.2)', '(open.1,open.to.2)', '(win.1,win.independence.from.2)', '(say.1,say.3)', '(receive.1,receive.ambassador.of.2)']
+[[0.01161985]]
+------------------------------
+['(haben.neben.1,haben.neben.2)', '(holen.wie.1,holen.wie.2)']
+['(supply.1,supply.2)', '(supply.1,supply.to.2)', '(move.1,move.to.2)', '(prepare.1,prepare.for.2)', '(sell.1,sell.2)', '(evacuate.2,evacuate.from.2)', '(flee.1,flee.violence.in.2)', "(position.'s.2,position.on.2)"]
+[[0.01103353]]
+------------------------------
+['(verflochen.mit.1,verflochen.mit.2)', '(versäumen.schaffen.wie.1,versäumen.schaffen.wie.2)', '(einigen.entlasten.1,einigen.entlasten.2)', '(entfernt.benötigen.wie.1,entfernt.benötigen.wie.2)', '(handeln.nach.1,handeln.nach.2)']
+['(range.from.1,range.to.2)', '(defend.1,defend.2)', 'NEG__(retaliate.1,retaliate.against.2)', '(dominate.1,dominate.1)', '(develop.1,develop.with.2)', '(push.1,push.2)', '(supportive.1,supportive.of.2)', '(be.1,be.1)', '(feel.1,feel.2)', '(antagonize.1,antagonize.2)', '(grow.1,grow.2)', '(conduct.1,conduct.1)', '(commitment.to.1,commitment.to.2)', '(smuggle.from.2,smuggle.into.2)', '(pose.1,pose.to.2)', 'NEG__(recognize.1,recognize.2)', '(demonstrate.1,demonstrate.to.2)', '(require.1,require.1)', 'NEG__(attack.1,attack.2)', 'NEG__(capability.of.2,capability.of.2)']
+[[0.00942048]]
+------------------------------
+['(haben.hinterlassen.in.1,haben.hinterlassen.in.2)']
+['(go.1,go.to.2)', '(get.from.2,get.into.2)', '(flee.2,flee.into.country.as.2)', '(speak.1,speak.about.2)', '(replace.1,replace.2)', '(await.1,await.in.region.in.2)', '(sit.1,sit.with.neighbour.including.2)', '(refugee.in.1,refugee.in.2)', '(give.1,give.2)', '(have.1,have.unlike.2)']
+[[0.00907816]]
+------------------------------
+['(berafen_zurück.in.1,berafen_zurück.in.2)', '(haben.zurückgerufen.aus.1,haben.zurückgerufen.aus.2)', '(rufen_zurück.aus.1,rufen_zurück.aus.2)', '(verringern.neben.1,verringern.neben.2)']
+['(hold.1,hold.talk.with.2)', '(hold.1,hold.with.2)']
+[[0.00817916]]
+------------------------------
+['(ziehen.zeigen.1,ziehen.zeigen.2)', '(unterhalten.zu.1,unterhalten.zu.2)', '(gereist.nach.1,gereist.nach.2)', '(haben.überholt.1,haben.überholt.2)', '(einziehen.gegen.1,einziehen.gegen.2)']
+["(link.'s.2,link.with.2)", '(censure.1,censure.2)', '(warns.1,warns.2)', '(escape.from.2,escape.to.2)']
+[[0.00660429]]
+------------------------------
+['(belagern.in.1,belagern.in.2)']
+['(arrive.1,arrive.to.2)', '(send.in.2,send.to.2)', '(independent.1,independent.from.2)', '(make.1,make.3)', '(thanks.to.1,thanks.to.2)', '(interest.of.1,interest.of.2)', '(request.1,request.assistance.from.2)', '(join.1,join.from.2)', '(suggest.1,suggest.2)', '(independent.became.1,independent.from.2)', '(single.1,single.2)', '(home.in.1,home.in.2)', '(advise.1,advise.2)', '(prompt.1,prompt.3)', "('s.1,'s.from.2)", '(be.in.2,be.with.2)', '(colony.of.1,colony.of.2)', '(leave.2,leave.start.1)']
+[[0.00583878]]
+------------------------------
+['(belassen.in.1,belassen.in.2)', '(leisten.1,leisten.2)', '(lassen.zurückfliegen.nach.1,lassen.zurückfliegen.nach.2)', '(befinden.in.1,befinden.in.2)', '(ändern.in.1,ändern.in.2)', '(verpflichten.unterstützen.1,verpflichten.unterstützen.2)', '(begeben.in.1,begeben.in.2)', '(aufstocken.in.1,aufstocken.in.2)', '(arbeien.in.1,arbeien.in.2)', '(beteiligen.in.1,beteiligen.in.2)', '(verlängern.in.1,verlängern.in.2)', '(zusagen.zahlen.1,zusagen.zahlen.2)', '(versprechen.1,versprechen.2)', '(bringen.nach.1,bringen.nach.2)']
+['(realize.1,realize.2)', '(fight.2,fight.in.2)', '(achieve.1,achieve.peace.in.2)', '(have.1,have.stake.in.2)']
+[[0.00473709]]
+------------------------------
+['(ersetzen.1,ersetzen.2)', '(legen_fest.in.1,legen_fest.in.2)', '(setzen.mit.1,setzen.mit.2)']
+['(be.1,be.to.2)', '(allow.1,allow.2)', '(ally.1,ally.with.2)', '(willing.1,willing.1)']
+[[0.00398951]]
+------------------------------
+['(drängen.zufolge.1,drängen.zufolge.2)', '(rannt_an.gegen.1,rannt_an.gegen.2)', '(verdienen.an.1,verdienen.an.2)', '(fremdbestimmen.1,fremdbestimmen.2)', '(lassen.liegen.1,lassen.liegen.2)', '(übernehmen.aus.1,übernehmen.aus.2)', '(schmeißen_raus.1,schmeißen_raus.2)']
+['(embassy.in.1,embassy.in.2)', 'said__(cultivate.1,cultivate.with.power.including.2)', '(have.1,have.from.2)', '(higher.1,higher.than.2)', '(neighbor.1,neighbor.2)', '(align.1,align.with.2)', '(cultivate.1,cultivate.with.power.including.2)']
+[[0.00250735]]
+------------------------------
+['(nehmen_auf.in.1,nehmen_auf.in.2)', '(stellen.in.1,stellen.in.2)', '(zusammenhalten.1,zusammenhalten.2)', '(liegen.in.1,liegen.in.2)', '(stehen_da.in.1,stehen_da.in.2)', '(führen.in.1,führen.in.2)', '(angeben.in.1,angeben.in.2)']
+['(all.over.1,all.over.2)', "(see.'s.2,see.1)", '(register.1,register.2)']
+[[0.00202634]]
+------------------------------
+['(fliegen.nach.1,fliegen.nach.2)', '(dastehen.als.1,dastehen.als.2)', '(gehen.aus.1,gehen.aus.2)', '(spielen.wie.1,spielen.wie.2)', '(nehmen_auf.wie.1,nehmen_auf.wie.2)', '(haben.bei.1,haben.bei.2)', '(wollen.von.1,wollen.von.2)', '(aufhören.behaupten.neben.1,aufhören.behaupten.neben.2)', '(geraten|raten.gegenüber.1,geraten|raten.gegenüber.2)', '(schließen_auf.zu.1,schließen_auf.zu.2)', '(bereiten_vor.mit.1,bereiten_vor.mit.2)', '(haben.wie.1,haben.wie.2)', '(entscheiden.setzen.in.1,entscheiden.setzen.in.2)', '(ziehen.von.1,ziehen.von.2)', '(zeigen.zurückhaltend.wie.1,zeigen.zurückhaltend.wie.2)', '(tun.als.1,tun.als.2)', '(setzen.wie.1,setzen.wie.2)', '(erinnern.an.1,erinnern.an.2)', '(teilen_mit.in.1,teilen_mit.in.2)', '(begrüßen.von.1,begrüßen.von.2)', '(sehen.aussetzen.finden.aus.1,sehen.aussetzen.finden.aus.2)', '(aufgerüsten.wie.1,aufgerüsten.wie.2)', '(bleeben.für.1,bleeben.für.2)', '(werfen_vor.feiern.1,werfen_vor.feiern.2)', '(messen.in.1,messen.in.2)', '(haben.erschüttern.1,haben.erschüttern.2)', '(empfinden.als.1,empfinden.als.2)', '(entscheiden.wie.1,entscheiden.wie.2)', '(gelten.als.1,gelten.als.2)', '(entwickeln.wie.1,entwickeln.wie.2)', '(fürchten.ziehen.von.1,fürchten.ziehen.von.2)', '(wünschen.wie.1,wünschen.wie.2)', '(sehen_ab.hauen.auf.1,sehen_ab.hauen.auf.2)', '(glauben.unabhängig.von.1,glauben.unabhängig.von.2)']
+['(remain.1,remain.investor.in.2)', 'NEG__(live.in.2,live.in.2)']
+[[0.00189184]]
+------------------------------
+['(rücken_nahe.1,rücken_nahe.2)', '(auffordern.schicken.nach.1,auffordern.schicken.nach.2)', '(gefloh.nach.1,gefloh.nach.2)', '(führen.nach.1,führen.nach.2)', '(betrachen.1,betrachen.2)']
+['(have.1,have.leverage.over.2)', '(border.1,border.2)', '(protect.1,protect.interest.in.2)', '(facilitate.1,facilitate.in.2)', '(support.1,support.in.2)', "(involvement.'s.2,involvement.in.2)", '(use.1,use.2)', '(take.1,take.at.2)', '(cut.1,cut.in.2)', '(support.1,support.effort.in.2)', '(hold.1,hold.2)', '(see.2,see.in.2)', '(control.1,control.1)', '(destabilize.1,destabilize.2)', '(have.1,have.in.2)', '(make.1,make.to.2)', '(enter.2,enter.through.2)', "(interest.'s.2,interest.in.2)", '(agree.1,agree.1)', "(territory.'s.2,territory.of.2)", '(dominate.1,dominate.2)', 'NEG__(have.1,have.in.2)', '(find.1,find.from.2)', '(back.1,back.in.2)', '(view.1,view.2)', '(back.1,back.2)', "(border.'s.2,border.with.2)", '(fine.1,fine.2)', '(use.1,use.in.2)', '(take.1,take.2)', '(bring.1,bring.into.2)', '(close.1,close.2)']
+[[0.00189021]]
+------------------------------
+['(zurückschicken.nach.1,zurückschicken.nach.2)', '(schulden.1,schulden.2)', '(halten.1,halten.2)']
+['(boycott.1,boycott.mali.by.2)', '(different.1,different.from.2)', "(follow.1,follow.lead.'s.2)", '(assemble.1,assemble.in.2)', 'NEG__(approve.in.2,approve.in.2)']
+[[0.00152255]]
+------------------------------
+['(berien.über.1,berien.über.2)', '(eingliedern.um.1,eingliedern.um.2)']
+["(meet.'s.2,meet.1)", '(pour.1,pour.into.2)', '(condemn.1,condemn.in.2)', '(register.2,register.in.2)', '(escape.1,escape.2)', "(shipment.'s.2,shipment.to.2)", '(involve.2,involve.over.sale.to.2)', '(engage.2,engage.in.2)', '(pressure.1,pressure.3)', '(pull.1,pull.of.2)', '(meet.1,meet.on.2)', '(send.from.2,send.to.2)', "(intervention.'s.2,intervention.in.2)", '(want.1,want.3)', '(be.1,be.on.2)', 'NEG__(visit.1,visit.2)', '(criticize.1,criticize.deployment.by.2)', '(send.1,send.warship.to.2)', '(flee.1,flee.in.2)', '(free.2,free.in.2)', '(make.1,make.in.2)', "(role.'s.2,role.in.2)", "(goal.'s.2,goal.in.2)", '(stop.1,stop.in.2)', "(influence.'s.2,influence.on.2)", '(find.1,find.on.2)', '(supply.1,supply.arm.to.2)']
+[[0.00132195]]
+------------------------------
+['(lasse.1,lasse.2)', '(bieten_an.über.1,bieten_an.über.2)', '(helfen.aufhören.unterstützen.1,helfen.aufhören.unterstützen.2)', '(bekämpfen.in.1,bekämpfen.in.2)', '(gehen.für.1,gehen.für.2)', '(rausgehen.aus.1,rausgehen.aus.2)', '(zurückgefliehen.nach.1,zurückgefliehen.nach.2)', '(verstoßen.in.1,verstoßen.in.2)', '(ausbilden.in.1,ausbilden.in.2)', '(binden.in.1,binden.in.2)', '(richen_ein.helfen.1,richen_ein.helfen.2)', '(schieben.nach.1,schieben.nach.2)', '(tun.gegen.1,tun.gegen.2)', '(beschließen.entsenden.nach.1,beschließen.entsenden.nach.2)', '(zurückholen.aus.1,zurückholen.aus.2)', '(verweigern.in.1,verweigern.in.2)', '(beschließen.mit.1,beschließen.mit.2)', '(definieren.in.1,definieren.in.2)', '(beschließen.1,beschließen.2)', '(stehen.1,stehen.2)', '(abschieben.aus.1,abschieben.aus.2)', '(beginnen.abziehen.aus.1,beginnen.abziehen.aus.2)', '(haben_hinein.1,haben_hinein.2)', '(befand.in.1,befand.in.2)', '(nachgegeben.auszubauen.in.1,nachgegeben.auszubauen.in.2)', '(schob_aben.nach.1,schob_aben.nach.2)', '(haben.schließen.mit.1,haben.schließen.mit.2)', '(beschließen.verdoppeln.in.1,beschließen.verdoppeln.in.2)', '(übernehmen.nach.1,übernehmen.nach.2)', '(operieren.in.1,operieren.in.2)', '(schick.nach.1,schick.nach.2)', '(gewähren|währen.aus.1,gewähren|währen.aus.2)', '(verdreifachen.in.1,verdreifachen.in.2)', '(erweitern.in.1,erweitern.in.2)', '(stellen.für.1,stellen.für.2)', '(rauskommen.aus.1,rauskommen.aus.2)', '(zusammengebrachen.in.1,zusammengebrachen.in.2)', '(tragen.für.1,tragen.für.2)', '(ausgeben.in.1,ausgeben.in.2)', '(drücken.in.1,drücken.in.2)', '(versenken.in.1,versenken.in.2)', '(sehen.spielen.in.1,sehen.spielen.in.2)', '(haben_zusagen.1,haben_zusagen.2)', '(nehmen_auf.aus.1,nehmen_auf.aus.2)', '(verbinden.in.1,verbinden.in.2)', '(zurückbringen.nach.1,zurückbringen.nach.2)', '(lassen.nach.1,lassen.nach.2)', '(vergessen.in.1,vergessen.in.2)', '(verantworten.in.1,verantworten.in.2)', '(dulden.aus.1,dulden.aus.2)', '(befinden.mit.1,befinden.mit.2)', '(zurückzögen.aus.1,zurückzögen.aus.2)']
+["(customer.'s.2,customer.as.2)"]
+[[0.00075414]]
+------------------------------
+['(sichern_zu.verstärken.1,sichern_zu.verstärken.2)', '(verzeichnen.als.1,verzeichnen.als.2)', '(begrüßen.aus.1,begrüßen.aus.2)', '(antreten.in.1,antreten.in.2)']
+['(pay.1,pay.1)', '(push.1,push.into.2)', '(kill.1,kill.2)', '(come.from.2,come.into.2)', '(help.1,help.3)', "(relation.'s.2,relation.with.2)", '(grant.1,grant.2)', '(carry.from.2,carry.to.2)', 'NEG__(have.1,have.1)', '(involve.2,involve.in.attack.on.2)', '(address.1,address.1)']
+[[0.00037409]]
+------------------------------
+['(zeigen.als.von.1,zeigen.als.von.2)', '(überstellen.nach.1,überstellen.nach.2)', '(subventionieren.in.1,subventionieren.in.2)', '(erlauben.spekulieren.gegen.1,erlauben.spekulieren.gegen.2)', '(besteuern.1,besteuern.2)', '(herausholen.aus.1,herausholen.aus.2)', '(beitragen.stabilisieren.1,beitragen.stabilisieren.2)', '(schließen_aus.1,schließen_aus.2)', '(bürgt.an.1,bürgt.an.2)', '(holen_ab.aus.1,holen_ab.aus.2)', '(werfen.raus.1,werfen.raus.2)', '(schießen.auf.1,schießen.auf.2)', '(bereit.helfen.1,bereit.helfen.2)', '(zwingen.wie.1,zwingen.wie.2)', '(planen.schicken.nach.1,planen.schicken.nach.2)', '(wechseln_aus.in.1,wechseln_aus.in.2)', '(helfen.stabilisieren.1,helfen.stabilisieren.2)', '(machen.geltend.gegenüber.1,machen.geltend.gegenüber.2)', '(erpreßen.1,erpreßen.2)', '(abscheiden.nach.1,abscheiden.nach.2)', '(stellen.als.1,stellen.als.2)', '(sein.als.1,sein.als.2)', '(ausweiten.gegenüber.1,ausweiten.gegenüber.2)', '(wirken.auf.1,wirken.auf.2)', '(bestehen.gegenüber.1,bestehen.gegenüber.2)', '(machen.nach.1,machen.nach.2)', '(werfen_vor.in.1,werfen_vor.in.2)', '(erhalten.in.1,erhalten.in.2)', '(wenden_an.für.1,wenden_an.für.2)', '(erwarten.gegen.1,erwarten.gegen.2)', '(bereit.werfen.1,bereit.werfen.2)', '(stellen.greifen.1,stellen.greifen.2)', '(sehen.nötigen.zurückzuschicken.nach.1,sehen.nötigen.zurückzuschicken.nach.2)', '(betreiben.hinter.1,betreiben.hinter.2)', '(prüfen.für.1,prüfen.für.2)', '(zermalmen.1,zermalmen.2)', '(verpflichten.aufnehmen.mit.1,verpflichten.aufnehmen.mit.2)', '(retten.wie.1,retten.wie.2)', '(überweisen.an.1,überweisen.an.2)', '(überlegen.senden.nach.1,überlegen.senden.nach.2)', '(umgehen.mit.1,umgehen.mit.2)', '(einfordern.von.1,einfordern.von.2)', '(schulde.1,schulde.2)', '(winnen.gegen.1,winnen.gegen.2)', '(ziehen.mit.1,ziehen.mit.2)', '(ankündigen.unterstützen.1,ankündigen.unterstützen.2)', '(schaffen.vertreiben.1,schaffen.vertreiben.2)', '(ändern.gegenüber.1,ändern.gegenüber.2)', '(fördern.in.1,fördern.in.2)', '(trennen.von.1,trennen.von.2)', '(verlangen.von.1,verlangen.von.2)', '(ausüben.auf.1,ausüben.auf.2)', '(verhelfen.1,verhelfen.2)', '(aufbauen.1,aufbauen.2)', '(erlauben.mit.1,erlauben.mit.2)', '(steuern_bei.wie.1,steuern_bei.wie.2)', '(helfe.1,helfe.2)', '(abnehmen.1,abnehmen.2)', '(warten.lassen.1,warten.lassen.2)', '(schneiden_ab.als.1,schneiden_ab.als.2)', '(verlangt.von.1,verlangt.von.2)', '(entgegenkommen.1,entgegenkommen.2)', '(bereit.für.1,bereit.für.2)', '(anbieten.aufnehmen.1,anbieten.aufnehmen.2)', '(scheuen.auszuüben.in.1,scheuen.auszuüben.in.2)', '(profitieren.nach.1,profitieren.nach.2)', '(dringen|drängen.1,dringen|drängen.2)', '(abholen.aus.1,abholen.aus.2)', '(greifen.1,greifen.2)', '(verbinden.1,verbinden.2)', '(abschreiben.an.1,abschreiben.an.2)', '(zusagen.unterstützen.1,zusagen.unterstützen.2)', '(behandeln.1,behandeln.2)', '(ausliefern.an.1,ausliefern.an.2)', '(abgestraft.1,abgestraft.2)', '(übernehmen.über.1,übernehmen.über.2)', '(gewagt.angreifen.1,gewagt.angreifen.2)', '(stellen.erfüllen.an.1,stellen.erfüllen.an.2)', '(greifen.für.1,greifen.für.2)', '(verpflichten.helfen.1,verpflichten.helfen.2)', '(dastehen.für.1,dastehen.für.2)', '(sitzen.gegenüber.1,sitzen.gegenüber.2)', '(bestrafen.1,bestrafen.2)', '(lassen.allein.wie.1,lassen.allein.wie.2)', '(sündigt.sündigen.1,sündigt.sündigen.2)', '(abziehen.aus.1,abziehen.aus.2)', '(werden.für.1,werden.für.2)', '(putschen.gegen.1,putschen.gegen.2)', '(schicken.1,schicken.2)', '(bleiben_zurück.hinter.1,bleiben_zurück.hinter.2)', '(schließen.mit.wie.1,schließen.mit.wie.2)', '(begleichen.gegenüber.1,begleichen.gegenüber.2)', '(auswechseln.in.1,auswechseln.in.2)', '(ersuchen.aufnehmen.1,ersuchen.aufnehmen.2)', '(brauchen|gebuchen.gut.von.1,brauchen|gebuchen.gut.von.2)', '(betonen.1,betonen.2)', '(spieln.gegen.1,spieln.gegen.2)', '(entschlossen.retten.1,entschlossen.retten.2)', '(fertigen.1,fertigen.2)', '(lassen.auflaufen.um.1,lassen.auflaufen.um.2)', '(ausspielen.1,ausspielen.2)', '(versuchen.zwingen.1,versuchen.zwingen.2)', '(ausgesenden.gegenüber.1,ausgesenden.gegenüber.2)', '(rumphilosophieren.gegen.1,rumphilosophieren.gegen.2)', '(haben.fordern.für.1,haben.fordern.für.2)', '(bringen.1,bringen.2)', '(beistehen.1,beistehen.2)', '(anbieten.entsenden.nach.1,anbieten.entsenden.nach.2)', '(erbauen.in.1,erbauen.in.2)', '(rufen.1,rufen.2)', '(weigern.beharrlich.zahlen.1,weigern.beharrlich.zahlen.2)', '(realisieren.gegen.1,realisieren.gegen.2)', '(hundert.verpulvern.an.1,hundert.verpulvern.an.2)', '(bieten_an.schicken.nach.1,bieten_an.schicken.nach.2)', '(überweisen.als.nach.1,überweisen.als.nach.2)', '(unterstützen.für.1,unterstützen.für.2)', '(absehen.nach.1,absehen.nach.2)', '(werben_an.in.1,werben_an.in.2)', '(verdienen.in.1,verdienen.in.2)', '(bezahlen.1,bezahlen.2)', '(beginnen.verkaufen.an.1,beginnen.verkaufen.an.2)', '(aufweisen.außer.1,aufweisen.außer.2)', '(besetzen.1,besetzen.2)', '(leihen.1,leihen.2)', '(setzen_aus.nach.1,setzen_aus.nach.2)', '(vorhaben.bringen.in.1,vorhaben.bringen.in.2)', '(lassen.kastri.wegen.1,lassen.kastri.wegen.2)', '(geben.an.1,geben.an.2)', '(tun.helfen.um.1,tun.helfen.um.2)', '(gehören.mit.1,gehören.mit.2)', '(lassen.fallen.1,lassen.fallen.2)', '(werfen_vor.verfolgen.gegenüber.1,werfen_vor.verfolgen.gegenüber.2)', '(fordern.von.1,fordern.von.2)', '(anwenden.auf.1,anwenden.auf.2)', '(helfen.aufbauen.in.1,helfen.aufbauen.in.2)', '(beglichen.gegenüber.1,beglichen.gegenüber.2)', '(erbringen.für.1,erbringen.für.2)']
+['(put.1,put.pressure.on.2)', '(put.1,put.on.2)', '(pressure.1,pressure.2)']
+[[0.00032004]]
+------------------------------
+['(trennen.in.1,trennen.in.2)', '(vermis.in.1,vermis.in.2)', '(erleben.in.1,erleben.in.2)', '(planen.in.1,planen.in.2)', '(schreiben.aus.1,schreiben.aus.2)', '(ausgenutzen.in.1,ausgenutzen.in.2)', '(dringen.in.1,dringen.in.2)', '(stemmen.gegen.1,stemmen.gegen.2)', '(abgewerten.während.1,abgewerten.während.2)', '(fürchten.verlieren.zu.1,fürchten.verlieren.zu.2)']
+['(accuse.1,accuse.2)', "(defeat.'s.2,defeat.1)", '(move.1,move.toward.2)']
+[[0.00026424]]
+------------------------------
+['(aufnehmen.aus.1,aufnehmen.aus.2)', '(zahlen.an.1,zahlen.an.2)', '(gezahlt.an.1,gezahlt.an.2)', '(haften.für.1,haften.für.2)']
+['(clash.1,clash.1)', "(commissioner.'s.2,commissioner.to.2)", '(discover.1,discover.2)', '(offer.1,offer.3)', '(inform.1,inform.3)', '(travel.2,travel.to.2)', '(separate.1,separate.from.2)', '(sandwich.2,sandwich.between.2)', '(bring.1,bring.1)', "(summon.1,summon.diplomat.'s.2)", "(be.1,be.in.interest.'s.2)", '(accept.1,accept.from.2)', '(want.1,want.with.2)', '(popular.1,popular.in.2)', '(shoot.2,shoot.in.2)', '(sell.2,sell.to.2)', '(afford.1,afford.1)', '(enter.1,enter.with.2)', '(have.1,have.on.2)', '(gain.1,gain.1)', '(return.from.2,return.to.2)', '(fight.1,fight.war.with.2)', '(show.1,show.2)', "(of.'s.2,of.2)", "('s.2,to.2)", '(insert.1,insert.into.2)', '(outclass.1,outclass.2)', '(clash.1,clash.with.2)', '(use.1,use.reactor.by.2)', '(return.2,return.to.2)', '(designate.1,designate.2)', '(convey.1,convey.to.2)', '(worry.2,worry.about.2)', '(worry.1,worry.about.2)', '(support.1,support.1)', '(take.1,take.1)', '(do.1,do.1)', 'said__(use.1,use.reactor.by.2)', '(talk.1,talk.keep.1)', 'NEG__(raise.1,raise.in.2)', "(relationship.'s.2,relationship.with.2)", 'NEG__(extradite.to.2,extradite.to.2)', '(trade.1,trade.with.2)']
+[[6.54522743e-05]]
+------------------------------
+['(schmuggeln.nach.1,schmuggeln.nach.2)']
+['(blame.2,blame.with.2)']
+0
+------------------------------
+['(sein.aus.1,sein.aus.2)', '(erobern.in.1,erobern.in.2)']
+['(up.1,up.2)']
+0
+------------------------------
+['(kennenlernen.in.1,kennenlernen.in.2)', '(lassen.mit.1,lassen.mit.2)']
+['(need.1,need.2)', '(follow.1,follow.united-states.by.2)', '(find.1,find.with.parent.from.2)', '(rest.in.1,rest.in.2)', "(engagement.'s.2,engagement.with.2)", '(encourage.1,encourage.3)']
+0
+------------------------------
+['(leihen_aus.nach.1,leihen_aus.nach.2)', '(hinzufüg.in.1,hinzufüg.in.2)', '(verdrängen.1,verdrängen.2)', '(drohen.abzugleiten.nach.1,drohen.abzugleiten.nach.2)', '(lassen.vergleichen.mit.1,lassen.vergleichen.mit.2)']
+['(close.1,close.to.2)', '(discuss.1,discuss.in.2)', '(send.1,send.brahimi.to.2)']
+0
+------------------------------
+['(mitmachen.von.1,mitmachen.von.2)', '(entschädig.1,entschädig.2)']
+['(achieve.1,achieve.in.2)', '(withdraw.1,withdraw.from.2)', '(cooperate.1,cooperate.on.2)', '(provide.1,provide.from.2)', '(provide.1,provide.to.2)']
+0
+------------------------------
+['(geschworen.1,geschworen.2)', '(beginnen.aus.1,beginnen.aus.2)']
+['(make.in.2,make.on.2)']
+0
+------------------------------
+['(lassen.davonkommen.isolieren.auf.1,lassen.davonkommen.isolieren.auf.2)']
+['(demand.from.1,demand.from.2)', '(to.1,to.to.2)', '(follow.by.2,follow.on.2)']
+0
+------------------------------
+['(werfen.in.1,werfen.in.2)', '(engagieren.als.in.1,engagieren.als.in.2)']
+['(drag.1,drag.2)', '(attack.in.1,attack.in.2)']
+0
+------------------------------
+['(aufbauen.von.1,aufbauen.von.2)']
+['(follow.1,follow.player.by.2)']
+0
+------------------------------
+['(schicken.auf.1,schicken.auf.2)']
+['(lend.1,lend.2)', "('.1,'.2)", '(grant.2,grant.to.2)', '(implement.1,implement.agreement.with.2)', "(contribution.'s.2,contribution.to.2)", '(reassure.1,reassure.2)', '(give.1,give.to.2)']
+0
+------------------------------
+['(beschädigen.1,beschädigen.2)']
+['(end.1,end.without.2)']
+0
+------------------------------
+['(stehen.zwischen.1,stehen.zwischen.2)']
+['(begin.2,begin.in.2)']
+0
+------------------------------
+['(zurückführen.nach.1,zurückführen.nach.2)']
+['(fall.1,fall.in.2)', '(along.1,along.2)', '(defend.2,defend.against.2)']
+0
+------------------------------
+['(qualifizieren.aus.1,qualifizieren.aus.2)', '(haben.aus.1,haben.aus.2)']
+["(agreement.'s.2,agreement.with.2)"]
+0
+------------------------------
+['(gehören_dazu.in.1,gehören_dazu.in.2)', '(setzen.1,setzen.2)', '(geben.zwischen.1,geben.zwischen.2)', '(erlauben.in.1,erlauben.in.2)']
+['(miss.1,miss.1)']
+0
+------------------------------
+['(spielen.nach.1,spielen.nach.2)']
+['(bring.from.2,bring.to.2)']
+0
+------------------------------
+['(salonfähig.in.1,salonfähig.in.2)', '(dominieren.unter.1,dominieren.unter.2)']
+['(enter.1,enter.in.2)']
+0
+------------------------------
+['(herausgefordern.von.1,herausgefordern.von.2)']
+['(announce.1,announce.sanction.against.2)', 'force.If__(promote.1,promote.on.2)', '(meet.1,meet.over.2)', "(denounce.1,denounce.test.'s.2)"]
+0
+------------------------------
+['(winnen.neben.1,winnen.neben.2)']
+['(keep.1,keep.2)', '(cooperate.1,cooperate.1)', '(conclude.1,conclude.with.2)', '(integrate.1,integrate.1)', '(consider.1,consider.2)', '(conclude.1,conclude.2)', "(of.1,of.partner.'s.2)"]
+0
+------------------------------
+['(verständigen.über.1,verständigen.über.2)', '(Drehscheibe.neben.1,Drehscheibe.neben.2)']
+['(flee.2,flee.for.2)', '(take.1,take.in.2)', '(region.including.2,region.including.as.2)', '(let.1,let.in.2)', '(scatter.from.2,scatter.to.2)', '(be.1,be.after.2)']
+0
+------------------------------
+['(engagieren.für.1,engagieren.für.2)', '(unterstützen.gegen.1,unterstützen.gegen.2)', '(beenden.in.1,beenden.in.2)', '(stationiert.in.1,stationiert.in.2)']
+['(cut.off.1,cut.off.tie.with.2)', '(allege.1,allege.2)', '(consume.1,consume.challenge.by.2)', '(encirclement.of.1,encirclement.of.2)', "('.1,'s.2)", '(pull.2,pull.from.2)', '(pose.1,pose.threat.by.2)', "(express.1,express.support.'s.2)", '(solve.1,solve.2)', '(attack.on.1,attack.on.2)', '(standoff.with.1,standoff.with.2)', 'find.than__(consume.1,consume.challenge.by.2)', '(protect.1,protect.2)', '(be.1,be.about.2)', '(receive.1,receive.assistance.from.2)', '(make.2,make.to.2)', '(include.1,include.3)', '(closer.1,closer.to.2)', '(have.1,have.pact.with.2)', '(act.1,act.against.2)']
+0
+------------------------------
+['(abwenden.von.1,abwenden.von.2)', '(garantieren.in.1,garantieren.in.2)', '(steigern.nach.1,steigern.nach.2)', '(interessieren.an.1,interessieren.an.2)']
+['(leave.2,leave.to.2)', '(make.1,make.with.2)', '(record.1,record.2)', '(leave.2,leave.on.2)', '(make.1,make.deal.with.2)']
+0
+------------------------------
+['(unterziehen.zu.1,unterziehen.zu.2)']
+['(treat.2,treat.in.2)']
+0
+------------------------------
+['(live.gegen.1,live.gegen.2)', '(bereit.anschließen.in.1,bereit.anschließen.in.2)', '(geflog.in.1,geflog.in.2)', '(bereiterklären.stoppen.in.1,bereiterklären.stoppen.in.2)', '(beginnen.in.1,beginnen.in.2)', '(bombardiert.in.1,bombardiert.in.2)', '(liefern.in.1,liefern.in.2)', '(starten.über.1,starten.über.2)', '(führen_durch.in.1,führen_durch.in.2)', '(fliehen.in.1,fliehen.in.2)']
+['(facility.in.1,facility.in.2)']
+0
+------------------------------
+['(sichern.hinter.1,sichern.hinter.2)']
+["(have.1,have.reserve.'s.2)"]
+0
+------------------------------
+['(gelöst.gegen.1,gelöst.gegen.2)']
+['said__(export.1,export.horsemeat.to.2)', '(export.1,export.horsemeat.to.2)']
+0
+------------------------------
+['(schalten.in.1,schalten.in.2)', '(ankündigen.schicken.nach.1,ankündigen.schicken.nach.2)', '(lassen_ein.in.1,lassen_ein.in.2)', '(scheinen.fahren.in.1,scheinen.fahren.in.2)', '(übernehmen.für.1,übernehmen.für.2)', '(leisen.in.für.1,leisen.in.für.2)', '(angekündigen.schicken.nach.1,angekündigen.schicken.nach.2)', '(bereien.unterstützen.in.1,bereien.unterstützen.in.2)']
+['(lay.for.2,lay.outside.2)']
+0
+------------------------------
+['(anerkennen.1,anerkennen.2)']
+['(hammer.1,hammer.2)']
+0
+------------------------------
+['(entschlossen.schicken.in.1,entschlossen.schicken.in.2)', '(legen_zu.wie.1,legen_zu.wie.2)']
+['(lack.1,lack.2)']
+0
+------------------------------
+['(auftreten.gegenüber.1,auftreten.gegenüber.2)', '(fortstoßen.1,fortstoßen.2)', '(übertragen.an.1,übertragen.an.2)', '(rufen_auf.in.1,rufen_auf.in.2)', '(sagen_ab.in.1,sagen_ab.in.2)', '(billigen_zu.belassen.in.1,billigen_zu.belassen.in.2)', '(einigen.in.1,einigen.in.2)']
+['(extend.1,extend.in.2)', '(establish.from.2,establish.through.2)', "(cooperation.'s.2,cooperation.with.2)"]
+0
+------------------------------
+['(mitreden.in.1,mitreden.in.2)']
+["(condemn.1,condemn.move.'s.2)"]
+0
+------------------------------
+['(grenzen_an.an.1,grenzen_an.an.2)', '(machen_mit.außer.1,machen_mit.außer.2)', '(dringen|drängen.mit.1,dringen|drängen.mit.2)', '(streben_an.neben.1,streben_an.neben.2)', '(entsenden.außer.1,entsenden.außer.2)', '(entdecken.in.1,entdecken.in.2)']
+['(negotiate.1,negotiate.for.2)']
+0
+------------------------------
+['(kennenlernen.bei.1,kennenlernen.bei.2)']
+['(claim.1,claim.water.by.2)']
+0
+------------------------------
+['(sprechen.für.1,sprechen.für.2)', '(erklären.in.1,erklären.in.2)', '(verständigen.in.1,verständigen.in.2)', '(eingeführt.neben.1,eingeführt.neben.2)']
+["(assistance.'s.2,assistance.to.2)"]
+0
+------------------------------
+['(geraten|raten.wie.1,geraten|raten.wie.2)', '(bleiben.seit.1,bleiben.seit.2)']
+['(be.1,be.in.negotiation.with.2)', '(launch.1,launch.toward.2)', '(align.on.2,align.with.2)', '(have.1,have.deterence.against.2)']
+0
+------------------------------
+['(zurückgeben.an.1,zurückgeben.an.2)']
+['(wind.1,wind.war.in.2)']
+0
+------------------------------
+['(teilnehmen.neben.1,teilnehmen.neben.2)', '(berichten.außer.1,berichten.außer.2)', '(fahren.in.1,fahren.in.2)']
+['(accept.1,accept.1)']
+0
+------------------------------
+['(lieben.1,lieben.2)']
+['said__(follow.1,follow.example.of.2)', '(follow.1,follow.example.of.2)']
+0
+------------------------------
+['(bemühten.umgehen.mit.1,bemühten.umgehen.mit.2)']
+['(isolate.1,isolate.in.2)']
+0
+------------------------------
+['(Fünfte.ohne.1,Fünfte.ohne.2)']
+['(score.against.2,score.in.2)']
+0
+------------------------------
+['(einnehmen.in.1,einnehmen.in.2)', '(nehmen_ein.in.1,nehmen_ein.in.2)']
+['providing.without__(involve.1,involve.getting.including.2)', '(open.1,open.play.against.2)']
+0
+------------------------------
+['(fahren|führen_an.vor.1,fahren|führen_an.vor.2)']
+['(prone.to.2,prone.to.turmoil.from.2)', '(build.1,build.with.2)', '(compare.2,compare.to.2)', 'NEG__(do.2,do.2)', "(dealings.'s.2,dealings.with.2)", '(back.1,back.hezbollah.by.2)']
+0
+------------------------------
+['(wollen.nach.1,wollen.nach.2)']
+['(co-hosted.1,co-hosted.tournament.by.2)']
+0
+------------------------------
+['(einsteigen.hören.in.1,einsteigen.hören.in.2)']
+['NEG__(come.from.2,come.from.2)']
+0
+------------------------------
+['(wirken.für.1,wirken.für.2)', '(bereitstellen.neben.1,bereitstellen.neben.2)']
+['(surpass.1,surpass.3)', 'NEG__(begin.with.2,begin.with.2)']
+0
+------------------------------
+['(aufbrechen.gegenüber.1,aufbrechen.gegenüber.2)']
+['(back.2,back.in.2)', '(send.1,send.into.2)', '(strike.1,strike.target.in.2)', '(launch.1,launch.strike.in.2)', "(urge.1,urge.government.'s.2)"]
+0
+------------------------------
+['(erheben.1,erheben.2)', '(lehnen_ab.nach.1,lehnen_ab.nach.2)']
+['(center.of.1,center.of.2)', '(vice-president.of.1,vice-president.of.2)', '(establish.1,establish.in.2)', '(open.1,open.door.to.2)', '(25/01/2013.1,in.2)', "(vice-president.'s.1,vice-president.of.2)", '(feel.1,feel.like.2)']
+0
+------------------------------
+['(abriegeln.von.1,abriegeln.von.2)']
+['(overtake.1,overtake.3)']
+0
+------------------------------
+['(holen.für.1,holen.für.2)', '(feiern.mit.1,feiern.mit.2)', '(rücken.an.1,rücken.an.2)', '(einige.mit.1,einige.mit.2)', '(zeigen.zerrissen.zwischen.1,zeigen.zerrissen.zwischen.2)', '(mögen.nach.1,mögen.nach.2)', '(wenden.nach.1,wenden.nach.2)', '(zusammenarbeit.mit.1,zusammenarbeit.mit.2)', '(annähern.1,annähern.2)']
+['(post.1,post.2)', '(move.of.2,move.to.2)', '(spread.to.2,spread.with.2)', '(remain.1,remain.to.2)', '(make.from.2,make.towards.2)', '(branch.in.1,branch.in.2)', '(empire.with.1,empire.with.2)']
+0
+------------------------------
+['(verzeichnet.als.1,verzeichnet.als.2)']
+['(knock.1,knock.2)', "('s.2,over.2)", "(win.'s.2,win.over.2)", '(answer.1,answer.2)', '(face.1,face.against.2)']
+0
+------------------------------
+['(auffordern.verbessern.1,auffordern.verbessern.2)', '(eindringen.in.1,eindringen.in.2)']
+['(submit.1,submit.papers.by.2)']
+0
+------------------------------
+['(übernachten.in.1,übernachten.in.2)']
+['(transfer.1,transfer.to.2)', '(deepen.1,deepen.in.2)', '(stabilize.1,stabilize.2)', '(work.in.2,work.with.2)', '(follow.1,follow.lead.of.2)', '(make.1,make.progress.by.2)', '(use.2,use.for.2)', '(point.1,point.on.2)', '(move.1,move.with.2)', '(see.2,see.from.2)', '(respond.1,respond.to.2)', '(midwife.1,midwife.mujahideen.of.2)', '(deliver.1,deliver.2)', '(free.1,free.2)', '(accuse.2,accuse.to.2)', '(representative.for.1,representative.for.2)', '(travel.through.2,travel.to.2)', '(kill.2,kill.on.2)', "(influence.'s.2,influence.in.2)", 'NEG__(detail.from.2,detail.from.2)', '(deny.1,deny.involvement.in.2)', "(policy.'s.2,policy.towards.2)", '(fight.1,fight.with.2)', '(train.1,train.2)', '(battle.1,battle.2)', '(have.1,have.influence.in.2)', '(serve.1,serve.in.2)', '(pursue.1,pursue.in.2)', '(share.1,share.border.with.2)', '(concern.2,concern.about.2)', '(of.1,with.2)', '(appear.1,appear.with.2)']
+0
+------------------------------
+['(treten.auf.1,treten.auf.2)', '(kommen_ran.an.1,kommen_ran.an.2)', '(entdecken.neben.1,entdecken.neben.2)', '(stoppen.mit.1,stoppen.mit.2)']
+['NEG__(good.in.2,good.in.2)', '(sanction.on.1,sanction.on.2)', '(threat.against.1,threat.against.2)', '(continue.1,continue.2)', '(be.in.2,be.without.2)', '(be.1,be.by.2)', '(moving.from.2,moving.to.2)', '(have.1,have.neighbour.including.2)', '(vote.1,vote.against.2)', '(keep.2,keep.with.2)']
+0
+------------------------------
+['(schicken.nach.1,schicken.nach.2)', '(bezahlen.für.1,bezahlen.für.2)']
+['(evacuate.from.2,evacuate.in.2)']
+0
+------------------------------
+['(schlagen.auf.1,schlagen.auf.2)']
+['NEG__(tell.2,tell.2)', "(producer.'s.1,producer.after.2)", '(conclude.1,conclude.treaty.with.2)']
+0
+------------------------------
+['(fordern.verlauten.in.1,fordern.verlauten.in.2)', '(unterzeichnen.in.1,unterzeichnen.in.2)', '(geloben|loben.1,geloben|loben.2)']
+['(claim.1,claim.2)']
+0
+------------------------------
+['(treffen_aufeinander.1,treffen_aufeinander.2)']
+['(distance.1,distance.from.2)', '(open.1,open.in.2)', "(embassy.'s.2,embassy.in.2)", '(supplier.for.1,supplier.for.2)', '(reduce.1,reduce.to.2)']
+0
+------------------------------
+['(scheinen.zuzurasen.auf.1,scheinen.zuzurasen.auf.2)']
+['(fight.1,fight.in.2)', '(seek.1,seek.refuge.in.2)']
+0
+------------------------------
+['(sein.verpassen.für.1,sein.verpassen.für.2)']
+['(take.1,take.lead.against.2)']
+0
+------------------------------
+['(einzuschätzen.als.1,einzuschätzen.als.2)']
+['(leave.1,leave.2)', 'NEG__(go.to.2,go.to.2)', 'NEG__(be.in.2,be.in.2)', '(attend.1,attend.1)', 'NEG__(work.in.2,work.in.2)', '(turn.1,turn.after.2)', '(shift.1,shift.from.2)', '(cost.1,cost.1)', '(end.1,end.1)', '(mountain.of.1,mountain.of.2)', '(transition.in.1,transition.in.2)', '(be.from.2,be.to.2)', 'NEG__(decide.in.2,decide.in.2)', 'NEG__(make.in.2,make.in.2)', '(quit.1,quit.2)']
+0
+------------------------------
+['(planen.übergeben.1,planen.übergeben.2)']
+['(cancel.1,cancel.2)']
+0
+------------------------------
+['(rien.ausreisen.aus.1,rien.ausreisen.aus.2)', '(greife_ein.Hirn.in.1,greife_ein.Hirn.in.2)', '(finanzieren_aus.nach.1,finanzieren_aus.nach.2)', '(bereien.schicken.nach.1,bereien.schicken.nach.2)']
+['(aid.1,aid.effort.by.2)']
+0
+------------------------------
+['(beitrug.aufbauen.in.1,beitrug.aufbauen.in.2)', '(engagi.in.1,engagi.in.2)', '(betonen.in.1,betonen.in.2)', '(heraushielen.in.1,heraushielen.in.2)', '(enthalten.zu.1,enthalten.zu.2)', '(fragen.stehen.1,fragen.stehen.2)']
+['(assure.1,assure.2)']
+0
+------------------------------
+['(blockieren.in.1,blockieren.in.2)']
+['(register.2,register.as.refugee.in.2)']
+0
+------------------------------
+['(rufen_auf.stoppen.in.1,rufen_auf.stoppen.in.2)', '(umlenken.nach.1,umlenken.nach.2)']
+['(rebuke.1,rebuke.2)']
+0
+------------------------------
+['(bestellen.1,bestellen.2)']
+['(draw.1,draw.on.2)', '(crush.2,crush.in.2)']
+0
+------------------------------
+['(hören.auf.1,hören.auf.2)']
+['(reduce.1,reduce.2)', '(steal.1,steal.2)', '(reach.1,reach.2)']
+0
+------------------------------
+['(aufbauen.bei.1,aufbauen.bei.2)']
+['(demand.1,demand.2)', '(strengthen.1,strengthen.relation.with.2)', '(take.1,take.action.against.2)', '(hub.in.1,hub.in.2)', '(close.1,close.in.2)', '(take.1,take.against.2)', '(create.1,create.abe.by.2)', '(increase.1,increase.presence.in.2)']
+0
+------------------------------
+['(transportieren.durch.1,transportieren.durch.2)', '(werfen_vor.drängen.ersetzen.1,werfen_vor.drängen.ersetzen.2)', '(bestreiten.gegen.1,bestreiten.gegen.2)']
+['(concern.1,concern.as.2)']
+0
+------------------------------
+['(stimmen.außer.1,stimmen.außer.2)']
+['(together.1,together.in.2)', '(miss.1,miss.in.2)']
+0
+------------------------------
+['(schrauben.an.1,schrauben.an.2)']
+['(together.1,together.1)', '(bring.1,bring.in.2)', '(out.1,out.of.2)', '(different.1,different.than.2)', '(pit.1,pit.2)', '(continue.1,continue.in.2)', 'NEG__(helpful.to.2,helpful.to.2)', 'NEG__(have.1,have.on.2)', '(discuss.1,discuss.1)', '(together.1,together.get.1)', '(see.1,see.2)']
+0
+------------------------------
+['(kämen.nach.1,kämen.nach.2)', '(eintragen.in.1,eintragen.in.2)']
+['(promote.1,promote.2)']
+0
+------------------------------
+['(schließen.zwischen.1,schließen.zwischen.2)']
+['(sign.2,sign.with.2)']
+0
+------------------------------
+['(forschen.neben.1,forschen.neben.2)', '(ernennen.zu.in.1,ernennen.zu.in.2)', '(haben.gebet.1,haben.gebet.2)', '(ziehen.gegen.1,ziehen.gegen.2)']
+['(provide.1,provide.support.to.2)']
+0
+------------------------------
+['(trauern.um.1,trauern.um.2)', '(nennen.für.1,nennen.für.2)', '(vereinen.in.1,vereinen.in.2)', '(zerlegen.in.1,zerlegen.in.2)']
+['(together.1,together.came.1)', '(together.came.1,together.in.2)']
+0
+------------------------------
+['(aufheben.gegen.1,aufheben.gegen.2)']
+['NEG__(send.1,send.to.2)']
+0
+------------------------------
+['(setzen_gleich.in.1,setzen_gleich.in.2)']
+['(label.1,label.2)', '(reach.2,reach.in.2)', '(realize.1,realize.1)']
+0
+------------------------------
+['(drängen.1,drängen.2)', '(verstehen.auf.1,verstehen.auf.2)', '(erweisen.als.als.1,erweisen.als.als.2)', '(verjagen.1,verjagen.2)', '(dümpelt.mit.1,dümpelt.mit.2)', '(bringen.gegen.1,bringen.gegen.2)', '(gedrängen.von.1,gedrängen.von.2)']
+['(airline.in.1,airline.in.2)']
+0
+------------------------------
+['(legen.auf.1,legen.auf.2)']
+["(alliance.'s.2,alliance.with.2)"]
+0
+------------------------------
+['(erweitern.auf.1,erweitern.auf.2)', '(sein_dabei.aus.1,sein_dabei.aus.2)']
+['(supply.1,supply.battery.from.2)', '(send.1,send.from.2)', 'agreed__(supply.1,supply.battery.from.2)']
+0
+------------------------------
+['(tourt.durch.1,tourt.durch.2)', '(appellieren.umsetzen.1,appellieren.umsetzen.2)']
+['(begin.in.2,begin.with.2)', '(meet.in.2,meet.with.2)']
+0
+------------------------------
+['(verlassen.in.1,verlassen.in.2)', '(entsenden.nach.1,entsenden.nach.2)', '(zeihen|ziehen_ab.aus.1,zeihen|ziehen_ab.aus.2)']
+['(be.1,be.behind.2)']
+0
+------------------------------
+['(erweisen.als.wie.1,erweisen.als.wie.2)', '(zurückziehen.aus.1,zurückziehen.aus.2)']
+['(build.1,build.from.2)']
+0
+------------------------------
+['(studieren.in.1,studieren.in.2)']
+['(attack.2,attack.in.2)', '(evacuate.2,evacuate.during.war.with.2)']
+0
+------------------------------
+['(untersützen.1,untersützen.2)']
+['(condemn.1,condemn.attack.on.2)', '(close.1,close.consulate.in.2)', '(power.in.1,power.in.2)', "(pipeline.'s.2,pipeline.to.2)", '(seize.1,seize.2)']
+0
+------------------------------
+['(schließen_an.ohne.1,schließen_an.ohne.2)']
+['(many.around.1,many.around.2)']
+0
+------------------------------
+['(liegen_beieinander.in.1,liegen_beieinander.in.2)']
+['(sell.1,sell.arm.to.2)', '(flee.1,flee.2)', '(send.1,send.to.2)', '(ally.of.1,ally.of.2)']
+0
+------------------------------
+['(zeigen_unein.in.1,zeigen_unein.in.2)', '(mitbeschlossen.in.1,mitbeschlossen.in.2)']
+["(ally.'s.2,ally.in.1)"]
+0
+------------------------------
+['(herrschen.in.1,herrschen.in.2)']
+['told__(offer.1,offer.support.for.2)', '(offer.1,offer.support.for.2)']
+0
+------------------------------
+['(erstichen.bei.1,erstichen.bei.2)']
+['(prosper.1,prosper.1)']
+0
+------------------------------
+['(befürworen.nach.1,befürworen.nach.2)', '(gelingen.außer.1,gelingen.außer.2)', '(löste_ab.1,löste_ab.2)']
+['(open.1,open.on.2)']
+0
+------------------------------
+['(setzen.lassen.aufrollen.gegenüber.1,setzen.lassen.aufrollen.gegenüber.2)', '(stützen.auf.1,stützen.auf.2)']
+['(deploy.1,deploy.troops.in.2)', '(head.1,head.towards.2)']
+0
+------------------------------
+['(aufnehmen.neben.1,aufnehmen.neben.2)']
+['(legal.in.2,legal.in.country.including.2)', '(begin.1,begin.as.country.including.2)']
+0
+------------------------------
+['(binden.1,binden.2)']
+['(bear.in.2,bear.to.2)']
+0
+------------------------------
+['(streben_an.mit.1,streben_an.mit.2)', '(hoffen.in.1,hoffen.in.2)', '(suchen.bei.1,suchen.bei.2)', '(redet.mit.1,redet.mit.2)', '(hinwenden.zu.1,hinwenden.zu.2)', '(wenden.an.1,wenden.an.2)', '(bitten.keinesfalls.1,bitten.keinesfalls.2)', '(fühlen.absichern.durch.1,fühlen.absichern.durch.2)', '(zuwenden.1,zuwenden.2)', '(christianisieren.von.1,christianisieren.von.2)', '(besorgen.aus.1,besorgen.aus.2)']
+['(run.2,run.in.2)']
+0
+------------------------------
+['(zeigen.auf.1,zeigen.auf.2)']
+['(pull.1,pull.2)']
+0
+------------------------------
+['(schließen.neben.1,schließen.neben.2)']
+['(meet.1,meet.in.2)', 'scheduled__(meet.1,meet.negotiator.in.2)', '(meet.1,meet.negotiator.in.2)']
+0
+------------------------------
+['(durchführen.neben.1,durchführen.neben.2)', '(fallen|gesellen.zu.1,fallen|gesellen.zu.2)', '(überstellen.an.1,überstellen.an.2)', '(lehnen_ab.wie.1,lehnen_ab.wie.2)', '(verfügen.1,verfügen.2)', '(machen_aus.mit.1,machen_aus.mit.2)']
+['(thousand.of.1,thousand.of.vehicle.in.2)']
+0
+------------------------------
+['(planen.nach.1,planen.nach.2)']
+['(sign.1,sign.2)']
+0
+------------------------------
+['(boykottieren.in.1,boykottieren.in.2)']
+['(trace.from.2,trace.through.2)']
+0
+------------------------------
+['(sorgen.als.1,sorgen.als.2)']
+['(die.1,die.in.2)', '(have.2,have.on.2)', '(place.behind.2,place.of.2)', '(deploy.in.2,deploy.to.2)', '(follow.2,follow.in.2)', '(time.in.1,time.in.2)', '(receive.from.2,receive.to.2)', '(extend.2,extend.to.2)', '(hold.1,hold.from.2)', '(deployment.in.1,deployment.in.2)', '(focus.1,focus.on.war.in.2)', '(achieve.1,achieve.2)']
+0
+------------------------------
+['(streiten.neben.1,streiten.neben.2)']
+['NEG__(concern.in.2,concern.in.2)']
+0
+------------------------------
+['(versichern.zeihen|ziehen.1,versichern.zeihen|ziehen.2)', '(meint.ernsen.1,meint.ernsen.2)']
+['(market.as.1,market.as.2)', '(gallery.from.1,gallery.from.2)', '(market.including.1,market.including.2)', '(exempt.1,exempt.2)', '(announce.1,announce.on.2)', '(economy.like.1,economy.like.2)', '(catch.2,catch.in.2)', '(enhance.1,enhance.cooperation.with.2)', "(importance.'s.2,importance.to.2)", '(strengthen.1,strengthen.tie.with.2)', '(continue.1,continue.as.matter.of.2)', '(gallery.alongside.1,gallery.from.2)', 'NEG__(like.2,like.2)']
+0
+------------------------------
+['(festhalten.neben.1,festhalten.neben.2)']
+['(elsewhere.including.1,elsewhere.including.2)']
+0
+------------------------------
+['(abwerfen.1,abwerfen.2)']
+['(finish.in.1,finish.in.2)']
+0
+------------------------------
+['(schlagen.vor.1,schlagen.vor.2)', '(versichern.1,versichern.2)', '(anschließen.1,anschließen.2)', '(eingreifen.für.1,eingreifen.für.2)', '(eingewirken.auf.1,eingewirken.auf.2)', '(sprang.1,sprang.2)']
+['(avoid.1,avoid.extradition.to.2)', '(play.1,play.in.2)', '(resolve.1,resolve.with.2)']
+0
+------------------------------
+['(emittieren.neben.1,emittieren.neben.2)']
+['(gain.1,gain.independence.from.2)', "(independence.'s.2,independence.from.2)", '(win.1,win.from.2)', '(allow.1,allow.3)', '(gain.1,gain.from.2)', '(area.of.1,area.of.2)']
+0
+------------------------------
+['(kommen_zusammen.in.1,kommen_zusammen.in.2)']
+['(keep.1,keep.in.2)', '(intervene.1,intervene.in.2)']
+0
+------------------------------
+['(bleiben.bei.1,bleiben.bei.2)', '(landen.bei.1,landen.bei.2)']
+['(ride.1,ride.2)']
+0
+------------------------------
+['(äußern.nennen.abzuschieben.bei.1,äußern.nennen.abzuschieben.bei.2)']
+['(earn.1,earn.in.2)']
+0
+------------------------------
+['(streuen.in.1,streuen.in.2)', '(kaufen.in.1,kaufen.in.2)', '(enthalten.1,enthalten.2)', '(treffen.als.1,treffen.als.2)', '(haben.drosseln.nach.1,haben.drosseln.nach.2)', '(aufgearbeiten.als.1,aufgearbeiten.als.2)']
+['(ferry.1,ferry.to.2)', '(deploy.2,deploy.in.2)']
+0
+------------------------------
+['(treiben_an.in.1,treiben_an.in.2)', '(beginnen.durch.1,beginnen.durch.2)', '(kommen.aus.1,kommen.aus.2)']
+['(tie.1,tie.2)', "(friendly.'s.2,friendly.against.2)"]
+0
+------------------------------
+['(mitentscheiden.in.1,mitentscheiden.in.2)', '(finden.nach.1,finden.nach.2)']
+['(plunge.1,plunge.2)']
+0
+------------------------------
+['(wünschen.zu.1,wünschen.zu.2)', '(versperren.vor.1,versperren.vor.2)', '(zerrieben.von.1,zerrieben.von.2)', '(anführen.in.1,anführen.in.2)', '(bemerken.in.1,bemerken.in.2)', '(duellieren.mit.1,duellieren.mit.2)', '(sein.an.1,sein.an.2)', '(ausfüllen.mit.1,ausfüllen.mit.2)', '(beleidigen.1,beleidigen.2)', '(bessergestellen.gegenüber.1,bessergestellen.gegenüber.2)']
+['(take.1,take.lead.over.2)', '(win.1,win.against.2)']
+0
+------------------------------
+['(angreifen.durch.1,angreifen.durch.2)', '(schneiden_ab.in.1,schneiden_ab.in.2)']
+['(supply.1,supply.from.2)']
+0
+------------------------------
+['(schlagen_zu.in.1,schlagen_zu.in.2)']
+['(average.of.1,average.of.price.in.2)']
+0
+------------------------------
+['(aufnehmen.in.1,aufnehmen.in.2)', '(isoliert.in.1,isoliert.in.2)']
+['(touch.1,touch.in.2)']
+0
+------------------------------
+['(treten_an.gegen.1,treten_an.gegen.2)', '(legen_vor.nach.1,legen_vor.nach.2)']
+['NEG__(living.in.2,living.in.2)', '(go.for.2,go.to.2)', 'NEG__(get.1,get.2)', '(turn.up.2,turn.up.in.2)', "(talk.'s.1,talk.1)"]
+0
+------------------------------
+['(schweigen.schweigen.1,schweigen.schweigen.2)']
+['(restore.1,restore.to.2)', '(create.1,create.2)']
+0
+------------------------------
+['(spricht_ab.in.1,spricht_ab.in.2)']
+['NEG__(follow.1,follow.2)']
+0
+------------------------------
+['(entlasten.in.1,entlasten.in.2)', '(stocken_auf.in.1,stocken_auf.in.2)']
+['(ready.1,ready.for.2)']
+0
+------------------------------
+['(begonnen.bombardieren.in.1,begonnen.bombardieren.in.2)']
+['(participate.1,participate.in.campaign.against.2)', '(violate.1,violate.in.2)', '(role.in.1,role.in.2)', '(ally.in.1,ally.in.2)', '(learn.1,learn.lesson.of.2)', '(support.1,support.group.in.2)', '(back.1,back.in.incursion.into.2)', 'failed__(learn.1,learn.lesson.of.2)']
+0
+------------------------------
+['(streiken.in.1,streiken.in.2)']
+['NEG__(become.1,become.2)']
+0
+------------------------------
+['(einsetzen.neben.1,einsetzen.neben.2)']
+['(suspicious.1,suspicious.with.game.in.2)', '(enjoy.1,enjoy.1)', '(receive.1,receive.2)', '(incinerator.in.1,incinerator.in.mining.in.2)', '(fall.in.1,fall.in.2)', '(spread.of.1,spread.of.movement.in.2)']
+0
+------------------------------
+['(ablehnen.an.1,ablehnen.an.2)', '(nutzen.wie.1,nutzen.wie.2)', '(qualifizieren.gegen.1,qualifizieren.gegen.2)', '(eingemischen.in.1,eingemischen.in.2)', '(eskalieren.zwischen.1,eskalieren.zwischen.2)', '(beleben.um.1,beleben.um.2)']
+['(participant.in.1,participant.in.2)', '(sort.1,sort.2)']
+0
+------------------------------
+['(rangeln.in.1,rangeln.in.2)']
+['(support.1,support.2)', '(evacuate.1,evacuate.citizen.from.2)', "(tie.'s.2,tie.with.1)"]
+0
+------------------------------
+3.4.9 (default, Aug 14 2018, 21:28:57) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+

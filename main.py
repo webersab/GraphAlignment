@@ -36,12 +36,12 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-    """
+    
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    discardThisVectorMap, germanEntitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
+    discardThisVectorMap, germanEntitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
     
     #extract the English only entity set
     freshVectorMap = VectorMap()
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     ###Extract the combined entity set and the according vector maps for English and German
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, entitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
+    germanVectorMap, entitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
     freshVectorMap = VectorMap()
     englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
     print(entitySet.length())
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     #pickle entity set
     with open("entitySet.dat", "wb") as f:
         pickle.dump(entitySet, f)
-    """
+    """    
     #unpickle
     G1=nx.read_gpickle("germanPickle")
     G2=nx.read_gpickle("englishPickle")
@@ -117,9 +117,7 @@ if __name__ == "__main__":
     print(G2.nodes())
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
-    
-    #printClustersAfterWhisper(G1)
-
+    """
 
     #extraction of clusters begins here
     print("begin clustering: ",datetime.datetime.now())
@@ -158,7 +156,7 @@ if __name__ == "__main__":
     #alignment of clusters begins here
     a = Aligner()
     print("begin aligning: ",datetime.datetime.now())
-    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection)
+    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection,"alignmentOutputEithcosineSim2.txt")
     print("done aligning: ",datetime.datetime.now())
     
     #pickling of final list
@@ -170,5 +168,5 @@ if __name__ == "__main__":
     #    clusterTupel[1].printClusterPredicates()
     #    print(clusterTupel[2])
     #    print("------------------------------")
-    print("final result in alignmentOutputEithcosineSim.txt")
+    print("final result in alignmentOutputEithcosineSim2.txt")
     print (sys.version)

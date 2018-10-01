@@ -1,6 +1,7 @@
 
 
 import sys
+from parsing import Parsing
 #import pprint
 #from Cython.Compiler.ExprNodes import inc_dec_constructor
 
@@ -15,10 +16,53 @@ def find_between( s, first, last ):
     except ValueError:
         return ""
 
+def removeRareEntities(filePath):
+    inFile = open(filePath,'r')
+    occurenceCountDict={}
+    p = Parsing()
+    for line in inFile:
+        if 'inv idx' in line:
+            break
+        elif ': ' in line and 'num preds' not in line and 'predicate' not in line and line!="":
+            entities=p.extractEntities(line)
+            if entities in occurenceCountDict:
+                oldCount=occurenceCountDict[entities]
+                newCount=oldCount+1
+                occurenceCountDict[entities]=newCount
+            else:
+                occurenceCountDict[entities]=1
+    rareEntitiesList=[]
+    for key,value in occurenceCountDict.items():
+        if value<3:
+            rareEntitiesList.append(key)
+
+    orig_stdout = sys.stdout
+    f = open('GermanLoc#LocNoRareEntities.txt', 'w')
+    sys.stdout = f
+
+    inFile2 = open(filePath,'r')
+    for line in inFile2:
+        if 'inv idx' in line:
+            break
+        elif ': ' in line and 'num preds' not in line and 'predicate' not in line and line!="":
+            entities = p.extractEntities(line)
+            if entities in rareEntitiesList:
+                continue
+            else:
+                print(line.rstrip())
+        else:
+            print(line.rstrip())
+    sys.stdout = orig_stdout
+    f.close()  
+    
 
 if __name__ == "__main__":
 #Find the predicates
     print("Hello preprocessor!")
+    removeRareEntities("germanLoc#Loc.txt")
+    print("done")
+    
+    """
     filePath = '/afs/inf.ed.ac.uk/user/s17/s1782911/allTheOptuptDedup.txt'
     inFile = open(filePath,'r')
     print("open file ",inFile)
@@ -111,4 +155,4 @@ if __name__ == "__main__":
     
     sys.stdout = orig_stdout
     f.close()
-
+    """
