@@ -31,8 +31,8 @@ class GraphCreator():
     
     def hasOverlap(self,listOfTuples1, listOfTuples2):
         bol = False
-        zipped1=list(zip(listOfTuples1))
-        zipped2=list(zip(listOfTuples2))
+        zipped1=list(zip(*listOfTuples1))
+        zipped2=list(zip(*listOfTuples2))
         if not set(zipped1).isdisjoint(zipped2):
             bol=True
         

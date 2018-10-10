@@ -36,7 +36,7 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-    
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     
     #calculate the intersection of those sets. This is the overlap of entities
     intersection=list(englishEntitySet.intersection(germanEntitySet.toSet()))
-    print(len(intersection))
+    print("the overlap between the tow sets is ",len(intersection))
     
     ###Extract the combined entity set and the according vector maps for English and German
     entitySet = EntitySet()
@@ -58,14 +58,13 @@ if __name__ == "__main__":
     germanVectorMap, entitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
     freshVectorMap = VectorMap()
     englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
-    print(entitySet.length())
     
     #create Vector Maps that consider only the overlapping entities
     overlapEnglishVectorMap=englishVectorMap.changeVectorsToOverlap(entitySet,intersection)
     overlapGermanVectorMap=germanVectorMap.changeVectorsToOverlap(entitySet,intersection)
     
-    print(overlapEnglishVectorMap)
-    print(overlapGermanVectorMap)
+    #overlapEnglishVectorMap.printVectorMap()
+    #overlapGermanVectorMap.printVectorMap()
     
     #pickling overlap vector Maps for faster degbugging
     with open("overlapGermanVectorMap.dat", "wb") as f:
@@ -74,7 +73,7 @@ if __name__ == "__main__":
         pickle.dump(overlapEnglishVectorMap, f)
     with open("intersection.dat", "wb") as f:
         pickle.dump(intersection, f)
-      
+    "
     #unpickle
     with open("overlapGermanVectorMap.dat", "rb") as f:
         overlapGermanVectorMap=pickle.load(f)
@@ -83,7 +82,9 @@ if __name__ == "__main__":
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
     print("done unpickling")
-
+    
+    overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
+    overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
     
     #create German graph
     d = GraphCreator()
@@ -92,7 +93,6 @@ if __name__ == "__main__":
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
-    #entitySetLength=entitySet.length()+1
     G = d.createGraph(overlapEnglishVectorMap, entitySetLength)
     G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     #pickle entity set
     with open("entitySet.dat", "wb") as f:
         pickle.dump(entitySet, f)
-    """    
+       
     #unpickle
     G1=nx.read_gpickle("germanPickle")
     G2=nx.read_gpickle("englishPickle")
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     print(G2.nodes())
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
-    """
+    
 
     #extraction of clusters begins here
     print("begin clustering: ",datetime.datetime.now())
@@ -139,7 +139,6 @@ if __name__ == "__main__":
     
     """
     #unpickle
-    
     with open("clusteredGerman.dat", "rb") as f:
         germanClusterList=pickle.load(f)
         
@@ -152,11 +151,12 @@ if __name__ == "__main__":
     #for cluster in germanClusterList:
         #print(cluster.predicates)
     entitySetLength=len(intersection)+1
-    """
+    
+    
     #alignment of clusters begins here
     a = Aligner()
     print("begin aligning: ",datetime.datetime.now())
-    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection,"alignmentOutputEithcosineSim2.txt")
+    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection,"alignmentOutputWithcosineSimPMI.txt")
     print("done aligning: ",datetime.datetime.now())
     
     #pickling of final list
@@ -168,5 +168,6 @@ if __name__ == "__main__":
     #    clusterTupel[1].printClusterPredicates()
     #    print(clusterTupel[2])
     #    print("------------------------------")
-    print("final result in alignmentOutputEithcosineSim2.txt")
+    print("final result in alignmentOutputWithcosineSimPMI.txt")
+    
     print (sys.version)

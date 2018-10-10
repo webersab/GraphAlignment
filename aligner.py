@@ -45,7 +45,6 @@ class Aligner:
                     if cosineSim>highestCosineSim:
                         highestCosineSim=cosineSim
                         winningTuple=(k1,k2,cosineSim)
-            #this is a stupid hack because I don't have actual linking
             if len(iterationTupleList)<1:
                 return listOfTuplesOfClusters
             if winningTuple==tuple():
