@@ -73,7 +73,7 @@ if __name__ == "__main__":
         pickle.dump(overlapEnglishVectorMap, f)
     with open("intersection.dat", "wb") as f:
         pickle.dump(intersection, f)
-    "
+    """
     #unpickle
     with open("overlapGermanVectorMap.dat", "rb") as f:
         overlapGermanVectorMap=pickle.load(f)
@@ -83,8 +83,9 @@ if __name__ == "__main__":
         intersection=pickle.load(f)
     print("done unpickling")
     
-    overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
-    overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
+    #change vectors to PMI, if thats what you're after
+    #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
+    #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
     
     #create German graph
     d = GraphCreator()
@@ -137,7 +138,7 @@ if __name__ == "__main__":
         pickle.dump(englishClusterList, f)
     print("done pickling")
     
-    """
+    
     #unpickle
     with open("clusteredGerman.dat", "rb") as f:
         germanClusterList=pickle.load(f)
@@ -156,11 +157,11 @@ if __name__ == "__main__":
     #alignment of clusters begins here
     a = Aligner()
     print("begin aligning: ",datetime.datetime.now())
-    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection,"alignmentOutputWithcosineSimPMI.txt")
+    clusterTupleList=a.alignClustersNew(germanClusterList, englishClusterList, entitySetLength,intersection,"alignmentOutputWithcosineSim.txt")
     print("done aligning: ",datetime.datetime.now())
     
     #pickling of final list
-    with open("alignedList.dat", "wb") as f:
+    with open("alignedListNoPmi.dat", "wb") as f:
         pickle.dump(clusterTupleList, f)
     
     #for clusterTupel in clusterTupleList:
@@ -168,6 +169,6 @@ if __name__ == "__main__":
     #    clusterTupel[1].printClusterPredicates()
     #    print(clusterTupel[2])
     #    print("------------------------------")
-    print("final result in alignmentOutputWithcosineSimPMI.txt")
+    print("final result in alignmentOutputWithcosineSim.txt")
     
     print (sys.version)
