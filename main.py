@@ -36,7 +36,7 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-    """
+    
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -73,7 +73,7 @@ if __name__ == "__main__":
         pickle.dump(overlapEnglishVectorMap, f)
     with open("intersection.dat", "wb") as f:
         pickle.dump(intersection, f)
-    """
+    
     #unpickle
     with open("overlapGermanVectorMap.dat", "rb") as f:
         overlapGermanVectorMap=pickle.load(f)
