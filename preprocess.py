@@ -59,10 +59,10 @@ def removeRareEntities(filePath):
 if __name__ == "__main__":
 #Find the predicates
     print("Hello preprocessor!")
-    removeRareEntities("germanLoc#Loc.txt")
-    print("done")
+    #removeRareEntities("germanLoc#Loc.txt")
+    #print("done")
     
-    """
+    
     filePath = '/afs/inf.ed.ac.uk/user/s17/s1782911/allTheOptuptDedup.txt'
     inFile = open(filePath,'r')
     print("open file ",inFile)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     d = {}
     
     for tup in tuples:
-        filePath = '/afs/inf.ed.ac.uk/user/s17/s1782911/allTheOptuptDedup.txt'
+        filePath = '/group/project/s1782911/binary_relations_00.txt'
         inFile = open(filePath,'r')
         print("open file",inFile)
         dict2 = {}
@@ -155,4 +155,4 @@ if __name__ == "__main__":
     
     sys.stdout = orig_stdout
     f.close()
-    """
+    

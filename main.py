@@ -36,51 +36,61 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-    
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    discardThisVectorMap, germanEntitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
+    germanEntitySetLength=len(germanEntitySet.toSet())
+    print("German entity set length: ",germanEntitySetLength)
     
     #extract the English only entity set
     freshVectorMap = VectorMap()
     freshEntitySet = EntitySet()
-    discardThisVectorMap, englishEntitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", freshEntitySet, freshVectorMap)
+    englishVectorMap, englishEntitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", freshEntitySet, freshVectorMap)
+    englishEntitySetLength=len(englishEntitySet.toSet())
+    print("English entity set length: ",englishEntitySetLength)
+    
+    setLengthsDeEN=[germanEntitySetLength,englishEntitySetLength]
     
     #calculate the intersection of those sets. This is the overlap of entities
     intersection=list(englishEntitySet.intersection(germanEntitySet.toSet()))
-    print("the overlap between the tow sets is ",len(intersection))
+    print("the overlap between the two sets is ",len(intersection))
     
     ###Extract the combined entity set and the according vector maps for English and German
-    entitySet = EntitySet()
-    vectorMap = VectorMap()
-    germanVectorMap, entitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
-    freshVectorMap = VectorMap()
-    englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
+    #entitySet = EntitySet()
+    #vectorMap = VectorMap()
+    #germanVectorMap, entitySet = c.parse("GermanLoc#LocNoRareEntities.txt", entitySet, vectorMap)
+    #freshVectorMap = VectorMap()
+    #englishVectorMap, entitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", entitySet, freshVectorMap)
     
     #create Vector Maps that consider only the overlapping entities
-    overlapEnglishVectorMap=englishVectorMap.changeVectorsToOverlap(entitySet,intersection)
-    overlapGermanVectorMap=germanVectorMap.changeVectorsToOverlap(entitySet,intersection)
+    #overlapEnglishVectorMap=englishVectorMap.changeVectorsToOverlap(entitySet,intersection)
+    #overlapGermanVectorMap=germanVectorMap.changeVectorsToOverlap(entitySet,intersection)
     
     #overlapEnglishVectorMap.printVectorMap()
     #overlapGermanVectorMap.printVectorMap()
     
-    #pickling overlap vector Maps for faster degbugging
-    with open("overlapGermanVectorMap.dat", "wb") as f:
-        pickle.dump(overlapGermanVectorMap, f)
-    with open("overlapEnglishVectorMap.dat", "wb") as f:
-        pickle.dump(overlapEnglishVectorMap, f)
+    #pickling vector Maps for faster degbugging
+    with open("germanVectorMap.dat", "wb") as f:
+        pickle.dump(germanVectorMap, f)
+    with open("englishVectorMap.dat", "wb") as f:
+        pickle.dump(englishVectorMap, f)
     with open("intersection.dat", "wb") as f:
         pickle.dump(intersection, f)
-    
+    with open("setLengthsDeEN.dat", "wb") as f:
+        pickle.dump(setLengthsDeEN, f)
+    """
     #unpickle
-    with open("overlapGermanVectorMap.dat", "rb") as f:
-        overlapGermanVectorMap=pickle.load(f)
-    with open("overlapEnglishVectorMap.dat", "rb") as f:
-        overlapEnglishVectorMap=pickle.load(f)
+    with open("germanVectorMap.dat", "rb") as f:
+        germanVectorMap=pickle.load(f)
+    with open("englishVectorMap.dat", "rb") as f:
+        englishVectorMap=pickle.load(f)
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
+    with open("setLengthsDeEN.dat", "rb") as f:
+        setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
     #change vectors to PMI, if thats what you're after
@@ -89,12 +99,15 @@ if __name__ == "__main__":
     
     #create German graph
     d = GraphCreator()
-    entitySetLength=len(intersection)+1
-    G = d.createGraph(overlapGermanVectorMap, entitySetLength)
+    entitySetLengthDe=setLengthsDeEN[0]+1
+    print("Entity Set len  de: ",entitySetLengthDe)
+    G = d.createGraph(germanVectorMap, entitySetLengthDe)
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
-    G = d.createGraph(overlapEnglishVectorMap, entitySetLength)
+    entitySetLengthEn=setLengthsDeEN[1]+1
+    print("entity set len en: ",entitySetLengthEn)
+    G = d.createGraph(englishVectorMap, entitySetLengthEn)
     G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
 
     
@@ -107,13 +120,12 @@ if __name__ == "__main__":
     nx.write_gpickle(G1, "germanPickle")
     nx.write_gpickle(G2, "englishPickle")
     #pickle entity set
-    with open("entitySet.dat", "wb") as f:
-        pickle.dump(entitySet, f)
+    #with open("entitySet.dat", "wb") as f:
+        #pickle.dump(entitySet, f)
        
     #unpickle
     G1=nx.read_gpickle("germanPickle")
     G2=nx.read_gpickle("englishPickle")
-    entitySetLength=552
     print(G1.nodes())
     print(G2.nodes())
     with open("intersection.dat", "rb") as f:
@@ -130,7 +142,7 @@ if __name__ == "__main__":
     print(" done english")
     print("done clustering: ",datetime.datetime.now())
     
-    
+    """
     #pickling to make debugging faster
     with open("clusteredGerman.dat", "wb") as f:
         pickle.dump(germanClusterList, f)
@@ -170,5 +182,5 @@ if __name__ == "__main__":
     #    print(clusterTupel[2])
     #    print("------------------------------")
     print("final result in alignmentOutputWithcosineSim.txt")
-    
+    """
     print (sys.version)
