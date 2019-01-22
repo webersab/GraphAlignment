@@ -41,22 +41,22 @@ if __name__ == "__main__":
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse("germanLoc#Loc.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse("/group/project/s1782911/germanPERSON#PERSONbigNoRare.txt", entitySet, vectorMap)
     germanEntitySetLength=len(germanEntitySet.toSet())
     print("German entity set length: ",germanEntitySetLength)
     
     #extract the English only entity set
-    freshVectorMap = VectorMap()
-    freshEntitySet = EntitySet()
-    englishVectorMap, englishEntitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", freshEntitySet, freshVectorMap)
-    englishEntitySetLength=len(englishEntitySet.toSet())
-    print("English entity set length: ",englishEntitySetLength)
+    #freshVectorMap = VectorMap()
+    #freshEntitySet = EntitySet()
+    #englishVectorMap, englishEntitySet = c.parse("/afs/inf.ed.ac.uk/user/s17/s1782911/location#location.txt", freshEntitySet, freshVectorMap)
+    #englishEntitySetLength=len(englishEntitySet.toSet())
+    #print("English entity set length: ",englishEntitySetLength)
     
-    setLengthsDeEN=[germanEntitySetLength,englishEntitySetLength]
+    setLengthsDeEN=[germanEntitySetLength,0]
     
     #calculate the intersection of those sets. This is the overlap of entities
-    intersection=list(englishEntitySet.intersection(germanEntitySet.toSet()))
-    print("the overlap between the two sets is ",len(intersection))
+    #intersection=list(englishEntitySet.intersection(germanEntitySet.toSet()))
+    #print("the overlap between the two sets is ",len(intersection))
     
     ###Extract the combined entity set and the according vector maps for English and German
     #entitySet = EntitySet()
@@ -75,20 +75,20 @@ if __name__ == "__main__":
     #pickling vector Maps for faster degbugging
     with open("germanVectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
-    with open("englishVectorMap.dat", "wb") as f:
-        pickle.dump(englishVectorMap, f)
-    with open("intersection.dat", "wb") as f:
-        pickle.dump(intersection, f)
+    #with open("englishVectorMap.dat", "wb") as f:
+        #pickle.dump(englishVectorMap, f)
+    #with open("intersection.dat", "wb") as f:
+        #pickle.dump(intersection, f)
     with open("setLengthsDeEN.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    """
+    
     #unpickle
     with open("germanVectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
-    with open("englishVectorMap.dat", "rb") as f:
-        englishVectorMap=pickle.load(f)
-    with open("intersection.dat", "rb") as f:
-        intersection=pickle.load(f)
+   # with open("englishVectorMap.dat", "rb") as f:
+        #englishVectorMap=pickle.load(f)
+    #with open("intersection.dat", "rb") as f:
+        #intersection=pickle.load(f)
     with open("setLengthsDeEN.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
@@ -101,14 +101,14 @@ if __name__ == "__main__":
     d = GraphCreator()
     entitySetLengthDe=setLengthsDeEN[0]+1
     print("Entity Set len  de: ",entitySetLengthDe)
-    G = d.createGraph(germanVectorMap, entitySetLengthDe)
+    G = d.createGraphParallel(germanVectorMap, entitySetLengthDe)
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
-    entitySetLengthEn=setLengthsDeEN[1]+1
-    print("entity set len en: ",entitySetLengthEn)
-    G = d.createGraph(englishVectorMap, entitySetLengthEn)
-    G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
+    #entitySetLengthEn=setLengthsDeEN[1]+1
+    #print("entity set len en: ",entitySetLengthEn)
+    #G = d.createGraphParallel(englishVectorMap, entitySetLengthEn)
+    #G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
 
     
     #print entity set line by line to file for translation for linking
@@ -117,17 +117,17 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, "germanPickle")
-    nx.write_gpickle(G2, "englishPickle")
+    nx.write_gpickle(G1, "/group/project/s1782911/germanPicklePostParallel")
+    #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
        
     #unpickle
-    G1=nx.read_gpickle("germanPickle")
-    G2=nx.read_gpickle("englishPickle")
+    G1=nx.read_gpickle("/group/project/s1782911/germanPicklePostParallel")
+    #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
-    print(G2.nodes())
+    #print(G2.nodes())
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
     
@@ -138,23 +138,30 @@ if __name__ == "__main__":
     germanClusterList=k.getClustersFromGraph(G1,"german")
     print("done german")
     j=Cluster()
-    englishClusterList=j.getClustersFromGraph(G2,"english")
-    print(" done english")
+    #englishClusterList=j.getClustersFromGraph(G2,"english")
+    #print(" done english")
     print("done clustering: ",datetime.datetime.now())
     
-    """
+    #for i in germanClusterList:
+        #print(i.printClusterPredicates())
+
+    
+    
     #pickling to make debugging faster
     with open("clusteredGerman.dat", "wb") as f:
         pickle.dump(germanClusterList, f)
-    with open("clusteredEnglish.dat", "wb") as f:
-        pickle.dump(englishClusterList, f)
+    #with open("clusteredEnglish.dat", "wb") as f:
+        #pickle.dump(englishClusterList, f)
     print("done pickling")
     
-    
+    """
     #unpickle
     with open("clusteredGerman.dat", "rb") as f:
         germanClusterList=pickle.load(f)
         
+    for i in germanClusterList:
+        print(i.predicates)
+    """    
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
     
