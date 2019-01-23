@@ -145,7 +145,7 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
-    p.generate_input("/group/project/s1782911/batchOfSix.txt", "/group/project/s1782911/germanPERSON#PERSONbigNoRare.txt","#PERSON#PERSON")
+    p.generate_input("/group/project/s1782911/batchOfSixEntitySwapped.txt", "/group/project/s1782911/germanPERSON#PERSONbtchOfSix.txt","#PERSON#PERSON")
     print("end : ",datetime.datetime.now())
 
     

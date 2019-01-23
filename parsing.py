@@ -21,8 +21,8 @@ class Parsing:
     
     def parse(self, fileName,entitySet,vectorMap):
         #unpickling dict for cheap link
-        with open("entityDictionary.dat", "rb") as r:
-            entDict=pickle.load(r)
+        #with open("/group/project/s1782911/graphAlignmentOutputData/entityDictionary.dat", "rb") as r:
+            #entDict=pickle.load(r)
         with open(fileName) as f:
             for line in f:
                 if 'inv idx' in line:
@@ -36,10 +36,10 @@ class Parsing:
                     #if linking: link single words
                     #if linking: concatenate the entity links
                     
-                    origEntities=self.extractEntities(line)
+                    entities=self.extractEntities(line)
                     
                     l = Linker()
-                    entities=l.cheapLink(origEntities, entDict)
+                    #entities=l.cheapLink(origEntities, entDict)
                     count=self.extractCount(line)
                     index = entitySet.getIndex(entities)
                     pair = (index,count)

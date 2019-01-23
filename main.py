@@ -36,14 +36,14 @@ def printClustersAfterWhisper(G):
 
 if __name__ == "__main__":
     print("Hello Graph Aligner")
-    """
+    print("begin: ",datetime.datetime.now())
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse("/group/project/s1782911/germanPERSON#PERSONbigNoRare.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse("/group/project/s1782911/germanPERSON#PERSONbtchOfSix.txt", entitySet, vectorMap)
     germanEntitySetLength=len(germanEntitySet.toSet())
-    print("German entity set length: ",germanEntitySetLength)
+    print("German entity set length: ",germanEntitySetLength,datetime.datetime.now())
     
     #extract the English only entity set
     #freshVectorMap = VectorMap()
@@ -73,26 +73,26 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open("germanVectorMap.dat", "wb") as f:
+    with open("/group/project/s1782911/graphAlignmentOutputData/germanVectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open("setLengthsDeEN.dat", "wb") as f:
+    with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    
+    """
     #unpickle
-    with open("germanVectorMap.dat", "rb") as f:
+    with open("/group/project/s1782911/graphAlignmentOutputData/germanVectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
-   # with open("englishVectorMap.dat", "rb") as f:
+    # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open("setLengthsDeEN.dat", "rb") as f:
+    with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
-    
+    """
     #change vectors to PMI, if thats what you're after
     #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
     #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
@@ -117,20 +117,20 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, "/group/project/s1782911/germanPicklePostParallel")
+    nx.write_gpickle(G1, "/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallel")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
-       
+    """   
     #unpickle
-    G1=nx.read_gpickle("/group/project/s1782911/germanPicklePostParallel")
+    G1=nx.read_gpickle("/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallel")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
-    
+    """
 
     #extraction of clusters begins here
     print("begin clustering: ",datetime.datetime.now())
@@ -161,7 +161,7 @@ if __name__ == "__main__":
         
     for i in germanClusterList:
         print(i.predicates)
-    """    
+       
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
     
