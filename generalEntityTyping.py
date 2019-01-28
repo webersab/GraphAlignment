@@ -3,6 +3,7 @@ import sys
 import datetime
 from nltk.corpus.reader.wordnet import Lemma
 import re
+import os
 
 class GeneralEntityTyping():
     
@@ -73,8 +74,10 @@ if __name__ == "__main__":
     #print(g.typeEntity("Schauspielerin"))
     
     print("begin: ",datetime.datetime.now())
-   
-    g.swapTypesInFile("/group/project/s1782911/batchOfSix.txt", "/group/project/s1782911/batchOfSixEntitySwapped.txt")
+    
+    for filename in os.listdir("/disk/scratch_big/sweber/pipelineOutput"):
+        g.swapTypesInFile(filename, "/disk/scratch_big/sweber/pipelineOutput"+filename[-2:])
+        print("typed "+filename)
     print("end : ",datetime.datetime.now())
     
 
