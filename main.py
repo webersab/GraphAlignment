@@ -42,7 +42,7 @@ if __name__ == "__main__":
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse("/group/project/s1782911/germanPERSON#PERSONbtchOfSix.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse("/disk/scratch_big/sweber/germanPERSON#PERSONfull.txt", entitySet, vectorMap)
     germanEntitySetLength=len(germanEntitySet.toSet())
     print("German entity set length: ",germanEntitySetLength,datetime.datetime.now())
     
@@ -74,26 +74,26 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open("/group/project/s1782911/graphAlignmentOutputData/germanVectorMap.dat", "wb") as f:
+    with open("/disk/scratch_big/sweber/germanVectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "wb") as f:
+    with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    
+    """
     #unpickle
-    with open("/group/project/s1782911/graphAlignmentOutputData/germanVectorMap.dat", "rb") as f:
+    with open("/disk/scratch_big/sweber/germanVectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
     # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "rb") as f:
+    with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
-    
+    """
     #change vectors to PMI, if thats what you're after
     #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
     #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, "/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallel")
+    nx.write_gpickle(G1, "/disk/scratch_big/sweber/germanPicklePostParallel")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
