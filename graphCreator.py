@@ -9,6 +9,7 @@ import networkx as nx
 import multiprocessing as mp
 import pickle
 import pprint
+from tqdm import tqdm
 
 class GraphCreator():
     
@@ -75,13 +76,17 @@ class GraphCreator():
     def createGraphParallel(self, vectorMap, entitySetLength):
         print("begin createGraph: ",datetime.datetime.now())
         
-        pairsToCaluclate=itertools.combinations(vectorMap, 2)
-        print(len(list((pairsToCaluclate)))," pairs to calculate")
+        #pairsToCaluclate=itertools.combinations(vectorMap, 2)
+        #print(len(list((pairsToCaluclate)))," pairs to calculate")
         
         actualCalculateMap={}
-        for k1, k2 in itertools.combinations(vectorMap, 2):
-            if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
-                actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
+        #for k1, k2 in itertools.combinations(vectorMap, 2):
+            #if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
+                #actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
+        for k1, v1 in tqdm(vectorMap.items(),total=len(vectorMap.items()),unit="predicates"):
+            for k2, v2 in vectorMap.items():
+                if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
+                    actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
         print(len(actualCalculateMap)," with cosineSim > 0")
         print("done with actual calulate map: ",datetime.datetime.now())
         

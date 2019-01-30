@@ -103,6 +103,9 @@ class Preprocess:
                 #fill noun pair map
                 if nounPair != "":
                     nounPairMap=self.fillNounPairMap(predicate,nounPair,nounPairMap)
+        print("Size of nounPairMap",sys.getsizeof(nounPairMap))
+        print("Size of predicateMap",sys.getsizeof(predicateMap))
+        
         
         #Printing happens here
         orig_stdout = sys.stdout
@@ -137,7 +140,7 @@ class Preprocess:
                         print("(" + x +")"+typePair)
         sys.stdout = orig_stdout
         f.close()            
-            
+           
         
         
 if __name__ == "__main__":

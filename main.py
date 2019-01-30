@@ -37,6 +37,7 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
+    
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -81,7 +82,7 @@ if __name__ == "__main__":
         #pickle.dump(intersection, f)
     with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    """
+    
     #unpickle
     with open("/group/project/s1782911/graphAlignmentOutputData/germanVectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
@@ -92,7 +93,7 @@ if __name__ == "__main__":
     with open("/group/project/s1782911/graphAlignmentOutputData/setLengthsDeEN.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
-    """
+    
     #change vectors to PMI, if thats what you're after
     #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
     #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
