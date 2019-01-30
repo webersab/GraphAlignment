@@ -76,7 +76,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     
     for filename in os.listdir("/disk/scratch_big/sweber/pipelineOutput"):
-        g.swapTypesInFile("/disk/scratch_big/sweber/pipelineOutput"+filename, "/disk/scratch_big/sweber/pipelineOutput"+filename[-2:])
+        g.swapTypesInFile("/disk/scratch_big/sweber/pipelineOutput/"+filename, "/disk/scratch_big/sweber/pipelineOutput/"+filename[-6:])
         print("typed "+filename)
     print("end : ",datetime.datetime.now())
     
