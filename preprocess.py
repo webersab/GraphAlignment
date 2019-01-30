@@ -3,6 +3,8 @@
 import sys
 from parsing import Parsing
 import datetime
+import os
+from tqdm import tqdm
 #import pprint
 #from Cython.Compiler.ExprNodes import inc_dec_constructor
 
@@ -93,7 +95,7 @@ class Preprocess:
         inFile = open(inFileName,'r')
         predicateMap={}
         nounPairMap={}
-        for line in inFile:
+        for line in tqdm(inFile,total=582924893,unit="lines"):
             if ("(" in line): 
                 predicate=self.find_between(line,"(",")"+typePair)
                 nounPair=self.find_between(line,"("+predicate+")"+typePair+"::","|||")
@@ -109,7 +111,7 @@ class Preprocess:
         
         #Printing happens here
         orig_stdout = sys.stdout
-        f = open(outFileName, 'w')
+        f = open(outFileName, 'a')
         sys.stdout = f
         print("types: "+typePair+", num preds: "+str(len(predicateMap.keys())))
         
@@ -148,7 +150,9 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
-    p.generate_input("/group/project/s1782911/batchOfSixEntitySwapped.txt", "/group/project/s1782911/germanPERSON#PERSONbtchOfSix.txt","#PERSON#PERSON")
+    
+    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanPERSON#PERSONfull.txt","#PERSON#PERSON")
+         
     print("end : ",datetime.datetime.now())
 
     
