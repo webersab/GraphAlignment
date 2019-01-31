@@ -37,7 +37,7 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-    
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         #pickle.dump(intersection, f)
     with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    """
+    
     #unpickle
     with open("/disk/scratch_big/sweber/germanVectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
-    """
+    
     #change vectors to PMI, if thats what you're after
     #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
     #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
-    """   
+      
     #unpickle
     G1=nx.read_gpickle("/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallel")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     #print(G2.nodes())
     with open("intersection.dat", "rb") as f:
         intersection=pickle.load(f)
-    """
+    
 
     #extraction of clusters begins here
     print("begin clustering: ",datetime.datetime.now())
@@ -154,15 +154,15 @@ if __name__ == "__main__":
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
     print("done pickling")
-    
     """
+    
     #unpickle
     with open("clusteredGerman.dat", "rb") as f:
         germanClusterList=pickle.load(f)
         
     for i in germanClusterList:
         print(i.predicates)
-       
+    """   
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
     
