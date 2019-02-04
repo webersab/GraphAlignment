@@ -3,7 +3,8 @@ import codecs
 import csv
 import sys
 from nltk.parse import DependencyGraph
-sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
+#sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
+sys.path.append("/afs/inf.ed.ac.uk/user/s17/s1782911")
 import pickle
 #custom
 import udpipe_model as udp
@@ -33,26 +34,33 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             secondPredicates=extractPredicateFromSentence(model,row[2])
         #for each combination of predictates from sentence one and two
             localHitCounter=0
-            hitClusters=[]
-            hitPredicates=[]
+            #hitClusters=[]
+            #hitPredicates=[]
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
                     for cluster in clusterList:
-                        ding=0
+                        pred1C=0
+                        pred2C=0
                         for predicate in cluster.predicates:
-                            if (pred1 in predicate) or (pred2 in predicate):
-                                ding+=1
-                        if ding>1:
-                            #print("row 0",row[0])
+                            #print(predicate,pred1,pred2)
+                            if (pred1 in str(predicate)):
+                                pred1C+=1 
+                            if (pred2 in str(predicate)):
+                                pred2C+=1
+                        if (pred1C>0)and(pred2C>0):
                             if row[0]=="neutral" or row[0]=="entailment":
                                 #print("DING!")
                                 localHitCounter+=1
-                                hitClusters.append(cluster)
-                                hitPredicates.append((pred1,pred2))
+                                #hitClusters.append(str(cluster.predicates))
+                                #hitPredicates.append(pred1)
+                                #hitPredicates.append(pred2)
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
-                mapOfHits[(",".join(str(hitPredicates)))]=hitClusters
+                s=row[1]+row[2]
+                firstPredicates.extend(secondPredicates)
+                t=(",".join(firstPredicates))
+                mapOfHits[t]=s
             else:
                 totalcounter+=1
                 s=row[1]+row[2]
@@ -221,13 +229,13 @@ if __name__ == "__main__":
     
     
     file = open("xnliDetailedoutput.txt","w") 
-    pp = pprint.PrettyPrinter(indent=4)
-    file.write(pp.pprint(mapOfHits))
+    #pp = pprint.PrettyPrinter(indent=4)
+    file.write(str(mapOfHits))
     file.write("----------------------------------------------")
-    file.write(pp.pprint(mapOfFails))
+    file.write(str(mapOfFails))
     file.close
     
-    pp.pprint(mapOfHits)
+    #pp.pprint(mapOfHits)
     print("The score is: "+str(score))
     #pp.pprint(mapOfFails)
     
