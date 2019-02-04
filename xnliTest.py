@@ -227,13 +227,10 @@ if __name__ == "__main__":
     
     score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLI.tsv")
     
-    
-    file = open("xnliDetailedoutput.txt","w") 
-    #pp = pprint.PrettyPrinter(indent=4)
-    file.write(str(mapOfHits))
-    file.write("----------------------------------------------")
-    file.write(str(mapOfFails))
-    file.close
+    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutput.txt",'w'))
+    pp.pprint(mapOfHits)
+    pp.pprint("----------------------------------------------")
+    pp.pprint(mapOfFails)
     
     #pp.pprint(mapOfHits)
     print("The score is: "+str(score))
