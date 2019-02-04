@@ -52,14 +52,14 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                                 pred1C+=1 
                             if (pred2 in str(predicate)):
                                 pred2C+=1
-                        if (pred1C>0)and(pred2C>0):
-                            if row[0]=="entailment":
-                                truePositivesEnt+=1
-                                localHitCounter+=1
-                                entCounter+=1
-                            else:
-                                falsePositivesEnt+=1
-                                neuCounter+=1
+                    if (pred1C>0)and(pred2C>0):
+                        if row[0]=="entailment":
+                            truePositivesEnt+=1
+                            localHitCounter+=1
+                            entCounter+=1
+                        else:
+                            falsePositivesEnt+=1
+                            neuCounter+=1
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
