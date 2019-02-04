@@ -3,10 +3,66 @@ import codecs
 import csv
 import sys
 from nltk.parse import DependencyGraph
-sys.path.append("/afs/inf.ed.ac.uk/user/s17/s1782911/udpipe-1.1.0-bin")
+sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
 import pickle
 #custom
 import udpipe_model as udp
+import datetime
+from tqdm import tqdm
+import pprint
+
+def testGermanClusters(clusterListPickle,xnliSlice):
+
+    mapOfHits={}
+    mapOfFails={}
+    score=0
+    #unpickle cluster list
+    with open(clusterListPickle, "rb") as f:
+        clusterList=pickle.load(f)
+    print("unpickled")
+    hitcounter=0
+    totalcounter=0
+    
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    with open(xnliSlice) as fd:
+        rd = csv.reader(fd, delimiter="\t")
+        for row in tqdm(rd,total=2491):
+            firstPredicates=extractPredicateFromSentence(model,row[1])
+            secondPredicates=extractPredicateFromSentence(model,row[2])
+        #for each combination of predictates from sentence one and two
+            localHitCounter=0
+            hitClusters=[]
+            hitPredicates=[]
+            for pred1 in firstPredicates:
+                for pred2 in secondPredicates:
+                    for cluster in clusterList:
+                        #print("pred1",pred1)
+                        #print("pred2",pred2)
+                        #print("cluster",cluster.predicates)
+                        if (pred1 in cluster.predicates) and (pred2 in cluster.predicates):
+                            print("BLOOP")
+                            print("row 0",row[0])
+                            if row[0]=="neutral" or row[0]=="entailment":
+                                print("DING!")
+                                localHitCounter+=1
+                                hitClusters.append(cluster)
+                                hitPredicates.append((pred1,pred2))
+            if localHitCounter>0:
+                hitcounter+=1
+                totalcounter+=1
+                mapOfHits[hitPredicates]=hitClusters
+            else:
+                totalcounter+=1
+                s=row[1]+row[2]
+                firstPredicates.extend(secondPredicates)
+                t=(",".join(firstPredicates))
+                mapOfFails[t]=s
+                #print(firstPredicates,secondPredicates)
+    if totalcounter>0:
+        score=hitcounter/totalcounter
+    return score,mapOfHits, mapOfFails
 
 def dependency_parse_to_graph(filename):
     """
@@ -59,8 +115,27 @@ def treeToPredList(d):
         listOfPredicates.append(predicate)
     return listOfPredicates
 
-def extractPredicates(language,sentenceList):
-    """print("extracting predicates")
+def extractPredicateFromSentence(model, sentence):
+    sent = model.tokenize(sentence)
+    for s in sent:
+        model.tag(s)
+        model.parse(s)
+    conllu = model.write(sent, "conllu")
+    outfile = "conllOut.txt"
+    with codecs.open(outfile, 'w', 'utf-8') as o:
+        o.write(conllu)
+    #print("wrote conllu file")
+    
+    predicateList=[]
+    dtree = dependency_parse_to_graph("conllOut.txt")
+    i=0
+    for d in dtree:
+        predicateList=treeToPredList(d)
+    #print("done extracting predicates") 
+    return predicateList
+
+def extractPredicatesFromSentenceList(language,sentenceList):
+    print("extracting predicates")
     sentenceToPredicateMap={}
     if language=="de":
         modelfile ="germanModel.udpipe"
@@ -77,7 +152,7 @@ def extractPredicates(language,sentenceList):
         outfile = "conllOut"+language+".txt"
         with codecs.open(outfile, 'a', 'utf-8') as o:
             o.write(conllu)
-    print("wrote conllu file")"""
+    print("wrote conllu file")
 
     sentenceToPredicateMap={}
     dtree = dependency_parse_to_graph("conllOut"+language+".txt")
@@ -103,9 +178,9 @@ def testWithXNLI(testFile,listOfTuplesOfClusters,languagePair):
     elif languagePair=="deEn":
         germanHalf, englishHalf= zip(*inputArray)
     print("english")
-    englishMapping=extractPredicates("en", englishHalf)
+    englishMapping=extractPredicatesFromSentenceList("en", englishHalf)
     print("german")
-    germanMapping=extractPredicates("de", germanHalf)
+    germanMapping=extractPredicatesFromSentenceList("de", germanHalf)
     
     #if predicates in same cluster entail
     #if predicates not in same cluster contradict
@@ -114,7 +189,7 @@ def testWithXNLI(testFile,listOfTuplesOfClusters,languagePair):
     for el in listOfTuplesOfClusters:
         print(el[0].predicates,el[1].predicates, el[2])
     
-    """print("start looking in map")
+    print("start looking in map")
     for i in englishMapping:
         englishPredicates=englishMapping[i]
         germanPredicates=germanMapping[i]
@@ -126,7 +201,7 @@ def testWithXNLI(testFile,listOfTuplesOfClusters,languagePair):
             if (englishPredicates in list1 and germanPredicates in list1):
                 mapOfJudgements[i]=1
             else:
-                mapOfJudgements[i]=0"""
+                mapOfJudgements[i]=0
     #add option for neutral based on other criteria as well? TODO
     
     return mapOfJudgements
@@ -139,9 +214,23 @@ def compareJudgements(goldJudgements,myJudgements):
     return None
 
 if __name__ == "__main__":
+    print("Hello XNLITest!")
+    print("begin: ",datetime.datetime.now())
+    
+    score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLI.tsv")
+    
+    print("The score is: "+str(score))
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(mapOfHits)
+    #pp.pprint(mapOfFails)
+    
+    
+    
+    """
     print("hup hup")
     with open("alignedList.dat", "rb") as f:
         clusterTupleList=pickle.load(f)
     print("got the pickle")
     mapOfJudegements=testWithXNLI("enDeXnli.txt", clusterTupleList, "enDe")
     print(mapOfJudegements)
+    """
