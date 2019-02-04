@@ -222,7 +222,7 @@ if __name__ == "__main__":
     print("The score is: "+str(score))
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(mapOfHits)
-    #pp.pprint(mapOfFails)
+    pp.pprint(mapOfFails)
     
     
     
