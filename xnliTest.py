@@ -38,7 +38,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
                     for cluster in clusterList:
-                        if (pred1 in cluster.predicates):
+                        if (pred1[0:3] in cluster.predicates):
                             print("pred1",pred1)
                             #print("pred2",pred2)
                             print("cluster",cluster.predicates)
