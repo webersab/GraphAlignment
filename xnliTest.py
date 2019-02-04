@@ -37,7 +37,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             hitPredicates=[]
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
-                    for cluster in clusterList:
+                    for cluster in tqdm(clusterList,total=len(clusterList)):
                         #print("pred1",pred1)
                         #print("pred2",pred2)
                         #print("cluster",cluster.predicates)
