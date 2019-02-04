@@ -41,7 +41,6 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                         ding=0
                         for predicate in cluster.predicates:
                             if (pred1 in predicate) or (pred2 in predicate):
-                                print("BLOOP")
                                 ding+=1
                         if ding>1:
                             print("row 0",row[0])
@@ -53,7 +52,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
-                mapOfHits[hitPredicates]=hitClusters
+                mapOfHits[(",".join(hitPredicates))]=hitClusters
             else:
                 totalcounter+=1
                 s=row[1]+row[2]
