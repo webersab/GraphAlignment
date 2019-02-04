@@ -43,9 +43,9 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                             if (pred1 in predicate) or (pred2 in predicate):
                                 ding+=1
                         if ding>1:
-                            print("row 0",row[0])
+                            #print("row 0",row[0])
                             if row[0]=="neutral" or row[0]=="entailment":
-                                print("DING!")
+                                #print("DING!")
                                 localHitCounter+=1
                                 hitClusters.append(cluster)
                                 hitPredicates.append((pred1,pred2))
@@ -219,10 +219,17 @@ if __name__ == "__main__":
     
     score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLI.tsv")
     
-    print("The score is: "+str(score))
+    
+    file = open("xnliDetailedoutput.txt","w") 
     pp = pprint.PrettyPrinter(indent=4)
+    file.write(pp.pprint(mapOfHits))
+    file.write("----------------------------------------------")
+    file.write(pp.pprint(mapOfFails))
+    file.close
+    
     pp.pprint(mapOfHits)
-    pp.pprint(mapOfFails)
+    print("The score is: "+str(score))
+    #pp.pprint(mapOfFails)
     
     
     
