@@ -38,12 +38,12 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
                     for cluster in clusterList:
-                        if (pred1[0:3] in cluster.predicates):
-                            print("pred1",pred1)
-                            #print("pred2",pred2)
-                            print("cluster",cluster.predicates)
-                        elif (pred1 in cluster.predicates) and (pred2 in cluster.predicates):
-                            print("BLOOP")
+                        ding=0
+                        for predicate in cluster.predicates:
+                            if (pred1 in predicate) or (pred2 in predicate):
+                                print("BLOOP")
+                                ding+=1
+                        if ding>1:
                             print("row 0",row[0])
                             if row[0]=="neutral" or row[0]=="entailment":
                                 print("DING!")
