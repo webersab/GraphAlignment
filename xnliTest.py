@@ -37,7 +37,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
     
     with open(xnliSlice) as fd:
         rd = csv.reader(fd, delimiter="\t")
-        for row in tqdm(rd,total=2491):
+        for row in tqdm(rd,total=1660):
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
         #for each combination of predictates from sentence one and two
@@ -57,11 +57,9 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                                 truePositivesEnt+=1
                                 localHitCounter+=1
                                 entCounter+=1
-                            elif row[0]=="neutral":
+                            else:
                                 falsePositivesNeu+=1
                                 neuCounter+=1
-                            else:
-                                continue
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
@@ -73,11 +71,9 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                 if row[0]=="neutral":
                     truePositivesNeu+=1
                     neuCounter+=1
-                elif row[0]=="entailment":
+                else:
                     falsePositivesNeu+=1
                     entCounter+=1
-                else:
-                    continue
                 totalcounter+=1
                 s=row[1]+row[2]
                 firstPredicates.extend(secondPredicates)
