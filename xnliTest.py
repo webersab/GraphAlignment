@@ -58,7 +58,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                                 localHitCounter+=1
                                 entCounter+=1
                             else:
-                                falsePositivesNeu+=1
+                                falsePositivesEnt+=1
                                 neuCounter+=1
             if localHitCounter>0:
                 hitcounter+=1
