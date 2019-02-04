@@ -52,7 +52,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
-                mapOfHits[(",".join(hitPredicates))]=hitClusters
+                mapOfHits[(",".join(str(hitPredicates)))]=hitClusters
             else:
                 totalcounter+=1
                 s=row[1]+row[2]
