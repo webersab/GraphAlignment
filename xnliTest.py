@@ -24,13 +24,13 @@ def testGermanClusters(clusterListPickle,xnliSlice):
     hitcounter=0
     totalcounter=0
     
-    truePositivesNeutrEnt=0
-    truePositivesContradiction=0
-    falsePositivesNeutrEnt=0
-    falsePositivesContradiction=0
+    truePositivesEnt=0
+    truePositivesNeu=0
+    falsePositivesEnt=0
+    falsePositivesNeu=0
     
-    neutrEntCounter=0
-    contradictionCounter=0
+    entCounter=0
+    neuCounter=0
     
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
@@ -53,13 +53,15 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                             if (pred2 in str(predicate)):
                                 pred2C+=1
                         if (pred1C>0)and(pred2C>0):
-                            if row[0]=="neutral"or row[0]=="entailment":
-                                truePositivesNeutrEnt+=1
+                            if row[0]=="entailment":
+                                truePositivesEnt+=1
                                 localHitCounter+=1
-                                neutrEntCounter+=1
+                                entCounter+=1
+                            elif row[0]=="neutral":
+                                falsePositivesNeu+=1
+                                neuCounter+=1
                             else:
-                                falsePositivesNeutrEnt+=1
-                                neutrEntCounter+=1
+                                continue
             if localHitCounter>0:
                 hitcounter+=1
                 totalcounter+=1
@@ -68,12 +70,14 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                 t=(",".join(firstPredicates))
                 mapOfHits[t]=s
             else:
-                if row[0]=="contradiction":
-                    truePositivesContradiction+=1
-                    contradictionCounter+=1
+                if row[0]=="neutral":
+                    truePositivesNeu+=1
+                    neuCounter+=1
+                elif row[0]=="entailment":
+                    falsePositivesNeu+=1
+                    entCounter+=1
                 else:
-                    falsePositivesContradiction+=1
-                    contradictionCounter+=1
+                    continue
                 totalcounter+=1
                 s=row[1]+row[2]
                 firstPredicates.extend(secondPredicates)
@@ -82,10 +86,10 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                 #print(firstPredicates,secondPredicates)
     if totalcounter>0:
         score=hitcounter/totalcounter
-        print("entNeutr true positives "+str(truePositivesNeutrEnt)+" of "+str(neutrEntCounter))
-        print("entNeutr false positives "+str(falsePositivesNeutrEnt)+" of "+str(neutrEntCounter))
-        print("contradiction true positives "+str(truePositivesContradiction)+" of "+str(contradictionCounter))
-        print("contradiction false positives "+str(falsePositivesContradiction)+" of "+str(contradictionCounter))
+        print("ent true positives "+str(truePositivesEnt)+" of "+str(entCounter)+", "+(str(float(truePositivesEnt)/float(entCounter))))
+        print("ent false positives "+str(falsePositivesEnt)+" of "+str(entCounter)+", "+(str(float(falsePositivesEnt)/float(entCounter))))
+        print("neu true positives "+str(truePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(truePositivesNeu)/float(neuCounter))))
+        print("neu false positives "+str(falsePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(falsePositivesNeu)/float(neuCounter))))
     return score,mapOfHits, mapOfFails
 
 def dependency_parse_to_graph(filename):
