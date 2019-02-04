@@ -3,8 +3,8 @@ import codecs
 import csv
 import sys
 from nltk.parse import DependencyGraph
-#sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
-sys.path.append("/afs/inf.ed.ac.uk/user/s17/s1782911")
+sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
+#sys.path.append("/afs/inf.ed.ac.uk/user/s17/s1782911")
 import pickle
 #custom
 import udpipe_model as udp
