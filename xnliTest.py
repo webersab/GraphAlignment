@@ -52,21 +52,23 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                                 pred1C+=1 
                             if (pred2 in str(predicate)):
                                 pred2C+=1
-                    if (pred1C>0)and(pred2C>0):
-                        if row[0]=="entailment":
-                            truePositivesEnt+=1
+                        if (pred1C>0)and(pred2C>0):
                             localHitCounter+=1
-                            entCounter+=1
-                        else:
-                            falsePositivesEnt+=1
-                            neuCounter+=1
+
             if localHitCounter>0:
-                hitcounter+=1
-                totalcounter+=1
-                s=row[1]+row[2]
-                firstPredicates.extend(secondPredicates)
-                t=(",".join(firstPredicates))
-                mapOfHits[t]=s
+                if row[0]=="entailment":   
+                    truePositivesEnt+=1
+                    entCounter+=1
+                    
+                    hitcounter+=1
+                    totalcounter+=1
+                    s=row[1]+row[2]
+                    firstPredicates.extend(secondPredicates)
+                    t=(",".join(firstPredicates))
+                    mapOfHits[t]=s
+                else:
+                    falsePositivesEnt+=1
+                    neuCounter+=1
             else:
                 if row[0]=="neutral":
                     truePositivesNeu+=1
@@ -74,11 +76,11 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                 else:
                     falsePositivesNeu+=1
                     entCounter+=1
-                totalcounter+=1
-                s=row[1]+row[2]
-                firstPredicates.extend(secondPredicates)
-                t=(",".join(firstPredicates))
-                mapOfFails[t]=s
+                    totalcounter+=1
+                    s=row[1]+row[2]
+                    firstPredicates.extend(secondPredicates)
+                    t=(",".join(firstPredicates))
+                    mapOfFails[t]=s
                 #print(firstPredicates,secondPredicates)
     if totalcounter>0:
         score=hitcounter/totalcounter
