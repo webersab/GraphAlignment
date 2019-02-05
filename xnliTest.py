@@ -155,6 +155,7 @@ def treeToPredList(d):
     listOfPredicates=[]
     root=d.nodes[0]['deps']['ROOT'][0]
     predicate=d.nodes[root]['lemma']
+    #listOfPredicates.append(predicate)
     #other cases
     if d.nodes[root]['ctag'] != 'VERB':
         for n in d.nodes:
@@ -165,10 +166,11 @@ def treeToPredList(d):
                 listOfPredicates.append(predicate)
             elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'or d.nodes[n]['lemma']=='be'):
                 listOfPredicates.append(d.nodes[n]['lemma'])
-        #print(predicate)
-        #print(listOfPredicates)
+            #print(predicate)
+            #print(listOfPredicates)
     else:
         listOfPredicates.append(predicate)
+        
     return listOfPredicates
 
 def extractPredicateFromSentence(model, sentence):
