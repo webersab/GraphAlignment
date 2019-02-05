@@ -40,6 +40,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
         for row in tqdm(rd,total=1660):
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
+            #print("predicates: ", str(firstPredicates), str(secondPredicates))
         #for each combination of predictates from sentence one and two
             localHitCounter=0
             for pred1 in firstPredicates:
@@ -48,39 +49,47 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                         pred1C=0
                         pred2C=0
                         for predicate in cluster.predicates:
+                            #print("p in cluster: ", str(predicate))
                             if (pred1 in str(predicate)):
                                 pred1C+=1 
                             if (pred2 in str(predicate)):
                                 pred2C+=1
                         if (pred1C>0)and(pred2C>0):
                             localHitCounter+=1
-
+                            #print("local hit")
+            #print("Local hits in this row ",localHitCounter)
+            #print("row 0 ",row[0])
             if localHitCounter>0:
                 if row[0]=="entailment":   
                     truePositivesEnt+=1
+                    #print("true pos ent",truePositivesEnt)
                     entCounter+=1
                     
                     hitcounter+=1
                     totalcounter+=1
-                    s=row[1]+row[2]
-                    firstPredicates.extend(secondPredicates)
-                    t=(",".join(firstPredicates))
-                    mapOfHits[t]=s
+                    #s=row[1]+row[2]
+                    #firstPredicates.extend(secondPredicates)
+                    #t=(",".join(firstPredicates))
+                    #mapOfHits[t]=s
                 else:
                     falsePositivesEnt+=1
-                    neuCounter+=1
+                    #print("fals pos ent",falsePositivesEnt)
+                    hitcounter+=1
+                    entCounter+=1
             else:
                 if row[0]=="neutral":
                     truePositivesNeu+=1
+                    #print("true pos neu",truePositivesNeu)
                     neuCounter+=1
                 else:
                     falsePositivesNeu+=1
-                    entCounter+=1
+                    #print("false pos neu",falsePositivesNeu)
+                    neuCounter+=1
                     totalcounter+=1
-                    s=row[1]+row[2]
-                    firstPredicates.extend(secondPredicates)
-                    t=(",".join(firstPredicates))
-                    mapOfFails[t]=s
+                    #s=row[1]+row[2]
+                    #firstPredicates.extend(secondPredicates)
+                    #t=(",".join(firstPredicates))
+                    #mapOfFails[t]=s
                 #print(firstPredicates,secondPredicates)
     if totalcounter>0:
         score=hitcounter/totalcounter
@@ -243,7 +252,7 @@ if __name__ == "__main__":
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLI.tsv")
+    score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLINoContra.tsv")
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutput.txt",'w'))
     pp.pprint(mapOfHits)
