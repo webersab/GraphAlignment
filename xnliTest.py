@@ -14,9 +14,10 @@ import pprint
 
 def testGermanClusters(clusterListPickle,xnliSlice):
 
-    mapOfHits={}
-    mapOfFails={}
+    mapOfFalsePositivesEntailment={}
+    mapOfFalsePositivesNeutral={}
     score=0
+
     #unpickle cluster list
     with open(clusterListPickle, "rb") as f:
         clusterList=pickle.load(f)
@@ -38,11 +39,12 @@ def testGermanClusters(clusterListPickle,xnliSlice):
     with open(xnliSlice) as fd:
         rd = csv.reader(fd, delimiter="\t")
         for row in tqdm(rd,total=1660):
+            listOfFoundClusters=[]
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
             #print("predicates: ", str(firstPredicates), str(secondPredicates))
         #for each combination of predictates from sentence one and two
-            localHitCounter=0
+            #localHitCounter=0
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
                     for cluster in clusterList:
@@ -55,27 +57,42 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                             if (pred2 in str(predicate)):
                                 pred2C+=1
                         if (pred1C>0)and(pred2C>0):
-                            localHitCounter+=1
+                            #localHitCounter+=1
                             #print("local hit")
+                            listOfFoundClusters.append(cluster)
             #print("Local hits in this row ",localHitCounter)
             #print("row 0 ",row[0])
-            if localHitCounter>0:
+            if len(listOfFoundClusters)>0:
                 if row[0]=="entailment":   
                     truePositivesEnt+=1
-                    #print("true pos ent",truePositivesEnt)
                     entCounter+=1
-                    
                     hitcounter+=1
                     totalcounter+=1
-                    #s=row[1]+row[2]
-                    #firstPredicates.extend(secondPredicates)
-                    #t=(",".join(firstPredicates))
-                    #mapOfHits[t]=s
                 else:
                     falsePositivesEnt+=1
                     #print("fals pos ent",falsePositivesEnt)
                     hitcounter+=1
                     entCounter+=1
+                    
+                    innerMap={}
+                    sentences=row[1]+row[2]
+                    firstPredicates.extend(secondPredicates)
+                    predicates=(",".join(firstPredicates))
+                    s=""
+                    numberOfClusters=0
+                    numberOfPredicates=0
+                    for cluster in listOfFoundClusters:
+                        s+="||"
+                        numberOfClusters+=1
+                        for predicate in cluster.predicates:
+                            s+=str(predicate) 
+                            numberOfPredicates+=1
+                    innerMap["predicates per cluster"]=numberOfPredicates/numberOfClusters
+                    innerMap["sentences"]=sentences
+                    innerMap["predicates"]=predicates
+                    #innerMap["clusters"]=s
+                    innerMap["number of clusters"]=len(listOfFoundClusters)
+                    mapOfFalsePositivesEntailment[falsePositivesEnt]=innerMap
             else:
                 if row[0]=="neutral":
                     truePositivesNeu+=1
@@ -83,13 +100,17 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                     neuCounter+=1
                 else:
                     falsePositivesNeu+=1
-                    #print("false pos neu",falsePositivesNeu)
                     neuCounter+=1
-                    totalcounter+=1
-                    #s=row[1]+row[2]
-                    #firstPredicates.extend(secondPredicates)
-                    #t=(",".join(firstPredicates))
-                    #mapOfFails[t]=s
+                    #print("false pos neu",falsePositivesNeu)
+                    innerMap2={}
+                    sentences=row[1]+row[2]
+                    firstPredicates.extend(secondPredicates)
+                    predicates=(",".join(firstPredicates))
+                    
+                    innerMap2["sentences"]=sentences
+                    innerMap2["predicates"]=predicates
+
+                    mapOfFalsePositivesNeutral[falsePositivesNeu]=innerMap2
                 #print(firstPredicates,secondPredicates)
     if totalcounter>0:
         score=hitcounter/totalcounter
@@ -97,7 +118,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
         print("ent false positives "+str(falsePositivesEnt)+" of "+str(entCounter)+", "+(str(float(falsePositivesEnt)/float(entCounter))))
         print("neu true positives "+str(truePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(truePositivesNeu)/float(neuCounter))))
         print("neu false positives "+str(falsePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(falsePositivesNeu)/float(neuCounter))))
-    return score,mapOfHits, mapOfFails
+    return score,mapOfFalsePositivesEntailment, mapOfFalsePositivesNeutral
 
 def dependency_parse_to_graph(filename):
     """
@@ -254,10 +275,10 @@ if __name__ == "__main__":
     
     score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLINoContra.tsv")
     
-    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutput.txt",'w'))
+    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosEnt.txt",'w'))
     pp.pprint(mapOfHits)
-    pp.pprint("----------------------------------------------")
-    pp.pprint(mapOfFails)
+    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosNeu.txt",'w'))
+    pp1.pprint(mapOfFails)
     
     #pp.pprint(mapOfHits)
     print("The score is: "+str(score))
