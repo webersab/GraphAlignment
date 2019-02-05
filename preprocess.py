@@ -151,7 +151,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
     
-    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanPERSON#PERSONfull.txt","#PERSON#PERSON")
+    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanPERSON#LOCATIONfull.txt","#PERSON#LOCATION")
          
     print("end : ",datetime.datetime.now())
 
