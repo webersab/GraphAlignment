@@ -10,7 +10,7 @@ class Parsing:
         return entity
     
     def extractPredicate(self,string):
-        predicate = re.search('predicate: (.*)#PERSON.*#PERSON.*', string)
+        predicate = re.search('predicate: (.*)#PERSON.*#LOCATION.*', string)
         predicate=predicate.group(1)
         return predicate
     
