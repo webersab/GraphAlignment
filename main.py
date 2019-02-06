@@ -37,12 +37,12 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-    """
+    
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse("/disk/scratch_big/sweber/germanPERSON#PERSONfull.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse("/disk/scratch_big/sweber/germanPERSON#LOCATIONfull.txt", entitySet, vectorMap)
     germanEntitySetLength=len(germanEntitySet.toSet())
     print("German entity set length: ",germanEntitySetLength,datetime.datetime.now())
     
@@ -74,23 +74,23 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open("/disk/scratch_big/sweber/germanVectorMap.dat", "wb") as f:
+    with open("/disk/scratch_big/sweber/germanVectorMapPersLoc.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "wb") as f:
+    with open("/disk/scratch_big/sweber/setLengthsDeENPersLoc.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
-    with open("/disk/scratch_big/sweber/germanVectorMap.dat", "rb") as f:
+    with open("/disk/scratch_big/sweber/germanVectorMapPersLoc.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
     # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open("/disk/scratch_big/sweber/setLengthsDeEN.dat", "rb") as f:
+    with open("/disk/scratch_big/sweber/setLengthsDeENPersLoc.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
@@ -118,14 +118,14 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, "/disk/scratch_big/sweber/germanPicklePostParallel")
+    nx.write_gpickle(G1, "/disk/scratch_big/sweber/germanPicklePostParallelPersLoc")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
       
     #unpickle
-    G1=nx.read_gpickle("/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallel")
+    G1=nx.read_gpickle("/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallelPersLoc")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
@@ -146,7 +146,7 @@ if __name__ == "__main__":
     #for i in germanClusterList:
         #print(i.printClusterPredicates())
 
-    
+    """
     
     #pickling to make debugging faster
     with open("clusteredGerman.dat", "wb") as f:
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
     print("done pickling")
-    """
+    
     
     #unpickle
     with open("clusteredGerman.dat", "rb") as f:
@@ -162,7 +162,7 @@ if __name__ == "__main__":
         
     for i in germanClusterList:
         print(i.predicates)
-    """   
+      
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
     

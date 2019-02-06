@@ -106,9 +106,11 @@ def testGermanClusters(clusterListPickle,xnliSlice):
                     sentences=row[1]+row[2]
                     firstPredicates.extend(secondPredicates)
                     predicates=(",".join(firstPredicates))
+                    #parse=
                     
                     innerMap2["sentences"]=sentences
                     innerMap2["predicates"]=predicates
+                    innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
 
                     mapOfFalsePositivesNeutral[falsePositivesNeu]=innerMap2
                 #print(firstPredicates,secondPredicates)
@@ -172,6 +174,33 @@ def treeToPredList(d):
         listOfPredicates.append(predicate)
         
     return listOfPredicates
+
+def showDependencyParse(model, sentences):
+    strArray=[]
+    for sentence in sentences:
+        sent = model.tokenize(sentence)
+        for s in sent:
+            model.tag(s)
+            model.parse(s)
+        conllu = model.write(sent, "conllu")
+        print(conllu)
+        """
+        outfile = "conllOut.txt"
+        with codecs.open(outfile, 'w', 'utf-8') as o:
+            o.write(conllu)
+        #print("wrote conllu file")
+        
+        #predicateList=[]
+        dtree = dependency_parse_to_graph("conllOut.txt")
+        #i=0
+
+        for d in dtree:
+            dt=d.tree()
+            stri=dt.pprint()
+            strArray.append(stri)
+        """
+    return strArray
+    
 
 def extractPredicateFromSentence(model, sentence):
     sent = model.tokenize(sentence)
