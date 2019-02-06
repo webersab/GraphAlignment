@@ -157,21 +157,21 @@ def treeToPredList(d):
     listOfPredicates=[]
     root=d.nodes[0]['deps']['ROOT'][0]
     predicate=d.nodes[root]['lemma']
-    #listOfPredicates.append(predicate)
+    listOfPredicates.append(predicate)
     #other cases
-    if d.nodes[root]['ctag'] != 'VERB':
-        for n in d.nodes:
-            #adj or noun plus 'be'
-            if d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']=='sein' or d.nodes[n]['lemma']=='be'):
-                predicate=d.nodes[root]['word']
-                predicate=predicate+'.sein'
-                listOfPredicates.append(predicate)
-            elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'or d.nodes[n]['lemma']=='be'):
-                listOfPredicates.append(d.nodes[n]['lemma'])
-            #print(predicate)
-            #print(listOfPredicates)
-    else:
-        listOfPredicates.append(predicate)
+    #if d.nodes[root]['ctag'] != 'VERB':
+    for n in d.nodes:
+        #adj or noun plus 'be'
+        if d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']=='sein' or d.nodes[n]['lemma']=='be'):
+            predicate=d.nodes[root]['word']
+            predicate=predicate+'.sein'
+            listOfPredicates.append(predicate)
+        elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'or d.nodes[n]['lemma']=='be'):
+            listOfPredicates.append(d.nodes[n]['lemma'])
+        #print(predicate)
+        #print(listOfPredicates)
+    #else:
+        #listOfPredicates.append(predicate)
         
     return listOfPredicates
 
@@ -183,7 +183,7 @@ def showDependencyParse(model, sentences):
             model.tag(s)
             model.parse(s)
         conllu = model.write(sent, "conllu")
-        print(conllu)
+        #print(conllu)
         """
         outfile = "conllOut.txt"
         with codecs.open(outfile, 'w', 'utf-8') as o:
