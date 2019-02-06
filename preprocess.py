@@ -127,7 +127,7 @@ class Preprocess:
                         k=k.replace("::","#")
                         print(k+": "+str(v))
                 print("\n")
-        
+	"""        
         for key, value in nounPairMap.items():
             k = key
             k=k.replace("::","#")
@@ -140,6 +140,7 @@ class Preprocess:
                 for x,y in value.items():
                     if x != "count":
                         print("(" + x +")"+typePair)
+	"""
         sys.stdout = orig_stdout
         f.close()            
            
@@ -151,7 +152,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
     
-    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanPERSON#LOCATIONfull.txt","#PERSON#LOCATION")
+    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanMISC#MISCfull.txt","#MISC#MISC")
          
     print("end : ",datetime.datetime.now())
 
