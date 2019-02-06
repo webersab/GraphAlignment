@@ -127,7 +127,7 @@ class Preprocess:
                         k=k.replace("::","#")
                         print(k+": "+str(v))
                 print("\n")
-	"""        
+        """        
         for key, value in nounPairMap.items():
             k = key
             k=k.replace("::","#")
@@ -140,7 +140,7 @@ class Preprocess:
                 for x,y in value.items():
                     if x != "count":
                         print("(" + x +")"+typePair)
-	"""
+	    """
         sys.stdout = orig_stdout
         f.close()            
            
