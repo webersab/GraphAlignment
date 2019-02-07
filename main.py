@@ -37,12 +37,16 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
+    #filePath="/disk/scratch_big/sweber/"
+    filePath="/group/project/s1782911/"
+    graphName="germanPERSON#PERSONbtchOfSix.txt"
+    typePair="#PERSON.*#PERSON"
     
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse("/disk/scratch_big/sweber/germanPERSON#LOCATIONfull.txt", entitySet, vectorMap)
+    germanVectorMap, germanEntitySet = c.parse(filePath+graphName, entitySet, vectorMap, typePair)
     germanEntitySetLength=len(germanEntitySet.toSet())
     print("German entity set length: ",germanEntitySetLength,datetime.datetime.now())
     
@@ -74,23 +78,23 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open("/disk/scratch_big/sweber/germanVectorMapPersLoc.dat", "wb") as f:
+    with open(filePath+graphName+"VectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open("/disk/scratch_big/sweber/setLengthsDeENPersLoc.dat", "wb") as f:
+    with open(filePath+graphName+"set.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
-    with open("/disk/scratch_big/sweber/germanVectorMapPersLoc.dat", "rb") as f:
+    with open(filePath+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
     # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open("/disk/scratch_big/sweber/setLengthsDeENPersLoc.dat", "rb") as f:
+    with open(filePath+graphName+"set.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
@@ -118,19 +122,19 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, "/disk/scratch_big/sweber/germanPicklePostParallelPersLoc")
+    nx.write_gpickle(G1, filePath+graphName+"germanGraphPickle")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
       
     #unpickle
-    G1=nx.read_gpickle("/group/project/s1782911/graphAlignmentOutputData/germanPicklePostParallelPersLoc")
+    G1=nx.read_gpickle(filePath+graphName+"germanGraphPickle")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
-    with open("intersection.dat", "rb") as f:
-        intersection=pickle.load(f)
+    #with open("intersection.dat", "rb") as f:
+        #intersection=pickle.load(f)
     
 
     #extraction of clusters begins here

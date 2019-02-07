@@ -10,8 +10,8 @@ class Parsing:
         entity=entity.group(1)
         return entity
     
-    def extractPredicate(self,string):
-        predicate = re.search('predicate: (.*)#PERSON.*#LOCATION.*', string)
+    def extractPredicate(self,string,typePair):
+        predicate = re.search('predicate: (.*)'+typePair+'.*', string)
         predicate=predicate.group(1)
         return predicate
     
@@ -20,7 +20,7 @@ class Parsing:
         count=count.group(1)
         return int(float(count))
     
-    def parse(self, fileName,entitySet,vectorMap):
+    def parse(self, fileName,entitySet,vectorMap,typePair):
         #unpickling dict for cheap link
         #with open("/group/project/s1782911/graphAlignmentOutputData/entityDictionary.dat", "rb") as r:
             #entDict=pickle.load(r)
@@ -29,7 +29,7 @@ class Parsing:
                 if 'inv idx' in line:
                     break
                 elif 'predicate' in line:
-                    predicate=self.extractPredicate(line)
+                    predicate=self.extractPredicate(line,typePair)
                     currentVector = []
                     vectorMap.put(predicate,currentVector)
                 elif ': ' in line and 'num preds' not in line:
