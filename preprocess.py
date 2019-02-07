@@ -152,7 +152,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
     
-    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanMISC#MISCfull.txt","#MISC#MISC")
+    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanLOCATION#PERSONfull.txt","#LOCATION#PERSON")
          
     print("end : ",datetime.datetime.now())
 
