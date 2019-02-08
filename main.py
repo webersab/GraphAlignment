@@ -39,9 +39,9 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     #filePath="/disk/scratch_big/sweber/"
     filePath="/group/project/s1782911/"
-    graphName="germanPERSON#PERSONbtchOfSix.txt"
+    graphName="germanPERSON#PERSONbigNoRare.txt"
     typePair="#PERSON.*#PERSON"
-    
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         #pickle.dump(intersection, f)
     with open(filePath+graphName+"set.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    
+    """
     #unpickle
     with open(filePath+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)

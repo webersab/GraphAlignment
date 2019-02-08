@@ -10,6 +10,7 @@ import multiprocessing as mp
 import pickle
 import pprint
 from tqdm import tqdm
+from vectorMap import VectorMap
 
 class GraphCreator():
     
@@ -62,16 +63,28 @@ class GraphCreator():
         
     
     def calculateCosineSim(self,batch, entitySetLength, return_dict):
-        for b in batch:
-            vectorTuple=batch.get(b)
-            v1=self.createSparseMatrix(vectorTuple[0], entitySetLength)
-            v2=self.createSparseMatrix(vectorTuple[1], entitySetLength)
-            cosineSim = cosine_similarity(v1.reshape(1, -1),v2.reshape(1, -1))
-            if cosineSim>0:
-                return_dict[b]=cosineSim
-            print(b,return_dict[b])
+        for b in tqdm(batch,total=len(batch),unit="pairs"):
+            key=batch.get(b)
+            k1=key[0]
+            k2=key[1]
+            #print(" -- ")
+            if k1!=k2 and k1!=[] and k2!=[] and self.hasOverlap(k1, k2):
+                #print("...")
+                v1=self.createSparseMatrix(key[0], entitySetLength)
+                v2=self.createSparseMatrix(key[1], entitySetLength)
+                cosineSim = cosine_similarity(v1.reshape(1, -1),v2.reshape(1, -1))
+                if cosineSim>0:
+                    return_dict[b]=cosineSim
+            #print(b,return_dict[b])
         return True
-        
+    
+    def selectForCalculateMap(self,keyPairBatch,vectorMap,actualCalculateMap): 
+        for keyPair in tqdm(keyPairBatch,total=len(keyPairBatch),unit="batches"):
+            k1=keyPair[0]
+            k2=keyPair[1]
+            if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
+                actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
+          
     
     def createGraphParallel(self, vectorMap, entitySetLength):
         print("begin createGraph: ",datetime.datetime.now())
@@ -79,25 +92,50 @@ class GraphCreator():
         #pairsToCaluclate=itertools.combinations(vectorMap, 2)
         #print(len(list((pairsToCaluclate)))," pairs to calculate")
         
-        actualCalculateMap={}
+        
+        
+        cores = mp.cpu_count()
+        print(cores, " cores available")
+        """
+        keyPairs=itertools.combinations(vectorMap.keys(), 2)
+        keyPair_batches=list(self.split(list(keyPairs),cores))
+        
+        manager = mp.Manager()
+        actualCalculateMap = manager.dict()
+        jobs = []
+        
+        for kpbatch in keyPair_batches:
+            pro = mp.Process(target=self.selectForCalculateMap, args=(kpbatch,vectorMap,actualCalculateMap))
+            jobs.append(pro)
+            pro.start()
+            
+        for proc in jobs:
+            proc.join()
+        
         #for k1, k2 in itertools.combinations(vectorMap, 2):
             #if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
                 #actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
-        for k1, v1 in tqdm(vectorMap.items(),total=len(vectorMap.items()),unit="predicates"):
-            for k2, v2 in vectorMap.items():
-                if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
-                    actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
+        #for k1, v1 in tqdm(vectorMap.items(),total=len(vectorMap.items()),unit="predicates"):
+        #    for k2, v2 in vectorMap.items():
+        #        if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
+        #            actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
         print(len(actualCalculateMap)," with cosineSim > 0")
         print("done with actual calulate map: ",datetime.datetime.now())
         
+        #pickle for easier debugging
         with open("actualCalculateMap.dat", "wb") as f:
             pickle.dump(actualCalculateMap, f)
-
         with open("actualCalculateMap.dat", "rb") as f:
             actualCalculateMap=pickle.load(f)
-                
-        cores = mp.cpu_count()
-        print(cores, " cores available")
+        print("done pickle")  
+        """ 
+        actualCalculateMap={}
+        
+        for k1, k2 in tqdm(itertools.combinations(vectorMap, 2),total=(len(vectorMap.keys())*len(vectorMap.keys())),unit="preds"):
+                actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
+        
+        print("done calculate map")
+        #multiprocessing of the actual calculate list begins here
         key_batches=list(self.split(list(actualCalculateMap.keys()),cores))
         batches=[]
         for keys in key_batches:

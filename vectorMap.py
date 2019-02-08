@@ -7,6 +7,9 @@ class VectorMap:
     def __iter__(self):
         return iter(self.dict)
     
+    def keys(self):
+        return self.dict.keys()
+    
     def items(self):
         #for key, value in self.dict.items():
         return self.dict.items()
