@@ -39,8 +39,8 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     filePath="/disk/scratch_big/sweber/"
     #filePath="/group/project/s1782911/"
-    graphName="germanEVENT#ORGANIZATIONfull"
-    typePair="#EVENT.*#ORGANIZATION"
+    graphName="germanPERSON#LOCATIONfull"
+    typePair="#PERSON.*#LOCATION"
     outputFolder="outputPickles/"
     
     #extract the German only entity set
