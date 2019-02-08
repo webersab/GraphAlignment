@@ -24,8 +24,9 @@ class Parsing:
         #unpickling dict for cheap link
         #with open("/group/project/s1782911/graphAlignmentOutputData/entityDictionary.dat", "rb") as r:
             #entDict=pickle.load(r)
+        print("parsing")
         with open(fileName) as f:
-            for line in tqdm(f,total=107606,unit="lines"):
+            for line in f:
                 if 'inv idx' in line:
                     break
                 elif 'predicate' in line:
