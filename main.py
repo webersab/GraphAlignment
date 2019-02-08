@@ -39,14 +39,15 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     filePath="/disk/scratch_big/sweber/"
     #filePath="/group/project/s1782911/"
-    graphName="germanEVENT#ORGANIZATIONfull.txt"
+    graphName="germanEVENT#ORGANIZATIONfull"
     typePair="#EVENT.*#ORGANIZATION"
+    outputFolder="outputPickles/"
     
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
     vectorMap = VectorMap()
-    germanVectorMap, germanEntitySet = c.parse(filePath+graphName, entitySet, vectorMap, typePair)
+    germanVectorMap, germanEntitySet = c.parse(filePath+graphName+".txt", entitySet, vectorMap, typePair)
     germanEntitySetLength=len(germanEntitySet.toSet())
     print("German entity set length: ",germanEntitySetLength,datetime.datetime.now())
     
@@ -78,23 +79,23 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open(filePath+graphName+"VectorMap.dat", "wb") as f:
+    with open(filePath+outputFolder+graphName+"VectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open(filePath+graphName+"set.dat", "wb") as f:
+    with open(filePath+outputFolder+graphName+"set.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
-    with open(filePath+graphName+"VectorMap.dat", "rb") as f:
+    with open(filePath+outputFolder+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
     # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open(filePath+graphName+"set.dat", "rb") as f:
+    with open(filePath+outputFolder+graphName+"set.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
@@ -122,14 +123,14 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, filePath+graphName+"germanGraphPickle")
+    nx.write_gpickle(G1, filePath+outputFolder+graphName+"germanGraphPickle")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
       
     #unpickle
-    G1=nx.read_gpickle(filePath+graphName+"germanGraphPickle")
+    G1=nx.read_gpickle(filePath+outputFolder+graphName+"germanGraphPickle")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
@@ -150,15 +151,15 @@ if __name__ == "__main__":
     #for i in germanClusterList:
         #print(i.printClusterPredicates())
 
-    """
+    
     
     #pickling to make debugging faster
-    with open("clusteredGerman.dat", "wb") as f:
+    with open(filePath+outputFolder+graphName+"clusteredGerman.dat", "wb") as f:
         pickle.dump(germanClusterList, f)
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
     print("done pickling")
-    
+    """
     
     #unpickle
     with open("clusteredGerman.dat", "rb") as f:

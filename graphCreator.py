@@ -131,7 +131,7 @@ class GraphCreator():
         """ 
         actualCalculateMap={}
         
-        for k1, k2 in tqdm(itertools.combinations(vectorMap, 2),total=(len(vectorMap.keys())*len(vectorMap.keys())),unit="preds"):
+        for k1, k2 in tqdm(itertools.combinations(vectorMap, 2),total=(len(vectorMap.keys())*len(vectorMap.keys())*0.5),unit="preds"):
                 actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
         
         print("done calculate map")
