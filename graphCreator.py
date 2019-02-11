@@ -63,7 +63,7 @@ class GraphCreator():
         
     
     def calculateCosineSim(self,batch, entitySetLength, return_dict):
-        for b in tqdm(batch,total=len(batch),unit="pairs"):
+        for b in batch:
             key=batch.get(b)
             k1=key[0]
             k2=key[1]

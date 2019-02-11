@@ -151,6 +151,7 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
+    #combinationList=itertools.
     
     p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanLOCATION#PERSONfull.txt","#LOCATION#PERSON")
          
