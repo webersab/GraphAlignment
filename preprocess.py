@@ -5,6 +5,7 @@ from parsing import Parsing
 import datetime
 import os
 from tqdm import tqdm
+import itertools
 #import pprint
 #from Cython.Compiler.ExprNodes import inc_dec_constructor
 
@@ -99,8 +100,10 @@ class Preprocess:
             if ("(" in line): 
                 predicate=self.find_between(line,"(",")"+typePair)
                 nounPair=self.find_between(line,"("+predicate+")"+typePair+"::","|||")
+                if ("NEG" in line):
+                    predicate="NEG_"+predicate
                 # fill predicate map
-                if predicate != "":
+                if (predicate != "") and (predicate != "NEG_"):
                     predicateMap=self.fillPredicateMap(predicate,nounPair,predicateMap)
                 #fill noun pair map
                 if nounPair != "":
@@ -151,9 +154,10 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
-    #combinationList=itertools.
-    
-    p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/germanLOCATION#PERSONfull.txt","#LOCATION#PERSON")
+    combinationList=itertools.combinations_with_replacement(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],2)
+    for i in combinationList:
+        combination=i[0]+i[1]
+        p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/preprocessingOutput/german"+combination+".txt",combination)
          
     print("end : ",datetime.datetime.now())
 
