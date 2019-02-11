@@ -39,7 +39,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     filePath="/disk/scratch_big/sweber/preprocessingOutput/"
     #filePath="/group/project/s1782911/"
-    graphName="german#PERSON#PERSONfull"
+    graphName="german#PERSON#PERSON"
     typePair="#PERSON.*#PERSON"
     outputFolder="outputPickles/"
     
