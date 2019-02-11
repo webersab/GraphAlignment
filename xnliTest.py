@@ -12,26 +12,95 @@ import datetime
 from tqdm import tqdm
 import pprint
 
+def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
+    pred1C=0
+    pred2C=0
+    for predicate in cluster.predicates:
+        if (pred1 in str(predicate)):
+            pred1C+=1 
+        if (pred2 in str(predicate)):
+            pred2C+=1
+    if (pred1C>0)and(pred2C>0):
+        return listOfFoundClusters.append(cluster)
+    else:
+        return listOfFoundClusters
+    
+def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap):
+    
+    if len(listOfFoundClusters)>0:
+        if row[0]=="entailment":   
+            counterMap["truePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falsePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["totalcounter"]+=1
+
+            innerMap={}
+            sentences=row[1]+row[2]
+            firstPredicates.extend(secondPredicates)
+            predicates=(",".join(firstPredicates))
+            s=""
+            numberOfClusters=0
+            numberOfPredicates=0
+            for cluster in listOfFoundClusters:
+                s+="||"
+                numberOfClusters+=1
+                for predicate in cluster.predicates:
+                    s+=str(predicate) 
+                    numberOfPredicates+=1
+            innerMap["predicates per cluster"]=numberOfPredicates/numberOfClusters
+            innerMap["sentences"]=sentences
+            innerMap["predicates"]=predicates
+            innerMap["number of clusters"]=len(listOfFoundClusters)
+            mapOffalsePositives[counterMap["falsePositives"]]=innerMap
+    else:
+        if row[0]=="neutral":
+            counterMap["trueNegatives"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falseNegatives"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+            
+            innerMap2={}
+            sentences=row[1]+row[2]
+            firstPredicates.extend(secondPredicates)
+            predicates=(",".join(firstPredicates))
+            
+            innerMap2["sentences"]=sentences
+            innerMap2["predicates"]=predicates
+            #innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
+
+            mapOffalseNegatives[counterMap["falseNegatives"]]=innerMap2
+
+    return counterMap, mapOffalsePositives, mapOffalseNegatives
+    
+
 def testGermanClusters(clusterListPickle,xnliSlice):
 
-    mapOfFalsePositivesEntailment={}
-    mapOfFalsePositivesNeutral={}
+    mapOffalsePositives={}
+    mapOffalseNegatives={}
     score=0
 
     #unpickle cluster list
     with open(clusterListPickle, "rb") as f:
         clusterList=pickle.load(f)
     print("unpickled")
-    hitcounter=0
-    totalcounter=0
     
-    truePositivesEnt=0
-    truePositivesNeu=0
-    falsePositivesEnt=0
-    falsePositivesNeu=0
-    
-    entCounter=0
-    neuCounter=0
+    counterMap={
+    "hitcounter":0,
+    "totalcounter":0,
+    "truePositives":0,
+    "trueNegatives":0,
+    "falsePositives":0,
+    "falseNegatives":0,
+    "entCounter":0,
+    "neuCounter":0}
     
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
@@ -42,85 +111,25 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             listOfFoundClusters=[]
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
-            #print("predicates: ", str(firstPredicates), str(secondPredicates))
-        #for each combination of predictates from sentence one and two
-            #localHitCounter=0
+            #here goes the typing, types are handed down as another agrgument to checkClusters
+
+            #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates:
                 for pred2 in secondPredicates:
                     for cluster in clusterList:
-                        pred1C=0
-                        pred2C=0
-                        for predicate in cluster.predicates:
-                            #print("p in cluster: ", str(predicate))
-                            if (pred1 in str(predicate)):
-                                pred1C+=1 
-                            if (pred2 in str(predicate)):
-                                pred2C+=1
-                        if (pred1C>0)and(pred2C>0):
-                            #localHitCounter+=1
-                            #print("local hit")
-                            listOfFoundClusters.append(cluster)
-            #print("Local hits in this row ",localHitCounter)
-            #print("row 0 ",row[0])
-            if len(listOfFoundClusters)>0:
-                if row[0]=="entailment":   
-                    truePositivesEnt+=1
-                    entCounter+=1
-                    hitcounter+=1
-                    totalcounter+=1
-                else:
-                    falsePositivesEnt+=1
-                    #print("fals pos ent",falsePositivesEnt)
-                    hitcounter+=1
-                    entCounter+=1
-                    
-                    innerMap={}
-                    sentences=row[1]+row[2]
-                    firstPredicates.extend(secondPredicates)
-                    predicates=(",".join(firstPredicates))
-                    s=""
-                    numberOfClusters=0
-                    numberOfPredicates=0
-                    for cluster in listOfFoundClusters:
-                        s+="||"
-                        numberOfClusters+=1
-                        for predicate in cluster.predicates:
-                            s+=str(predicate) 
-                            numberOfPredicates+=1
-                    innerMap["predicates per cluster"]=numberOfPredicates/numberOfClusters
-                    innerMap["sentences"]=sentences
-                    innerMap["predicates"]=predicates
-                    #innerMap["clusters"]=s
-                    innerMap["number of clusters"]=len(listOfFoundClusters)
-                    mapOfFalsePositivesEntailment[falsePositivesEnt]=innerMap
-            else:
-                if row[0]=="neutral":
-                    truePositivesNeu+=1
-                    #print("true pos neu",truePositivesNeu)
-                    neuCounter+=1
-                else:
-                    falsePositivesNeu+=1
-                    neuCounter+=1
-                    #print("false pos neu",falsePositivesNeu)
-                    innerMap2={}
-                    sentences=row[1]+row[2]
-                    firstPredicates.extend(secondPredicates)
-                    predicates=(",".join(firstPredicates))
-                    #parse=
-                    
-                    innerMap2["sentences"]=sentences
-                    innerMap2["predicates"]=predicates
-                    innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
-
-                    mapOfFalsePositivesNeutral[falsePositivesNeu]=innerMap2
-                #print(firstPredicates,secondPredicates)
-    if totalcounter>0:
-        score=hitcounter/totalcounter
-        print("ent true positives "+str(truePositivesEnt)+" of "+str(entCounter)+", "+(str(float(truePositivesEnt)/float(entCounter))))
-        print("ent false positives "+str(falsePositivesEnt)+" of "+str(entCounter)+", "+(str(float(falsePositivesEnt)/float(entCounter))))
-        print("neu true positives "+str(truePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(truePositivesNeu)/float(neuCounter))))
-        print("neu false positives "+str(falsePositivesNeu)+" of "+str(neuCounter)+", "+(str(float(falsePositivesNeu)/float(neuCounter))))
-    return score,mapOfFalsePositivesEntailment, mapOfFalsePositivesNeutral
+                        listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+    
+            counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,
+                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap)
+            
+    if counterMap["totalcounter"]>0:
+        score=counterMap["hitcounter"]/counterMap["totalcounter"]
+        print("score ",str(score))
+        #print("true positives "+str(truePositives)+" of "+str(entCounter)+", "+(str(float(truePositives)/float(entCounter))))
+        #print("false positives "+str(falsePositives)+" of "+str(entCounter)+", "+(str(float(falsePositives)/float(entCounter))))
+        #print("true negatives "+str(trueNegatives)+" of "+str(neuCounter)+", "+(str(float(trueNegatives)/float(neuCounter))))
+        #print("false negatives "+str(falseNegatives)+" of "+str(neuCounter)+", "+(str(float(falseNegatives)/float(neuCounter))))
+    return score,mapOffalsePositives, mapOffalseNegatives
 
 def dependency_parse_to_graph(filename):
     """

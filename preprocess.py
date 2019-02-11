@@ -154,7 +154,7 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
-    combinationList=itertools.combinations_with_replacement(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],2)
+    combinationList=itertools.product(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],2)
     for i in combinationList:
         combination=i[0]+i[1]
         p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/preprocessingOutput/german"+combination+".txt",combination)
