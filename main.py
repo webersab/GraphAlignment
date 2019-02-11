@@ -37,10 +37,10 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-    filePath="/disk/scratch_big/sweber/"
+    filePath="/disk/scratch_big/sweber/preprocessingOutput/"
     #filePath="/group/project/s1782911/"
-    graphName="germanEVENT#LOCATIONfull"
-    typePair="#EVENT.*#LOCATION"
+    graphName="german#PERSON#PERSONfull"
+    typePair="#PERSON.*#PERSON"
     outputFolder="outputPickles/"
     
     #extract the German only entity set
@@ -85,7 +85,7 @@ if __name__ == "__main__":
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open(filePath+outputFolder+graphName+"set.dat", "wb") as f:
+    with open(filePath+outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open(filePath+outputFolder+graphName+"set.dat", "rb") as f:
+    with open(filePath+outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
@@ -123,14 +123,14 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, filePath+outputFolder+graphName+"germanGraphPickle")
+    nx.write_gpickle(G1, filePath+outputFolder+graphName+"GraphPickle")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
       
     #unpickle
-    G1=nx.read_gpickle(filePath+outputFolder+graphName+"germanGraphPickle")
+    G1=nx.read_gpickle(filePath+outputFolder+graphName+"GraphPickle")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     
     
     #pickling to make debugging faster
-    with open(filePath+outputFolder+graphName+"clusteredGerman.dat", "wb") as f:
+    with open(filePath+outputFolder+graphName+"Clustered.dat", "wb") as f:
         pickle.dump(germanClusterList, f)
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
