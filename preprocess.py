@@ -6,6 +6,7 @@ import datetime
 import os
 from tqdm import tqdm
 import itertools
+import pickle
 #import pprint
 #from Cython.Compiler.ExprNodes import inc_dec_constructor
 
@@ -94,20 +95,22 @@ class Preprocess:
     def removeRareNounPairs(self,value,nounPairMap):
         newValue={"count":value["count"]}
         for k, v in value.items():
-            if k !="count":
-                nounPairCount=nounPairMap[k]
-                if nounPairCount>3:
+            if k != "count":
+                nounPairInnerDict=nounPairMap[k]
+                if nounPairInnerDict["count"]>2:
                     newValue[k]=v
                 else:
-                    newValue["count"]-=1
+                    newValue["count"]= newValue["count"]-1     
         return newValue
                   
         
     def generate_input(self,inFileName, outFileName,typePair):
+        """
         inFile = open(inFileName,'r')
         predicateMap={}
         nounPairMap={}
-        for line in tqdm(inFile,total=582924893,unit="lines"):
+        #total of all 582924893
+        for line in tqdm(inFile,total=137695382,unit="lines"):
             if ("(" in line): 
                 predicate=self.find_between(line,"(",")"+typePair)
                 nounPair=self.find_between(line,"("+predicate+")"+typePair+"::","|||")
@@ -122,6 +125,17 @@ class Preprocess:
         print("Size of nounPairMap",sys.getsizeof(nounPairMap))
         print("Size of predicateMap",sys.getsizeof(predicateMap))
         
+        #pickle for easier debugging
+        with open("/group/project/s1782911/nounPairMapPickle.dat", "wb") as f:
+            pickle.dump(nounPairMap, f)
+        with open("/group/project/s1782911/predicateMapPickle.dat", "wb") as f:
+            pickle.dump(predicateMap, f)
+        """
+        with open("/group/project/s1782911/nounPairMapPickle.dat", "rb") as f:
+            nounPairMap=pickle.load(f)
+        with open("/group/project/s1782911/predicateMapPickle.dat", "rb") as f:
+            predicateMap=pickle.load(f)
+        print("done unpickling")
         
         #Printing happens here
         orig_stdout = sys.stdout
@@ -167,6 +181,8 @@ if __name__ == "__main__":
     print("Hello preprocessor!")
     print("begin: ",datetime.datetime.now())
     p=Preprocess()
+    #p.generate_input("/group/project/s1782911/batchOfSixEntitySwapped.txt", "/group/project/s1782911/debugOutputPreprocess.txt","#EVENT#ORGANIZATION")
+    
     combinationList=itertools.product(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],repeat=2)
     for i in combinationList:
         combination=i[0]+i[1]
