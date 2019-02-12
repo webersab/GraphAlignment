@@ -90,7 +90,18 @@ class Preprocess:
             internalNounPairMap["count"]=1
             internalNounPairMap[predicate]=1
         return nounPairMap
-                
+    
+    def removeRareNounPairs(self,value,nounPairMap):
+        newValue={"count":value["count"]}
+        for k, v in value:
+            if k !="count":
+                nounPairCount=nounPairMap[k]
+                if nounPairCount>3:
+                    newValue[k]=v
+                else:
+                    newValue["count"]-=1
+        return newValue
+                  
         
     def generate_input(self,inFileName, outFileName,typePair):
         inFile = open(inFileName,'r')
@@ -121,11 +132,13 @@ class Preprocess:
         #make sure that rare predicates are kicked out.
         dontList=[] 
         for key, value in predicateMap.items():
-            if int(value["count"])<3:
+            #remove rare noun pairs here
+            reducedValue=self.removeRareNounPairs(value,nounPairMap)
+            if int(reducedValue["count"])<3:
                 dontList.append(key) 
             else:
                 print("predicate: ("+key+")"+typePair)
-                for k, v in value.items():
+                for k, v in reducedValue.items():
                     if k != "count":
                         k=k.replace("::","#")
                         print(k+": "+str(v))
