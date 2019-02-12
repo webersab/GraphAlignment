@@ -110,7 +110,7 @@ class Preprocess:
         predicateMap={}
         nounPairMap={}
         #total of all 582924893
-        for line in tqdm(inFile,total=137695382,unit="lines"):
+        for line in tqdm(inFile,total=582924893,unit="lines"):
             if ("(" in line): 
                 predicate=self.find_between(line,"(",")"+typePair)
                 nounPair=self.find_between(line,"("+predicate+")"+typePair+"::","|||")
