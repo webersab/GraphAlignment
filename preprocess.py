@@ -105,7 +105,7 @@ class Preprocess:
                   
         
     def generate_input(self,inFileName, outFileName,typePair):
-        """
+        
         inFile = open(inFileName,'r')
         predicateMap={}
         nounPairMap={}
@@ -124,19 +124,19 @@ class Preprocess:
                     nounPairMap=self.fillNounPairMap(predicate,nounPair,nounPairMap)
         print("Size of nounPairMap",sys.getsizeof(nounPairMap))
         print("Size of predicateMap",sys.getsizeof(predicateMap))
-        
+        """
         #pickle for easier debugging
         with open("/group/project/s1782911/nounPairMapPickle.dat", "wb") as f:
             pickle.dump(nounPairMap, f)
         with open("/group/project/s1782911/predicateMapPickle.dat", "wb") as f:
             pickle.dump(predicateMap, f)
-        """
+        
         with open("/group/project/s1782911/nounPairMapPickle.dat", "rb") as f:
             nounPairMap=pickle.load(f)
         with open("/group/project/s1782911/predicateMapPickle.dat", "rb") as f:
             predicateMap=pickle.load(f)
         print("done unpickling")
-        
+        """
         #Printing happens here
         orig_stdout = sys.stdout
         f = open(outFileName, 'a')
