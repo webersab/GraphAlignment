@@ -93,7 +93,7 @@ class Preprocess:
     
     def removeRareNounPairs(self,value,nounPairMap):
         newValue={"count":value["count"]}
-        for k, v in value:
+        for k, v in value.items():
             if k !="count":
                 nounPairCount=nounPairMap[k]
                 if nounPairCount>3:

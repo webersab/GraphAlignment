@@ -111,7 +111,7 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             listOfFoundClusters=[]
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
-            #here goes the typing, types are handed down as another agrgument to checkClusters
+            #here goes the typing, types are handed down as another argument to checkClusters
 
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates:
