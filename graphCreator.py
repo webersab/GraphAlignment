@@ -86,6 +86,16 @@ class GraphCreator():
                 actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
           
     
+    def createGraphWithMatrixMultiplication(self, vectorMap, entitySetLength):
+        print("begin createGraph: ",datetime.datetime.now())
+        #make a map that maps vector map keys to their element in the matrix
+        
+        #create one sparse matrix and calculate Cosine similarity on it
+        #construct graph from the cosine sim matrix
+        
+        return None
+    
+    
     def createGraphParallel(self, vectorMap, entitySetLength):
         print("begin createGraph: ",datetime.datetime.now())
         
