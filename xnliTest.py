@@ -109,9 +109,11 @@ def testGermanClusters(clusterListPickle,xnliSlice):
         rd = csv.reader(fd, delimiter="\t")
         for row in tqdm(rd,total=1660):
             listOfFoundClusters=[]
+            #put negation detection in sentence extraction
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
-            #here goes the typing, types are handed down as another argument to checkClusters
+            #here goes the typing, types decide in wich to cluster list to check.
+            # do typing sentence wise, then decide cluster depending on types. I guess. 
 
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates:

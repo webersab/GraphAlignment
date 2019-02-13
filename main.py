@@ -41,7 +41,7 @@ if __name__ == "__main__":
     #filePath="/group/project/s1782911/"
     graphName="german#PERSON#PERSON"
     typePair="#PERSON.*#PERSON"
-    outputFolder="outputPickles/"
+    outputFolder="/disk/scratch_big/sweber/outputPickles/"
     
     #extract the German only entity set
     c = Parsing()
@@ -79,13 +79,13 @@ if __name__ == "__main__":
     #overlapGermanVectorMap.printVectorMap()
     
     #pickling vector Maps for faster degbugging
-    with open(filePath+outputFolder+graphName+"VectorMap.dat", "wb") as f:
+    with open(outputFolder+graphName+"VectorMap.dat", "wb") as f:
         pickle.dump(germanVectorMap, f)
     #with open("englishVectorMap.dat", "wb") as f:
         #pickle.dump(englishVectorMap, f)
     #with open("intersection.dat", "wb") as f:
         #pickle.dump(intersection, f)
-    with open(filePath+outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
+    with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         #englishVectorMap=pickle.load(f)
     #with open("intersection.dat", "rb") as f:
         #intersection=pickle.load(f)
-    with open(filePath+outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
+    with open(outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
         setLengthsDeEN=pickle.load(f)
     print("done unpickling")
     
@@ -123,14 +123,14 @@ if __name__ == "__main__":
     #print("entity Set length: ",entitySet.length()) 
 
     #pickling for easier debugging of later steps
-    nx.write_gpickle(G1, filePath+outputFolder+graphName+"GraphPickle")
+    nx.write_gpickle(G1, outputFolder+graphName+"GraphPickle")
     #nx.write_gpickle(G2, "englishPicklePostParallel")
     #pickle entity set
     #with open("entitySet.dat", "wb") as f:
         #pickle.dump(entitySet, f)
       
     #unpickle
-    G1=nx.read_gpickle(filePath+outputFolder+graphName+"GraphPickle")
+    G1=nx.read_gpickle(outputFolder+graphName+"GraphPickle")
     #G2=nx.read_gpickle("englishPicklePostPrallel")
     print(G1.nodes())
     #print(G2.nodes())
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     
     
     #pickling to make debugging faster
-    with open(filePath+outputFolder+graphName+"Clustered.dat", "wb") as f:
+    with open(outputFolder+graphName+"Clustered.dat", "wb") as f:
         pickle.dump(germanClusterList, f)
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
