@@ -89,7 +89,7 @@ if __name__ == "__main__":
         pickle.dump(setLengthsDeEN, f)
     
     #unpickle
-    with open(filePath+outputFolder+graphName+"VectorMap.dat", "rb") as f:
+    with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
     # with open("englishVectorMap.dat", "rb") as f:
         #englishVectorMap=pickle.load(f)
