@@ -45,13 +45,13 @@ if __name__ == "__main__":
     filePath=""
     outputFolder=""
     print("on "+socket.gethostname())
-    if socket.gethostname()=="pataphysique":
+    if socket.gethostname()=="pataphysiquedarkstar.inf.ed.ac.uk":
         filePath="/disk/scratch_big/sweber/preprocessingOutput/"
         outputFolder="/disk/scratch_big/sweber/outputPickles/"
     elif socket.gethostname()=="ebirah":
         filePath="/group/project/s1782911/"
         outputFolder="/group/project/s1782911/outputPickles/"
-    elif socket.gethostname()=="darkstar":
+    elif socket.gethostname()=="darkstardarkstar.inf.ed.ac.uk":
         filePath="/disk/data/darkstar2/s1782911/preprocessingOutput/"
         outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
         
