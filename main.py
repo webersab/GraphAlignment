@@ -15,6 +15,7 @@ import pickle
 from linker import Linker
 import operator
 import entitySet
+import socket
 
 def printClustersAfterWhisper(G):
     labelDict={}
@@ -37,11 +38,24 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-    filePath="/disk/scratch_big/sweber/preprocessingOutput/"
-    #filePath="/group/project/s1782911/"
+    
     graphName="german#PERSON#PERSON"
     typePair="#PERSON.*#PERSON"
-    outputFolder="/disk/scratch_big/sweber/outputPickles/"
+    
+    filePath=""
+    outputFolder=""
+    if socket.gethostname()=="pataphysique":
+        filePath="/disk/scratch_big/sweber/preprocessingOutput/"
+        outputFolder="/disk/scratch_big/sweber/outputPickles/"
+    elif socket.gethostname()=="ebirah":
+        filePath="/group/project/s1782911/"
+        outputFolder="/group/project/s1782911/outputPickles/"
+    elif socket.gethostname()=="darkstar":
+        filePath="/disk/data/darkstar2/s1782911/preprocessingOutput/"
+        outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
+        
+
+    
     
     #extract the German only entity set
     c = Parsing()
