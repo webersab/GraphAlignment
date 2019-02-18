@@ -12,6 +12,23 @@ import datetime
 from tqdm import tqdm
 import pprint
 
+
+#this method is fully taken from Lianes pipeline
+def get_negation( dt, i, neg):
+    """
+    Check to see if the predicate is negated
+    Look for the POS-tag "PTKNEG" and dependency "advmod"
+    """
+    if 'advmod' in dt.nodes[i]['deps']:
+        # Check for negations at sub-level
+        l = dt.nodes[i]['deps']['advmod']
+        for n in l:
+            if dt.nodes[n]['tag'] == 'PTKNEG':
+                neg = True
+        for n in l:
+            neg = get_negation(dt, n, neg)
+    return neg
+
 def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
     pred1C=0
     pred2C=0
@@ -21,7 +38,8 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
         if (pred2 in str(predicate)):
             pred2C+=1
     if (pred1C>0)and(pred2C>0):
-        return listOfFoundClusters.append(cluster)
+        listOfFoundClusters.append(cluster)
+        return listOfFoundClusters
     else:
         return listOfFoundClusters
     
@@ -112,6 +130,8 @@ def testGermanClusters(clusterListPickle,xnliSlice):
             #put negation detection in sentence extraction
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
+            print(row[1])
+            print(firstPredicates)
             #here goes the typing, types decide in wich to cluster list to check.
             # do typing sentence wise, then decide cluster depending on types. I guess. 
 
@@ -163,11 +183,16 @@ def parseToArray(testFile):
             array.append(row)
     return array
 
-def treeToPredList(d):   
+def treeToPredList(d):
+    #pp = pprint.PrettyPrinter(indent=4)
+    #tree=d.tree()   
+    #tree.pprint()
     #in the simplest case root is predicate
     listOfPredicates=[]
     root=d.nodes[0]['deps']['ROOT'][0]
     predicate=d.nodes[root]['lemma']
+    if get_negation(d, root, False):
+        predicate="NEG_"+predicate
     listOfPredicates.append(predicate)
     #other cases
     #if d.nodes[root]['ctag'] != 'VERB':
@@ -176,14 +201,17 @@ def treeToPredList(d):
         if d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']=='sein' or d.nodes[n]['lemma']=='be'):
             predicate=d.nodes[root]['word']
             predicate=predicate+'.sein'
+            if get_negation(d, root, False):
+                predicate="NEG_"+predicate
             listOfPredicates.append(predicate)
         elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'or d.nodes[n]['lemma']=='be'):
+            if get_negation(d, root, False):
+                predicate="NEG_"+predicate
             listOfPredicates.append(d.nodes[n]['lemma'])
         #print(predicate)
         #print(listOfPredicates)
     #else:
-        #listOfPredicates.append(predicate)
-        
+        #listOfPredicates.append(predicate)  
     return listOfPredicates
 
 def showDependencyParse(model, sentences):

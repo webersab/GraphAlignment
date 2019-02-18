@@ -104,8 +104,8 @@ class GraphCreator():
         
         
         
-        #cores = mp.cpu_count()
-        cores=35
+        cores = mp.cpu_count()
+        #cores=35
         print(cores, " cores available")
         """
         keyPairs=itertools.combinations(vectorMap.keys(), 2)
