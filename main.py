@@ -44,6 +44,7 @@ if __name__ == "__main__":
     
     filePath=""
     outputFolder=""
+    print("on "+socket.gethostname())
     if socket.gethostname()=="pataphysique":
         filePath="/disk/scratch_big/sweber/preprocessingOutput/"
         outputFolder="/disk/scratch_big/sweber/outputPickles/"
