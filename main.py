@@ -41,7 +41,8 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     
     typePairList=[("EVENT","PERSON"),("EVENT","MISC"),("MISC","EVENT"),("EVENT","LOC"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
-                  ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),("ORGANIZATION","EVENT")]
+                  ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
+                  ("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION")]
     
     for pair in typePairList:
         

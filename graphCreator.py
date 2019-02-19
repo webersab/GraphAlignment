@@ -147,11 +147,11 @@ class GraphCreator():
             cosineSim=similarities[predicate1index][predicate2index]
             
             #create nodes and connection with those values
-
-            self.createNode(G, predicate1,vectorMap.get(predicate1))
-            self.createNode(G, predicate2,vectorMap.get(predicate2))
-            G.add_edge(predicate1, predicate2, weight=cosineSim )
-            print("created egde between", predicate1, predicate2, cosineSim)
+            if predicate1!=predicate2:
+                self.createNode(G, predicate1,vectorMap.get(predicate1))
+                self.createNode(G, predicate2,vectorMap.get(predicate2))
+                G.add_edge(predicate1, predicate2, weight=cosineSim )
+                #print("created egde between", predicate1, predicate2, cosineSim)
         
         print("end createGraph ",datetime.datetime.now())
         return G
