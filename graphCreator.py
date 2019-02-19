@@ -117,17 +117,18 @@ class GraphCreator():
         print("vector map length ",vectorMapLength)
         for key, value in vectorMap.items():
             # remember the key and the index of the matrix the key belongs to
-            indexPredicateMap[index]=key
-            #print("at predicate ",key)
-            #extract from value the right values and indexes. Create a Matrix thats empty except for that
-            #print("Input ",value, index, vectorMapLength, entitySetLength)
-            predicateMatrix=self.createSparseBigMatrix(value, index, entitySetLength, vectorMapLength)
-            #print("nonzer elements in predicate matrix: ", predicateMatrix.nonzero())
-            #print(str(len(predicateMatrix.nonzero())),"non zero elements in predicate matrix")
-            #add that matrix to the original empty one
-            matrix=matrix+predicateMatrix
-            #print(str(len(matrix.nonzero())),"non zero elements in matrix")
-            index+=1
+            if value:
+                indexPredicateMap[index]=key
+                #print("at predicate ",key)
+                #extract from value the right values and indexes. Create a Matrix thats empty except for that
+                #print("Input ",value, index, vectorMapLength, entitySetLength)
+                predicateMatrix=self.createSparseBigMatrix(value, index, entitySetLength, vectorMapLength)
+                #print("nonzer elements in predicate matrix: ", predicateMatrix.nonzero())
+                #print(str(len(predicateMatrix.nonzero())),"non zero elements in predicate matrix")
+                #add that matrix to the original empty one
+                matrix=matrix+predicateMatrix
+                #print(str(len(matrix.nonzero())),"non zero elements in matrix")
+                index+=1
         
         #calculate cosine sim from that matrix
         similarities = cosine_similarity(matrix.transpose())
