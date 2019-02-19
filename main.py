@@ -57,7 +57,7 @@ if __name__ == "__main__":
         
 
     
-    """
+    
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
         
-    """
+    
     #unpickle
     with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
