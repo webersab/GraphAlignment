@@ -39,7 +39,7 @@ if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
     
-    graphName="german#PERSON#PERSON"
+    graphName="germanPERSON#PERSONbtchOfSix"
     typePair="#PERSON.*#PERSON"
     
     filePath=""
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
         filePath="/disk/scratch_big/sweber/preprocessingOutput/"
         outputFolder="/disk/scratch_big/sweber/outputPickles/"
-    elif socket.gethostname()=="ebirah":
+    elif socket.gethostname()=="ebirah.inf.ed.ac.uk":
         filePath="/group/project/s1782911/"
         outputFolder="/group/project/s1782911/outputPickles/"
     elif socket.gethostname()=="darkstar.inf.ed.ac.uk":
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         
 
     
-    
+    """
     #extract the German only entity set
     c = Parsing()
     entitySet = EntitySet()
@@ -102,7 +102,8 @@ if __name__ == "__main__":
         #pickle.dump(intersection, f)
     with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
         pickle.dump(setLengthsDeEN, f)
-    
+        
+    """
     #unpickle
     with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
         germanVectorMap=pickle.load(f)
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     d = GraphCreator()
     entitySetLengthDe=setLengthsDeEN[0]+1
     print("Entity Set len  de: ",entitySetLengthDe)
-    G = d.createGraphParallel(germanVectorMap, entitySetLengthDe)
+    G = d.createGraphMatrixMultiplication(germanVectorMap, entitySetLengthDe)
     G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
     #Creation of English graph begins here
@@ -174,15 +175,15 @@ if __name__ == "__main__":
     #with open("clusteredEnglish.dat", "wb") as f:
         #pickle.dump(englishClusterList, f)
     print("done pickling")
-    """
+    
     
     #unpickle
-    with open("clusteredGerman.dat", "rb") as f:
+    with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
         germanClusterList=pickle.load(f)
         
     for i in germanClusterList:
         print(i.predicates)
-      
+    """  
     with open("clusteredEnglish.dat", "rb") as f:
         englishClusterList=pickle.load(f)
     

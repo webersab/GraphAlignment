@@ -11,6 +11,8 @@ import pickle
 import pprint
 from tqdm import tqdm
 from vectorMap import VectorMap
+from scipy import sparse
+
 
 class GraphCreator():
     
@@ -35,6 +37,22 @@ class GraphCreator():
                 print("Error while zipping tuples")
         column =[0]*len(indexes)
         return csr_matrix((counts, (indexes, column)), shape=(length, 1))
+    
+    def createSparseBigMatrix(self,listOfTuples, index, length, width):
+        zippedTuples = zip(*listOfTuples)
+        counter = 0
+        counts = np.array([0])
+        for w in zippedTuples:
+            if counter==0:
+                indexes = np.array(list(w))
+                counter=counter+1
+            elif counter==1:
+                counts = np.array(list(w))
+                counter=counter+1
+            else:
+                print("Error while zipping tuples")
+        column =[index]*len(indexes)
+        return csr_matrix((counts, (indexes, column)), shape=(length, width))
     
     def hasOverlap(self,listOfTuples1, listOfTuples2):
         bol = False
@@ -84,17 +102,59 @@ class GraphCreator():
             k2=keyPair[1]
             if k1!=k2 and vectorMap.get(k1)!=[] and vectorMap.get(k2)!=[] and self.hasOverlap(vectorMap.get(k1), vectorMap.get(k2)):
                 actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
-          
     
-    def createGraphWithMatrixMultiplication(self, vectorMap, entitySetLength):
+    
+    def createGraphMatrixMultiplication(self,vectorMap, entitySetLength):
         print("begin createGraph: ",datetime.datetime.now())
-        #make a map that maps vector map keys to their element in the matrix
+        cores = mp.cpu_count()
+        print(cores, " cores available")
         
-        #create one sparse matrix and calculate Cosine similarity on it
-        #construct graph from the cosine sim matrix
+        index=0
+        indexPredicateMap={}
+        vectorMapLength=len(vectorMap.keys())
+        #create sparse matrix with the right dimensions
+        matrix=csr_matrix( (entitySetLength, vectorMapLength), dtype="int8" )
+        print("vector map length ",vectorMapLength)
+        for key, value in vectorMap.items():
+            # remember the key and the index of the matrix the key belongs to
+            indexPredicateMap[index]=key
+            #print("at predicate ",key)
+            #extract from value the right values and indexes. Create a Matrix thats empty except for that
+            #print("Input ",value, index, vectorMapLength, entitySetLength)
+            predicateMatrix=self.createSparseBigMatrix(value, index, entitySetLength, vectorMapLength)
+            #print("nonzer elements in predicate matrix: ", predicateMatrix.nonzero())
+            #print(str(len(predicateMatrix.nonzero())),"non zero elements in predicate matrix")
+            #add that matrix to the original empty one
+            matrix=matrix+predicateMatrix
+            #print(str(len(matrix.nonzero())),"non zero elements in matrix")
+            index+=1
         
-        return None
-    
+        #calculate cosine sim from that matrix
+        similarities = cosine_similarity(matrix.transpose())
+        #for all non-zero entries, create a node and in the graph and so on
+        nonZeroEntries=similarities.nonzero()
+        G=nx.Graph()
+        
+        for i in range(len(nonZeroEntries[0])):
+            #walk trough the arrays and get the indexes
+            predicate1index=nonZeroEntries[0][i]
+            predicate2index=nonZeroEntries[1][i]
+            #look up what predicates the indexes correspond to
+            predicate1=indexPredicateMap[predicate1index]
+            predicate2=indexPredicateMap[predicate2index]
+            #look up the matrix value
+            cosineSim=similarities[predicate1index][predicate2index]
+            
+            #create nodes and connection with those values
+
+            self.createNode(G, predicate1,vectorMap.get(predicate1))
+            self.createNode(G, predicate2,vectorMap.get(predicate2))
+            G.add_edge(predicate1, predicate2, weight=cosineSim )
+            print("created egde between", predicate1, predicate2, cosineSim)
+        
+        print("end createGraph ",datetime.datetime.now())
+        return G
+        
     
     def createGraphParallel(self, vectorMap, entitySetLength):
         print("begin createGraph: ",datetime.datetime.now())
