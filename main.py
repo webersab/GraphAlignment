@@ -39,8 +39,8 @@ if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
     
-    graphName="germanPERSON#PERSONbtchOfSix"
-    typePair="#PERSON.*#PERSON"
+    graphName="german#EVENT#ORGANIZATION"
+    typePair="#EVENT.*#ORGANIZATION"
     
     filePath=""
     outputFolder=""
