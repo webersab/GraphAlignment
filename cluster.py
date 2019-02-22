@@ -1,11 +1,15 @@
 import vectorMap as vm
 
 class Cluster:
-    def __init__(self, predicates=None,vector=None, label=None,language=None):
+    def __init__(self, predicates=None,vector=None, label=None,language=None, typePair=None):
         self.predicates = predicates
         self.vector = vector
         self.label = label
         self.language = language
+        self.typePair = typePair
+    
+    def setTypePair(self,typePair):
+        self.typePair = typePair
     
     # key of labelDict is in cluster label, value is a list of vectorMaps
     def fillLabelDict(self,G):

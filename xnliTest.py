@@ -3,6 +3,9 @@ import codecs
 import csv
 import sys
 from nltk.parse import DependencyGraph
+from theano.gof.lazylinker_c import actual_version
+import itertools
+#from dask.tests.test_distributed import cluster
 sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
 #sys.path.append("/afs/inf.ed.ac.uk/user/s17/s1782911")
 import pickle
@@ -11,6 +14,9 @@ import udpipe_model as udp
 import datetime
 from tqdm import tqdm
 import pprint
+from generalEntityTyping import GeneralEntityTyping
+import socket
+from pygermanet.germanet import load_germanet
 
 
 #this method is fully taken from Lianes pipeline
@@ -32,18 +38,23 @@ def get_negation( dt, i, neg):
 def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
     pred1C=0
     pred2C=0
+    predicateSet=set()
     for predicate in cluster.predicates:
-        if (pred1 in str(predicate)):
+        if ("("+pred1+".1" in str(predicate)):
             pred1C+=1 
-        if (pred2 in str(predicate)):
+            predicateSet.add(str(predicate))
+        if ("("+pred2+".1" in str(predicate)):
             pred2C+=1
+            predicateSet.add(str(predicate))
     if (pred1C>0)and(pred2C>0):
         listOfFoundClusters.append(cluster)
+        print(pred1,pred2,"in",cluster.typePair)
+        print(str(predicateSet))
         return listOfFoundClusters
     else:
         return listOfFoundClusters
     
-def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap):
+def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList):
     
     if len(listOfFoundClusters)>0:
         if row[0]=="entailment":   
@@ -58,8 +69,9 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
 
             innerMap={}
             sentences=row[1]+row[2]
-            firstPredicates.extend(secondPredicates)
-            predicates=(",".join(firstPredicates))
+            firstPredicatesKeys=list(firstPredicates.keys())
+            firstPredicatesKeys.extend(list(secondPredicates.keys()))
+            predicates=(",".join(firstPredicatesKeys))
             s=""
             numberOfClusters=0
             numberOfPredicates=0
@@ -73,6 +85,7 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
             innerMap["sentences"]=sentences
             innerMap["predicates"]=predicates
             innerMap["number of clusters"]=len(listOfFoundClusters)
+            innerMap["Type Pair List"]=set(typePairList)
             mapOffalsePositives[counterMap["falsePositives"]]=innerMap
     else:
         if row[0]=="neutral":
@@ -87,9 +100,11 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
             
             innerMap2={}
             sentences=row[1]+row[2]
-            firstPredicates.extend(secondPredicates)
-            predicates=(",".join(firstPredicates))
+            firstPredicatesKeys=list(firstPredicates.keys())
+            firstPredicatesKeys.extend(list(secondPredicates.keys()))
+            predicates=(",".join(firstPredicatesKeys))
             
+            innerMap2["Type Pair list"]= set(typePairList)
             innerMap2["sentences"]=sentences
             innerMap2["predicates"]=predicates
             #innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
@@ -97,18 +112,56 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
             mapOffalseNegatives[counterMap["falseNegatives"]]=innerMap2
 
     return counterMap, mapOffalsePositives, mapOffalseNegatives
+ 
+def getRightClusterList(typePair):
+    clusterList=[]
     
-
-def testGermanClusters(clusterListPickle,xnliSlice):
+    if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
+        outputFolder="/disk/scratch_big/sweber/outputPickles/"
+    elif socket.gethostname()=="ebirah.inf.ed.ac.uk":
+        outputFolder="/group/project/s1782911/outputPickles/"
+    elif socket.gethostname()=="darkstar.inf.ed.ac.uk":
+        outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
+       
+    if typePair[0] == "NoSubj":
+        type1="MISC"
+    else:
+        type1=typePair[0]
+    if typePair[1]=="NoObj":
+        type2="MISC"
+    else:
+        type2=typePair[1]
+    
+    pickleAddress=outputFolder+"german#"+type1+"#"+type2+"Clustered.dat" 
+    #unpickle cluster list
+    with open(pickleAddress, "rb") as f:
+        clusterList=pickle.load(f)
+    
+    for cluster in clusterList:
+        cluster.setTypePair(typePair)
+    
+    return clusterList
+    
+def decideCluster(typePairList):
+    containsNull=False
+    containsActual=False
+    for i in typePairList:
+        if i[0]=="noSubj" and i[1]=="noObj":
+            containsNull=True
+        if i[0].isupper() and i[1].isupper():
+            containsActual=True
+            actual=i
+    if containsNull and containsActual:
+        return actual
+    else:
+        return None
+        
+    
+def testGermanClusters(xnliSlice):
 
     mapOffalsePositives={}
     mapOffalseNegatives={}
     score=0
-
-    #unpickle cluster list
-    with open(clusterListPickle, "rb") as f:
-        clusterList=pickle.load(f)
-    print("unpickled")
     
     counterMap={
     "hitcounter":0,
@@ -127,22 +180,26 @@ def testGermanClusters(clusterListPickle,xnliSlice):
         rd = csv.reader(fd, delimiter="\t")
         for row in tqdm(rd,total=1660):
             listOfFoundClusters=[]
-            #put negation detection in sentence extraction
+            typePairList=[]
+            #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
-            print(row[1])
-            print(firstPredicates)
-            #here goes the typing, types decide in wich to cluster list to check.
-            # do typing sentence wise, then decide cluster depending on types. I guess. 
 
             #for each combination of predictates from sentence one and two
-            for pred1 in firstPredicates:
-                for pred2 in secondPredicates:
-                    for cluster in clusterList:
-                        listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-    
+            for pred1 in firstPredicates.keys():
+                for pred2 in secondPredicates.keys():
+                    #determine which cluster to pick dependent on predicate types
+                    overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
+                    typePairList=overlapOfTypes
+                    if len(overlapOfTypes)>0:
+                        #retrieve right cluster list
+                        for typePair in set(overlapOfTypes):
+                            clusterList=getRightClusterList(typePair)
+                            for cluster in clusterList:
+                                listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,
-                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap)
+                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList)
             
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
@@ -183,36 +240,112 @@ def parseToArray(testFile):
             array.append(row)
     return array
 
-def treeToPredList(d):
-    #pp = pprint.PrettyPrinter(indent=4)
-    #tree=d.tree()   
-    #tree.pprint()
+def getTypePairforPredicate(d,predicate):
+    subj=""
+    obj=""
+    
+    #print(predicate)
+    for i in d.nodes:
+        if d.nodes[i]['lemma']==predicate:
+            #print(d.nodes[i]['deps'])
+            deps=d.nodes[i]['deps']
+            if 'nsubj' in deps.keys():
+                subjAddress=d.nodes[i]['deps']['nsubj']
+                subj=d.nodes[subjAddress[0]]['lemma']
+            elif 'nsubj:pass' in deps.keys() :
+                subjAddress=d.nodes[i]['deps']['nsubj:pass']
+                subj=d.nodes[subjAddress[0]]['lemma']
+            elif 'csubj' in deps.keys() :
+                subjAddress=d.nodes[i]['deps']['csubj']
+                subj=d.nodes[subjAddress[0]]['lemma']
+            elif 'dep' in deps.keys():
+                subjAddress=d.nodes[i]['deps']['dep']
+                subj=d.nodes[subjAddress[0]]['lemma']
+            else:
+                subj=""
+            
+            if 'obj' in deps.keys():
+                objAddress=d.nodes[i]['deps']['obj']
+                obj=d.nodes[objAddress[0]]['lemma']
+            elif 'obl' in deps.keys():
+                objAddress=d.nodes[i]['deps']['obl']
+                obj=d.nodes[objAddress[0]]['lemma']
+            #elif 'iobj' in deps.keys():
+                #objAddress=d.nodes[i]['deps']['obl']
+                #obj=d.nodes[objAddress[0]]['lemma']
+    #print(subj,obj)            
+    G = GeneralEntityTyping() 
+    gn = load_germanet()         
+    if subj!="":
+        subjType=G.typeEntity(subj,gn)
+    else:
+        subjType="NoSubj"
+    
+    if obj!="":
+        objType=G.typeEntity(obj,gn)
+    else:
+        objType="NoObj"
+    #print(subjType,objType)
+    return (subjType,objType)
+
+def getAllTypePairsOfSentence(d): 
+    G = GeneralEntityTyping() 
+    gn = load_germanet() 
+    typeList=[]
+    foundEvent=False
+    for j in d.nodes: 
+        if d.nodes[j]['ctag']=='NOUN' or d.nodes[j]['ctag']=='PRON': 
+            word=d.nodes[j]['lemma']
+            typ=G.typeEntity(word,gn)
+            #stupid hack to make up for not having EventXEvent graph
+            if typ=='EVENT' and not foundEvent: 
+                typeList.append(typ)
+                foundEvent=True
+            elif typ!='EVENT':
+                typeList.append(typ)        
+    typeList=list(itertools.combinations(typeList,2))
+    return typeList
+
+def treeToPredMapSimple(d):
+    mapOfPredicates={}
+    typePairList=getAllTypePairsOfSentence(d)
+    for i in d.nodes:
+        if d.nodes[i]['ctag']=='VERB':
+            predicate=d.nodes[i]['lemma']
+            if get_negation(d, i, False):
+                predicate="NEG_"+predicate
+            mapOfPredicates[predicate]=typePairList
+    return mapOfPredicates
+
+def treeToPredMap(d):
     #in the simplest case root is predicate
-    listOfPredicates=[]
+    mapOfPredicates={}
     root=d.nodes[0]['deps']['ROOT'][0]
     predicate=d.nodes[root]['lemma']
     if get_negation(d, root, False):
         predicate="NEG_"+predicate
-    listOfPredicates.append(predicate)
+    typePair=getTypePairforPredicate(d,predicate)
+    mapOfPredicates[predicate]=typePair
     #other cases
     #if d.nodes[root]['ctag'] != 'VERB':
     for n in d.nodes:
         #adj or noun plus 'be'
-        if d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']=='sein' or d.nodes[n]['lemma']=='be'):
+        if d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']=='sein'):
             predicate=d.nodes[root]['word']
             predicate=predicate+'.sein'
-            if get_negation(d, root, False):
+            if get_negation(d, root, False) and not ("NEG_" in predicate):
                 predicate="NEG_"+predicate
-            listOfPredicates.append(predicate)
-        elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'or d.nodes[n]['lemma']=='be'):
-            if get_negation(d, root, False):
+            if predicate not in mapOfPredicates.keys():
+                typePair=getTypePairforPredicate(d,predicate)
+                mapOfPredicates[predicate]=typePair
+        elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'):
+            if get_negation(d, root, False) and not ("NEG_" in predicate):
                 predicate="NEG_"+predicate
-            listOfPredicates.append(d.nodes[n]['lemma'])
-        #print(predicate)
-        #print(listOfPredicates)
-    #else:
-        #listOfPredicates.append(predicate)  
-    return listOfPredicates
+            if predicate not in mapOfPredicates.keys():
+                typePair=getTypePairforPredicate(d,predicate)
+                mapOfPredicates[predicate]=typePair
+                
+    return mapOfPredicates
 
 def showDependencyParse(model, sentences):
     strArray=[]
@@ -252,13 +385,17 @@ def extractPredicateFromSentence(model, sentence):
         o.write(conllu)
     #print("wrote conllu file")
     
-    predicateList=[]
+    #predicateList=[]
+    predicateMap={}
     dtree = dependency_parse_to_graph("conllOut.txt")
     i=0
     for d in dtree:
-        predicateList=treeToPredList(d)
+        predicateMap=treeToPredMapSimple(d)
     #print("done extracting predicates") 
-    return predicateList
+    
+    #pp = pprint.PrettyPrinter()
+    #pp.pprint(predicateMap)
+    return predicateMap
 
 def extractPredicatesFromSentenceList(language,sentenceList):
     print("extracting predicates")
@@ -284,7 +421,7 @@ def extractPredicatesFromSentenceList(language,sentenceList):
     dtree = dependency_parse_to_graph("conllOut"+language+".txt")
     i=0
     for d in dtree:
-        predicateList=treeToPredList(d)
+        predicateList=treeToPredMap(d)
         sentenceToPredicateMap[i]=predicateList
         i+=1
     print("done extracting predicates") 
@@ -343,7 +480,7 @@ if __name__ == "__main__":
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    score, mapOfHits, mapOfFails=testGermanClusters("clusteredGerman.dat","deXNLINoContra.tsv")
+    score, mapOfHits, mapOfFails=testGermanClusters("deXNLINoContra.tsv")
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosEnt.txt",'w'))
     pp.pprint(mapOfHits)

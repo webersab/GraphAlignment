@@ -4,8 +4,12 @@ import datetime
 from nltk.corpus.reader.wordnet import Lemma
 import re
 import os
+from pygermanet.germanet import load_germanet
 
 class GeneralEntityTyping():
+    
+    #def __init__(self):
+        
     
     def find_between(self, s, first, last ):
         try:
@@ -15,12 +19,16 @@ class GeneralEntityTyping():
         except ValueError:
             return ""
         
-    def typeEntity(self,entity):  
+    def typeEntity(self,entity,gn):  
         lemmatized= gn.lemmatise(entity)[0]+'.n.1'
         try:
             synset=gn.synset(lemmatized).hypernym_paths
         except:
-            return "MISC"
+            if entity in ["ich","du","er","sie","Sie","es", "wir", "ihr","Ihr","Sie|sie"]:
+                return "PERSON"
+            else:
+                return "MISC"
+            
         
         if "Mensch" in str(synset):
             return "PERSON"
@@ -71,13 +79,13 @@ if __name__ == "__main__":
     print("Hello entity typing!")
     gn = load_germanet()
     g=GeneralEntityTyping()
-    #print(g.typeEntity("Schauspielerin"))
-    
+    print(g.typeEntity("Einsamkeit",gn))
+    """
     print("begin: ",datetime.datetime.now())
     
     for filename in os.listdir("/disk/scratch_big/sweber/pipelineOutput"):
         g.swapTypesInFile("/disk/scratch_big/sweber/pipelineOutput/"+filename, "/disk/scratch_big/sweber/pipelineOutput/"+filename[-6:])
         print("typed "+filename)
     print("end : ",datetime.datetime.now())
-    
+    """
 
