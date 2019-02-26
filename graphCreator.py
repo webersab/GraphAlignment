@@ -104,7 +104,7 @@ class GraphCreator():
                 actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
     
     
-    def createGraphMatrixMultiplication(self,vectorMap, entitySetLength):
+    def createGraphMatrixMultiplication(self,vectorMap, entitySetLength,outputFolder,graphName):
         print("begin createGraph: ",datetime.datetime.now())
         cores = mp.cpu_count()
         print(cores, " cores available")
@@ -132,6 +132,10 @@ class GraphCreator():
         
         #calculate cosine sim from that matrix
         similarities = cosine_similarity(matrix.transpose())
+        with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
+            pickle.dump(similarities, f)
+        with open(outputFolder+graphName+"indexPredicateMap.dat", "wb") as f:
+            pickle.dump(indexPredicateMap, f)
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()

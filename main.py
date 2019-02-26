@@ -40,10 +40,11 @@ if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
     
-    
-    typePairList=[("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
-                  ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
-                  ("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),("PERSON","PERSON"),
+    #("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
+    #("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
+    #("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),
+    typePairList=[
+                  ("PERSON","PERSON"),
                   ("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
                   ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC")]
     """
@@ -70,7 +71,7 @@ if __name__ == "__main__":
             
     
         
-        
+        """
         #extract the German only entity set
         c = Parsing()
         entitySet = EntitySet()
@@ -116,7 +117,7 @@ if __name__ == "__main__":
         with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
             pickle.dump(setLengthsDeEN, f)
             
-        
+        """
         #unpickle
         with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
             germanVectorMap=pickle.load(f)
@@ -136,7 +137,7 @@ if __name__ == "__main__":
         d = GraphCreator()
         entitySetLengthDe=setLengthsDeEN[0]+1
         print("Entity Set len  de: ",entitySetLengthDe)
-        G = d.createGraphMatrixMultiplication(germanVectorMap, entitySetLengthDe)
+        G = d.createGraphMatrixMultiplication(germanVectorMap, entitySetLengthDe,outputFolder,graphName)
         G1= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
         
         #Creation of English graph begins here
@@ -145,7 +146,7 @@ if __name__ == "__main__":
         #G = d.createGraphParallel(englishVectorMap, entitySetLengthEn)
         #G2= chineseWhisper.chinese_whispers(G, weighting='nolog', iterations=20, seed=None)
     
-        
+        """
         #print entity set line by line to file for translation for linking
         #entitySet.printEntitySetToFile()
         #print("PRINTED ENTITY SET")
@@ -189,7 +190,7 @@ if __name__ == "__main__":
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        """
+        
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)

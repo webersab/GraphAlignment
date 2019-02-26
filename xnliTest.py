@@ -39,22 +39,22 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
     pred1C=0
     pred2C=0
     predicateSet=set()
-    for predicate in cluster.predicates:
-        if ("("+pred1+".1" in str(predicate)):
-            pred1C+=1 
-            predicateSet.add(str(predicate))
-        if ("("+pred2+".1" in str(predicate)):
-            pred2C+=1
-            predicateSet.add(str(predicate))
+    if pred1!="sein" and pred2!="sein" and pred1!="sagen" and pred2!="sagen" and pred1!="gehen" and pred2!="gehen" and pred1!="haben" and pred2!="haben" :
+        for predicate in cluster.predicates:
+            if ("("+pred1+".1" in str(predicate)):
+                pred1C+=1 
+                predicateSet.add(predicate)
+            if ("("+pred2+".1" in str(predicate)):
+                pred2C+=1
+                predicateSet.add(predicate)
     if (pred1C>0)and(pred2C>0):
         listOfFoundClusters.append(cluster)
-        print(pred1,pred2,"in",cluster.typePair)
-        print(str(predicateSet))
-        return listOfFoundClusters
+        #print(pred1,pred2,"in",cluster.typePair)
+        return predicateSet,listOfFoundClusters
     else:
-        return listOfFoundClusters
+        return predicateSet,listOfFoundClusters
     
-def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList):
+def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList,predicateSet):
     
     if len(listOfFoundClusters)>0:
         if row[0]=="entailment":   
@@ -81,11 +81,12 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
                 for predicate in cluster.predicates:
                     s+=str(predicate) 
                     numberOfPredicates+=1
+            innerMap["predicates in same cluster"]=str(predicateSet)
             innerMap["predicates per cluster"]=numberOfPredicates/numberOfClusters
             innerMap["sentences"]=sentences
             innerMap["predicates"]=predicates
-            innerMap["number of clusters"]=len(listOfFoundClusters)
-            innerMap["Type Pair List"]=set(typePairList)
+            innerMap["numberofclusters"]=len(listOfFoundClusters)
+            innerMap["TypePairList"]=set(typePairList)
             mapOffalsePositives[counterMap["falsePositives"]]=innerMap
     else:
         if row[0]=="neutral":
@@ -104,7 +105,7 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
             firstPredicatesKeys.extend(list(secondPredicates.keys()))
             predicates=(",".join(firstPredicatesKeys))
             
-            innerMap2["Type Pair list"]= set(typePairList)
+            innerMap2["TypePairlist"]= set(typePairList)
             innerMap2["sentences"]=sentences
             innerMap2["predicates"]=predicates
             #innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
@@ -184,22 +185,29 @@ def testGermanClusters(xnliSlice):
             #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
-
+            
+            totalPredicateSet=set()
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which cluster to pick dependent on predicate types
                     overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
+                    #typePairList.append(firstPredicates[pred1])
+                    #typePairList.append("|")
+                    #typePairList.append(secondPredicates[pred2])
                     typePairList=overlapOfTypes
                     if len(overlapOfTypes)>0:
                         #retrieve right cluster list
                         for typePair in set(overlapOfTypes):
                             clusterList=getRightClusterList(typePair)
                             for cluster in clusterList:
-                                listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-
+                                if len(cluster.predicates)<21:
+                                    predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                                    if predicateSet != set():
+                                        for p in predicateSet:
+                                            totalPredicateSet.add(p)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,
-                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList)
+                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
@@ -469,14 +477,24 @@ def testWithXNLI(testFile,listOfTuplesOfClusters,languagePair):
     
     return mapOfJudgements
 
-def compareJudgements(goldJudgements,myJudgements):
-    #make a list from the gold judgement input file
-    #totalJudgements=len(goldList)
-    #if golList[i]==myList[i] counter+=1
-    #finalPercentage=counter/totalJudgements
-    return None
+def checkIfPredicatePairInCluster(typePair,pred1,pred2):
+    clusterList=getRightClusterList(typePair)
+    listOfFoundClusters=[]
+    for cluster in clusterList:
+        predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+    if listOfFoundClusters ==[]:
+        print("NOPE")
+    else:
+        for cl in listOfFoundClusters:
+            print("cluster: ",cl.predicates)
+            print("length: ",len(cl.predicates))
+    
 
 if __name__ == "__main__":
+    #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
+    
+    
+    
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
