@@ -133,9 +133,9 @@ class GraphCreator():
         #calculate cosine sim from that matrix
         similarities = cosine_similarity(matrix.transpose())
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
-            pickle.dump(similarities, f)
+            pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"indexPredicateMap.dat", "wb") as f:
-            pickle.dump(indexPredicateMap, f)
+            pickle.dump(indexPredicateMap, f,protocol=4)
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()
