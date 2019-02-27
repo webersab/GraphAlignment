@@ -3,7 +3,7 @@ import codecs
 import csv
 import sys
 from nltk.parse import DependencyGraph
-from theano.gof.lazylinker_c import actual_version
+#from theano.gof.lazylinker_c import actual_version
 import itertools
 #from dask.tests.test_distributed import cluster
 sys.path.append("/disk/scratch_big/sweber/udpipe-1.1.0-bin")
@@ -181,7 +181,6 @@ def getSimilarities(typePair):
     similaritiesPickleAddress= outputFolder+"german#"+type1+"#"+type2+"Similarities.dat"
     indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"indexPredicateMap.dat"
     
-    print(similaritiesPickleAddress)
     with open(similaritiesPickleAddress, "rb") as f:
         similarities=pickle.load(f)
         
