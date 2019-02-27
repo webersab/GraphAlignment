@@ -193,6 +193,7 @@ def getSimilarities(typePair):
             indexMap=pickle.load(g)
     else:
         print("Missing, ",indexMapPickleAddress)
+    
     return similarities, indexMap
  
 def getRightClusterList(typePair):

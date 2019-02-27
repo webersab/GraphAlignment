@@ -45,14 +45,15 @@ if __name__ == "__main__":
     #("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),
     #("PERSON","PERSON"),
     #("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
-    
+    """
     typePairList=[
 
                   ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC")]
-    """
+    
     typePairList=[("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
                   ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC")]
     """
+    typePairList=[("PERSON","PERSON")]
     for pair in typePairList:
         
         graphName="german#"+pair[0]+"#"+pair[1]
@@ -62,8 +63,8 @@ if __name__ == "__main__":
         outputFolder=""
         print("on "+socket.gethostname())
         if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
-            filePath="/disk/scratch_big/sweber/preprocessingOutputNotReduced/"
-            outputFolder="/disk/scratch_big/sweber/outputPickles/"
+            filePath="/disk/scratch_big/sweber/preprocessingOutput/"
+            outputFolder="/disk/scratch_big/sweber/similarityTables/"
         elif socket.gethostname()=="ebirah.inf.ed.ac.uk":
             filePath="/group/project/s1782911/"
             outputFolder="/group/project/s1782911/outputPickles/"
