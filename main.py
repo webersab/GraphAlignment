@@ -18,6 +18,7 @@ import entitySet
 import socket
 from _elementtree import Element
 import itertools
+import os
 
 def printClustersAfterWhisper(G):
     labelDict={}
@@ -121,14 +122,16 @@ if __name__ == "__main__":
             
         """
         #unpickle
-        with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
-            germanVectorMap=pickle.load(f)
+        if os.path.getsize(outputFolder+graphName+"VectorMap.dat") > 0:
+            with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
+                germanVectorMap=pickle.load(f)
         # with open("englishVectorMap.dat", "rb") as f:
             #englishVectorMap=pickle.load(f)
         #with open("intersection.dat", "rb") as f:
             #intersection=pickle.load(f)
-        with open(outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
-            setLengthsDeEN=pickle.load(f)
+        if os.path.getsize(outputFolder+graphName+"setLengthsDeEn.dat", "rb") > 0:    
+            with open(outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
+                setLengthsDeEN=pickle.load(f)
         print("done unpickling")
         
         #change vectors to PMI, if thats what you're after
