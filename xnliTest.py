@@ -17,6 +17,7 @@ import pprint
 from generalEntityTyping import GeneralEntityTyping
 import socket
 from pygermanet.germanet import load_germanet
+import os
 
 
 #this method is fully taken from Lianes pipeline
@@ -181,12 +182,17 @@ def getSimilarities(typePair):
     similaritiesPickleAddress= outputFolder+"german#"+type1+"#"+type2+"Similarities.dat"
     indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"indexPredicateMap.dat"
     
-    with open(similaritiesPickleAddress, "rb") as f:
-        similarities=pickle.load(f)
+    if os.path.getsize(similaritiesPickleAddress) > 0:
+        with open(similaritiesPickleAddress, "rb") as f:
+            similarities=pickle.load(f)
+    else:
+        print("Missing ",similaritiesPickleAddress)
         
-    with open(indexMapPickleAddress, "rb") as g:
-        indexMap=pickle.load(g)
-    
+    if os.path.getsize(indexMapPickleAddress) > 0:
+        with open(indexMapPickleAddress, "rb") as g:
+            indexMap=pickle.load(g)
+    else:
+        print("Missing, ",indexMapPickleAddress)
     return similarities, indexMap
  
 def getRightClusterList(typePair):
