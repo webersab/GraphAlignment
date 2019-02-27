@@ -17,6 +17,7 @@ import operator
 import entitySet
 import socket
 from _elementtree import Element
+import itertools
 
 def printClustersAfterWhisper(G):
     labelDict={}
@@ -39,25 +40,19 @@ def printClustersAfterWhisper(G):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-    
-    #("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
-    #("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
-    #("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),
-    #("PERSON","PERSON"),
-    #("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
-    
+
+    """
     typePairList=[("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
                 ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
                 ("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),
                 ("PERSON","PERSON"),
                 ("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
-
-                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC")
-    
+                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),
                 ("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT")]
     
-    
+    """
+    typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
     for pair in typePairList:
         
         graphName="german#"+pair[0]+"#"+pair[1]
