@@ -129,7 +129,7 @@ if __name__ == "__main__":
             #englishVectorMap=pickle.load(f)
         #with open("intersection.dat", "rb") as f:
             #intersection=pickle.load(f)
-        if os.path.getsize(outputFolder+graphName+"setLengthsDeEn.dat", "rb") > 0:    
+        if os.path.getsize(outputFolder+graphName+"setLengthsDeEn.dat") > 0:    
             with open(outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
                 setLengthsDeEN=pickle.load(f)
         print("done unpickling")
