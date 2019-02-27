@@ -53,6 +53,58 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
         return predicateSet,listOfFoundClusters
     else:
         return predicateSet,listOfFoundClusters
+
+
+def controlForEntailmentSim(entailedPredicatesMap,foundEntailment,row,counterMap, mapOffalsePositives, mapOffalseNegatives):
+    if foundEntailment:
+        if row[0]=="entailment":   
+            counterMap["truePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falsePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["totalcounter"]+=1
+
+            innerMap={}
+            sentences=row[1]+row[2]
+            predicates=[]
+            sims=[]
+            for key, value in entailedPredicatesMap:
+                predicates.append(key)
+                sims.append(value)
+            innerMap["sentences"]=sentences
+            innerMap["predicates"]=predicates
+            innerMap["sims"]=sims
+            mapOffalsePositives[counterMap["falsePositives"]]=innerMap
+    else:
+        if row[0]=="neutral":
+            counterMap["trueNegatives"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falseNegatives"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+            
+            innerMap2={}
+            sentences=row[1]+row[2]
+            predicates=[]
+            sims=[]
+            for key, value in entailedPredicatesMap:
+                predicates.append(key)
+                sims.append(value)
+            
+            innerMap2["sims"]= sims
+            innerMap2["sentences"]=sentences
+            innerMap2["predicates"]=predicates
+            #innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
+
+            mapOffalseNegatives[counterMap["falseNegatives"]]=innerMap2
+            
+    return counterMap, mapOffalsePositives, mapOffalseNegatives
     
 def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList,predicateSet):
     
@@ -113,6 +165,30 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
             mapOffalseNegatives[counterMap["falseNegatives"]]=innerMap2
 
     return counterMap, mapOffalsePositives, mapOffalseNegatives
+
+def getSimilarities(typePair):
+    
+    if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
+        outputFolder="/disk/scratch_big/sweber/similarityTables/"
+    elif socket.gethostname()=="ebirah.inf.ed.ac.uk":
+        outputFolder="/group/project/s1782911/similarityTables/"
+    elif socket.gethostname()=="darkstar.inf.ed.ac.uk":
+        outputFolder="/disk/data/darkstar2/s1782911/similarityTables/"  
+        
+    type1=typePair[0]
+    type2=typePair[1] 
+        
+    similaritiesPickleAddress= outputFolder+"german#"+type1+"#"+type2+"Similarities.dat"
+    indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"indexPredicateMap.dat"
+    
+    print(similaritiesPickleAddress)
+    with open(similaritiesPickleAddress, "rb") as f:
+        similarities=pickle.load(f)
+        
+    with open(indexMapPickleAddress, "rb") as g:
+        indexMap=pickle.load(g)
+    
+    return similarities, indexMap
  
 def getRightClusterList(typePair):
     clusterList=[]
@@ -157,6 +233,55 @@ def decideCluster(typePairList):
     else:
         return None
         
+
+def testGermanSimilarities(xnliSlice,threshold):
+    mapOffalsePositives={}
+    mapOffalseNegatives={}
+    score=0
+    
+    counterMap={
+    "hitcounter":0,
+    "totalcounter":0,
+    "truePositives":0,
+    "trueNegatives":0,
+    "falsePositives":0,
+    "falseNegatives":0,
+    "entCounter":0,
+    "neuCounter":0}
+    
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    with open(xnliSlice) as fd:
+        rd = csv.reader(fd, delimiter="\t")
+        for row in tqdm(rd,total=1660):
+            # get all predicates and their possible type pairs from the sentences
+            firstPredicates=extractPredicateFromSentence(model,row[1])
+            secondPredicates=extractPredicateFromSentence(model,row[2])
+            foundEntailment=False
+            entailedPredicatesMap={}
+            
+            overlapOfTypes = [value for value in next(iter(firstPredicates.values())) if value in next(iter(secondPredicates.values()))]
+            if len(overlapOfTypes)>0:
+                for typePair in set(overlapOfTypes):
+                    similarities, indexMap = getSimilarities(typePair)
+                    reversedIndexMap={y:x for x,y in indexMap.items()}
+                    for pred1 in firstPredicates.keys():
+                        for pred2 in secondPredicates.keys():
+                            index1=reversedIndexMap[pred1]
+                            index2=reversedIndexMap[pred2]
+                            sim=similarities[index1][index2]
+                            if sim>threshold:
+                                foundEntailment=True
+                                entailedPredicatesMap[(pred1,pred2)]=sim
+            counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentSim(entailedPredicatesMap,foundEntailment, 
+                                                                                           row,counterMap, mapOffalsePositives, mapOffalseNegatives)
+                    
+    if counterMap["totalcounter"]>0:
+        score=counterMap["hitcounter"]/counterMap["totalcounter"]
+        print("score ",str(score))  
+    return score,mapOffalsePositives, mapOffalseNegatives         
+ 
     
 def testGermanClusters(xnliSlice):
 
@@ -493,29 +618,16 @@ def checkIfPredicatePairInCluster(typePair,pred1,pred2):
 if __name__ == "__main__":
     #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
     
-    
-    
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    score, mapOfHits, mapOfFails=testGermanClusters("deXNLINoContra.tsv")
+    score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", 0.5)
     
-    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosEnt.txt",'w'))
+    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
     pp.pprint(mapOfHits)
-    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosNeu.txt",'w'))
+    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilarities.txt",'w'))
     pp1.pprint(mapOfFails)
     
-    #pp.pprint(mapOfHits)
-    print("The score is: "+str(score))
-    #pp.pprint(mapOfFails)
+
     
     
-    
-    """
-    print("hup hup")
-    with open("alignedList.dat", "rb") as f:
-        clusterTupleList=pickle.load(f)
-    print("got the pickle")
-    mapOfJudegements=testWithXNLI("enDeXnli.txt", clusterTupleList, "enDe")
-    print(mapOfJudegements)
-    """
