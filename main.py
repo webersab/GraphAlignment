@@ -64,7 +64,7 @@ if __name__ == "__main__":
         print("on "+socket.gethostname())
         if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
             filePath="/disk/scratch_big/sweber/preprocessingOutput/"
-            outputFolder="/disk/scratch_big/sweber/similarityTables/"
+            outputFolder="/disk/scratch_big/sweber/outputPickles/"
         elif socket.gethostname()=="ebirah.inf.ed.ac.uk":
             filePath="/group/project/s1782911/"
             outputFolder="/group/project/s1782911/outputPickles/"
