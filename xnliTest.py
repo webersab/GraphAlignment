@@ -266,8 +266,9 @@ def testGermanSimilarities(xnliSlice,threshold):
             secondPredicates=extractPredicateFromSentence(model,row[2])
             foundEntailment=False
             entailedPredicatesMap={}
-            
-            overlapOfTypes = [value for value in next(iter(firstPredicates.values())) if value in next(iter(secondPredicates.values()))]
+            valueList1=list(firstPredicates.values())
+            valueList2=list(secondPredicates.values())
+            overlapOfTypes = [value for value in valueList1 if value in valueList2]
             if len(overlapOfTypes)>0:
                 for typePair in set(overlapOfTypes):
                     similarities, reversedIndexMap = getSimilarities(typePair)
