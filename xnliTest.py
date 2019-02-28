@@ -180,7 +180,7 @@ def getSimilarities(typePair):
     type2=typePair[1] 
         
     similaritiesPickleAddress= outputFolder+"german#"+type1+"#"+type2+"Similarities.dat"
-    indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"indexPredicateMap.dat"
+    indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"reversedIndexMap.dat"
     
     if os.path.getsize(similaritiesPickleAddress) > 0:
         with open(similaritiesPickleAddress, "rb") as f:
@@ -190,11 +190,11 @@ def getSimilarities(typePair):
         
     if os.path.getsize(indexMapPickleAddress) > 0:
         with open(indexMapPickleAddress, "rb") as g:
-            indexMap=pickle.load(g)
+            reversedIndexMap=pickle.load(g)
     else:
         print("Missing, ",indexMapPickleAddress)
     
-    return similarities, indexMap
+    return similarities, reversedIndexMap
  
 def getRightClusterList(typePair):
     clusterList=[]
@@ -270,8 +270,7 @@ def testGermanSimilarities(xnliSlice,threshold):
             overlapOfTypes = [value for value in next(iter(firstPredicates.values())) if value in next(iter(secondPredicates.values()))]
             if len(overlapOfTypes)>0:
                 for typePair in set(overlapOfTypes):
-                    similarities, indexMap = getSimilarities(typePair)
-                    reversedIndexMap={y:x for x,y in indexMap.items()}
+                    similarities, reversedIndexMap = getSimilarities(typePair)
                     for pred1 in firstPredicates.keys():
                         for pred2 in secondPredicates.keys():
                             if pred1 in reversedIndexMap.keys() and pred2 in reversedIndexMap.keys():
