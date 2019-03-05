@@ -182,18 +182,25 @@ def getSimilarities(typePair):
         
     similaritiesPickleAddress= outputFolder+"german#"+type1+"#"+type2+"Similarities.dat"
     indexMapPickleAddress=outputFolder+"german#"+type1+"#"+type2+"reversedIndexMap.dat"
+    similarities=[]
+    reversedIndexMap={}
     
-    if os.path.getsize(similaritiesPickleAddress) > 0:
+    try:
         with open(similaritiesPickleAddress, "rb") as f:
             similarities=pickle.load(f)
-    else:
-        print("Missing ",similaritiesPickleAddress)
+    except FileNotFoundError:
+        print("Missing ")
+    except EOFError:
+        print("empty")
+
         
-    if os.path.getsize(indexMapPickleAddress) > 0:
+    try:
         with open(indexMapPickleAddress, "rb") as g:
             reversedIndexMap=pickle.load(g)
-    else:
-        print("Missing, ",indexMapPickleAddress)
+    except FileNotFoundError:
+        print("Missing ")
+    except EOFError:
+        print("empty")
     
     return similarities, reversedIndexMap
  
