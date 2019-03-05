@@ -271,7 +271,6 @@ def testGermanSimilarities(xnliSlice,threshold):
             valueList2=list(secondPredicates.values())
             overlapOfTypes = [value for value in valueList1 if value in valueList2]
             typeSet=set()
-            print(overlapOfTypes)
             typeSet=list(chain.from_iterable(overlapOfTypes))
             if len(typeSet)>0:
                 for typePair in typeSet:
