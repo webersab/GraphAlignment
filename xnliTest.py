@@ -18,6 +18,7 @@ from generalEntityTyping import GeneralEntityTyping
 import socket
 from pygermanet.germanet import load_germanet
 import os
+from itertools import chain
 
 
 #this method is fully taken from Lianes pipeline
@@ -269,8 +270,11 @@ def testGermanSimilarities(xnliSlice,threshold):
             valueList1=list(firstPredicates.values())
             valueList2=list(secondPredicates.values())
             overlapOfTypes = [value for value in valueList1 if value in valueList2]
-            if len(overlapOfTypes)>0:
-                for typePair in set(overlapOfTypes):
+            typeSet=set()
+            print(overlapOfTypes)
+            typeSet=list(chain.from_iterable(overlapOfTypes))
+            if len(typeSet)>0:
+                for typePair in typeSet:
                     similarities, reversedIndexMap = getSimilarities(typePair)
                     for pred1 in firstPredicates.keys():
                         for pred2 in secondPredicates.keys():
