@@ -12,6 +12,7 @@ import pprint
 from tqdm import tqdm
 from vectorMap import VectorMap
 from scipy import sparse
+import mathUtils
 
 
 class GraphCreator():
@@ -133,10 +134,16 @@ class GraphCreator():
         reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
         #calculate cosine sim from that matrix
         similarities = cosine_similarity(matrix.transpose())
+        """
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
             pickle.dump(reversedIndexMap, f,protocol=4)
+        """    
+        for a in matrix:
+            for b in matrix:
+                linSim=mathUtils.lin(a, b)
+                print(linSim)
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()

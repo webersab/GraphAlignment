@@ -19,6 +19,7 @@ import socket
 from pygermanet.germanet import load_germanet
 import os
 from itertools import chain
+import numpy
 
 
 #this method is fully taken from Lianes pipeline
@@ -638,7 +639,9 @@ if __name__ == "__main__":
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", 0.5)
+    for i in numpy.arange(0, 1, 0.1):
+        print("now at ",i)
+        score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", i)
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
     pp.pprint(mapOfHits)
