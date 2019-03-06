@@ -271,36 +271,30 @@ def testGermanSimilarities(xnliSlice,threshold):
         rd = csv.reader(fd, delimiter="\t")
         for row in tqdm(rd,total=1660):
             # get all predicates and their possible type pairs from the sentences
-            print("1")
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
             foundEntailment=False
             entailedPredicatesMap={}
             valueList1=list(firstPredicates.values())
             valueList2=list(secondPredicates.values())
-            print("2")
             overlapOfTypes = [value for value in valueList1 if value in valueList2]
             typeSet=set()
             typeSet=list(chain.from_iterable(overlapOfTypes))
             if len(typeSet)>0:
-                print("3")
                 for typePair in typeSet:
-                    print("4")
                     similarities, reversedIndexMap = getSimilarities(typePair)
                     for pred1 in firstPredicates.keys():
                         for pred2 in secondPredicates.keys():
-                            print("5")
-
-                            pred1="("+pred1+".1,"+pred1+".2)"
-                            pred2="("+pred2+".1,"+pred2+".2)"
-                            print("predicates ",pred1,pred2)
+                            if ".2)" not in pred1:
+                                pred1="("+pred1+".1,"+pred1+".2)"
+                                pred2="("+pred2+".1,"+pred2+".2)"
+                            #print("predicates ",pred1,pred2)
                             if pred1 in str(reversedIndexMap.keys()) and pred2 in str(reversedIndexMap.keys()):
-                                print("Predicates",pred1,pred2)
+                                #print("Predicates",pred1,pred2)
                                 index1=reversedIndexMap[pred1]
                                 index2=reversedIndexMap[pred2]
-                                print("indexes ",index1,index2)
                                 sim=similarities[index1][index2]
-                                print("sim ",sim)
+                                #print("sim ",sim)
                                 if sim>threshold:
                                     foundEntailment=True
                                     entailedPredicatesMap[(pred1,pred2)]=sim
@@ -651,9 +645,9 @@ if __name__ == "__main__":
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    #for i in numpy.arange(0, 1, 0.1):
-        #print("now at ",i)
-    score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", 0.5)
+    for i in numpy.arange(0, 0.03, 0.001):
+        print("now at ",i)
+        score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", i)
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
     pp.pprint(mapOfHits)
