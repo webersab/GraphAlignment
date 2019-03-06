@@ -640,9 +640,9 @@ if __name__ == "__main__":
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
-    for i in numpy.arange(0, 1, 0.1):
-        print("now at ",i)
-        score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", i)
+    #for i in numpy.arange(0, 1, 0.1):
+        #print("now at ",i)
+    score, mapOfHits, mapOfFails=testGermanSimilarities("deXNLINoContra.tsv", 0.5)
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
     pp.pprint(mapOfHits)
