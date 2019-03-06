@@ -292,6 +292,7 @@ def testGermanSimilarities(xnliSlice,threshold):
                                 if sim>threshold:
                                     foundEntailment=True
                                     entailedPredicatesMap[(pred1,pred2)]=sim
+                                    print("Predicates ",pred1,pred2,sim)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentSim(entailedPredicatesMap,foundEntailment, 
                                                                                            row,counterMap, mapOffalsePositives, mapOffalseNegatives)
                     

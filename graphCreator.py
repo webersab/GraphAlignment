@@ -1,5 +1,6 @@
 import itertools
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import pairwise_distances
 import numpy as np
 import datetime
 from scipy.sparse import csr_matrix
@@ -139,11 +140,10 @@ class GraphCreator():
             pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
             pickle.dump(reversedIndexMap, f,protocol=4)
-        """    
-        for a in matrix:
-            for b in matrix:
-                linSim=mathUtils.lin(a, b)
-                print(linSim)
+        """ 
+        #print("beep")
+        #linSim= pairwise_distances(matrix.transpose(), metric=mathUtils.lin)  
+        #print(linSim)
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()
