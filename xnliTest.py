@@ -286,13 +286,15 @@ def testGermanSimilarities(xnliSlice,threshold):
                     for pred1 in firstPredicates.keys():
                         for pred2 in secondPredicates.keys():
                             if pred1 in reversedIndexMap.keys() and pred2 in reversedIndexMap.keys():
+                                print("Predicates",pred1,pred2)
                                 index1=reversedIndexMap[pred1]
                                 index2=reversedIndexMap[pred2]
+                                print("indexes ",index1,index2)
                                 sim=similarities[index1][index2]
+                                print("sim ",sim)
                                 if sim>threshold:
                                     foundEntailment=True
                                     entailedPredicatesMap[(pred1,pred2)]=sim
-                                    print("Predicates ",pred1,pred2,sim)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentSim(entailedPredicatesMap,foundEntailment, 
                                                                                            row,counterMap, mapOffalsePositives, mapOffalseNegatives)
                     
