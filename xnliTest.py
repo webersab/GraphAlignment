@@ -291,7 +291,6 @@ def testGermanSimilarities(xnliSlice,threshold):
                                 pred2="("+pred2+".1,"+pred2+".2)"
                             #print("predicates ",pred1,pred2)
                             if pred1 in str(reversedIndexMap.keys()) and pred2 in str(reversedIndexMap.keys()):
-                                print("Predicates",pred1,pred2)
                                 index1=reversedIndexMap[pred1]
                                 index2=reversedIndexMap[pred2]
                                 sim=similarities[index1][index2]
