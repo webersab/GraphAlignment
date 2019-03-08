@@ -109,6 +109,7 @@ def printSimilarities(similarities,reversedIndexMap):
         print(predicate1,predicate2,linSimilarity)    
 
 def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
+    metric=""
     if measure=="lin":
         metric=mathUtils.lin
     if measure=="weedsRecall":
