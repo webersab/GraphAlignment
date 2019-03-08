@@ -91,7 +91,7 @@ def makeOtherSimilarities(pair, similarityMeasure):
     reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
     
     computeSimilarity(similarityMeasure, matrix, reversedIndexMap,outputFolder,graphName)
-    print("done with ",pair)
+    print("done with ",pair, similarityMeasure)
     
     
 def printSimilarities(similarities,reversedIndexMap):
@@ -112,12 +112,14 @@ def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
     metric=""
     if measure=="lin":
         metric=mathUtils.lin
-    if measure=="weedsRecall":
+    elif measure=="weedsRecall":
         metric=mathUtils.weeds_recall
-    if measure=="weedsPrecision":
+    elif measure=="weedsPrecision":
         metric=mathUtils.weeds_precision
-    if measure=="binc":
+    elif measure=="binc":
         metric=mathUtils.binc 
+    else:
+        print("measure not found")
         
     similarities= pairwise_distances(matrix.transpose(), metric=metric, n_jobs=30)  
     
@@ -145,7 +147,7 @@ if __name__ == "__main__":
                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT")]
     """
     typePairList=[("EVENT","ORGANIZATION")]
-    similarityMeasures=["lin","weedsRecall","weedsPrecison","binc"]
+    similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
     
     for a in typePairList:
         for b in similarityMeasures:
