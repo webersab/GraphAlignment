@@ -118,7 +118,7 @@ def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
     if measure=="binc":
         metric=mathUtils.binc 
         
-    similarities= pairwise_distances(matrix.transpose(), metric=metric, n_jobs=-1)  
+    similarities= pairwise_distances(matrix.transpose(), metric=metric, n_jobs=30)  
     
     if len(similarities.nonzero()[0])==0:
         "Sanity check failed, no nonzero similarities!"
