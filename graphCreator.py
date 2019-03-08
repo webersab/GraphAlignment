@@ -135,15 +135,12 @@ class GraphCreator():
         reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
         #calculate cosine sim from that matrix
         similarities = cosine_similarity(matrix.transpose())
-        """
+        
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
             pickle.dump(reversedIndexMap, f,protocol=4)
-        """ 
-        print("beep")
-        linSim= pairwise_distances(matrix.transpose(), metric=mathUtils.lin, n_jobs=-1)  
-        print(linSim)
+
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()
