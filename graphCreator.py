@@ -14,6 +14,7 @@ from tqdm import tqdm
 from vectorMap import VectorMap
 from scipy import sparse
 import mathUtils
+from sklearn.decomposition import TruncatedSVD
 
 
 class GraphCreator():
@@ -54,7 +55,7 @@ class GraphCreator():
             else:
                 print("Error while zipping tuples")
         column =[index]*len(indexes)
-        return csr_matrix((counts, (indexes, column)), shape=(length, width))
+        return csr_matrix((counts, (indexes, column)), shape=(length, width), dtype=np.float16)
     
     def hasOverlap(self,listOfTuples1, listOfTuples2):
         bol = False
@@ -133,8 +134,14 @@ class GraphCreator():
                 index+=1
         
         reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
+        #SVD goes here
+        print(matrix.shape)
+        svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
+        matrix=svd.fit_transform(matrix.transpose())
+        print(matrix.shape, matrix[0][0].dtype)
+        
         #calculate cosine sim from that matrix
-        similarities = cosine_similarity(matrix.transpose())
+        similarities = cosine_similarity(matrix)
         
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
@@ -164,6 +171,7 @@ class GraphCreator():
         
         print("end createGraph ",datetime.datetime.now())
         return G
+        
         
     
     def createGraphParallel(self, vectorMap, entitySetLength):

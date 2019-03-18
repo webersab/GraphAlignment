@@ -23,6 +23,8 @@ from scipy.sparse import csr_matrix
 from graphCreator import GraphCreator
 from sklearn.metrics import pairwise_distances
 import mathUtils
+import pprint
+from tqdm import tqdm
 
 def printClustersAfterWhisper(G):
     labelDict={}
@@ -106,7 +108,27 @@ def printSimilarities(similarities,reversedIndexMap):
         predicate2=indexPredicateMap[predicate2index]
         #look up the matrix value
         linSimilarity=similarities[predicate1index][predicate2index]
-        print(predicate1,predicate2,linSimilarity)    
+        print(predicate1,predicate2,linSimilarity)  
+        
+def returnBest(similarities,reversedIndexMap):
+    tresh=0.8
+    best={}
+    indexPredicateMap={y:x for x,y in reversedIndexMap.items()}  
+    nonZeroLin=similarities.nonzero()
+    for i in range(len(nonZeroLin[0])):
+        #walk trough the arrays and get the indexes
+        predicate1index=nonZeroLin[0][i]
+        predicate2index=nonZeroLin[1][i]
+        #look up what predicates the indexes correspond to
+        predicate1=indexPredicateMap[predicate1index]
+        predicate2=indexPredicateMap[predicate2index]
+        #look up the matrix value
+        linSimilarity=similarities[predicate1index][predicate2index]
+        if linSimilarity>tresh and linSimilarity!=1.0:
+            best[(predicate1,predicate2)]=linSimilarity
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(best)
+      
 
 def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
     metric=""
@@ -135,27 +157,39 @@ def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
 if __name__ == "__main__":
     print("Hello Graph Aligner")
     print("begin: ",datetime.datetime.now())
-
     
-    typePairList=[("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
+    """
+    with open("/group/project/s1782911/similarityTables/german#ORGANIZATION#EVENTbincSimilarities.dat", "rb") as f:
+        similarities=pickle.load(f)
+    with open("/group/project/s1782911/similarityTables/german#ORGANIZATION#EVENTbincreversedIndexMap.dat", "rb") as f:
+        reversedIndexMap=pickle.load(f)
+    
+    #printSimilarities(similarities,reversedIndexMap)
+    returnBest(similarities,reversedIndexMap)
+    
+    typePairList=[]
+    """
+    typePairList=[("PERSON","MISC"), ("LOCATION","EVENT"),
+                ("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
+               ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT"),("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
                 ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
-                ("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),("LOCATION","EVENT"),
+                ("ORGANIZATION","EVENT"),("EVENT","ORGANIZATION"),("PERSON","ORGANIZATION"),
                 ("PERSON","PERSON"),
                 ("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
-                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),
-                ("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
-               ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT")]
+                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("EVENT","MISC"),("EVENT","PERSON")]
     
-    #typePairList=[("EVENT","ORGANIZATION")]
-    similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
-    
-    for a in typePairList:
-        for b in similarityMeasures:
-            makeOtherSimilarities(a, b)
 
-    """
+
+    #similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
+    #similarityMeasures=["lin"]
+    
+    #for a in typePairList:
+    #    for b in similarityMeasures:
+    #        makeOtherSimilarities(a, b)
+
+    
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
-    for pair in typePairList:
+    for pair in tqdm(typePairList, total=len(typePairList), unit="pairs"):
         
         graphName="german#"+pair[0]+"#"+pair[1]
         typePair="#"+pair[0]+".*#"+pair[1]
@@ -174,7 +208,7 @@ if __name__ == "__main__":
             outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
             
     
-        
+        """
         
         #extract the German only entity set
         c = Parsing()
@@ -221,7 +255,7 @@ if __name__ == "__main__":
         with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
             pickle.dump(setLengthsDeEN, f)
             
-        
+        """
         #unpickle
         if os.path.getsize(outputFolder+graphName+"VectorMap.dat") > 0:
             with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
@@ -259,14 +293,14 @@ if __name__ == "__main__":
         #print("entity Set length: ",entitySet.length()) 
     
         #pickling for easier debugging of later steps
-        nx.write_gpickle(G1, outputFolder+graphName+"GraphPickle")
+        nx.write_gpickle(G1, outputFolder+graphName+"GraphPickleAfterSVD")
         #nx.write_gpickle(G2, "englishPicklePostParallel")
         #pickle entity set
         #with open("entitySet.dat", "wb") as f:
             #pickle.dump(entitySet, f)
-          
+         
         #unpickle
-        G1=nx.read_gpickle(outputFolder+graphName+"GraphPickle")
+        G1=nx.read_gpickle(outputFolder+graphName+"GraphPickleAfterSVD")
         #G2=nx.read_gpickle("englishPicklePostPrallel")
         print(G1.nodes())
         #print(G2.nodes())
@@ -290,13 +324,13 @@ if __name__ == "__main__":
         
         
         #pickling to make debugging faster
-        with open(outputFolder+graphName+"Clustered.dat", "wb") as f:
+        with open(outputFolder+graphName+"ClusteredAfterSVD.dat", "wb") as f:
             pickle.dump(germanClusterList, f)
         #with open("clusteredEnglish.dat", "wb") as f:
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        
+        """
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)

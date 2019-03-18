@@ -86,6 +86,7 @@ def weeds_precision(x, y, **_):
     
     if denom==0:
         print("denom is 0, that shouldnt happen")
+        #print(x.nonzero(),y.nonzero())
         return 0
 
     return (enum / denom)
