@@ -107,6 +107,19 @@ class GraphCreator():
                 actualCalculateMap[(k1,k2)]=(vectorMap.get(k1),vectorMap.get(k2))
     
     
+    def cosine_similarity_n_space(self, m1, m2, batch_size=100):
+        assert m1.shape[1] == m2.shape[1]
+        ret = np.ndarray((m1.shape[0], m2.shape[0]))
+        for row_i in range(0, int(m1.shape[0] / batch_size) + 1):
+            start = row_i * batch_size
+            end = min([(row_i + 1) * batch_size, m1.shape[0]])
+            if end <= start:
+                break # cause I'm too lazy to elegantly handle edge cases
+            rows = m1[start: end]
+            sim = cosine_similarity(rows, m2) # rows is O(1) size
+            ret[start: end] = sim
+        return ret
+    
     def createGraphMatrixMultiplication(self,vectorMap, entitySetLength,outputFolder,graphName):
         print("begin createGraph: ",datetime.datetime.now())
         cores = mp.cpu_count()
@@ -141,7 +154,8 @@ class GraphCreator():
         print(matrix.shape, matrix[0][0].dtype)
         
         #calculate cosine sim from that matrix
-        similarities = cosine_similarity(matrix)
+        #similarities = cosine_similarity(matrix)
+        similarities=self.cosine_similarity_n_space(matrix, matrix, 10)
         
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
