@@ -155,11 +155,12 @@ class GraphCreator():
         
         #calculate cosine sim from that matrix
         #similarities = cosine_similarity(matrix)
-        for i in [10, 100, 1000, 2000]:
-            print("batch size",i,"started cosine similarities: ",datetime.datetime.now())
-            similarities=self.cosine_similarity_n_space(matrix, matrix, i)
-            print("batch size",i,"finished cosine similarities: ",datetime.datetime.now())
-        """
+        similarities=self.cosine_similarity_n_space(matrix, matrix, 1000)
+        print("min: ", similarities.min())
+        print("max: ", similarities.max())
+        print("mean: ", similarities.mean())
+        print("std: ", similarities.std())
+        
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
@@ -188,7 +189,7 @@ class GraphCreator():
         
         print("end createGraph ",datetime.datetime.now())
         return G
-        """
+        
         
     
     def createGraphParallel(self, vectorMap, entitySetLength):
