@@ -110,7 +110,7 @@ class GraphCreator():
     def cosine_similarity_n_space(self, m1, m2, batch_size=100):
         assert m1.shape[1] == m2.shape[1]
         ret = np.ndarray((m1.shape[0], m2.shape[0]))
-        for row_i in range(0, int(m1.shape[0] / batch_size) + 1):
+        for row_i in tqdm(range(0, int(m1.shape[0] / batch_size) + 1), total=len(range(0, int(m1.shape[0] / batch_size) + 1))):
             start = row_i * batch_size
             end = min([(row_i + 1) * batch_size, m1.shape[0]])
             if end <= start:
@@ -131,7 +131,7 @@ class GraphCreator():
         #create sparse matrix with the right dimensions
         matrix=csr_matrix( (entitySetLength, vectorMapLength), dtype="int8" )
         print("vector map length ",vectorMapLength)
-        for key, value in vectorMap.items():
+        for key, value in tqdm(vectorMap.items(), total=len(vectorMap.keys())):
             # remember the key and the index of the matrix the key belongs to
             if value:
                 indexPredicateMap[index]=key
@@ -151,6 +151,7 @@ class GraphCreator():
         print(matrix.shape)
         svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
         matrix=svd.fit_transform(matrix.transpose())
+        print("finished svd: ",datetime.datetime.now())
         print(matrix.shape, matrix[0][0].dtype)
         
         #calculate cosine sim from that matrix
