@@ -157,7 +157,7 @@ class GraphCreator():
         #similarities = cosine_similarity(matrix)
         for i in [10, 100, 1000, 2000]:
             print("batch size",i,"started cosine similarities: ",datetime.datetime.now())
-            similarities=self.cosine_similarity_n_space(matrix, matrix, 100)
+            similarities=self.cosine_similarity_n_space(matrix, matrix, i)
             print("batch size",i,"finished cosine similarities: ",datetime.datetime.now())
         """
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
