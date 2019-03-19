@@ -130,8 +130,8 @@ class GraphCreator():
         vectorMapLength=len(vectorMap.keys())
         #create sparse matrix with the right dimensions
         matrix=csr_matrix( (entitySetLength, vectorMapLength), dtype="int8" )
-        print("vector map length ",vectorMapLength)
-        for key, value in tqdm(vectorMap.items(), total=len(vectorMap.keys())):
+        print("transforming ",vectorMapLength, " predicate vectors into sparse matirx")
+        for key, value in tqdm(vectorMap.items(), total=len(vectorMap.keys()),unit="predicates" ):
             # remember the key and the index of the matrix the key belongs to
             if value:
                 indexPredicateMap[index]=key
@@ -148,7 +148,6 @@ class GraphCreator():
         
         reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
         #SVD goes here
-        print(matrix.shape)
         svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
         matrix=svd.fit_transform(matrix.transpose())
         print("finished svd: ",datetime.datetime.now())
@@ -156,18 +155,21 @@ class GraphCreator():
         
         #calculate cosine sim from that matrix
         #similarities = cosine_similarity(matrix)
-        similarities=self.cosine_similarity_n_space(matrix, matrix, 10)
-        
+        for i in [10, 100, 1000, 2000]:
+            print("batch size",i,"started cosine similarities: ",datetime.datetime.now())
+            similarities=self.cosine_similarity_n_space(matrix, matrix, 100)
+            print("batch size",i,"finished cosine similarities: ",datetime.datetime.now())
+        """
         with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
             pickle.dump(similarities, f,protocol=4)
         with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
             pickle.dump(reversedIndexMap, f,protocol=4)
-
+        
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()
         G=nx.Graph()
-        
-        for i in range(len(nonZeroEntries[0])):
+        print("creating graph ")
+        for i in tqdm(range(len(nonZeroEntries[0])), total=len(range(len(nonZeroEntries[0]))), unit="similarities"):
             #walk trough the arrays and get the indexes
             predicate1index=nonZeroEntries[0][i]
             predicate2index=nonZeroEntries[1][i]
@@ -186,7 +188,7 @@ class GraphCreator():
         
         print("end createGraph ",datetime.datetime.now())
         return G
-        
+        """
         
     
     def createGraphParallel(self, vectorMap, entitySetLength):
