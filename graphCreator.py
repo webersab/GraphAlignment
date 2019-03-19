@@ -181,7 +181,7 @@ class GraphCreator():
             cosineSim=similarities[predicate1index][predicate2index]
             
             #create nodes and connection with those values
-            if predicate1!=predicate2:
+            if predicate1!=predicate2 and cosineSim>-0.064:
                 self.createNode(G, predicate1,vectorMap.get(predicate1))
                 self.createNode(G, predicate2,vectorMap.get(predicate2))
                 G.add_edge(predicate1, predicate2, weight=cosineSim )
