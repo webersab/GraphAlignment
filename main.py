@@ -25,6 +25,7 @@ from sklearn.metrics import pairwise_distances
 import mathUtils
 import pprint
 from tqdm import tqdm
+from sklearn.decomposition import TruncatedSVD
 
 def printClustersAfterWhisper(G):
     labelDict={}
@@ -91,10 +92,18 @@ def makeOtherSimilarities(pair, similarityMeasure):
             index+=1
     
     reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
+    #svd comes in here
+    svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
+    #transposing of the matrix happens here, no need to transpose when computing the similarities
+    matrix=svd.fit_transform(matrix.transpose())
+    print("finished svd: ",datetime.datetime.now())
+    print(matrix.shape, matrix[0][0].dtype)
     
     computeSimilarity(similarityMeasure, matrix, reversedIndexMap,outputFolder,graphName)
     print("done with ",pair, similarityMeasure)
-    
+
+#def computeSimilarityWithBatching(similarityMeasure, matrix, reversedIndexMap,outputFolder,graphName): 
+       
     
 def printSimilarities(similarities,reversedIndexMap):
     indexPredicateMap={y:x for x,y in reversedIndexMap.items()}  
@@ -143,14 +152,14 @@ def computeSimilarity(measure, matrix,reversedIndexMap,outputFolder, graphName):
     else:
         print("measure not found")
         
-    similarities= pairwise_distances(matrix.transpose(), metric=metric, n_jobs=30)  
+    similarities= pairwise_distances(matrix, metric=metric, n_jobs=30)  
     
     if len(similarities.nonzero()[0])==0:
         "Sanity check failed, no nonzero similarities!"
     
-    with open(outputFolder+graphName+measure+"Similarities.dat", "wb") as f:
+    with open(outputFolder+graphName+measure+"SVDSimilarities.dat", "wb") as f:
         pickle.dump(similarities, f,protocol=4)
-    with open(outputFolder+graphName+measure+"reversedIndexMap.dat", "wb") as f:
+    with open(outputFolder+graphName+measure+"SVDreversedIndexMap.dat", "wb") as f:
         pickle.dump(reversedIndexMap, f,protocol=4)
     
 
@@ -169,7 +178,7 @@ if __name__ == "__main__":
     
     typePairList=[]
     """
-    typePairList=[("PERSON","MISC"), ("LOCATION","EVENT"),
+    typePairList=[ ("LOCATION","EVENT"), ("PERSON","MISC"),
                 ("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT"),("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
                 ("LOCATION","ORGANIZATION"),("MISC","ORGANIZATION"),("LOCATION","PERSON"),("ORGANIZATION","ORGANIZATION"),
@@ -180,14 +189,14 @@ if __name__ == "__main__":
     
 
 
-    #similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
+    similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
     #similarityMeasures=["lin"]
     
-    #for a in typePairList:
-    #    for b in similarityMeasures:
-    #        makeOtherSimilarities(a, b)
+    for a in typePairList:
+        for b in similarityMeasures:
+            makeOtherSimilarities(a, b)
 
-    
+    """
     #typePairList=[("LOCATION","EVENT")]
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
     for pair in tqdm(typePairList, total=len(typePairList), unit="pairs"):
@@ -209,7 +218,7 @@ if __name__ == "__main__":
             outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
             
     
-        """
+        
         
         #extract the German only entity set
         c = Parsing()
@@ -256,7 +265,7 @@ if __name__ == "__main__":
         with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
             pickle.dump(setLengthsDeEN, f)
             
-        """
+        
         #unpickle
         if os.path.getsize(outputFolder+graphName+"VectorMap.dat") > 0:
             with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
@@ -331,7 +340,7 @@ if __name__ == "__main__":
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        """
+        
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)
