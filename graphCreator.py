@@ -148,23 +148,24 @@ class GraphCreator():
         
         reversedIndexMap={y:x for x,y in indexPredicateMap.items()}
         #SVD goes here
-        svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
-        matrix=svd.fit_transform(matrix.transpose())
-        print("finished svd: ",datetime.datetime.now())
-        print(matrix.shape, matrix[0][0].dtype)
+        #svd = TruncatedSVD(n_components=200, n_iter=7, random_state=42)
+        #matrix=svd.fit_transform(matrix.transpose())
+        #print("finished svd: ",datetime.datetime.now())
+        #print(matrix.shape, matrix[0][0].dtype)
         
         #calculate cosine sim from that matrix
-        #similarities = cosine_similarity(matrix)
-        similarities=self.cosine_similarity_n_space(matrix, matrix, 1000)
-        print("min: ", similarities.min())
-        print("max: ", similarities.max())
-        print("mean: ", similarities.mean())
-        print("std: ", similarities.std())
+        similarities = cosine_similarity(matrix.transpose())
+        #similarities=self.cosine_similarity_n_space(matrix, matrix, 1000)
+        #print("min: ", similarities.min())
+        #print("max: ", similarities.max())
+        #print("mean: ", similarities.mean())
+        #rint("std: ", similarities.std())
+        print(matrix.shape, matrix[0][0].dtype)
         
-        with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
-            pickle.dump(similarities, f,protocol=4)
-        with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
-            pickle.dump(reversedIndexMap, f,protocol=4)
+        #with open(outputFolder+graphName+"Similarities.dat", "wb") as f:
+            #pickle.dump(similarities, f,protocol=4)
+       # with open(outputFolder+graphName+"reversedIndexMap.dat", "wb") as f:
+            #pickle.dump(reversedIndexMap, f,protocol=4)
         
         #for all non-zero entries, create a node and in the graph and so on
         nonZeroEntries=similarities.nonzero()

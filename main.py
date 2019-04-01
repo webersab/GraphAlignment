@@ -189,19 +189,19 @@ if __name__ == "__main__":
     
 
 
-    similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
+    #similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
     #similarityMeasures=["lin"]
     
-    for a in typePairList:
-        for b in similarityMeasures:
-            makeOtherSimilarities(a, b)
+    #for a in typePairList:
+        #for b in similarityMeasures:
+            #makeOtherSimilarities(a, b)
 
-    """
+    
     #typePairList=[("LOCATION","EVENT")]
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
     for pair in tqdm(typePairList, total=len(typePairList), unit="pairs"):
         
-        graphName="german#"+pair[0]+"#"+pair[1]
+        graphName="german2#"+pair[0]+"#"+pair[1]
         typePair="#"+pair[0]+".*#"+pair[1]
         
         filePath=""
@@ -256,26 +256,26 @@ if __name__ == "__main__":
         #overlapGermanVectorMap.printVectorMap()
         
         #pickling vector Maps for faster degbugging
-        with open(outputFolder+graphName+"VectorMap.dat", "wb") as f:
+        with open(outputFolder+graphName+"2VectorMap.dat", "wb") as f:
             pickle.dump(germanVectorMap, f)
         #with open("englishVectorMap.dat", "wb") as f:
             #pickle.dump(englishVectorMap, f)
         #with open("intersection.dat", "wb") as f:
             #pickle.dump(intersection, f)
-        with open(outputFolder+graphName+"setLengthsDeEn.dat", "wb") as f:
+        with open(outputFolder+graphName+"2setLengthsDeEn.dat", "wb") as f:
             pickle.dump(setLengthsDeEN, f)
             
         
         #unpickle
-        if os.path.getsize(outputFolder+graphName+"VectorMap.dat") > 0:
-            with open(outputFolder+graphName+"VectorMap.dat", "rb") as f:
+        if os.path.getsize(outputFolder+graphName+"2VectorMap.dat") > 0:
+            with open(outputFolder+graphName+"2VectorMap.dat", "rb") as f:
                 germanVectorMap=pickle.load(f)
         # with open("englishVectorMap.dat", "rb") as f:
             #englishVectorMap=pickle.load(f)
         #with open("intersection.dat", "rb") as f:
             #intersection=pickle.load(f)
-        if os.path.getsize(outputFolder+graphName+"setLengthsDeEn.dat") > 0:    
-            with open(outputFolder+graphName+"setLengthsDeEn.dat", "rb") as f:
+        if os.path.getsize(outputFolder+graphName+"2setLengthsDeEn.dat") > 0:    
+            with open(outputFolder+graphName+"2setLengthsDeEn.dat", "rb") as f:
                 setLengthsDeEN=pickle.load(f)
         print("done unpickling")
         
@@ -303,14 +303,14 @@ if __name__ == "__main__":
         #print("entity Set length: ",entitySet.length()) 
     
         #pickling for easier debugging of later steps
-        nx.write_gpickle(G1, outputFolder+graphName+"GraphPickleAfterSVD")
+        nx.write_gpickle(G1, outputFolder+graphName+"2GraphPickle")
         #nx.write_gpickle(G2, "englishPicklePostParallel")
         #pickle entity set
         #with open("entitySet.dat", "wb") as f:
             #pickle.dump(entitySet, f)
          
         #unpickle
-        G1=nx.read_gpickle(outputFolder+graphName+"GraphPickleAfterSVD")
+        G1=nx.read_gpickle(outputFolder+graphName+"2GraphPickle")
         #G2=nx.read_gpickle("englishPicklePostPrallel")
         print(G1.nodes())
         #print(G2.nodes())
@@ -334,13 +334,13 @@ if __name__ == "__main__":
         
         
         #pickling to make debugging faster
-        with open(outputFolder+graphName+"ClusteredAfterSVD.dat", "wb") as f:
+        with open(outputFolder+graphName+"2Clustered.dat", "wb") as f:
             pickle.dump(germanClusterList, f)
         #with open("clusteredEnglish.dat", "wb") as f:
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        
+        """
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)
@@ -375,7 +375,7 @@ if __name__ == "__main__":
         #    print(clusterTupel[2])
         #    print("------------------------------")
         print("final result in alignmentOutputWithcosineSim.txt")
-        
+        """
         #print (sys.version)
         print("Finished ",pair, datetime.datetime.now())
-        """
+        
