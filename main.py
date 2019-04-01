@@ -200,7 +200,7 @@ if __name__ == "__main__":
     #typePairList=[("LOCATION","EVENT")]
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
     typePairList=itertools.product(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],repeat=2)
-    for pair in tqdm(typePairList, total=len(typePairList), unit="pairs"):
+    for pair in tqdm(typePairList, total=25, unit="pairs"):
         
         graphName="german2#"+pair[0]+"#"+pair[1]
         typePair="#"+pair[0]+".*#"+pair[1]
