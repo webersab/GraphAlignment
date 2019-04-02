@@ -177,7 +177,7 @@ if __name__ == "__main__":
     returnBest(similarities,reversedIndexMap)
     
     typePairList=[]
-    """
+    
     typePairList=[ ("LOCATION","EVENT"), ("PERSON","MISC"),
                 ("LOCATION","EVENT"),("PERSON","PERSON"),("ORGANIZATION","LOCATION"),("LOCATION","LOCATION"),("MISC","MISC"),("MISC","LOCATION"),
                ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("PERSON","MISC"),("MISC","EVENT"),("EVENT","LOCATION"),("ORGANIZATION","PERSON"),("MISC","PERSON"),
@@ -188,7 +188,7 @@ if __name__ == "__main__":
                 ("PERSON","EVENT"),("PERSON","LOCATION"),("LOCATION","MISC"),("ORGANIZATION","MISC"),("EVENT","MISC"),("EVENT","PERSON")]
     
 
-
+    """
     #similarityMeasures=["lin","weedsRecall","weedsPrecision","binc"]
     #similarityMeasures=["lin"]
     
@@ -199,7 +199,8 @@ if __name__ == "__main__":
     
     #typePairList=[("LOCATION","EVENT")]
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
-    typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
+    #typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
+    typePairList=[("EVENT","MISC"),("MISC","MISC"),("MISC","LOCATION"),("MISC","EVENT"),("MISC","ORGANIZATION"),("MISC","PERSON")]
     for pair in tqdm(typePairList, total=25, unit="pairs"):
         
         graphName="german2#"+pair[0]+"#"+pair[1]
