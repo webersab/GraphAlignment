@@ -199,9 +199,11 @@ if __name__ == "__main__":
     
     #typePairList=[("LOCATION","EVENT")]
     #typePairList=itertools.product(["EVENT","LOCATION","PERSON","ORGANIZATION","MISC"], repeat=2)
-    #typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
-    typePairList=[("EVENT","MISC"),("MISC","MISC"),("MISC","LOCATION"),("MISC","EVENT"),("MISC","ORGANIZATION"),("MISC","PERSON")]
+    typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
+    #typePairList=[("EVENT","MISC"),("MISC","MISC"),("MISC","LOCATION"),("MISC","EVENT"),("MISC","ORGANIZATION"),("MISC","PERSON")]
     for pair in tqdm(typePairList, total=25, unit="pairs"):
+        if pair==("EVENT","EVENT"):
+            continue
         
         graphName="german2#"+pair[0]+"#"+pair[1]
         typePair="#"+pair[0]+".*#"+pair[1]
@@ -220,7 +222,7 @@ if __name__ == "__main__":
             outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
             
     
-        
+        """
         
         #extract the German only entity set
         c = Parsing()
@@ -267,7 +269,7 @@ if __name__ == "__main__":
         with open(outputFolder+graphName+"2setLengthsDeEn.dat", "wb") as f:
             pickle.dump(setLengthsDeEN, f)
             
-        
+        """
         #unpickle
         if os.path.getsize(outputFolder+graphName+"2VectorMap.dat") > 0:
             with open(outputFolder+graphName+"2VectorMap.dat", "rb") as f:
@@ -282,7 +284,7 @@ if __name__ == "__main__":
         print("done unpickling")
         
         #change vectors to PMI, if thats what you're after
-        #overlapGermanVectorMap=overlapGermanVectorMap.changeVectorsToPmi()
+        germanVectorMap=germanVectorMap.changeVectorsToPmi()
         #overlapEnglishVectorMap=overlapEnglishVectorMap.changeVectorsToPmi()
         
         #create German graph
@@ -305,14 +307,14 @@ if __name__ == "__main__":
         #print("entity Set length: ",entitySet.length()) 
     
         #pickling for easier debugging of later steps
-        nx.write_gpickle(G1, outputFolder+graphName+"2GraphPickle")
+        nx.write_gpickle(G1, outputFolder+graphName+"2GraphPicklePMI")
         #nx.write_gpickle(G2, "englishPicklePostParallel")
         #pickle entity set
         #with open("entitySet.dat", "wb") as f:
             #pickle.dump(entitySet, f)
          
         #unpickle
-        G1=nx.read_gpickle(outputFolder+graphName+"2GraphPickle")
+        G1=nx.read_gpickle(outputFolder+graphName+"2GraphPicklePMI")
         #G2=nx.read_gpickle("englishPicklePostPrallel")
         print(G1.nodes())
         #print(G2.nodes())
@@ -336,7 +338,7 @@ if __name__ == "__main__":
         
         
         #pickling to make debugging faster
-        with open(outputFolder+graphName+"2Clustered.dat", "wb") as f:
+        with open(outputFolder+graphName+"2ClusteredPMI.dat", "wb") as f:
             pickle.dump(germanClusterList, f)
         #with open("clusteredEnglish.dat", "wb") as f:
             #pickle.dump(englishClusterList, f)
