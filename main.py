@@ -222,7 +222,7 @@ if __name__ == "__main__":
             outputFolder="/disk/data/darkstar2/s1782911/outputPickles/"
             
     
-        """
+        
         
         #extract the German only entity set
         c = Parsing()
@@ -260,14 +260,14 @@ if __name__ == "__main__":
         #overlapGermanVectorMap.printVectorMap()
         
         #pickling vector Maps for faster degbugging
-        with open(outputFolder+graphName+"2VectorMap.dat", "wb") as f:
-            pickle.dump(germanVectorMap, f)
-        #with open("englishVectorMap.dat", "wb") as f:
-            #pickle.dump(englishVectorMap, f)
+        #with open(outputFolder+graphName+"2VectorMap.dat", "wb") as f:
+            #pickle.dump(germanVectorMap, f)
+        with open("germanEntitySet2.dat", "wb") as f:
+            pickle.dump(germanEntitySet, f)
         #with open("intersection.dat", "wb") as f:
             #pickle.dump(intersection, f)
-        with open(outputFolder+graphName+"2setLengthsDeEn.dat", "wb") as f:
-            pickle.dump(setLengthsDeEN, f)
+        #with open(outputFolder+graphName+"2setLengthsDeEn.dat", "wb") as f:
+            #pickle.dump(setLengthsDeEN, f)
             
         """
         #unpickle
@@ -344,7 +344,7 @@ if __name__ == "__main__":
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        """
+        
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)
