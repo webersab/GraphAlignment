@@ -223,7 +223,7 @@ if __name__ == "__main__":
             
     
         
-        
+        """
         #extract the German only entity set
         c = Parsing()
         entitySet = EntitySet()
@@ -344,7 +344,7 @@ if __name__ == "__main__":
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        
+        """
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)

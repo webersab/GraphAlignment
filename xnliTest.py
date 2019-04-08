@@ -224,7 +224,7 @@ def getRightClusterList(typePair):
     else:
         type2=typePair[1]
     
-    pickleAddress=outputFolder+"german2#"+type1+"#"+type2+"2Clustered.dat" 
+    pickleAddress=outputFolder+"german2#"+type1+"#"+type2+"2ClusteredPMI.dat" 
     #unpickle cluster list
     with open(pickleAddress, "rb") as f:
         clusterList=pickle.load(f)
