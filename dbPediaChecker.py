@@ -117,7 +117,7 @@ def constructEnglishEntityDict():
                             langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
                             filesList[3].write(langIn)
                             
-                            identifier+=1
+                            
                             counter+=1
                             
                             if counter % 1000 == 0:
@@ -129,6 +129,8 @@ def constructEnglishEntityDict():
                             if ent!="":
                                 identifier=englishEntDict[ent]["identifier"]
                                 previousIdentifiers.append(identifier)
+                        identifier+=1
+                        
                 elif "iv idx of" not in line and entityScope:
                     #do relation stuff with previous identifiers here
                     #extract the relation
