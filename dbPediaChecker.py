@@ -97,6 +97,7 @@ def constructEnglishEntityDict():
                     doubleEnt=find_between(line, "inv idx of", " :")
                     enti=doubleEnt.split(sep="#")
                     for ent in enti:
+                        print("entity ", ent)
                         ent=ent.lstrip()
                         ent=ent.title()
                         ent=ent.replace(" ", "_")
@@ -104,6 +105,7 @@ def constructEnglishEntityDict():
                             continue
                         if ent not in englishEntDict.keys():
                             newDict={}
+                            print("1 ",identifier)
                             newDict["identifier"]=identifier
                             previousIdentifiers.append(identifier)
                             newDict["URI"]='http://dbpedia.org/resource/'+ent
@@ -112,7 +114,9 @@ def constructEnglishEntityDict():
                             englishEntDict[ent]=newDict
                             
                             #Write entity specific files here!
+                            print("2 ", identifier)
                             idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
+                            print("Goes in file: ", idIn)
                             filesList[0].write(idIn)
                             attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
                             filesList[1].write(attrIn)
@@ -121,7 +125,9 @@ def constructEnglishEntityDict():
                             
                             
                             counter+=1
+                            print("3 ",identifier)
                             identifier+=1
+                            print("4 ",identifier)
                             if counter % 1000 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
@@ -129,8 +135,8 @@ def constructEnglishEntityDict():
                                 print("at ", counter, " of max 2.129.718")
                         else:
                             if ent!="":
-                                identifier=englishEntDict[ent]["identifier"]
-                                previousIdentifiers.append(identifier)
+                                otherIdentifier=englishEntDict[ent]["identifier"]
+                                previousIdentifiers.append(otherIdentifier)
                         
                 elif "iv idx of" not in line and entityScope:
                     #do relation stuff with previous identifiers here
