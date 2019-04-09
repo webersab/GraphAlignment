@@ -119,7 +119,7 @@ def createAlphabetBatchesForAttributes():
     print("HupHUP")
     openFilesMap={}
     for x in list(string.ascii_lowercase):
-        f = open("/group/project/s1782911/alphabetBatches/Attribute_"+str(x), 'a')
+        f = open("/disk/scratch_big/sweber/alphabetBatches/Attribute_"+str(x), 'a')
         f.write("")
         openFilesMap[str(x)]=f
         print("done files")
@@ -133,6 +133,8 @@ def createAlphabetBatchesForAttributes():
                 if firstLetter!="/" and firstLetter in openFilesMap.keys():
                     f = openFilesMap[firstLetter]
                     f.write(line)
+    for f in openFilesMap.values():
+        f.close
     
     
 if __name__ == "__main__":
