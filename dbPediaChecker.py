@@ -7,6 +7,7 @@ import pprint
 import time
 import string
 from tqdm import tqdm
+from pip._vendor.pyparsing import ident
 
 def find_between( s, first, last ):
     try:
@@ -59,7 +60,8 @@ def getAttributesFromFile(entity):
     print(foundList)
     
 def getGermanLink(entity):
-    filePath="/group/project/s1782911/interlanguage_links_en.ttl"
+    firstLetter=entity[0].lower()
+    filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
     with open(filePath, 'r') as inF:
         for line in inF:
             if "http://dbpedia.org/resource/"+entity in line and "http://de.dbpedia.org/resource/" in line:
@@ -71,8 +73,9 @@ def getGermanLink(entity):
     
 def constructEnglishEntityDict():
     englishEntDict={}
-    for filename in os.listdir("/group/project/s1782911/typed_rels_aida_figer_3_3_f"):
-        with open("/group/project/s1782911/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
+    identifier=0
+    for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
+        with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
             for line in inF:
                 if "inv idx of" in line:
                     start = time.time()
@@ -85,13 +88,15 @@ def constructEnglishEntityDict():
                         if ent not in englishEntDict.keys():
                             print(ent)
                             newDict={}
+                            newDict["identifier"]=identifier
+                            identifier+=1
                             newDict["URI"]='http://dbpedia.org/resource/'+ent
                             newDict["attributes"]=getAttributesFomInternet(ent,"en")
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
                     end = time.time()
                     print("one loop took", end - start)
-    with open("/group/project/s1782911/englishEntDict.dat", "wb") as f:
+    with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
     return englishEntDict
 
@@ -139,7 +144,8 @@ def createAlphabetBatchesForAttributes():
     
 if __name__ == "__main__":
     #constructEnglishEntityDict()
-    createAlphabetBatchesForAttributes()
+    #createAlphabetBatchesForAttributes()
+    constructEnglishEntityDict()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
