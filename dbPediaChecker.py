@@ -116,25 +116,26 @@ def createAlphabetBatchesForInterlanguage():
                 #print(line)
 
 def createAlphabetBatchesForAttributes():
+    openFilesMap={}
     for x in list(string.ascii_lowercase):
-        f = open("/group/project/s1782911/alphabetBatches/Attribute_"+str(x), 'w')
+        f = open("/group/project/s1782911/alphabetBatches/Attribute_"+str(x), 'a')
         f.write("")
-        f.close()
+        openFilesMap[str(x)]=f
         
-    filePath="/group/project/s1782911/infobox_properties_de.ttl"
+    filePath="/disk/scratch_big/sweber/infobox_properties_de.ttl"
     with open(filePath, 'r') as inF:
-        for line in tqdm(inF, total=44122707, unit="lines"):
-            if "<http://dbpedia.org/resource/" in line:
-                entity=find_between(line, "<http://dbpedia.org/resource/", ">")
+        for line in tqdm(inF, total=14048417, unit="lines"):
+            if "<http://de.dbpedia.org/resource/" in line:
+                entity=find_between(line, "<http://de.dbpedia.org/resource/", ">")
                 firstLetter=entity[0].lower()
-                f = open("/group/project/s1782911/alphabetBatches/Attribute_"+firstLetter, 'a')
-                f.write(line)
-                f.close
+                if firstLetter!="/" and firstLetter in openFilesMap.keys():
+                    f = openFilesMap[firstLetter]
+                    f.write(line)
     
     
 if __name__ == "__main__":
     #constructEnglishEntityDict()
-    createAlphabetBatchesForInterlanguage()
+    createAlphabetBatchesForAttributes()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
