@@ -116,11 +116,13 @@ def createAlphabetBatchesForInterlanguage():
                 #print(line)
 
 def createAlphabetBatchesForAttributes():
+    print("HupHUP")
     openFilesMap={}
     for x in list(string.ascii_lowercase):
         f = open("/group/project/s1782911/alphabetBatches/Attribute_"+str(x), 'a')
         f.write("")
         openFilesMap[str(x)]=f
+        print("done files")
         
     filePath="/disk/scratch_big/sweber/infobox_properties_de.ttl"
     with open(filePath, 'r') as inF:
@@ -128,6 +130,7 @@ def createAlphabetBatchesForAttributes():
             if "<http://de.dbpedia.org/resource/" in line:
                 entity=find_between(line, "<http://de.dbpedia.org/resource/", ">")
                 firstLetter=entity[0].lower()
+                print(firstLetter, line)
                 if firstLetter!="/" and firstLetter in openFilesMap.keys():
                     f = openFilesMap[firstLetter]
                     f.write(line)
