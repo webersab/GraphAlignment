@@ -95,6 +95,7 @@ def constructEnglishEntityDict():
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
                             counter+=1
+                            print(counter)
                             if counter % 100 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
