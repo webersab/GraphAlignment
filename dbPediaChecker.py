@@ -74,8 +74,11 @@ def constructEnglishEntityDict():
     englishEntDict={}
     identifier=0
     counter=0
+    fileCounter=1
     for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
         with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
+            print("now in file ",filename, fileCounter, "of 355")
+            fileCounter+=1
             for line in inF:
                 if "inv idx of" in line:
                     start = time.time()
@@ -86,7 +89,6 @@ def constructEnglishEntityDict():
                         ent=ent.title()
                         ent=ent.replace(" ", "_")
                         if ent not in englishEntDict.keys():
-                            print(ent)
                             newDict={}
                             newDict["identifier"]=identifier
                             identifier+=1
@@ -95,8 +97,7 @@ def constructEnglishEntityDict():
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
                             counter+=1
-                            print(counter)
-                            if counter % 100 == 0:
+                            if counter % 1000 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
                                 start = time.time()
