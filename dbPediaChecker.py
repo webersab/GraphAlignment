@@ -113,7 +113,6 @@ def constructEnglishEntityDict():
                             
                             #Write entity specific files here!
                             idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
-                            print("Goes in file: ", idIn)
                             filesList[0].write(idIn)
                             attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
                             filesList[1].write(attrIn)
