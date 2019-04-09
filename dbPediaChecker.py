@@ -7,6 +7,8 @@ import pprint
 import time
 import string
 from tqdm import tqdm
+from pip._vendor.pyparsing import ident
+from distutils.filelist import FileList
 
 def find_between( s, first, last ):
     try:
@@ -71,16 +73,27 @@ def getGermanLink(entity):
     return ""
     
 def constructEnglishEntityDict():
+    #files to be written for GCN align
+    filesList=[open("/disk/scratch_big/sweber/GCN-in/ent_ids_1", 'a'),open("/disk/scratch_big/sweber/GCN-in/training_attrs_1", 'a'),
+               open("/disk/scratch_big/sweber/GCN-in/triples_1", 'a'), open("/disk/scratch_big/sweber/GCN-in/interlanguage", 'a')]
+    
     englishEntDict={}
+    relationsDict={}
     identifier=0
+    identifierRels=3000000
+    
     counter=0
     fileCounter=1
+    
     for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
         with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
             print("now in file ",filename, fileCounter, "of 355")
             fileCounter+=1
+            entityScope=False
             for line in inF:
                 if "inv idx of" in line:
+                    entityScope=True
+                    previousIdentifiers=[]
                     start = time.time()
                     doubleEnt=find_between(line, "inv idx of", " :")
                     enti=doubleEnt.split(sep="#")
@@ -88,27 +101,51 @@ def constructEnglishEntityDict():
                         ent=ent.lstrip()
                         ent=ent.title()
                         ent=ent.replace(" ", "_")
-                        if ent not in englishEntDict.keys():
+                        if ent!="" and ent not in englishEntDict.keys():
                             newDict={}
                             newDict["identifier"]=identifier
-                            identifier+=1
+                            previousIdentifiers.append(identifier)
                             newDict["URI"]='http://dbpedia.org/resource/'+ent
                             newDict["attributes"]=getAttributesFomInternet(ent,"en")
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
+                            
+                            #Write entity specific files here!
+                            idIn=identifier+"\thttp://dbpedia.org/resource/"+ent
+                            filesList[0].write(idIn)
+                            attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))
+                            filesList[1].write(attrIn)
+                            langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)
+                            filesList[3].write(langIn)
+                            
+                            identifier+=1
                             counter+=1
+                            
                             if counter % 1000 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
                                 start = time.time()
                                 print("at ", counter, " of max 2.129.718")
+                        else:
+                            if ent!="":
+                                identifier=englishEntDict[ent]["identifier"]
+                                previousIdentifiers.append(identifier)
+                elif "iv idx of" not in line and entityScope:
+                    #do relation stuff with previous identifiers here
+                    #extract the relation
+                    relation=find_between(line, "(", ")#")
+                    if relation in relationsDict.keys():
+                        relId=relationsDict[relation]
+                    else:
+                        relationsDict[relation]=identifierRels
+                        relId=identifierRels
+                        identifierRels+=1
+                    relIn=previousIdentifiers[0]+"\t"+relId+"\t"+previousIdentifiers[1]
+                    filesList[2].write(relIn)
     with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
     return englishEntDict
-
-def printLanguageSpecificFiles(dict):
-    with open("/disk/scratch/sweber/"+dict+".dat", "rb") as f:
-        dictionary=pickle.load(f)
+        
         
     
 
