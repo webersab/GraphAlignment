@@ -38,7 +38,7 @@ def getAttributesFomInternet(entity,lang):
             found=find_between(line, "</ul></td></tr><tr class=\"even\"><td class=\"property\"><a class=\"uri\" href=\"", "\"")
             if (found!="") and ("ontology" not in found) and found not in foundList:
                 foundList.append(found)
-    print(foundList)
+    return foundList
     
 def getAttributesFromFile(entity):
     foundList=[]
@@ -60,14 +60,15 @@ def getAttributesFromFile(entity):
     
 def getGermanLink(entity):
     firstLetter=entity[0].lower()
-    filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
-    with open(filePath, 'r') as inF:
-        for line in inF:
-            if "http://dbpedia.org/resource/"+entity in line and "http://de.dbpedia.org/resource/" in line:
-                link=find_between(line, "http://de.dbpedia.org/resource/", "> .")
-                link="http://de.dbpedia.org/resource/"+link
-                print(link)
-                return link
+    if firstLetter in list(string.ascii_lowercase):
+        filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
+        with open(filePath, 'r') as inF:
+            for line in inF:
+                if "http://dbpedia.org/resource/"+entity in line and "http://de.dbpedia.org/resource/" in line:
+                    link=find_between(line, "http://de.dbpedia.org/resource/", "> .")
+                    link="http://de.dbpedia.org/resource/"+link
+                    print(link)
+                    return link
     return ""
     
 def constructEnglishEntityDict():
