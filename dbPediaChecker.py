@@ -7,7 +7,6 @@ import pprint
 import time
 import string
 from tqdm import tqdm
-from pip._vendor.pyparsing import ident
 
 def find_between( s, first, last ):
     try:
