@@ -110,11 +110,11 @@ def constructEnglishEntityDict():
                             englishEntDict[ent]=newDict
                             
                             #Write entity specific files here!
-                            idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent
+                            idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
                             filesList[0].write(idIn)
-                            attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))
+                            attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
                             filesList[1].write(attrIn)
-                            langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)
+                            langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
                             filesList[3].write(langIn)
                             
                             identifier+=1
@@ -139,7 +139,7 @@ def constructEnglishEntityDict():
                         relationsDict[relation]=identifierRels
                         relId=identifierRels
                         identifierRels+=1
-                    relIn=str(previousIdentifiers[0])+"\t"+str(relId)+"\t"+str(previousIdentifiers[1])
+                    relIn=str(previousIdentifiers[0])+"\t"+str(relId)+"\t"+str(previousIdentifiers[1])+"\n"
                     filesList[2].write(relIn)
     with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
