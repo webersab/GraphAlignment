@@ -114,7 +114,7 @@ def constructEnglishEntityDict():
                             #Write entity specific files here!
                             idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
                             filesList[0].write(idIn)
-                            attrIn='http://dbpedia.org/resource/'+ent+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
+                            attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
                             filesList[1].write(attrIn)
                             langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
                             filesList[3].write(langIn)
