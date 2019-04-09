@@ -100,8 +100,9 @@ def constructEnglishEntityDict():
                         ent=ent.lstrip()
                         ent=ent.title()
                         ent=ent.replace(" ", "_")
-                        identifier+=1
-                        if ent!="" and ent not in englishEntDict.keys():
+                        if ent=="":
+                            continue
+                        if ent not in englishEntDict.keys():
                             newDict={}
                             newDict["identifier"]=identifier
                             previousIdentifiers.append(identifier)
@@ -120,7 +121,7 @@ def constructEnglishEntityDict():
                             
                             
                             counter+=1
-                            
+                            identifier+=1
                             if counter % 1000 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
@@ -130,7 +131,6 @@ def constructEnglishEntityDict():
                             if ent!="":
                                 identifier=englishEntDict[ent]["identifier"]
                                 previousIdentifiers.append(identifier)
-                        
                         
                 elif "iv idx of" not in line and entityScope:
                     #do relation stuff with previous identifiers here
