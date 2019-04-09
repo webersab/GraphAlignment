@@ -67,13 +67,13 @@ def getGermanLink(entity):
                 if "http://dbpedia.org/resource/"+entity in line and "http://de.dbpedia.org/resource/" in line:
                     link=find_between(line, "http://de.dbpedia.org/resource/", "> .")
                     link="http://de.dbpedia.org/resource/"+link
-                    print(link)
                     return link
     return ""
     
 def constructEnglishEntityDict():
     englishEntDict={}
     identifier=0
+    counter=0
     for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
         with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
             for line in inF:
@@ -94,8 +94,12 @@ def constructEnglishEntityDict():
                             newDict["attributes"]=getAttributesFomInternet(ent,"en")
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
-                    end = time.time()
-                    print("one loop took", end - start)
+                            counter+=1
+                            if counter % 1000 == 0:
+                                end = time.time()
+                                print("1000 loop took", end - start)
+                                start = time.time()
+                                print("at ", counter, " of max 2.129.718")
     with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
     return englishEntDict
