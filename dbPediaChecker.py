@@ -95,7 +95,7 @@ def constructEnglishEntityDict():
                             newDict["germanLink"]=getGermanLink(ent)
                             englishEntDict[ent]=newDict
                             counter+=1
-                            if counter % 1000 == 0:
+                            if counter % 100 == 0:
                                 end = time.time()
                                 print("1000 loop took", end - start)
                                 start = time.time()
@@ -103,6 +103,12 @@ def constructEnglishEntityDict():
     with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
     return englishEntDict
+
+def printLanguageSpecificFiles(dict):
+    with open("/disk/scratch/sweber/"+dict+".dat", "rb") as f:
+        dictionary=pickle.load(f)
+        
+    
 
 def createAlphabetBatchesForInterlanguage():
     openFilesMap={}
