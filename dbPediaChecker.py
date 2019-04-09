@@ -130,7 +130,6 @@ def createAlphabetBatchesForAttributes():
             if "<http://de.dbpedia.org/resource/" in line:
                 entity=find_between(line, "<http://de.dbpedia.org/resource/", ">")
                 firstLetter=entity[0].lower()
-                print(firstLetter, line)
                 if firstLetter!="/" and firstLetter in openFilesMap.keys():
                     f = openFilesMap[firstLetter]
                     f.write(line)
