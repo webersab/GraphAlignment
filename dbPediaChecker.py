@@ -7,8 +7,7 @@ import pprint
 import time
 import string
 from tqdm import tqdm
-from pip._vendor.pyparsing import ident
-from distutils.filelist import FileList
+
 
 def find_between( s, first, last ):
     try:
