@@ -100,6 +100,7 @@ def constructEnglishEntityDict():
                         ent=ent.lstrip()
                         ent=ent.title()
                         ent=ent.replace(" ", "_")
+                        identifier+=1
                         if ent!="" and ent not in englishEntDict.keys():
                             newDict={}
                             newDict["identifier"]=identifier
@@ -129,7 +130,7 @@ def constructEnglishEntityDict():
                             if ent!="":
                                 identifier=englishEntDict[ent]["identifier"]
                                 previousIdentifiers.append(identifier)
-                        identifier+=1
+                        
                         
                 elif "iv idx of" not in line and entityScope:
                     #do relation stuff with previous identifiers here
