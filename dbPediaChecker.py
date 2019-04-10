@@ -277,14 +277,55 @@ def lookUpAttributes(inFile):
                     attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                     f.write(attrIn)
     
+def writeFileWithTriples():
+    #load entity dict
+    with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as h:
+        entDict=pickle.load(h)
+    #load relation dict
+    with open("/disk/scratch_big/sweber/GCN-in/relDict.dat", "rb") as g:
+        relDict=pickle.load(g)
+        
+    f=open("/disk/scratch_big/sweber/GCN-in/triplesss","a")
     
+    for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
+        with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
+            print("now in file ",filename)
+            entityScope=False
+            for line in inF:
+                if "inv idx of" in line:
+                    entityScope=True
+                    previousIdentifiers=[]
+                    doubleEnt=find_between(line, "inv idx of", " :")
+                    enti=doubleEnt.split(sep="#")
+                    for ent in enti:
+                        ent=ent.lstrip()
+                        ent=ent.title()
+                        ent=ent.replace(" ", "_")
+                        if ent=="":
+                            continue
+                        #look up entity in entity dict, 
+                        identifier=entDict[ent]
+                        previousIdentifiers.append(identifier)
+                elif "inv idx of" not in line and entityScope:
+                    relation=find_between(line, "(", ")#")
+                    if relation=="":
+                        continue
+                    relId=relDict[relation]
+                    relIn=""
+                    try:
+                        relIn=str(previousIdentifiers[0])+"\t"+str(relId)+"\t"+str(previousIdentifiers[1])+"\n"
+                    except IndexError:
+                        print("something went wrong with the previous identifier indexes")
+                    f.write(relIn)
+
 if __name__ == "__main__":
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
     #constructRelationDictionary()
-    inFile=sys.argv[1]
-    lookUpAttributes(inFile)
+    #inFile=sys.argv[1]
+    #lookUpAttributes(inFile)
+    writeFileWithTriples()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
