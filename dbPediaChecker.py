@@ -96,8 +96,11 @@ def constructEntityDictionary():
                         f.write(idIn)
                         identifier+=1
 
-    with open("/disk/scratch/sweber/GCN-in/entDict.dat", "wb") as f:
+    with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "wb") as f:
         pickle.dump(entDict, f)
+
+def constructRelationDictionary():
+    f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
     
     
     
