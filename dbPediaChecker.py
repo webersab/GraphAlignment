@@ -258,8 +258,11 @@ def lookUpInterlanguageLinks(inFile):
             for line in inF:
                 line=line.split("\t")
                 ent=line[1]
-                langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
-                f.write(langIn)
+                print(ent)
+                germanLink=getGermanLink(ent)
+                if germanLink!= "":
+                    langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
+                    f.write(langIn)
     
     
 if __name__ == "__main__":
