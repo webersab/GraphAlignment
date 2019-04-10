@@ -252,7 +252,7 @@ def createAlphabetBatchesForAttributes():
         f.close
         
 def lookUpInterlanguageLinks(inFile):
-    f=open("/disk/scratch_big/sweber/GCN-in/relDict"+inFile,"a")
+    f=open("/disk/scratch_big/sweber/GCN-in/interLang"+inFile[-3:],"a")
     
     with open("/disk/scratch_big/sweber/GCN-in/"+inFile, 'r') as inF:
             for line in inF:
