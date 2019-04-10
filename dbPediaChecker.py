@@ -70,6 +70,36 @@ def getGermanLink(entity):
                     link="http://de.dbpedia.org/resource/"+link
                     return link
     return ""
+
+def constructEntityDictionary():
+    f=open("/disk/scratch_big/sweber/GCN-in/entDict","a")
+    fileCounter=1
+    entDict={}
+    identifier=0
+    
+    for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
+        with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
+            print("now in file ",filename, fileCounter, "of 355")
+            fileCounter+=1
+            for line in inF:
+                doubleEnt=find_between(line, "inv idx of", " :")
+                enti=doubleEnt.split(sep="#")
+                for ent in enti:
+                    ent=ent.lstrip()
+                    ent=ent.title()
+                    ent=ent.replace(" ", "_")
+                    if ent=="":
+                        continue
+                    if ent not in entDict.keys():
+                        entDict[ent]=identifier
+                        idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
+                        f.write(idIn)
+                        identifier+=1
+
+    with open("/disk/scratch/sweber/GCN-in/entDict.dat", "wb") as f:
+            pickle.dump(entDict, f)
+    
+    
     
 def constructEnglishEntityDict():
     #files to be written for GCN align
@@ -142,7 +172,11 @@ def constructEnglishEntityDict():
                         relationsDict[relation]=identifierRels
                         relId=identifierRels
                         identifierRels+=1
-                    relIn=str(previousIdentifiers[0])+"\t"+str(relId)+"\t"+str(previousIdentifiers[1])+"\n"
+                    relIn=""
+                    try:
+                        relIn=str(previousIdentifiers[0])+"\t"+str(relId)+"\t"+str(previousIdentifiers[1])+"\n"
+                    except IndexError:
+                        print("something went wrong with the previous identifier indexes")
                     filesList[2].write(relIn)
     with open("/disk/scratch/sweber/englishEntDict.dat", "wb") as f:
             pickle.dump(englishEntDict, f)
@@ -196,7 +230,8 @@ def createAlphabetBatchesForAttributes():
 if __name__ == "__main__":
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
-    constructEnglishEntityDict()
+    #constructEnglishEntityDict()
+    constructEntityDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
