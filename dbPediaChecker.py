@@ -101,6 +101,27 @@ def constructEntityDictionary():
 
 def constructRelationDictionary():
     f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
+    fileCounter=1
+    relDict={}
+    identifier=200000
+    entityScope=False
+    
+    for filename in os.listdir("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f"):
+        with open("/disk/scratch_big/sweber/typed_rels_aida_figer_3_3_f/"+filename, 'r') as inF:
+            print("now in file ",filename, fileCounter, "of 355")
+            fileCounter+=1
+            for line in inF:
+                if "inv idx of" in line:
+                    entityScope=True
+                elif "inv idx of" not in line and entityScope:
+                    relation=find_between(line, "(", ")#")
+                    if relation not in relDict.keys():
+                        relDict[relation]=identifier
+                        inRel=relation+"\t"+str(identifier)+"\n"
+                        f.write(inRel)
+                        identifier+=1
+    with open("/disk/scratch_big/sweber/GCN-in/relDict.dat", "wb") as g:
+        pickle.dump(relDict, g)
     
     
     
@@ -165,7 +186,7 @@ def constructEnglishEntityDict():
                                 otherIdentifier=englishEntDict[ent]["identifier"]
                                 previousIdentifiers.append(otherIdentifier)
                         
-                elif "iv idx of" not in line and entityScope:
+                elif "inv idx of" not in line and entityScope:
                     #do relation stuff with previous identifiers here
                     #extract the relation
                     relation=find_between(line, "(", ")#")
@@ -234,7 +255,7 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
-    constructEntityDictionary()
+    constructRelationDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
