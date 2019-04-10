@@ -97,7 +97,7 @@ def constructEntityDictionary():
                         identifier+=1
 
     with open("/disk/scratch/sweber/GCN-in/entDict.dat", "wb") as f:
-            pickle.dump(entDict, f)
+        pickle.dump(entDict, f)
     
     
     
