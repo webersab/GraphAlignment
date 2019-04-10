@@ -7,6 +7,7 @@ import pprint
 import time
 import string
 from tqdm import tqdm
+import sys
 
 
 def find_between( s, first, last ):
@@ -249,13 +250,25 @@ def createAlphabetBatchesForAttributes():
                     f.write(line)
     for f in openFilesMap.values():
         f.close
+        
+def lookUpInterlanguageLinks(inFile):
+    f=open("/disk/scratch_big/sweber/GCN-in/relDict"+inFile,"a")
+    
+    with open("/disk/scratch_big/sweber/GCN-in/"+inFile, 'r') as inF:
+            for line in inF:
+                line=line.split("\t")
+                ent=line[1]
+                langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
+                f.write(langIn)
     
     
 if __name__ == "__main__":
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
-    constructRelationDictionary()
+    #constructRelationDictionary()
+    inFile=sys.argv[1]
+    lookUpInterlanguageLinks(inFile)
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
