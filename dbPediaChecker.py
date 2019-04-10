@@ -263,6 +263,17 @@ def lookUpInterlanguageLinks(inFile):
                 if germanLink!= "":
                     langIn='http://dbpedia.org/resource/'+ent+'\t'+getGermanLink(ent)+"\n"
                     f.write(langIn)
+
+def lookUpAttributes(inFile):
+    f=open("/disk/scratch_big/sweber/GCN-in/attribute"+inFile[-3:],"a")
+    
+    with open(inFile, 'r') as inF:
+            for line in inF:
+                line=line.split("\t")
+                ent=line[1]
+                ent=find_between(ent, "http://dbpedia.org/resource/", "\n")
+                attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
+                f.write(attrIn)
     
     
 if __name__ == "__main__":
@@ -271,7 +282,7 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     inFile=sys.argv[1]
-    lookUpInterlanguageLinks(inFile)
+    lookUpAttributes(inFile)
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
