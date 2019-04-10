@@ -272,8 +272,10 @@ def lookUpAttributes(inFile):
                 line=line.split("\t")
                 ent=line[1]
                 ent=find_between(ent, "http://dbpedia.org/resource/", "\n")
-                attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(getAttributesFomInternet(ent,"en"))+"\n"
-                f.write(attrIn)
+                attributes=getAttributesFomInternet(ent,"en")
+                if attributes!=[]:
+                    attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
+                    f.write(attrIn)
     
     
 if __name__ == "__main__":
