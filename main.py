@@ -223,7 +223,7 @@ if __name__ == "__main__":
             
     
         
-        """
+        
         #extract the German only entity set
         c = Parsing()
         entitySet = EntitySet()
@@ -262,7 +262,7 @@ if __name__ == "__main__":
         #pickling vector Maps for faster degbugging
         #with open(outputFolder+graphName+"2VectorMap.dat", "wb") as f:
             #pickle.dump(germanVectorMap, f)
-        with open("germanEntitySet2.dat", "wb") as f:
+        with open(outputFolder+graphName+"germanEntitySet2.dat", "wb") as f:
             pickle.dump(germanEntitySet, f)
         #with open("intersection.dat", "wb") as f:
             #pickle.dump(intersection, f)
@@ -344,7 +344,7 @@ if __name__ == "__main__":
             #pickle.dump(englishClusterList, f)
         print("done pickling")
         
-        """
+        
         #unpickle
         with open(outputFolder+graphName+"Clustered.dat", "rb") as f:
             germanClusterList=pickle.load(f)

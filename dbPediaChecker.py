@@ -8,6 +8,7 @@ import time
 import string
 from tqdm import tqdm
 import sys
+import re
 
 
 def find_between( s, first, last ):
@@ -99,6 +100,17 @@ def constructEntityDictionary():
 
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "wb") as f:
         pickle.dump(entDict, f)
+        
+def constructGermanEntityDictionary():
+    f=open("/disk/scratch_big/sweber/GCN-in/deEntDict","a")
+    fileCounter=1
+    entDict={}
+    identifier=300000
+    
+    for filename in os.listdir("/disk/scratch_big/sweber/outputPickles"):
+        z= re.match("",filename)
+        #if file.endswith(".txt"):
+    
 
 def constructRelationDictionary():
     f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
