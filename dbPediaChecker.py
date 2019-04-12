@@ -436,7 +436,7 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    #inFile=sys.argv[1]
+    inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
     writeGermanTriples(inFile)
     
