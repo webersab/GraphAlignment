@@ -437,8 +437,8 @@ if __name__ == "__main__":
     #constructRelationDictionary()
     
     inFile=sys.argv[1]
-    #lookUpAttributesDe(inFile)
-    writeGermanTriples(inFile)
+    lookUpAttributesDe(inFile)
+    #writeGermanTriples(inFile)
     
     #writeFileWithTriples()
     #constructRelationDictionary()
