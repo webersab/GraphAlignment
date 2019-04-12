@@ -330,7 +330,6 @@ def lookUpAttributes(inFile):
                     
 def lookUpAttributesDe(inFile):
     f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-5:],"a")
-    d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY","a")
     
     with open(inFile, 'r') as inF:
         for line in inF:
@@ -340,12 +339,8 @@ def lookUpAttributesDe(inFile):
             if entity!="":
                 attributes=getAttributesFromFile(entity)
                 if attributes!=[]:
-                    print(attributes)
-                    d.write(str(attributes))
                     #print(attributes)
                     attrIn='http://de.dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
-                    print(attrIn)
-                    d.write(attrIn)
                     f.write(attrIn)
     
 def writeFileWithTriples():
