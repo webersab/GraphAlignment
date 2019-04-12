@@ -462,6 +462,7 @@ def createPartialInterlanguageMapping(inFile):
                         germanLink=laLine[1]
                         germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
                         englishEnt=find_between(englishLink, "http://dbpedia.org/resource/", "")
+                        print("entities ",englishEnt,germanEnt)
                         germanNumber= -100
                         englishNumber= -100
                         if germanEnt in deEntDict.keys():
@@ -469,6 +470,7 @@ def createPartialInterlanguageMapping(inFile):
                         if englishEnt in enEntDict.keys():
                             englishNumber=enEntDict[englishEnt]
                         if germanNumber>0 and englishNumber>0:
+                            print(germanNumber,englishNumber)
                             inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
                             f.write(inStr)
                         
