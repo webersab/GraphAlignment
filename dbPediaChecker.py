@@ -331,7 +331,8 @@ def lookUpAttributesDe(inFile):
     d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY")
     
     with open(inFile, 'r') as inF:
-        d.write("processing file ",inFile)
+        st="processing file ",inFile
+        d.write(st)
         """
         for line in tqdm(inF, total=500, unit="lines"):
                 line=line.split("\t")
