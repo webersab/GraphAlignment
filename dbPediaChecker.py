@@ -449,7 +449,7 @@ def createPartialInterlanguageMapping(inFile):
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as i:
         enEntDict=pickle.load(i)
         
-    f=open("/disk/scratch_big/sweber/GCN-in/attribute"+inFile[-3:],"a")
+    f=open("/disk/scratch_big/sweber/GCN-in/numInterLang"+inFile[-3:],"a")
     
     with open(inFile, 'r') as inF:
         for line in inF:
