@@ -111,10 +111,17 @@ def constructGermanEntityDictionary():
             print(filename)
             with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'rb') as inF:
                 entitySet=pickle.load(inF)
-                for ent in entitySet:
+                for doubleEnt in entitySet:
+                    enti=doubleEnt.split(sep="#")
+                for ent in enti:
+                    ent=ent.lstrip()
+                    ent=ent.title()
+                    ent=ent.replace(" ", "_")
+                    if ent=="":
+                        continue
                     if ent not in entDict.keys():
                         entDict[ent]=identifier
-                        idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
+                        idIn=str(identifier)+"\thttp://de.dbpedia.org/resource/"+ent+"\n"
                         f.write(idIn)
                         identifier+=1
                         
