@@ -314,6 +314,7 @@ def lookUpAttributesDe(inFile):
                 ent=line[1]
                 entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
                 if entity!="":
+                    print(entity)
                     attributes=getAttributesFromFile(entity)
                     print(attributes)
                     if attributes!=[]:
