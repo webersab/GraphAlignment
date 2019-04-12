@@ -442,6 +442,38 @@ def writeFileWithTriples():
                     except IndexError:
                         print("something went wrong with the previous identifier indexes")
                     f.write(relIn)
+                    
+def createPartialInterlanguageMapping(inFile):
+    with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as h:
+        deEntDict=pickle.load(h)
+    with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as i:
+        enEntDict=pickle.load(i)
+        
+    f=open("/disk/scratch_big/sweber/GCN-in/attribute"+inFile[-3:],"a")
+    
+    with open(inFile, 'r') as inF:
+        for line in inF:
+            line=line.split("\t")
+            englishLink=line[0]
+            with open("/disk/scratch_big/sweber/GCN-in/interlanguage", 'r') as langf:
+                for langLine in langf:
+                    if englishLink in langLine:
+                        laLine=langLine.split("\t")
+                        germanLink=laLine[1]
+                        germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
+                        englishEnt=find_between(englishLink, "http://dbpedia.org/resource/", "")
+                        germanNumber= -100
+                        englishNumber= -100
+                        if germanEnt in deEntDict.keys():
+                            germanNumber=deEntDict[germanEnt]
+                        if englishEnt in enEntDict.keys():
+                            englishNumber=enEntDict[englishEnt]
+                        if germanNumber>0 and englishNumber>0:
+                            inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
+                            f.write(inStr)
+                        
+                    
+    
 
 if __name__ == "__main__":
     #constructEnglishEntityDict()
@@ -451,7 +483,8 @@ if __name__ == "__main__":
     
     inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
-    writeGermanTriples(inFile)
+    #writeGermanTriples(inFile)
+    createPartialInterlanguageMapping(inFile)
     
     #writeFileWithTriples()
     #constructRelationDictionary()
