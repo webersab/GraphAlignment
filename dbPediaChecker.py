@@ -313,11 +313,12 @@ def lookUpAttributesDe(inFile):
                 line=line.split("\t")
                 ent=line[1]
                 entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
-                attributes=getAttributesFromFile(entity)
-                if attributes!=[]:
-                    print(attributes)
-                    attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
-                    f.write(attrIn)
+                if entity!="":
+                    attributes=getAttributesFromFile(entity)
+                    if attributes!=[]:
+                        print(attributes)
+                        attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
+                        f.write(attrIn)
     
     
 def writeFileWithTriples():
