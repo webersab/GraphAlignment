@@ -6,6 +6,9 @@ class EntitySet:
     def __iter__(self):
         return iter(self.list)
     
+    def getEntity(self, index):
+        return self.list[index]
+    
     def getIndex(self, entity):
         if entity in self.list:
             #print("in set already",entity)
