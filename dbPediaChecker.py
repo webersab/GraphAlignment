@@ -155,7 +155,7 @@ def constructRelationDictionary():
         pickle.dump(relDict, g)
         
 def constructGermanRelationDictionary():
-    f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
+    f=open("/disk/scratch_big/sweber/GCN-in/deRelDict","a")
     relDict={}
     identifier=700000
     
@@ -399,6 +399,7 @@ if __name__ == "__main__":
     #lookUpAttributesDe(inFile)
     
     #writeFileWithTriples()
+    constructRelationDictionary()
     constructGermanRelationDictionary()
 
     """
