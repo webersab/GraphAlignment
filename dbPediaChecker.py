@@ -114,6 +114,7 @@ def constructGermanEntityDictionary():
                 for doubleEnt in entitySet:
                     enti=doubleEnt.split(sep="#")
                 for ent in enti:
+                    print(ent)
                     ent=ent.lstrip()
                     ent=ent.title()
                     ent=ent.replace(" ", "_")
