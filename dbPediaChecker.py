@@ -379,6 +379,8 @@ def writeGermanTriples(inVectorMap):
             values=vectorMap.get(pred)
             for tup in values:
                 entityIndex=tup[0]
+                print(entityIndex)
+                entitySet.printEntitySet()
                 entityPiar=entitySet.getEntity(entityIndex)
                 if entityPiar!=None:
                     enti=entityPiar.split("#")
