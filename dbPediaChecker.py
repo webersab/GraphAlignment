@@ -368,7 +368,7 @@ def writeGermanTriples(inVectorMap):
     for pred in vectorMap.keys():
         if pred in relDict.keys():
             relNumber=relDict[pred]
-            values=vectorMap[pred]
+            values=vectorMap.get(pred)
             for tup in values:
                 entityIndex=tup[0]
                 entityPiar=entitySet[entityIndex]
