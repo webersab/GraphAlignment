@@ -366,8 +366,12 @@ def writeGermanTriples(inVectorMap):
 
     entitySetAddress=inVectorMap[:-14]
     entitySetAddress=entitySetAddress+"germanEntitySet2.dat"
-    with open(entitySetAddress, "rb") as e:
-        entitySet=pickle.load(e)
+    try:
+        with open(entitySetAddress, "rb") as e:
+            entitySet=pickle.load(e)
+    except FileNotFoundError:
+        print("oopsy")
+        return None
         
     for pred in vectorMap.keys():
         if pred in relDict.keys():
