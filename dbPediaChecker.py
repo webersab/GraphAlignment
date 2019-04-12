@@ -113,18 +113,18 @@ def constructGermanEntityDictionary():
                 entitySet=pickle.load(inF)
                 for doubleEnt in entitySet:
                     enti=doubleEnt.split(sep="#")
-                for ent in enti:
-                    print(ent)
-                    ent=ent.lstrip()
-                    ent=ent.title()
-                    ent=ent.replace(" ", "_")
-                    if ent=="":
-                        continue
-                    if ent not in entDict.keys():
-                        entDict[ent]=identifier
-                        idIn=str(identifier)+"\thttp://de.dbpedia.org/resource/"+ent+"\n"
-                        f.write(idIn)
-                        identifier+=1
+                    for ent in enti:
+                        print(ent)
+                        ent=ent.lstrip()
+                        ent=ent.title()
+                        ent=ent.replace(" ", "_")
+                        if ent=="":
+                            continue
+                        if ent not in entDict.keys():
+                            entDict[ent]=identifier
+                            idIn=str(identifier)+"\thttp://de.dbpedia.org/resource/"+ent+"\n"
+                            f.write(idIn)
+                            identifier+=1
                         
     with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "wb") as f:
         pickle.dump(entDict, f)
