@@ -455,9 +455,11 @@ def createPartialInterlanguageMapping(inFile):
         for line in inF:
             line=line.split("\t")
             englishLink=line[0]
+            print(englishLink)
             with open("/disk/scratch_big/sweber/GCN-in/interlanguage", 'r') as langf:
                 for langLine in langf:
                     if englishLink in langLine:
+                        print(langLine)
                         laLine=langLine.split("\t")
                         germanLink=laLine[1]
                         germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
