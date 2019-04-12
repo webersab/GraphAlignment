@@ -109,8 +109,8 @@ def constructGermanEntityDictionary():
     for filename in os.listdir("/disk/scratch_big/sweber/outputPickles"):
         if filename.endswith("germanEntitySet2.dat"):
             print(filename)
-            with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'r') as inF:
-                entitySet=pickle.load(f)
+            with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'rb') as inF:
+                entitySet=pickle.load(inF)
                 for ent in entitySet:
                     if ent not in entDict.keys():
                         entDict[ent]=identifier
