@@ -356,9 +356,13 @@ def writeGermanTriples(inVectorMap):
     #load relation dict
     with open("/disk/scratch_big/sweber/GCN-in/deRelDict.dat", "rb") as g:
         relDict=pickle.load(g)
-
-    with open(inVectorMap, "rb") as f:
-        vectorMap=pickle.load(f)
+    
+    try:
+        with open(inVectorMap, "rb") as f:
+            vectorMap=pickle.load(f)
+    except FileNotFoundError:
+        print("oopsy")
+        return None
 
     entitySetAddress=inVectorMap[:-14]
     entitySetAddress=entitySetAddress+"germanEntitySet2.dat"
