@@ -482,13 +482,24 @@ def findStringOverlap():
         deEntDict=pickle.load(h)
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as i:
         enEntDict=pickle.load(i)
-        
+    
+    f=open("/disk/scratch_big/sweber/GCN-in/interLangStringMatch","a")
+    numberList=[]    
     for de in deEntDict.keys():
         if de in enEntDict.keys():
-            print(de)
+            germanNumber=deEntDict[de]
+            englishNumber=enEntDict[de]
+            numberList.append(germanNumber)
+            numberList.append(englishNumber)
+            inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
+            f.write(inStr)
     for en in enEntDict.keys():
         if en in deEntDict.keys():
-            print(en)
+            germanNumber=deEntDict[en]
+            englishNumber=enEntDict[en]
+            if germanNumber not in numberList and englishNumber not in numberList:
+                inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
+                f.write(inStr)
     
 
 if __name__ == "__main__":
