@@ -402,6 +402,7 @@ def writeGermanTriples(inVectorMap):
                     print(identifier)
                     if len(identifiers)==2:
                         inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
+                        print(inStr)
                         r.write(inStr)
                 
                 
