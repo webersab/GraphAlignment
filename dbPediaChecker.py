@@ -309,18 +309,17 @@ def lookUpAttributesDe(inFile):
     f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-5:],"a")
     
     with open(inFile, 'r') as inF:
-        for line in inF:
+        print("processing file ",inFile)
+        for line in tqdm(inF, total=500, unit="lines"):
                 line=line.split("\t")
                 ent=line[1]
                 entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
                 if entity!="":
-                    print(entity)
                     attributes=getAttributesFromFile(entity)
-                    print(attributes)
+                    #print(attributes)
                     if attributes!=[]:
                         #print(attributes)
                         attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
-                        print(attrIn)
                         f.write(attrIn)
     
     
