@@ -328,7 +328,7 @@ def lookUpAttributes(inFile):
                     
 def lookUpAttributesDe(inFile):
     f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-5:],"a")
-    d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY")
+    d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY","a")
     
     with open(inFile, 'r') as inF:
         st="processing file "+inFile
