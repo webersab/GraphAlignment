@@ -328,9 +328,11 @@ def lookUpAttributes(inFile):
                     
 def lookUpAttributesDe(inFile):
     f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-5:],"a")
-    """
+    d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY")
+    
     with open(inFile, 'r') as inF:
-        print("processing file ",inFile)
+        d.write("processing file ",inFile)
+        """
         for line in tqdm(inF, total=500, unit="lines"):
                 line=line.split("\t")
                 ent=line[1]
@@ -343,7 +345,6 @@ def lookUpAttributesDe(inFile):
                         attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                         f.write(attrIn)
     """
-    
 def writeFileWithTriples():
     #load entity dict
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as h:
