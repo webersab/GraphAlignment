@@ -371,7 +371,7 @@ def writeGermanTriples(inVectorMap):
             values=vectorMap.get(pred)
             for tup in values:
                 entityIndex=tup[0]
-                entityPiar=entitySet[entityIndex]
+                entityPiar=entitySet.getEntity(entityIndex)
                 enti=entityPiar.split("#")
                 identifiers=[]
                 for ent in enti:
@@ -436,9 +436,9 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    inFile=sys.argv[1]
-    lookUpAttributesDe(inFile)
-    #writeGermanTriples(inFile)
+    #inFile=sys.argv[1]
+    #lookUpAttributesDe(inFile)
+    writeGermanTriples(inFile)
     
     #writeFileWithTriples()
     #constructRelationDictionary()
