@@ -7,7 +7,10 @@ class EntitySet:
         return iter(self.list)
     
     def getEntity(self, index):
-        return self.list[index]
+        if index<len(list):
+            return self.list[index]
+        else:
+            return None
     
     def getIndex(self, entity):
         if entity in self.list:

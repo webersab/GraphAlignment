@@ -372,20 +372,21 @@ def writeGermanTriples(inVectorMap):
             for tup in values:
                 entityIndex=tup[0]
                 entityPiar=entitySet.getEntity(entityIndex)
-                enti=entityPiar.split("#")
-                identifiers=[]
-                for ent in enti:
-                        ent=ent.lstrip()
-                        ent=ent.title()
-                        ent=ent.replace(" ", "_")
-                        if ent=="":
-                            continue
-                        #look up entity in entity dict, 
-                        identifier=entDict[ent]
-                        identifiers.append(identifier)
-                if len(identifiers)==2:
-                    inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
-                    r.write(inStr)
+                if entityPiar!=None:
+                    enti=entityPiar.split("#")
+                    identifiers=[]
+                    for ent in enti:
+                            ent=ent.lstrip()
+                            ent=ent.title()
+                            ent=ent.replace(" ", "_")
+                            if ent=="":
+                                continue
+                            #look up entity in entity dict, 
+                            identifier=entDict[ent]
+                            identifiers.append(identifier)
+                    if len(identifiers)==2:
+                        inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
+                        r.write(inStr)
                 
                 
     
