@@ -45,7 +45,7 @@ def getAttributesFomInternet(entity,lang):
     
 def getAttributesFromFile(entity):
     foundList=[]
-    filePath="/group/project/s1782911/infobox_properties_de.ttl"
+    filePath="/disk/scratch_big/sweber/infobox_properties_de.ttl"
     propUrl='http://de.dbpedia.org/property/'
     toFind='<http://de.dbpedia.org/resource/'+entity+">"
     
@@ -304,6 +304,20 @@ def lookUpAttributes(inFile):
                 if attributes!=[]:
                     attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                     f.write(attrIn)
+                    
+def lookUpAttributesDe(inFile):
+    f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-3:],"a")
+    
+    with open(inFile, 'r') as inF:
+        for line in inF:
+                line=line.split("\t")
+                ent=line[1]
+                entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
+                attributes=getAttributesFromFile(entity)
+                if attributes!=[]:
+                    attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
+                    f.write(attrIn)
+    
     
 def writeFileWithTriples():
     #load entity dict
@@ -351,10 +365,10 @@ if __name__ == "__main__":
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
     #constructRelationDictionary()
-    #inFile=sys.argv[1]
-    #lookUpAttributes(inFile)
+    inFile=sys.argv[1]
+    lookUpAttributesDe(inFile)
     #writeFileWithTriples()
-    constructGermanEntityDictionary()
+    #constructGermanEntityDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
