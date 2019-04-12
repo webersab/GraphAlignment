@@ -316,7 +316,7 @@ def lookUpAttributesDe(inFile):
                 if entity!="":
                     attributes=getAttributesFromFile(entity)
                     if attributes!=[]:
-                        print(attributes)
+                        #print(attributes)
                         attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                         f.write(attrIn)
     
