@@ -315,9 +315,11 @@ def lookUpAttributesDe(inFile):
                 entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
                 if entity!="":
                     attributes=getAttributesFromFile(entity)
+                    print(attributes)
                     if attributes!=[]:
                         #print(attributes)
                         attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
+                        print(attrIn)
                         f.write(attrIn)
     
     
