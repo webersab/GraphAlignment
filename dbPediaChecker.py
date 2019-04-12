@@ -456,7 +456,7 @@ def createPartialInterlanguageMapping(inFile):
             line=line.split("\t")
             englishLink=line[1]
             print(englishLink)
-            with open("/disk/scratch_big/sweber/GCN-in/interlanguage", 'r') as langf:
+            with open("/disk/scratch_big/sweber/GCN-in/interLanguageLinks", 'r') as langf:
                 for langLine in langf:
                     print(langLine)
                     if englishLink in langLine:
