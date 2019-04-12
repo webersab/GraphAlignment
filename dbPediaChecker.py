@@ -396,7 +396,7 @@ def writeGermanTriples(inVectorMap):
                             identifier=entDict[ent]
                             identifiers.append(identifier)
                     if len(identifiers)==2:
-                        inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1]+"\n")
+                        inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])+"\n"
                         r.write(inStr)
                 
                 
