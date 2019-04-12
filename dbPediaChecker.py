@@ -395,11 +395,11 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    inFile=sys.argv[1]
-    lookUpAttributesDe(inFile)
+    #inFile=sys.argv[1]
+    #lookUpAttributesDe(inFile)
     
     #writeFileWithTriples()
-    #constructGermanRelationDictionary()
+    constructGermanRelationDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
