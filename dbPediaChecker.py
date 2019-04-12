@@ -45,19 +45,21 @@ def getAttributesFomInternet(entity,lang):
     
 def getAttributesFromFile(entity):
     foundList=[]
-    filePath="/disk/scratch_big/sweber/infobox_properties_de.ttl"
     propUrl='http://de.dbpedia.org/property/'
     toFind='<http://de.dbpedia.org/resource/'+entity+">"
     
-    with open(filePath, 'r') as inF:
-        for line in inF:
-            if toFind in line:
-                #print(line)
-                found=find_between(line, propUrl, ">")
-                found=propUrl+found
-                #print(found)
-                if (found!=propUrl) and (found not in foundList):
-                    foundList.append(found)
+    firstLetter=entity[0].lower()
+    if firstLetter in list(string.ascii_lowercase):
+        filePath="/disk/scratch_big/sweber/alphabetBatches/Attribute_"+firstLetter
+        with open(filePath, 'r') as inF:
+            for line in inF:
+                if toFind in line:
+                    #print(line)
+                    found=find_between(line, propUrl, ">")
+                    found=propUrl+found
+                    #print(found)
+                    if (found!=propUrl) and (found not in foundList):
+                        foundList.append(found)
                 
     return foundList
     
@@ -331,17 +333,12 @@ def lookUpAttributesDe(inFile):
     d=open("/disk/scratch_big/sweber/GCN-in/FLOPSY","a")
     
     with open(inFile, 'r') as inF:
-        st="processing file "+inFile+"\n"
-        d.write(st)
         for line in inF:
             line=line.split("\t")
             ent=line[1]
             entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
-            print(entity)
-            d.write(entity)
             if entity!="":
                 attributes=getAttributesFromFile(entity)
-                #print(attributes)
                 if attributes!=[]:
                     print(attributes)
                     d.write(str(attributes))
