@@ -59,7 +59,7 @@ def getAttributesFromFile(entity):
                 if (found!=propUrl) and (found not in foundList):
                     foundList.append(found)
                 
-    print(foundList)
+    return foundList
     
 def getGermanLink(entity):
     firstLetter=entity[0].lower()
