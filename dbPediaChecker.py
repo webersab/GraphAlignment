@@ -476,6 +476,19 @@ def createPartialInterlanguageMapping(inFile):
                             f.write(inStr)
                         
                     
+def findStringOverlap():
+    
+    with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as h:
+        deEntDict=pickle.load(h)
+    with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as i:
+        enEntDict=pickle.load(i)
+        
+    for de in deEntDict.keys():
+        if de in enEntDict.keys():
+            print(de)
+    for en in enEntDict.keys():
+        if en in deEntDict.Keys():
+            print(en)
     
 
 if __name__ == "__main__":
@@ -484,10 +497,12 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    inFile=sys.argv[1]
+    #inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
-    createPartialInterlanguageMapping(inFile)
+    #createPartialInterlanguageMapping(inFile)
+    
+    findStringOverlap()
     
     #writeFileWithTriples()
     #constructRelationDictionary()
