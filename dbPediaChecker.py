@@ -151,6 +151,27 @@ def constructRelationDictionary():
                         identifier+=1
     with open("/disk/scratch_big/sweber/GCN-in/relDict.dat", "wb") as g:
         pickle.dump(relDict, g)
+        
+def constructGermanRelationDictionary():
+    f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
+    relDict={}
+    identifier=700000
+    
+    for filename in os.listdir("/disk/scratch_big/sweber/outputPickles"):
+        if filename.endswith("2VectorMap.dat"):
+            print(filename)
+            with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'rb') as inF:
+                vectorMap=pickle.load(inF)
+                for pred in vectorMap.keys():
+                    if pred not in relDict.keys():
+                            relDict[pred]=identifier
+                            idIn=str(identifier)+"\t"+pred+"\n"
+                            f.write(idIn)
+                            identifier+=1
+                            
+    with open("/disk/scratch_big/sweber/GCN-in/deRelDict.dat", "wb") as g:
+        pickle.dump(relDict, g)
+    
     
     
     
@@ -369,10 +390,12 @@ if __name__ == "__main__":
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
     #constructRelationDictionary()
-    inFile=sys.argv[1]
-    lookUpAttributesDe(inFile)
+    
+    #inFile=sys.argv[1]
+    #lookUpAttributesDe(inFile)
+    
     #writeFileWithTriples()
-    #constructGermanEntityDictionary()
+    constructGermanRelationDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
