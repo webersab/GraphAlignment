@@ -107,7 +107,7 @@ def constructGermanEntityDictionary():
     identifier=300000
     
     for filename in os.listdir("/disk/scratch_big/sweber/outputPickles"):
-        z= re.match("german2#*germanEntitySet2.dat",filename)
+        z= re.match("*germanEntitySet2.dat",filename)
         if z:
             print(filename)
             with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'r') as inF:
