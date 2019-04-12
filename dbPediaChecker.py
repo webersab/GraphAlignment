@@ -342,6 +342,52 @@ def lookUpAttributesDe(inFile):
                     #print(attributes)
                     attrIn='http://de.dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                     f.write(attrIn)
+                    
+def writeGermanTriples(inVectorMap):
+    s=""
+    for i in inVectorMap:
+        if i.isupper():
+            s+=i
+    r=open("/disk/scratch_big/sweber/GCN-in/triples"+s,"a")
+    
+    #load entity dict
+    with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as h:
+        entDict=pickle.load(h)
+    #load relation dict
+    with open("/disk/scratch_big/sweber/GCN-in/deRelDict.dat", "rb") as g:
+        relDict=pickle.load(g)
+
+    with open(inVectorMap, "rb") as f:
+        vectorMap=pickle.load(f)
+
+    entitySetAddress=inVectorMap[:-14]
+    entitySetAddress=entitySetAddress+"germanEntitySet2.dat"
+    with open(entitySetAddress, "rb") as e:
+        entitySet=pickle.load(e)
+        
+    for pred in vectorMap.keys():
+        if pred in relDict.keys():
+            relNumber=relDict[pred]
+            values=vectorMap[pred]
+            for tup in values:
+                entityIndex=tup[0]
+                entityPiar=entitySet[entityIndex]
+                enti=entityPiar.split("#")
+                identifiers=[]
+                for ent in enti:
+                        ent=ent.lstrip()
+                        ent=ent.title()
+                        ent=ent.replace(" ", "_")
+                        if ent=="":
+                            continue
+                        #look up entity in entity dict, 
+                        identifier=entDict[ent]
+                        identifiers.append(identifier)
+                inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
+                r.write(inStr)
+                
+                
+    
     
 def writeFileWithTriples():
     #load entity dict
@@ -391,7 +437,8 @@ if __name__ == "__main__":
     #constructRelationDictionary()
     
     inFile=sys.argv[1]
-    lookUpAttributesDe(inFile)
+    #lookUpAttributesDe(inFile)
+    writeGermanTriples(inFile)
     
     #writeFileWithTriples()
     #constructRelationDictionary()
