@@ -306,7 +306,7 @@ def lookUpAttributes(inFile):
                     f.write(attrIn)
                     
 def lookUpAttributesDe(inFile):
-    f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-3:],"a")
+    f=open("/disk/scratch_big/sweber/GCN-in/deAttribute"+inFile[-5:],"a")
     
     with open(inFile, 'r') as inF:
         for line in inF:
@@ -315,6 +315,7 @@ def lookUpAttributesDe(inFile):
                 entity=find_between(ent, "http://de.dbpedia.org/resource/", "\n")
                 attributes=getAttributesFromFile(entity)
                 if attributes!=[]:
+                    print(attributes)
                     attrIn='http://dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                     f.write(attrIn)
     
