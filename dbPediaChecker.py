@@ -366,6 +366,7 @@ def writeGermanTriples(inVectorMap):
 
     entitySetAddress=inVectorMap[:-14]
     entitySetAddress=entitySetAddress+"germanEntitySet2.dat"
+    print(entitySetAddress)
     try:
         with open(entitySetAddress, "rb") as e:
             entitySet=pickle.load(e)
