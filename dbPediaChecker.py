@@ -487,7 +487,7 @@ def findStringOverlap():
         if de in enEntDict.keys():
             print(de)
     for en in enEntDict.keys():
-        if en in deEntDict.Keys():
+        if en in deEntDict.keys():
             print(en)
     
 
