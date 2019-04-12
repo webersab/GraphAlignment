@@ -378,17 +378,13 @@ def writeGermanTriples(inVectorMap):
         if pred in relDict.keys():
             relNumber=relDict[pred]
             values=vectorMap.get(pred)
-            print("predicate ",pred,relNumber)
             for tup in values:
                 entityIndex=tup[0]
-                print(entityIndex)
                 #entitySet.printEntitySet()
                 entityPiar=entitySet.getEntity(entityIndex)
                 print(entityPiar)
                 if entityPiar!=None:
                     enti=entityPiar.split("#")
-                    print("enti")
-                    print(enti)
                     identifiers=[]
                     for ent in enti:
                             ent=ent.lstrip()
@@ -399,10 +395,8 @@ def writeGermanTriples(inVectorMap):
                             #look up entity in entity dict, 
                             identifier=entDict[ent]
                             identifiers.append(identifier)
-                    print(identifier)
                     if len(identifiers)==2:
-                        inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
-                        print(inStr)
+                        inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1]+"\n")
                         r.write(inStr)
                 
                 
