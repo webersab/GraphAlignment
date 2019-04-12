@@ -383,8 +383,9 @@ def writeGermanTriples(inVectorMap):
                         #look up entity in entity dict, 
                         identifier=entDict[ent]
                         identifiers.append(identifier)
-                inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
-                r.write(inStr)
+                if len(identifiers)==2:
+                    inStr=str(identifiers[0])+"\t"+str(relNumber)+"\t"+str(identifiers[1])
+                    r.write(inStr)
                 
                 
     
