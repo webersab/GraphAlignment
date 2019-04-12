@@ -103,14 +103,24 @@ def constructEntityDictionary():
         
 def constructGermanEntityDictionary():
     f=open("/disk/scratch_big/sweber/GCN-in/deEntDict","a")
-    fileCounter=1
     entDict={}
     identifier=300000
     
     for filename in os.listdir("/disk/scratch_big/sweber/outputPickles"):
-        z= re.match("",filename)
-        #if file.endswith(".txt"):
-    
+        z= re.match("german2#*germanEntitySet2.dat",filename)
+        if z:
+            print(filename)
+            with open("/disk/scratch_big/sweber/outputPickles/"+filename, 'r') as inF:
+                entitySet=pickle.load(f)
+                for ent in entitySet:
+                    if ent not in entDict.keys():
+                        entDict[ent]=identifier
+                        idIn=str(identifier)+"\thttp://dbpedia.org/resource/"+ent+"\n"
+                        f.write(idIn)
+                        identifier+=1
+                        
+    with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "wb") as f:
+        pickle.dump(entDict, f)
 
 def constructRelationDictionary():
     f=open("/disk/scratch_big/sweber/GCN-in/relDict","a")
@@ -337,7 +347,8 @@ if __name__ == "__main__":
     #constructRelationDictionary()
     #inFile=sys.argv[1]
     #lookUpAttributes(inFile)
-    writeFileWithTriples()
+    #writeFileWithTriples()
+    constructGermanEntityDictionary()
 
     """
     for entity in ["Wheat","Spelt","Rye","Corn","Yo_Mamma"]:
