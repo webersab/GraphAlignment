@@ -533,7 +533,8 @@ if __name__ == "__main__":
     inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
-    createPartialInterlanguageMapping(inFile)
+    #createPartialInterlanguageMapping(inFile)
+    getGermanLink(inFile)
     
     #findStringOverlap()
     
