@@ -75,6 +75,7 @@ def getGermanLink(entity):
                     print(line)
                     link=find_between(line, "http://de.dbpedia.org/resource/", ">")
                     link="http://de.dbpedia.org/resource/"+link
+                    print(link)
                     return link
     return ""
 
