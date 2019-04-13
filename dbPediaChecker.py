@@ -71,7 +71,7 @@ def getGermanLink(entity):
         filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
         with open(filePath, 'r') as inF:
             for line in inF:
-                if entity in line:
+                if str(entity) in str(line):
                     print(line)
                     link=find_between(line, "http://de.dbpedia.org/resource/", ">")
                     link="http://de.dbpedia.org/resource/"+link
