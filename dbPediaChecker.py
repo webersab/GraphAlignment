@@ -65,6 +65,7 @@ def getAttributesFromFile(entity):
     
 def getGermanLink(entity):
     firstLetter=entity[0].lower()
+    print(firstLetter)
     if firstLetter in list(string.ascii_lowercase):
         filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
         with open(filePath, 'r') as inF:
@@ -459,7 +460,6 @@ def createPartialInterlanguageMapping(inFile):
             print("english ent", englishEnt)
             if englishEnt=="":
                 continue
-            englishEnt=englishEnt.lower()
             germanLink=getGermanLink(englishEnt)
             print(germanLink)
             germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
