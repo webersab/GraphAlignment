@@ -455,6 +455,20 @@ def createPartialInterlanguageMapping(inFile):
         for line in inF:
             line=line.split("\t")
             englishLink=line[1]
+            englishEnt=find_between(englishLink, "http://dbpedia.org/resource/", "")
+            germanLink=getGermanLink(englishEnt)
+            germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
+            germanNumber= -100
+            englishNumber= -100
+            if germanEnt in deEntDict.keys():
+                germanNumber=deEntDict[germanEnt]
+            if englishEnt in enEntDict.keys():
+                englishNumber=enEntDict[englishEnt]
+            if germanNumber>0 and englishNumber>0:
+                print(germanNumber,englishNumber)
+                inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
+                f.write(inStr)
+            """
             with open("/disk/scratch_big/sweber/GCN-in/interLanguageLinks", 'r') as langf:
                 for langLine in langf:
                     if englishLink in langLine:
@@ -474,7 +488,7 @@ def createPartialInterlanguageMapping(inFile):
                             print(germanNumber,englishNumber)
                             inStr=str(germanNumber)+"\t"+str(englishNumber)+"\n"
                             f.write(inStr)
-                        
+             """           
                     
 def findStringOverlap():
     
@@ -508,12 +522,12 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    #inFile=sys.argv[1]
+    inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
-    #createPartialInterlanguageMapping(inFile)
+    createPartialInterlanguageMapping(inFile)
     
-    findStringOverlap()
+    #findStringOverlap()
     
     #writeFileWithTriples()
     #constructRelationDictionary()
