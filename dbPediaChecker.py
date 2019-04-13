@@ -455,7 +455,7 @@ def createPartialInterlanguageMapping(inFile):
         for line in inF:
             line=line.split("\t")
             englishLink=line[1]
-            englishEnt=find_between(englishLink, "http://dbpedia.org/resource/", "")
+            englishEnt=englishLink[28:]
             print("english ent", englishEnt)
             if englishEnt=="":
                 continue
