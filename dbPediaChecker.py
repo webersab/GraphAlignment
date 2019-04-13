@@ -460,6 +460,7 @@ def createPartialInterlanguageMapping(inFile):
             line=line.split("\t")
             englishLink=line[1]
             englishEnt=englishLink[28:]
+            englishEnt=englishEnt.rstrip()
             print("english ent", englishEnt)
             if englishEnt=="":
                 continue
