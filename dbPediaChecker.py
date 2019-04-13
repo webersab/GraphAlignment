@@ -66,12 +66,13 @@ def getAttributesFromFile(entity):
 def getGermanLink(entity):
     firstLetter=entity[0].lower()
     print(firstLetter)
+    print(entity)
     if firstLetter in list(string.ascii_lowercase):
         filePath="/disk/scratch_big/sweber/alphabetBatches/InterLanguage_"+firstLetter
         with open(filePath, 'r') as inF:
             for line in inF:
-                if "http://dbpedia.org/resource/"+entity in line and "http://de.dbpedia.org/resource/" in line:
-                    link=find_between(line, "http://de.dbpedia.org/resource/", "> .")
+                if ("http://dbpedia.org/resource/"+entity in line) and ("http://de.dbpedia.org/resource/" in line):
+                    link=find_between(line, "http://de.dbpedia.org/resource/", ">")
                     link="http://de.dbpedia.org/resource/"+link
                     return link
     return ""
