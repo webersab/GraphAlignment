@@ -466,7 +466,7 @@ def createPartialInterlanguageMapping(inFile):
                 continue
             germanLink=getGermanLink(englishEnt)
             print(germanLink)
-            germanEnt=find_between(germanLink, "http://de.dbpedia.org/resource/", "\n")
+            germanEnt=germanLink[31:]
             print(germanEnt)
             germanNumber= -100
             englishNumber= -100
