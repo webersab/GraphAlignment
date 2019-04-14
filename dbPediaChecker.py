@@ -498,7 +498,7 @@ def findStringOverlap():
                 f.write(inStr)
 
 def changeNamespace():
-    
+    """
     f=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ent_ids_11", "a")
     with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ent_ids_1","r") as inFile:
         for line in inFile:
@@ -506,16 +506,16 @@ def changeNamespace():
             number=int(splitLine[0])
             newNumber=number-32085
             f.write(str(newNumber)+"\t"+splitLine[1])
-    
+    """
     g=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/triples_11", "a")
     with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/leftovers/triples_1","r") as inFile:
         for line in inFile:
             splitLine=line.split("\t") 
             number=int(splitLine[0])
-            newNumber1=number-32085
-            newNumber2=int(splitLine[2])-32085
+            newNumber1=number-166042
+            newNumber2=int(splitLine[2])-166042
             g.write(str(newNumber1)+"\t"+splitLine[1]+"\t"+str(newNumber2)+"\n")
-            
+    """        
     h=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ref_ent_ids11","a")
     with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ref_ent_ids","r") as inFile:
         for line in inFile:
@@ -523,7 +523,7 @@ def changeNamespace():
             number=int(splitLine[0])
             newNumber=number-32085
             h.write(str(newNumber)+"\t"+str(splitLine[1]))
-                   
+    """               
         
     
 
