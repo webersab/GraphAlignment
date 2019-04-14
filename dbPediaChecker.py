@@ -527,15 +527,16 @@ def changeNamespace():
     
 
 if __name__ == "__main__":
+    changeNamespace()
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    inFile=sys.argv[1]
+    #inFile=sys.argv[1]
     #lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
-    createPartialInterlanguageMapping(inFile)
+    #createPartialInterlanguageMapping(inFile)
     #getGermanLink("Zhengzhou")
     
     #findStringOverlap()
