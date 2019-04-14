@@ -508,7 +508,7 @@ def changeNamespace():
             f.write(str(newNumber)+"\t"+splitLine[1])
     """
     g=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/triples_11", "a")
-    with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/triples_1","r") as inFile:
+    with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/leftovers/triples_1","r") as inFile:
         for line in inFile:
             splitLine=line.split("\t") 
             number=int(splitLine[0])
