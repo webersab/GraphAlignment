@@ -504,7 +504,7 @@ def changeNamespace():
         for line in inFile:
             splitLine=line.split("\t") 
             number=int(splitLine[0])
-            newNumber=number-32065
+            newNumber=number-32085
             f.write(str(newNumber)+"\t"+splitLine[1])
     
     g=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/triples_11", "a")
@@ -512,8 +512,8 @@ def changeNamespace():
         for line in inFile:
             splitLine=line.split("\t") 
             number=int(splitLine[0])
-            newNumber1=number-32065
-            newNumber2=int(splitLine[2])-32065
+            newNumber1=number-32085
+            newNumber2=int(splitLine[2])-32085
             g.write(str(newNumber1)+"\t"+splitLine[1]+"\t"+str(newNumber2)+"\n")
             
     h=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ref_ent_ids11","a")
@@ -521,7 +521,7 @@ def changeNamespace():
         for line in inFile:
             splitLine=line.split("\t") 
             number=int(splitLine[0])
-            newNumber=number-32065
+            newNumber=number-32085
             h.write(str(newNumber)+"\t"+str(splitLine[1]))
                    
         
