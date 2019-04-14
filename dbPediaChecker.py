@@ -514,7 +514,7 @@ def changeNamespace():
             number=int(splitLine[0])
             newNumber1=number-133957
             newNumber2=int(splitLine[2])-133957
-            g.write(str(newNumber1)+"\t"+str(newNumber2)+"\n")
+            g.write(str(newNumber1)+"\t"+splitLine[1]+"\t"+str(newNumber2)+"\n")
     """        
     h=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ref_ent_ids11","a")
     with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ref_ent_ids","r") as inFile:
