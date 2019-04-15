@@ -537,14 +537,15 @@ def removeUselessMistakeIMadeInThatAttributeFile():
     
 
 if __name__ == "__main__":
-    changeNamespace()
+    removeUselessMistakeIMadeInThatAttributeFile()
+    #changeNamespace()
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    inFile=sys.argv[1]
-    lookUpAttributesDe(inFile)
+    #inFile=sys.argv[1]
+    #lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
     #createPartialInterlanguageMapping(inFile)
     #getGermanLink("Zhengzhou")
