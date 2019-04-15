@@ -340,6 +340,7 @@ def lookUpAttributesDe(inFile):
                 attributes=getAttributesFromFile(entity)
                 if attributes!=[]:
                     #print(attributes)
+                    ent=ent[:-1]
                     attrIn='http://de.dbpedia.org/resource/'+ent+"\t"+'\t'.join(attributes)+"\n"
                     f.write(attrIn)
                     
@@ -534,8 +535,8 @@ if __name__ == "__main__":
     #constructEnglishEntityDict()
     #constructRelationDictionary()
     
-    #inFile=sys.argv[1]
-    #lookUpAttributesDe(inFile)
+    inFile=sys.argv[1]
+    lookUpAttributesDe(inFile)
     #writeGermanTriples(inFile)
     #createPartialInterlanguageMapping(inFile)
     #getGermanLink("Zhengzhou")
