@@ -524,7 +524,15 @@ def changeNamespace():
             number=int(splitLine[0])
             newNumber=number-32085
             h.write(str(newNumber)+"\t"+str(splitLine[1]))
-    """               
+    """ 
+    
+def removeUselessMistakeIMadeInThatAttributeFile():
+    f=open("/disk/scratch_big/sweber/GCN-Align/data/de_en/ACTUALtraining_attributes_1")
+    with open("/disk/scratch_big/sweber/GCN-Align/data/de_en/training_attributes_1","r") as file:
+        for line in file:
+            lineN=line[31:]
+            f.write(lineN)
+                      
         
     
 
