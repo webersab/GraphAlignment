@@ -21,9 +21,9 @@ if __name__ == "__main__":
             for line in inF:
                 if "lambda" in line and not passedLambda:
                     G = nx.Graph()
-                    #lambdaVal=line[8:12]
-                    nums=[int(s) for s in line.split() if s.isdigit()]
-                    lambdaVal=nums[0]
+                    lambdaVal=line[8:12]
+                    #nums=[int(s) for s in line.split() if s.isdigit()]
+                    #lambdaVal=nums[0]
                     passedLambda=True
                 elif "lambda" in line and passedLambda:
                     E=nx.connected_components(G)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
                             #print(G.node[number])
                             f.write(str(G.node[number])+"\n")
                     G = nx.Graph()
-                    lambdaVal=line[8:]
+                    lambdaVal=line[8:12]
                 elif "component" in line:
                     passedComponent=True
                     lineSplit=line.split()
