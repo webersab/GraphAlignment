@@ -24,9 +24,11 @@ if __name__ == "__main__":
                     lambdaVal=line[8:12]
                     passedLambda=True
                     passedComponent=False
+                    firstLine=line
                 elif "lambda" in line and passedLambda:
                     E=nx.connected_components(G)
                     f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename+str(lambdaVal),"a")
+                    f.write(firstLine)
                     for n in E: 
                         #print("-----------------------------------")
                         f.write("\n-------------------------\n")
@@ -36,6 +38,7 @@ if __name__ == "__main__":
                     G = nx.Graph()
                     lambdaVal=line[8:12]
                     passedComponent=False
+                    firstLine=line
                 elif "component" in line:
                     passedComponent=True
                     lineSplit=line.split()
@@ -45,7 +48,7 @@ if __name__ == "__main__":
                 elif "component" not in line and passedComponent and line!="" and "=>" not in line:
                     name="verb"+str(counter)
                     counter+=1
-                    if line!="\n":
+                    if line!="\n" and number!=-100:
                         G.node[number][name]=line
                 elif "component" not in line and passedComponent and line!="" and "=>" in line: 
                     lineSplit=line.split()
