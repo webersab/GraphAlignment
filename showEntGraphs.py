@@ -52,13 +52,6 @@ if __name__ == "__main__":
                 elif line=="":
                     passedComponent=False
                     
-            E=nx.connected_components(G)
-            for n in E: 
-                print("-----------------------------------")
-                f.write("\n-------------------------\n")
-                for number in n:
-                    print(G.node[number])
-                    f.write(str(G.node[number])+"\n")
                 
         #nx.draw_networkx_edges(n,pos=nx.spring_layout(n))
         #plt.show()
