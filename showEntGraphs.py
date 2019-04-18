@@ -27,10 +27,10 @@ if __name__ == "__main__":
                     E=nx.connected_components(G)
                     f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename+lambdaVal,"a")
                     for n in E: 
-                        print("-----------------------------------")
+                        #print("-----------------------------------")
                         f.write("\n-------------------------\n")
                         for number in n:
-                            print(G.node[number])
+                            #print(G.node[number])
                             f.write(str(G.node[number])+"\n")
                     G = nx.Graph()
                     lambdaVal=line[8:]
