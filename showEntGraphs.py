@@ -21,7 +21,7 @@ if __name__ == "__main__":
             for line in inF:
                 if "lambda" in line and not passedLambda:
                     G = nx.Graph()
-                    lambdaVal=line[8:]
+                    lambdaVal=line[8:12]
                     passedLambda=True
                 elif "lambda" in line and passedLambda:
                     E=nx.connected_components(G)
