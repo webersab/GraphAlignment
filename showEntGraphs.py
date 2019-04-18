@@ -21,11 +21,13 @@ if __name__ == "__main__":
             for line in inF:
                 if "lambda" in line and not passedLambda:
                     G = nx.Graph()
-                    lambdaVal=line[8:12]
+                    #lambdaVal=line[8:12]
+                    nums=[int(s) for s in line.split() if s.isdigit()]
+                    lambdaVal=nums[0]
                     passedLambda=True
                 elif "lambda" in line and passedLambda:
                     E=nx.connected_components(G)
-                    f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename+lambdaVal,"a")
+                    f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename+str(lambdaVal),"a")
                     for n in E: 
                         #print("-----------------------------------")
                         f.write("\n-------------------------\n")
