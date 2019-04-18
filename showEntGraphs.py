@@ -16,7 +16,7 @@ if __name__ == "__main__":
     lambdaVal=0
     
     for filename in os.listdir("/disk/scratch_big/sweber/entGraph/justGraphs"):
-        with open(filename, 'r') as inF:
+        with open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename, 'r') as inF:
             number=-100
             for line in inF:
                 if "lambda" in line and not passedLambda:
@@ -25,7 +25,7 @@ if __name__ == "__main__":
                     passedLambda=True
                 elif "lambda" in line and passedLambda:
                     E=nx.connected_components(G)
-                    f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename[45:]+lambdaVal,"a")
+                    f=open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename+lambdaVal,"a")
                     for n in E: 
                         print("-----------------------------------")
                         f.write("\n-------------------------\n")
