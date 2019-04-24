@@ -538,7 +538,7 @@ def tagBilingualInTriples(inFileEn, inFileDe):
     f=open("/disk/scratch_big/sweber/bilingualTriples.txt","a")
     with open(inFileEn) as file:
         for line in file:
-            newLine=[]
+            newLine=[0,0,0]
             elements=line.strip().split("\t")
             count=0
             for el in elements:
@@ -557,7 +557,7 @@ def tagBilingualInTriples(inFileEn, inFileDe):
     
     with open(inFileDe) as otherFile:
         for line in otherFile:
-            newLine=[]
+            newLine=[0,0,0]
             elements=line.strip().split("\t")
             count=0
             for el in elements:
