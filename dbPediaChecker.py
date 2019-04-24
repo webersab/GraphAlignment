@@ -532,12 +532,54 @@ def removeUselessMistakeIMadeInThatAttributeFile():
         for line in file:
             lineN=line[31:]
             f.write(lineN)
-                      
+            
+def tagBilingualInTriples(inFileEn, inFileDe):
+    germanEnglishDict={}
+    f=open("/disk/scratch_big/sweber/bilingualTriples.txt")
+    with open(inFileEn) as file:
+        for line in file:
+            newLine=[]
+            elements=line.strip().split("\t")
+            count=0
+            for el in elements:
+                if count !=1:
+                    germanLink=getGermanLink(el)
+                    if germanLink!="":
+                        germanEnglishDict[germanLink[31:]]=el
+                        newLine[count]=el+"::bi"
+                    else:
+                        newLine[count]=el+"::en"
+                else:
+                    newLine[count]=el+"::en"
+                count+=1 
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
+    
+    with open(inFileDe) as otherFile:
+        for line in otherFile:
+            newLine=[]
+            elements=line.strip().split("\t")
+            count=0
+            for el in elements:
+                if count !=1:
+                    if el in germanEnglishDict.keys():
+                        newLine[count]=germanEnglishDict(el)+"::bi"
+                    else:
+                        newLine[count]=el+"::de"
+                else:
+                    newLine[count]=el+"::de"
+                count+=1 
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
+                                
         
     
 
 if __name__ == "__main__":
-    removeUselessMistakeIMadeInThatAttributeFile()
+    tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
+    
+    
+    #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()
     #constructEnglishEntityDict()
     #createAlphabetBatchesForAttributes()

@@ -642,6 +642,8 @@ def checkIfPredicatePairInCluster(typePair,pred1,pred2):
 if __name__ == "__main__":
     #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
     
+    
+    
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
     
