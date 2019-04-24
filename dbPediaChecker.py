@@ -535,7 +535,7 @@ def removeUselessMistakeIMadeInThatAttributeFile():
             
 def tagBilingualInTriples(inFileEn, inFileDe):
     germanEnglishDict={}
-    f=open("/disk/scratch_big/sweber/bilingualTriples.txt")
+    f=open("/disk/scratch_big/sweber/bilingualTriples.txt","a")
     with open(inFileEn) as file:
         for line in file:
             newLine=[]
