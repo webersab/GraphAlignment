@@ -533,7 +533,7 @@ def treeToPredMapSimple(d):
     mapOfPredicates={}
     typePairList=getAllTypePairsOfSentence(d)
     for i in d.nodes:
-        if d.nodes[i]['ctag']=='VERB':
+        if d.nodes[i]['ctag']=='VERB' or  d.nodes[i]['tag']=='VVPP':
             predicate=d.nodes[i]['lemma']
             if get_negation(d, i, False):
                 predicate="NEG_"+predicate
@@ -766,23 +766,75 @@ def testWithLevy(inFile):
         print("score ",str(score))
 
     return score,mapOffalsePositives, mapOffalseNegatives
+
+def testWithLevyGermanetBaseline(inFile):
+    gn = load_germanet()
+    print("loaded")
+    
+    hitCounter=0
+    failCounter=0
+    
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    with open(inFile) as file:
+        for line in tqdm(file,total=506):
+            line=line.rstrip()
+            line=line.split(". ")
+            print(line)
+            if len(line)<3:
+                print("oopsie! ",line)
+                continue
             
+            #each predicate has a list of type pairs
+            firstPredicates=extractPredicateFromSentence(model,line[0])
+            secondPredicates=extractPredicateFromSentence(model,line[1])
+            #for each combination of predictates from sentence one and two
+            hit=False
+            for pred1 in firstPredicates.keys():
+                for pred2 in secondPredicates.keys():
+                    print(pred1,pred2)
+                    #check if pred1 is in hypernym path of pred2
+                    #lemmatized= gn.lemmatise(pred2)[0]+'.v.1'
+                    lemmatized= gn.lemmatise(pred2)[0]
+                    print(lemmatized)
+                    try:
+                        synset=gn.synsets(lemmatized)
+                        hypset=gn.synset(lemmatized+'.v.1').hypernym_paths
+                        if pred1 in str(synset) or pred1 in str(hypset):
+                            hit=True
+                            #print(synset,pred1)
+                    except:
+                        print("woop")
+            if hit and line[2]=="y":
+                hitCounter+=1
+            else: 
+                failCounter+=1
+            
+    print("hits: ",hitCounter," fails: ",failCounter, " Score: ", (hitCounter/(hitCounter+failCounter)))
             
 if __name__ == "__main__":
     #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
-    
-    
-    
     print("Hello XNLITest!")
     print("begin: ",datetime.datetime.now())
+    """
+    gn = load_germanet()
+    print("loaded")
+    lemmatized= gn.lemmatise("erscheint")[0]+'.v.1'
+    print(lemmatized)
+    try:
+        synset=gn.synset(lemmatized).hypernym_paths
+        print(synset)
+    except:
+        print("woop")
+    """
+    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationOfLevyDataSet.txt")
     
-
-    score, mapOfHits, mapOfFails=testWithLevy("googleTranslationOfLevyDataSet.txt")
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
-    pp.pprint(mapOfHits)
+    pp.pprint(mapOffalsePositives)
     pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilaritiesLevy.txt",'w'))
-    pp1.pprint(mapOfFails)
+    pp1.pprint(mapOffalseNegatives)
     
 
     

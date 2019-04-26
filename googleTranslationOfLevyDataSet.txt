@@ -221,26 +221,26 @@ Tier kann Gift produzieren. Die Affen würden das Gift verschmähen. n
 Tier kann Gift produzieren. Das Gift wird Frösche töten. n
 Tier kann Gift produzieren. Das Gift wurde zum Fötus getragen. n
 Tier kann Gift produzieren. Soldaten erspähten das Gift. n
-animal can produce poison. the abyssinians have a dread of poison. n
-animal can produce poison. the poison was tried on a fowl. n
-animal can produce poison. the poison may act upon the embryo. n
-animal can produce poison. the poisons are toxic for rabbits. n
-animal can produce poison. the serpent shall have no poison. n
-animal eats corn. men stood and looked at the corn. n
-animal eats corn. corn is fed to hogs. y
-animal eats corn. the blackbirds molest the corn. n
-animal eats corn. the hogs are crammed with corn. n
-animal eats corn. the larks dropped into the corn. n
-animal eats corn. corn was fed to hogs. y
-animal eats corn. the lark soared above the corn. n
-animal eats corn. corn is fed to cattle. y
-animal eats corn. llamas loaded with corn. n
-animal eats corn. the foal is filled with corn. n
-animal eats corn. worms ravaged corn. y
-animal eats corn. the cattle were ruining the corn. n
-animal eats corn. the corn is good for cattle. y
-animal eats corn. an ox tramples corn. n
-animal eats corn. elk are fond of corn. y
+Tier kann Gift produzieren. Die Abessinier haben Giftangst. n
+Tier kann Gift produzieren. Das Gift wurde an einem Geflügel geprüft. n
+Tier kann Gift produzieren. Das Gift kann auf den Embryo wirken. n
+Tier kann Gift produzieren. Die Gifte sind giftig für Kaninchen. n
+Tier kann Gift produzieren. Die Schlange soll kein Gift haben. n
+Tier isst Mais. Männer standen und schauten auf das Korn. n
+Tier isst Mais. Mais wird an Schweine verfüttert. y
+Tier isst Mais. Die Amsel belästigen den Mais. n
+Tier isst Mais. Die Schweine sind voll mit Mais. n
+Tier isst Mais. Die Lerchen fielen in den Mais. n
+Tier isst Mais. Mais wurde an Schweine verfüttert. y
+Tier isst Mais. Die Lerche stieg über den Mais. n
+Tier isst Mais. Mais wird an Rinder verfüttert. y
+Tier isst Mais. Mit Mais beladene Lamas. n
+Tier isst Mais. Das Fohlen ist mit Mais gefüllt. n
+Tier isst Mais. Würmer verwüsteten Mais. y
+Tier isst Mais. Das Vieh zerstörte den Mais. n
+Tier isst Mais. Der Mais ist gut für Rinder. y
+Tier isst Mais. ein Ochse trampelt Mais. n
+Tier isst Mais. Elche lieben Mais. y
 Tier isst Mais. Molch pflügte den Mais. n
 Tier isst Mais. das Vieh streifte über den Mais. n
 Tier isst Mais. Das Schwein wird mit Mais gefüttert. y
