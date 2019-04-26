@@ -724,9 +724,12 @@ def testWithLevy(inFile):
     model = udp.UDPipeModel(modelfile)
     
     with open(inFile) as file:
-        for line in file:
+        for line in tqdm(file,total=506):
             line=line.rstrip()
             line=line.split(". ")
+            if len(line)<3:
+                print("oopsie! ",line)
+                continue
             
             listOfFoundClusters=[]
             typePairList=[]
