@@ -552,8 +552,8 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                 else:
                     newLine[count]=el+"::en"
                 count+=1 
-            f.write("\t".join(newLine)+"\n")
-            print("\t".join(newLine)+"\n")
+            f.write("\t".join(str(newLine))+"\n")
+            print("\t".join(str(newLine))+"\n")
     
     with open(inFileDe) as otherFile:
         for line in otherFile:
@@ -569,8 +569,8 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                 else:
                     newLine[count]=el+"::de"
                 count+=1 
-            f.write("\t".join(newLine)+"\n")
-            print("\t".join(newLine)+"\n")
+            f.write("\t".join(str(newLine))+"\n")
+            print("\t".join(str(newLine))+"\n")
                                 
         
     
