@@ -169,6 +169,66 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
 
     return counterMap, mapOffalsePositives, mapOffalseNegatives
 
+def controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList,predicateSet):
+    
+    if len(listOfFoundClusters)>0:
+        if line[2]=="y":   
+            counterMap["truePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falsePositives"]+=1
+            counterMap["entCounter"]+=1
+            counterMap["totalcounter"]+=1
+
+            innerMap={}
+            sentences=line[0]+line[1]
+            firstPredicatesKeys=list(firstPredicates.keys())
+            firstPredicatesKeys.extend(list(secondPredicates.keys()))
+            predicates=(",".join(firstPredicatesKeys))
+            s=""
+            numberOfClusters=0
+            numberOfPredicates=0
+            for cluster in listOfFoundClusters:
+                s+="||"
+                numberOfClusters+=1
+                for predicate in cluster.predicates:
+                    s+=str(predicate) 
+                    numberOfPredicates+=1
+            innerMap["predicates in same cluster"]=str(predicateSet)
+            innerMap["predicates per cluster"]=numberOfPredicates/numberOfClusters
+            innerMap["sentences"]=sentences
+            innerMap["predicates"]=predicates
+            innerMap["numberofclusters"]=len(listOfFoundClusters)
+            innerMap["TypePairList"]=set(typePairList)
+            mapOffalsePositives[counterMap["falsePositives"]]=innerMap
+    else:
+        if line[2]=="n":
+            counterMap["trueNegatives"]+=1
+            counterMap["hitcounter"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+        else:
+            counterMap["falseNegatives"]+=1
+            counterMap["neuCounter"]+=1
+            counterMap["totalcounter"]+=1
+            
+            innerMap2={}
+            sentences=line[0]+line[1]
+            firstPredicatesKeys=list(firstPredicates.keys())
+            firstPredicatesKeys.extend(list(secondPredicates.keys()))
+            predicates=(",".join(firstPredicatesKeys))
+            
+            innerMap2["TypePairlist"]= set(typePairList)
+            innerMap2["sentences"]=sentences
+            innerMap2["predicates"]=predicates
+            #innerMap2["parse"]=showDependencyParse(model, [row[1],row[2]])
+
+            mapOffalseNegatives[counterMap["falseNegatives"]]=innerMap2
+
+    return counterMap, mapOffalsePositives, mapOffalseNegatives
+
 def getSimilarities(typePair):
     
     if socket.gethostname()=="pataphysique.inf.ed.ac.uk":
@@ -645,6 +705,66 @@ def checkIfPredicatePairInCluster(typePair,pred1,pred2):
             print("length: ",len(cl.predicates))
     
 
+def testWithLevy(inFile):
+    mapOffalsePositives={}
+    mapOffalseNegatives={}
+    score=0
+    
+    counterMap={
+    "hitcounter":0,
+    "totalcounter":0,
+    "truePositives":0,
+    "trueNegatives":0,
+    "falsePositives":0,
+    "falseNegatives":0,
+    "entCounter":0,
+    "neuCounter":0}
+    
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    with open(inFile) as file:
+        for line in file:
+            line=line.rstrip()
+            line=line.split(". ")
+            
+            listOfFoundClusters=[]
+            typePairList=[]
+            
+            #each predicate has a list of type pairs
+            firstPredicates=extractPredicateFromSentence(model,line[0])
+            secondPredicates=extractPredicateFromSentence(model,line[1])
+            
+            totalPredicateSet=set()
+            #for each combination of predictates from sentence one and two
+            for pred1 in firstPredicates.keys():
+                for pred2 in secondPredicates.keys():
+                    #determine which cluster to pick dependent on predicate types
+                    overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
+                    #typePairList.append(firstPredicates[pred1])
+                    #typePairList.append("|")
+                    #typePairList.append(secondPredicates[pred2])
+                    typePairList=overlapOfTypes
+                    if len(overlapOfTypes)>0:
+                        #retrieve right cluster list
+                        for typePair in set(overlapOfTypes):
+                            clusterList=getRightClusterList(typePair)
+                            for cluster in clusterList:
+                                if len(cluster.predicates)<21:
+                                    predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                                    if predicateSet != set():
+                                        for p in predicateSet:
+                                            totalPredicateSet.add(p)
+            counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
+                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
+            
+    if counterMap["totalcounter"]>0:
+        score=counterMap["hitcounter"]/counterMap["totalcounter"]
+        print("score ",str(score))
+
+    return score,mapOffalsePositives, mapOffalseNegatives
+            
+            
 if __name__ == "__main__":
     #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
     
@@ -654,7 +774,7 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     
 
-    score, mapOfHits, mapOfFails=testGermanClusters("deXNLINoContra.tsv")
+    score, mapOfHits, mapOfFails=testWithLevy("googleTranslationOfLevyDataSet")
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
     pp.pprint(mapOfHits)
