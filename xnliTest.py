@@ -774,11 +774,11 @@ if __name__ == "__main__":
     print("begin: ",datetime.datetime.now())
     
 
-    score, mapOfHits, mapOfFails=testWithLevy("googleTranslationOfLevyDataSet")
+    score, mapOfHits, mapOfFails=testWithLevy("googleTranslationOfLevyDataSet.txt")
     
-    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilarities.txt",'w'))
+    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
     pp.pprint(mapOfHits)
-    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilarities.txt",'w'))
+    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilaritiesLevy.txt",'w'))
     pp1.pprint(mapOfFails)
     
 
