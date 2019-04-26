@@ -326,6 +326,8 @@ def testGermanClusters(xnliSlice):
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
+    sillyBaselineHits=0
+    
     with open(xnliSlice) as fd:
         rd = csv.reader(fd, delimiter="\t")
         for row in tqdm(rd,total=1660):
@@ -334,6 +336,11 @@ def testGermanClusters(xnliSlice):
             #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,row[1])
             secondPredicates=extractPredicateFromSentence(model,row[2])
+            
+            ##Pseudocode for silly baseline
+            lst3 = [value for value in firstPredicates if value in secondPredicates] 
+            if lst3!=[]:
+                sillyBaselineHits+=1 
             
             totalPredicateSet=set()
             #for each combination of predictates from sentence one and two
@@ -361,10 +368,9 @@ def testGermanClusters(xnliSlice):
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
         print("score ",str(score))
-        #print("true positives "+str(truePositives)+" of "+str(entCounter)+", "+(str(float(truePositives)/float(entCounter))))
-        #print("false positives "+str(falsePositives)+" of "+str(entCounter)+", "+(str(float(falsePositives)/float(entCounter))))
-        #print("true negatives "+str(trueNegatives)+" of "+str(neuCounter)+", "+(str(float(trueNegatives)/float(neuCounter))))
-        #print("false negatives "+str(falseNegatives)+" of "+str(neuCounter)+", "+(str(float(falseNegatives)/float(neuCounter))))
+        sillyBaselineScore=sillyBaselineHits/counterMap["totalcounter"]
+        print(" silly score: ", str(sillyBaselineScore))
+
     return score,mapOffalsePositives, mapOffalseNegatives
 
 def dependency_parse_to_graph(filename):
