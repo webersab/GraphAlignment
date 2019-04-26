@@ -546,14 +546,14 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                     germanLink=getGermanLink(el)
                     if germanLink!="":
                         germanEnglishDict[germanLink[31:]]=el
-                        newLine[count]=el+"::bi"
+                        newLine[count]=str(el)+"::bi"
                     else:
-                        newLine[count]=el+"::en"
+                        newLine[count]=str(el)+"::en"
                 else:
-                    newLine[count]=el+"::en"
+                    newLine[count]=str(el)+"::en"
                 count+=1 
-            f.write("\t".join(str(newLine))+"\n")
-            print("\t".join(str(newLine))+"\n")
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
     
     with open(inFileDe) as otherFile:
         for line in otherFile:
@@ -563,14 +563,14 @@ def tagBilingualInTriples(inFileEn, inFileDe):
             for el in elements:
                 if count !=1:
                     if el in germanEnglishDict.keys():
-                        newLine[count]=germanEnglishDict(el)+"::bi"
+                        newLine[count]=str(germanEnglishDict(el))+"::bi"
                     else:
-                        newLine[count]=el+"::de"
+                        newLine[count]=str(el)+"::de"
                 else:
-                    newLine[count]=el+"::de"
+                    newLine[count]=str(el)+"::de"
                 count+=1 
-            f.write("\t".join(str(newLine))+"\n")
-            print("\t".join(str(newLine))+"\n")
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
                                 
         
     
