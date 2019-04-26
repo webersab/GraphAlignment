@@ -551,7 +551,11 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                         newLine[count]=str(el)+"::en"
                 else:
                     newLine[count]=str(el)+"::en"
-                count+=1 
+                count+=1
+        
+            for n, i in enumerate(newLine):
+                if isinstance(i,int):
+                    newLine[n]=str(i) 
             f.write("\t".join(newLine)+"\n")
             print("\t".join(newLine)+"\n")
     
@@ -569,6 +573,10 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                 else:
                     newLine[count]=str(el)+"::de"
                 count+=1 
+            
+            for n, i in enumerate(newLine):
+                if isinstance(i,int):
+                    newLine[n]=str(i)
             f.write("\t".join(newLine)+"\n")
             print("\t".join(newLine)+"\n")
                                 
