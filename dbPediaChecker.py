@@ -9,6 +9,7 @@ import string
 from tqdm import tqdm
 import sys
 import re
+import csv
 
 
 def find_between( s, first, last ):
@@ -580,12 +581,63 @@ def tagBilingualInTriples(inFileEn, inFileDe):
             f.write("\t".join(newLine)+"\n")
             print("\t".join(newLine)+"\n")
                                 
+
+def tagBilingualInTriplesEN(inFileEn):
+    g=open("/disk/scratch_big/sweber/germanEnglishDict"+inFileEn[:4]+".tsv","a")
+    f=open("/disk/scratch_big/sweber/bilingualTriples"+inFileEn[:4]+".txt","a")
+    with open(inFileEn) as file:
+        for line in file:
+            newLine=[0,0,0]
+            elements=line.strip().split("\t")
+            count=0
+            for el in elements:
+                if count !=1:
+                    germanLink=getGermanLink(el)
+                    if germanLink!="":
+                        g.write(germanLink[31:]+"\t"+el+"\n")
+                        newLine[count]=str(el)+"::bi"
+                    else:
+                        newLine[count]=str(el)+"::en"
+                else:
+                    newLine[count]=str(el)+"::en"
+                count+=1
         
+            for n, i in enumerate(newLine):
+                if isinstance(i,int):
+                    newLine[n]=str(i) 
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
+            
+def tagBilingualInTriplesDE(inFileDe, dictFile):
+    with open(dictFile, 'r') as f:
+        reader = csv.reader(f, delimiter='\t')
+        decode = {r[0]: r[1] for r in reader}
+    
+    with open(inFileDe) as otherFile:
+        for line in otherFile:
+            newLine=[0,0,0]
+            elements=line.strip().split("\t")
+            count=0
+            for el in elements:
+                if count !=1:
+                    if el in decode.keys():
+                        newLine[count]=str(decode(el))+"::bi"
+                    else:
+                        newLine[count]=str(el)+"::de"
+                else:
+                    newLine[count]=str(el)+"::de"
+                count+=1 
+            
+            for n, i in enumerate(newLine):
+                if isinstance(i,int):
+                    newLine[n]=str(i)
+            f.write("\t".join(newLine)+"\n")
+            print("\t".join(newLine)+"\n")
     
 
 if __name__ == "__main__":
-    tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
-    
+    #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
+    tagBilingualInTriplesEN("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt")
     
     #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()

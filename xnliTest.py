@@ -774,6 +774,9 @@ def testWithLevyGermanetBaseline(inFile):
     hitCounter=0
     failCounter=0
     
+    yCount=0
+    nCount=0
+    
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
@@ -785,6 +788,11 @@ def testWithLevyGermanetBaseline(inFile):
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
+            
+            if line[2]=="y":
+                yCount+=1
+            else:
+                nCount+=1
             
             #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,line[0])
@@ -812,6 +820,7 @@ def testWithLevyGermanetBaseline(inFile):
                 failCounter+=1
             
     print("hits: ",hitCounter," fails: ",failCounter, " Score: ", (hitCounter/(hitCounter+failCounter)))
+    print( " yes: ",yCount," no: ",nCount)
             
 if __name__ == "__main__":
     #checkIfPredicatePairInCluster(('PERSON', 'MISC'), "sehen", "ansehen")
@@ -828,14 +837,14 @@ if __name__ == "__main__":
     except:
         print("woop")
     """
-    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationOfLevyDataSet.txt")
+    testWithLevyGermanetBaseline("googleTranslationOfLevyDataSet.txt")
     
-    
+    """
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
     pp.pprint(mapOffalsePositives)
     pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilaritiesLevy.txt",'w'))
     pp1.pprint(mapOffalseNegatives)
-    
+    """
 
     
     
