@@ -724,7 +724,7 @@ def testWithLevy(inFile):
     model = udp.UDPipeModel(modelfile)
     
     with open(inFile) as file:
-        for line in tqdm(file,total=506):
+        for line in tqdm(file,total=504):
             line=line.rstrip()
             line=line.split(". ")
             if len(line)<3:
@@ -737,7 +737,8 @@ def testWithLevy(inFile):
             #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,line[0])
             secondPredicates=extractPredicateFromSentence(model,line[1])
-            
+            print("predicate extraction")
+            print("predicates ", firstPredicates,secondPredicates)
             totalPredicateSet=set()
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates.keys():
