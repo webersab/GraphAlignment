@@ -583,8 +583,8 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                                 
 
 def tagBilingualInTriplesEN(inFileEn):
-    g=open("/disk/scratch_big/sweber/germanEnglishDict"+inFileEn[:4]+".tsv","a")
-    f=open("/disk/scratch_big/sweber/bilingualTriples"+inFileEn[:4]+".txt","a")
+    g=open("/disk/scratch_big/sweber/germanEnglishDict"+inFileEn[-4:]+".tsv","a")
+    f=open("/disk/scratch_big/sweber/bilingualTriples"+inFileEn[-4:]+".txt","a")
     with open(inFileEn) as file:
         for line in file:
             newLine=[0,0,0]
