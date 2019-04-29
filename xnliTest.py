@@ -42,14 +42,14 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
     pred1C=0
     pred2C=0
     predicateSet=set()
-    if pred1!="sein" and pred2!="sein" and pred1!="sagen" and pred2!="sagen" and pred1!="gehen" and pred2!="gehen" and pred1!="haben" and pred2!="haben" :
-        for predicate in cluster.predicates:
-            if ("("+pred1+".1" in str(predicate)):
-                pred1C+=1 
-                predicateSet.add(predicate)
-            if ("("+pred2+".1" in str(predicate)):
-                pred2C+=1
-                predicateSet.add(predicate)
+    #if pred1!="sein" and pred2!="sein" and pred1!="sagen" and pred2!="sagen" and pred1!="gehen" and pred2!="gehen" and pred1!="haben" and pred2!="haben" :
+    for predicate in cluster.predicates:
+        if ("("+pred1+".1" in str(predicate)):
+            pred1C+=1 
+            predicateSet.add(predicate)
+        if ("("+pred2+".1" in str(predicate)):
+            pred2C+=1
+            predicateSet.add(predicate)
     if (pred1C>0)and(pred2C>0):
         listOfFoundClusters.append(cluster)
         #print(pred1,pred2,"in",cluster.typePair)
@@ -737,8 +737,6 @@ def testWithLevy(inFile):
             #each predicate has a list of type pairs
             firstPredicates=extractPredicateFromSentence(model,line[0])
             secondPredicates=extractPredicateFromSentence(model,line[1])
-            print("predicate extraction")
-            print("predicates ", firstPredicates,secondPredicates)
             totalPredicateSet=set()
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates.keys():
@@ -757,15 +755,16 @@ def testWithLevy(inFile):
                     
                     #retrieve right cluster list
                     for typePair in set(overlapOfTypes):
+                        print("type pair ",typePair)
                         clusterList=getRightClusterList(typePair)
                         print("got cluster list")
                         print("length ",len(clusterList))
                         for cluster in clusterList:
-                            if len(cluster.predicates)<21:
-                                predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-                                if predicateSet != set():
-                                    for p in predicateSet:
-                                        totalPredicateSet.add(p)
+                            #if len(cluster.predicates)<21:
+                            predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                            if predicateSet != set():
+                                for p in predicateSet:
+                                    totalPredicateSet.add(p)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
