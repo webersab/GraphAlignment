@@ -612,6 +612,8 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
         reader = csv.reader(f, delimiter='\t')
         decode = {r[0]: r[1] for r in reader}
     
+    g=open("/disk/scratch_big/sweber/bilingualTriplesDE"+inFileDe[-4:]+".txt","a")
+    
     with open(inFileDe) as otherFile:
         for line in otherFile:
             newLine=[0,0,0]
@@ -630,7 +632,7 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
             for n, i in enumerate(newLine):
                 if isinstance(i,int):
                     newLine[n]=str(i)
-            f.write("\t".join(newLine)+"\n")
+            g.write("\t".join(newLine)+"\n")
             print("\t".join(newLine)+"\n")
     
 
