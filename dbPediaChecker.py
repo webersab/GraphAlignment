@@ -606,7 +606,6 @@ def tagBilingualInTriplesEN(inFileEn):
                 if isinstance(i,int):
                     newLine[n]=str(i) 
             f.write("\t".join(newLine)+"\n")
-            print("\t".join(newLine)+"\n")
             
 def tagBilingualInTriplesDE(inFileDe, dictFile):
     with open(dictFile, 'r') as f:
