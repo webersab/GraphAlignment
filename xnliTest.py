@@ -754,6 +754,8 @@ def testWithLevy(inFile):
                         #retrieve right cluster list
                         for typePair in set(overlapOfTypes):
                             clusterList=getRightClusterList(typePair)
+                            print("got cluster list")
+                            print(clusterList)
                             for cluster in clusterList:
                                 if len(cluster.predicates)<21:
                                     predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
