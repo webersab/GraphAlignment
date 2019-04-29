@@ -749,19 +749,23 @@ def testWithLevy(inFile):
                     #typePairList.append(firstPredicates[pred1])
                     #typePairList.append("|")
                     #typePairList.append(secondPredicates[pred2])
-                    typePairList=overlapOfTypes
+                    
                     if len(overlapOfTypes)>0:
-                        #retrieve right cluster list
-                        for typePair in set(overlapOfTypes):
-                            clusterList=getRightClusterList(typePair)
-                            print("got cluster list")
-                            print(clusterList)
-                            for cluster in clusterList:
-                                if len(cluster.predicates)<21:
-                                    predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-                                    if predicateSet != set():
-                                        for p in predicateSet:
-                                            totalPredicateSet.add(p)
+                        typePairList=overlapOfTypes
+                    else:
+                        typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
+                    
+                    #retrieve right cluster list
+                    for typePair in set(overlapOfTypes):
+                        clusterList=getRightClusterList(typePair)
+                        print("got cluster list")
+                        print("length ",len(clusterList))
+                        for cluster in clusterList:
+                            if len(cluster.predicates)<21:
+                                predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                                if predicateSet != set():
+                                    for p in predicateSet:
+                                        totalPredicateSet.add(p)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
