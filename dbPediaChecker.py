@@ -637,8 +637,7 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
 if __name__ == "__main__":
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
     inFile=sys.argv[1]
-    dictFile=sys.argv[2]
-    tagBilingualInTriplesDE(inFile,dictFile)
+    tagBilingualInTriplesDE(inFile,"/disk/scratch_big/sweber/theTotalgermanEnglishDict.tsv")
     
     #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()
