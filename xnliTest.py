@@ -743,6 +743,7 @@ def testWithLevy(inFile):
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which cluster to pick dependent on predicate types
+                    print(firstPredicates[pred1],secondPredicates[pred2])
                     overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
                     #typePairList.append(firstPredicates[pred1])
                     #typePairList.append("|")
@@ -837,14 +838,14 @@ if __name__ == "__main__":
     except:
         print("woop")
     """
-    testWithLevyGermanetBaseline("googleTranslationOfLevyDataSet.txt")
+    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationOfLevyDataSet.txt")
     
-    """
+    
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
     pp.pprint(mapOffalsePositives)
     pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilaritiesLevy.txt",'w'))
     pp1.pprint(mapOffalseNegatives)
-    """
+    
 
     
     
