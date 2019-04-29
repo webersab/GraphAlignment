@@ -754,7 +754,7 @@ def testWithLevy(inFile):
                         typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
                     
                     #retrieve right cluster list
-                    for typePair in set(overlapOfTypes):
+                    for typePair in set(typePairList):
                         print("type pair ",typePair)
                         clusterList=getRightClusterList(typePair)
                         print("got cluster list")
