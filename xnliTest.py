@@ -838,7 +838,7 @@ if __name__ == "__main__":
     except:
         print("woop")
     """
-    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationOfLevyDataSet.txt")
+    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationOfLevyDataSetBalanced.txt")
     
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
