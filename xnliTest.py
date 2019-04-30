@@ -758,7 +758,7 @@ def testWithLevy(inFile):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
                     """
-                    typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
+                    typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     typePairList.remove(("EVENT","EVENT"))
                     
                     #retrieve right cluster list
