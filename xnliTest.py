@@ -768,10 +768,10 @@ def testWithLevy(inFile):
                         print("length ",len(clusterList))
                         for cluster in clusterList:
                             if len(cluster.predicates)<21:
-                            predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-                            if predicateSet != set():
-                                for p in predicateSet:
-                                    totalPredicateSet.add(p)
+                                predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                                if predicateSet != set():
+                                    for p in predicateSet:
+                                        totalPredicateSet.add(p)
                 print(" total predicates Set", totalPredicateSet)
                 print(" list of found clusters ",listOfFoundClusters)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
