@@ -172,7 +172,8 @@ def controlForEntailment(listOfFoundClusters,row,firstPredicates,secondPredicate
 def controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,mapOffalsePositives,mapOffalseNegatives,counterMap,typePairList,predicateSet):
     
     if len(listOfFoundClusters)>0:
-        if line[2]=="y":   
+        if line[2]=="y":  
+            print("HIT!") 
             counterMap["truePositives"]+=1
             counterMap["entCounter"]+=1
             counterMap["hitcounter"]+=1
@@ -752,6 +753,9 @@ def testWithLevy(inFile):
                         typePairList=overlapOfTypes
                     else:
                         typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
+                        
+                    if len(typePairList)==0:
+                        typePairList=[("MISC","MISC")]
                     
                     #retrieve right cluster list
                     for typePair in set(typePairList):
