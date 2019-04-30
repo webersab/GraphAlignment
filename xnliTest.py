@@ -44,7 +44,6 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
     predicateSet=set()
     #if pred1!="sein" and pred2!="sein" and pred1!="sagen" and pred2!="sagen" and pred1!="gehen" and pred2!="gehen" and pred1!="haben" and pred2!="haben" :
     for predicate in cluster.predicates:
-        print("predicate in cluster ",predicate)
         if ("("+pred1+".1" in str(predicate)):
             pred1C+=1 
             predicateSet.add(predicate)
@@ -771,6 +770,7 @@ def testWithLevy(inFile):
                                 for p in predicateSet:
                                     totalPredicateSet.add(p)
                         print(" total predicates Set", totalPredicateSet)
+                        print(" list of found clusters ",listOfFoundClusters)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
