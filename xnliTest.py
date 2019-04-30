@@ -764,15 +764,15 @@ def testWithLevy(inFile):
                     #retrieve right cluster list
                     for typePair in set(typePairList):
                         clusterList=getRightClusterList(typePair)
-                        print("got cluster list")
-                        print("length ",len(clusterList))
+                        #print("got cluster list")
+                        #print("length ",len(clusterList))
                         for cluster in clusterList:
                             if len(cluster.predicates)<21:
                                 predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
                                 if predicateSet != set():
                                     for p in predicateSet:
                                         totalPredicateSet.add(p)
-                print(" total predicates Set", totalPredicateSet)
+                #print(" total predicates Set", totalPredicateSet)
                 print(" list of found clusters ",listOfFoundClusters)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
@@ -853,7 +853,7 @@ if __name__ == "__main__":
     except:
         print("woop")
     """
-    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationReduced.txt")
+    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationReduced2.txt")
     
     
     pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
