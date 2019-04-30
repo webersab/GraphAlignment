@@ -724,7 +724,7 @@ def testWithLevy(inFile):
     model = udp.UDPipeModel(modelfile)
     
     with open(inFile) as file:
-        for line in tqdm(file,total=504):
+        for line in tqdm(file,total=4894):
             line=line.rstrip()
             line=line.split(". ")
             if len(line)<3:
