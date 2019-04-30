@@ -755,7 +755,6 @@ def testWithLevy(inFile):
                     
                     #retrieve right cluster list
                     for typePair in set(typePairList):
-                        print("type pair ",typePair)
                         clusterList=getRightClusterList(typePair)
                         print("got cluster list")
                         print("length ",len(clusterList))
@@ -765,6 +764,7 @@ def testWithLevy(inFile):
                             if predicateSet != set():
                                 for p in predicateSet:
                                     totalPredicateSet.add(p)
+                            print(totalPredicateSet)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
