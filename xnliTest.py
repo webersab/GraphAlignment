@@ -728,6 +728,7 @@ def testWithLevy(inFile):
         for line in tqdm(file,total=4894):
             line=line.rstrip()
             line=line.split(". ")
+            print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -768,7 +769,7 @@ def testWithLevy(inFile):
                             if predicateSet != set():
                                 for p in predicateSet:
                                     totalPredicateSet.add(p)
-                        print(totalPredicateSet)
+                        print(" total predicates Set", totalPredicateSet)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
