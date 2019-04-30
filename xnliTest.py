@@ -52,7 +52,7 @@ def checkClusters(pred1,pred2,cluster,listOfFoundClusters):
             predicateSet.add(predicate)
     if (pred1C>0)and(pred2C>0):
         listOfFoundClusters.append(cluster)
-        #print(pred1,pred2,"in",cluster.typePair)
+        print(pred1,pred2,"in",cluster.typePair)
         return predicateSet,listOfFoundClusters
     else:
         return predicateSet,listOfFoundClusters
