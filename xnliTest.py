@@ -764,7 +764,7 @@ def testWithLevy(inFile):
                             if predicateSet != set():
                                 for p in predicateSet:
                                     totalPredicateSet.add(p)
-                            print(totalPredicateSet)
+                        print(totalPredicateSet)
             counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
                                                                                            mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
             
