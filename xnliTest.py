@@ -749,7 +749,7 @@ def testWithLevy(inFile):
                     #typePairList.append(firstPredicates[pred1])
                     #typePairList.append("|")
                     #typePairList.append(secondPredicates[pred2])
-                    
+                    """
                     if len(overlapOfTypes)>0:
                         typePairList=overlapOfTypes
                     else:
@@ -757,6 +757,9 @@ def testWithLevy(inFile):
                         
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
+                    """
+                    typePairList=itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2)
+                    typePairList.remove(("EVENT","EVENT"))
                     
                     #retrieve right cluster list
                     for typePair in set(typePairList):
