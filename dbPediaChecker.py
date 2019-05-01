@@ -637,9 +637,24 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
     
 
 if __name__ == "__main__":
+    with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as f:
+                englishDict=pickle.load(f)
+                
+    with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as g:
+                germanDict=pickle.load(g)
+    
+    with open("/disk/scratch_big/sweber/GCN-in/combinedInterLangNum","r") as inFile:
+        for line in inFile:
+            splitted=line.split("\t")
+            first=splitted[0]
+            german=germanDict[first]
+            second=splitted[1]
+            english=englishDict[second]
+            print(first,"\t",second)
+    
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
-    inFile=sys.argv[1]
-    tagBilingualInTriplesDE(inFile,"/disk/scratch_big/sweber/theTotalgermanEnglishDict.tsv")
+    #inFile=sys.argv[1]
+    #tagBilingualInTriplesDE(inFile,"/disk/scratch_big/sweber/theTotalgermanEnglishDict.tsv")
     
     #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()
