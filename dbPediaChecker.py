@@ -650,9 +650,9 @@ if __name__ == "__main__":
         for line in inFile:
             splitted=line.split("\t")
             first=splitted[0]
-            german=germanDict[first]
+            german=germanDict[int(first)]
             second=splitted[1]
-            english=englishDict[second]
+            english=englishDict[int(second)]
             print(first,"\t",second)
     
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
