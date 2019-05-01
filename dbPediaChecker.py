@@ -642,6 +642,7 @@ if __name__ == "__main__":
                 
     with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as g:
                 germanDict=pickle.load(g)
+    print(germanDict)
     
     with open("/disk/scratch_big/sweber/GCN-in/combinedInterLangNum","r") as inFile:
         for line in inFile:
