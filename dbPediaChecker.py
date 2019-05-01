@@ -638,11 +638,13 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
 
 if __name__ == "__main__":
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as f:
-                englishDict=pickle.load(f)
+                englishDict1=pickle.load(f)
                 
     with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as g:
-                germanDict=pickle.load(g)
-    print(germanDict)
+                germanDict1=pickle.load(g)
+    
+    germanDict = {v: k for k, v in germanDict1.items()}
+    englishDict = {v: k for k, v in englishDict1.items()}
     
     with open("/disk/scratch_big/sweber/GCN-in/combinedInterLangNum","r") as inFile:
         for line in inFile:
