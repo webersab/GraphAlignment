@@ -653,7 +653,7 @@ if __name__ == "__main__":
             german=germanDict[int(first)]
             second=splitted[1]
             english=englishDict[int(second)]
-            print(first,"\t",second)
+            print(german,"\t",english)
     
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
     #inFile=sys.argv[1]
