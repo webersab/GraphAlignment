@@ -605,6 +605,7 @@ def tagBilingualInTriplesEN(inFileEn):
             count=0
             for el in elements:
                 if count !=1:
+                    print(el)
                     germanLink=getGermanFromDict(el)
                     if germanLink!="":
                         newLine[count]=str(el)+"::bi"
