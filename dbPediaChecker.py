@@ -81,7 +81,7 @@ def getGermanFromDict(entity):
         reader = csv.reader(f, delimiter='\t')
         decode = {r[0]: r[1] for r in reader}
         
-    decode=dict((k.lower(), v.lower()) for k,v in decode.iteritems())
+    decode=dict((k.lower(), v.lower()) for k,v in decode.items())
         
     if entity in decode.values():
         inv_map = {v: k for k, v in decode.items()}
