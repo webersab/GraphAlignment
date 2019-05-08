@@ -642,11 +642,13 @@ if __name__ == "__main__":
                 
     with open("/disk/scratch_big/sweber/GCN-in/deEntDict.dat", "rb") as g:
                 germanDict1=pickle.load(g)
+                
+    h=open("stringDictionaryDeEn.txt","a")
     
     germanDict = {v: k for k, v in germanDict1.items()}
     englishDict = {v: k for k, v in englishDict1.items()}
     
-    with open("/disk/scratch_big/sweber/GCN-in/combinedInterLangNum","r") as inFile:
+    with open("/disk/scratch_big/sweber/GCN-in/interLanguageLinks","r") as inFile:
         for line in inFile:
             splitted=line.split("\t")
             first=splitted[0]
@@ -654,6 +656,7 @@ if __name__ == "__main__":
             second=splitted[1]
             english=englishDict[int(second)]
             print(german,"\t",english)
+            h.write(german+"\t"+english+"\n")
     
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
     #inFile=sys.argv[1]
