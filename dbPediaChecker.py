@@ -76,6 +76,19 @@ def getGermanLink(entity):
                     return link
     return ""
 
+def getGermanFromDict(entity):
+    with open("/disk/scratch_big/sweber/GraphAlignment/stringDictDeEn.tsv", 'r') as f:
+        reader = csv.reader(f, delimiter='\t')
+        decode = {r[0]: r[1] for r in reader}
+        
+    if entity in decode.values():
+        inv_map = {v: k for k, v in decode.items()}
+        return inv_map(entity)
+    else:
+        return ""
+    
+    
+
 def constructEntityDictionary():
     f=open("/disk/scratch_big/sweber/GCN-in/entDict","a")
     fileCounter=1
@@ -583,7 +596,6 @@ def tagBilingualInTriples(inFileEn, inFileDe):
                                 
 
 def tagBilingualInTriplesEN(inFileEn):
-    g=open("/disk/scratch_big/sweber/germanEnglishDict"+inFileEn[-4:]+".tsv","a")
     f=open("/disk/scratch_big/sweber/bilingualTriples"+inFileEn[-4:]+".txt","a")
     with open(inFileEn) as file:
         for line in file:
@@ -592,9 +604,8 @@ def tagBilingualInTriplesEN(inFileEn):
             count=0
             for el in elements:
                 if count !=1:
-                    germanLink=getGermanLink(el)
+                    germanLink=getGermanFromDict(el)
                     if germanLink!="":
-                        g.write(germanLink[31:]+"\t"+el+"\n")
                         newLine[count]=str(el)+"::bi"
                     else:
                         newLine[count]=str(el)+"::en"
@@ -607,8 +618,8 @@ def tagBilingualInTriplesEN(inFileEn):
                     newLine[n]=str(i) 
             f.write("\t".join(newLine)+"\n")
             
-def tagBilingualInTriplesDE(inFileDe, dictFile):
-    with open(dictFile, 'r') as f:
+def tagBilingualInTriplesDE(inFileDe):
+    with open("/disk/scratch_big/sweber/GraphAlignment/stringDictDeEn.tsv", 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         decode = {r[0]: r[1] for r in reader}
     
@@ -635,8 +646,7 @@ def tagBilingualInTriplesDE(inFileDe, dictFile):
             g.write("\t".join(newLine)+"\n")
             print("\t".join(newLine)+"\n")
     
-
-if __name__ == "__main__":
+def createStringDict():
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as f:
                 englishDict1=pickle.load(f)
                 
@@ -658,9 +668,13 @@ if __name__ == "__main__":
             print(german,"\t",english)
             h.write(german+"\t"+english+"\n")
     
+
+if __name__ == "__main__":
+    
+    
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
-    #inFile=sys.argv[1]
-    #tagBilingualInTriplesDE(inFile,"/disk/scratch_big/sweber/theTotalgermanEnglishDict.tsv")
+    inFile=sys.argv[1]
+    tagBilingualInTriplesEN(inFile)
     
     #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()
