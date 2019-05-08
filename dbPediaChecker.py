@@ -86,7 +86,7 @@ def getGermanFromDict(entity):
     if entity in decode.values():
         inv_map = {v: k for k, v in decode.items()}
         print("GOT it ",inv_map[entity])
-        return inv_map(entity)
+        return inv_map[entity]
     else:
         return ""
     
