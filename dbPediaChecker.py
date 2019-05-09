@@ -625,6 +625,8 @@ def tagBilingualInTriplesDE(inFileDe):
     with open("/disk/scratch_big/sweber/GraphAlignment/stringDictDeEn.tsv", 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         decode = {r[0]: r[1] for r in reader}
+        
+    decode=dict((k.lower(), v.lower()) for k,v in decode.items())
     
     g=open("/disk/scratch_big/sweber/bilingualTriplesDE"+inFileDe[-4:]+".txt","a")
     
@@ -647,7 +649,7 @@ def tagBilingualInTriplesDE(inFileDe):
                 if isinstance(i,int):
                     newLine[n]=str(i)
             g.write("\t".join(newLine)+"\n")
-            print("\t".join(newLine)+"\n")
+            #print("\t".join(newLine)+"\n")
     
 def createStringDict():
     with open("/disk/scratch_big/sweber/GCN-in/entDict.dat", "rb") as f:
@@ -677,7 +679,7 @@ if __name__ == "__main__":
     
     #tagBilingualInTriples("/disk/scratch_big/sweber/entGraph/typed_rels_aida_figer_3_3_fEnglish/allTuples_ptyped_uniqueEnglish.txt", "/disk/scratch_big/sweber/entGraph/justRels/allTuples_ptyped_uniqueGermanOnlyTest.txt")
     inFile=sys.argv[1]
-    tagBilingualInTriplesEN(inFile)
+    tagBilingualInTriplesDE(inFile)
     
     #removeUselessMistakeIMadeInThatAttributeFile()
     #changeNamespace()
