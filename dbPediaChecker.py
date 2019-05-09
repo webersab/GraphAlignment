@@ -638,7 +638,7 @@ def tagBilingualInTriplesDE(inFileDe):
             for el in elements:
                 if count !=1:
                     if el in decode.keys():
-                        newLine[count]=str(decode(el))+"::bi"
+                        newLine[count]=str(decode[el])+"::bi"
                     else:
                         newLine[count]=str(el)+"::de"
                 else:
