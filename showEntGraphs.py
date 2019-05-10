@@ -35,7 +35,7 @@ if __name__ == "__main__":
                         for number in n:
                             #print(G.node[number])
                             f.write(str(G.node[number])+"\n")
-                            f.write(str(G.edges(number)+"\n"))
+                            f.write(str(G.edges(number))+"\n")
                     G = nx.Graph()
                     lambdaVal=line[8:12]
                     passedComponent=False
