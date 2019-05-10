@@ -783,6 +783,83 @@ def testWithLevy(inFile):
 
     return score,mapOffalsePositives, mapOffalseNegatives
 
+def testGraphWithLevy(inFile):
+    mapOffalsePositives={}
+    mapOffalseNegatives={}
+    score=0
+    
+    counterMap={
+    "hitcounter":0,
+    "totalcounter":0,
+    "truePositives":0,
+    "trueNegatives":0,
+    "falsePositives":0,
+    "falseNegatives":0,
+    "entCounter":0,
+    "neuCounter":0}
+    
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    with open(inFile) as file:
+        for line in tqdm(file,total=4894):
+            line=line.rstrip()
+            line=line.split(". ")
+            print("line ",line)
+            if len(line)<3:
+                print("oopsie! ",line)
+                continue
+            
+            listOfFoundClusters=[]
+            typePairList=[]
+            
+            #each predicate has a list of type pairs
+            firstPredicates=extractPredicateFromSentence(model,line[0])
+            secondPredicates=extractPredicateFromSentence(model,line[1])
+            totalPredicateSet=set()
+            #for each combination of predictates from sentence one and two
+            for pred1 in firstPredicates.keys():
+                for pred2 in secondPredicates.keys():
+                    #determine which cluster to pick dependent on predicate types
+                    print(firstPredicates[pred1],secondPredicates[pred2])
+                    overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
+                    #typePairList.append(firstPredicates[pred1])
+                    #typePairList.append("|")
+                    #typePairList.append(secondPredicates[pred2])
+                    
+                    if len(overlapOfTypes)>0:
+                        typePairList=overlapOfTypes
+                    else:
+                        typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
+                        
+                    if len(typePairList)==0:
+                        typePairList=[("MISC","MISC")]
+                    
+                    #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
+                    #typePairList.remove(("EVENT","EVENT"))
+                    
+                    #retrieve right cluster list
+                    for typePair in set(typePairList):
+                        clusterList=getRightClusterList(typePair)
+                        #print("got cluster list")
+                        #print("length ",len(clusterList))
+                        for cluster in clusterList:
+                            if len(cluster.predicates)<21:
+                                predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
+                                if predicateSet != set():
+                                    for p in predicateSet:
+                                        totalPredicateSet.add(p)
+                #print(" total predicates Set", totalPredicateSet)
+                print(" list of found clusters ",listOfFoundClusters)
+            counterMap, mapOffalsePositives, mapOffalseNegatives = controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
+                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
+            
+    if counterMap["totalcounter"]>0:
+        score=counterMap["hitcounter"]/counterMap["totalcounter"]
+        print("score ",str(score))
+
+    return score,mapOffalsePositives, mapOffalseNegatives
+
 def testWithLevyGermanetBaseline(inFile):
     gn = load_germanet()
     print("loaded")
