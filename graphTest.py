@@ -174,6 +174,8 @@ if __name__ == "__main__":
     #go trough all nodes and save node that fits into list
     pred1NodesList=[]
     for n in list(G.nodes):
+        print("n ",n)
+        print(G.node[n])
         if G.node[n]["verb"]==pred1:
             pred1NodesList.append(G.node[n])
             print("Found pred 1 in ", G.node[n])
