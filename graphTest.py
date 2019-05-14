@@ -169,7 +169,7 @@ if __name__ == "__main__":
     print("created Graph")
     
     pred1="be_in"
-    pred2="visit"
+    pred2="arrive"
     
     #go trough all nodes and save node that fits into list
     pred1NodesList=[]
@@ -183,8 +183,7 @@ if __name__ == "__main__":
     #go trough list and check if pred2 is in node.successors
     print(pred1NodesList)
     for m in pred1NodesList:
-        for k in G.bfs_predecessors(m):
-            print("Bloop")
+        for k in nx.ancestors(G, m):
             print(G.node[k][name])
             if G.node[k][name]==pred2:
             #if so, call bingo
