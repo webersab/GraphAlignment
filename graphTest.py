@@ -176,14 +176,14 @@ if __name__ == "__main__":
     for n in list(G.nodes):
         print("n ",n)
         print(G.node[n])
-        if G.node[n]["verb"]==pred1:
+        if G.node[n][name]==pred1:
             pred1NodesList.append(G.node[n])
             print("Found pred 1 in ", G.node[n])
             
     #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
         for k in G.bfs_successors(m):
-            if G.node[k]["verb"]==pred2:
+            if G.node[k][name]==pred2:
             #if so, call bingo
                 print("Found pred2 in ", G.node[k])
                 print("BINGO")
