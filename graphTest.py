@@ -183,9 +183,7 @@ if __name__ == "__main__":
     #go trough list and check if pred2 is in node.successors
     print(pred1NodesList)
     for m in pred1NodesList:
-        print(str(G.predecessors(m)))
-        print(len(list(G.predecessors(m))))
-        for k in G.predecessors(m):
+        for k in G.bfs_predecessors(m):
             print("Bloop")
             print(G.node[k][name])
             if G.node[k][name]==pred2:
