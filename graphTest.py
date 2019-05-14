@@ -184,6 +184,7 @@ if __name__ == "__main__":
     for m in pred1NodesList:
         print(str(G.successors(m)))
         for k in G.successors(m):
+            print(G.node[k][name])
             if G.node[k][name]==pred2:
             #if so, call bingo
                 print("Found pred2 in ", G.node[k])
