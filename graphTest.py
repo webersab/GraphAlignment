@@ -182,7 +182,7 @@ if __name__ == "__main__":
             
     #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
-        print(str(G.successors(m))
+        print(str(G.successors(m)))
         for k in G.successors(m):
             if G.node[k][name]==pred2:
             #if so, call bingo
