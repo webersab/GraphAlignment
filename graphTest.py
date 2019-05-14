@@ -152,5 +152,39 @@ def getRightGraphFile(typePair,lambdaValue):
         outputFile=""
     
     return outputFile
+
+if __name__ == "__main__":
+    #create small directed graph with two disconected components
+    G = nx.DiGraph()
+    name="verb"
+    G.add_nodes_from([1,2,3,4,5,6,7])
+    G.node[1][name]="be_in"
+    G.node[2][name]="visit"
+    G.node[3][name]="arrive"
+    G.node[4][name]="leave"
+    G.node[5][name]="play"
+    G.node[6][name]="fail"
+    G.node[6][name]="win"
+    G.add_edges_from([(4,2),(2,1),(3,2),(7,5),(6,5)])
+    print("created Graph")
+    
+    pred1="be_in"
+    pred2="visit"
+    
+    #go trough all nodes and save node that fits into list
+    pred1NodesList=[]
+    for n in list(G.nodes):
+        if G.node[n]["verb"]==pred1:
+            pred1NodesList.append(G.node[n])
+            print("Found pred 1 in ", G.node[n])
+            
+    #go trough list and check if pred2 is in node.successors
+    for m in pred1NodesList:
+        for k in G.bfs_successors(m):
+            if G.node[k]["verb"]=pred2:
+            #if so, call bingo
+            print("Found pred2 in ", G.node[k])
+            print("BINGO")
+    
         
         
