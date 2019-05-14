@@ -181,10 +181,11 @@ if __name__ == "__main__":
             print("Found pred 1 in ", G.node[n])
             
     #go trough list and check if pred2 is in node.successors
+    print(pred1NodesList)
     for m in pred1NodesList:
-        print(str(G.successors(m)))
-        print(len(list(G.successors(m))))
-        for k in G.successors(m):
+        print(str(G.predecessors(m)))
+        print(len(list(G.predecessors(m))))
+        for k in G.predecessors(m):
             print("Bloop")
             print(G.node[k][name])
             if G.node[k][name]==pred2:
