@@ -183,8 +183,8 @@ if __name__ == "__main__":
         for k in G.bfs_successors(m):
             if G.node[k]["verb"]==pred2:
             #if so, call bingo
-            print("Found pred2 in ", G.node[k])
-            print("BINGO")
+                print("Found pred2 in ", G.node[k])
+                print("BINGO")
     
         
         
