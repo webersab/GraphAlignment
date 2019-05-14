@@ -164,7 +164,7 @@ if __name__ == "__main__":
     G.node[4][name]="leave"
     G.node[5][name]="play"
     G.node[6][name]="fail"
-    G.node[6][name]="win"
+    G.node[7][name]="win"
     G.add_edges_from([(4,2),(2,1),(3,2),(7,5),(6,5)])
     print("created Graph")
     
