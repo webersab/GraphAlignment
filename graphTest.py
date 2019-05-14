@@ -175,7 +175,7 @@ if __name__ == "__main__":
     pred1NodesList=[]
     for n in list(G.nodes):
         print("n ",n)
-        print(G.node[n])
+        print("gnode name ",G.node[n][name])
         if G.node[n][name]==pred1:
             pred1NodesList.append(n)
             print("Found pred 1 in ", G.node[n])
