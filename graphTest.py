@@ -62,7 +62,7 @@ def testGraphWithLevy(lambdaValue):
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
-                    #determine which cluster to pick dependent on predicate types
+                    #determine which graph to pick dependent on predicate types
                     print(firstPredicates[pred1],secondPredicates[pred2])
                     overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
                     
@@ -78,7 +78,7 @@ def testGraphWithLevy(lambdaValue):
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
                     
-                    #retrieve right cluster list
+                    #retrieve right graph
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         G=createGraph(graphFile)
@@ -174,8 +174,7 @@ def hasEntailment(pred1, pred2, G):
                     return True
     return False
 
-
-if __name__ == "__main__":
+def createSmallTestGraph():
     #create small directed graph with two disconected components
     G = nx.DiGraph()
     name="verb"
@@ -189,28 +188,16 @@ if __name__ == "__main__":
     G.node[7][name]="win"
     G.add_edges_from([(4,2),(2,1),(3,2),(7,5),(6,5)])
     print("created Graph")
+    return G
     
-    pred1="be_in"
-    pred2="arrive"
+
+
+if __name__ == "__main__":
+    print("Hello Levy Graph Test!")
+    print("begin: ",datetime.datetime.now())
+    lambd=sys.argv[1]
+    testGraphWithLevy(lamb)
     
-    #go trough all nodes and save node that fits into list
-    pred1NodesList=[]
-    for n in list(G.nodes):
-        print("n ",n)
-        print("gnode name ",G.node[n][name])
-        if G.node[n][name]==pred1:
-            pred1NodesList.append(n)
-            print("Found pred 1 in ", G.node[n])
-            
-    #go trough list and check if pred2 is in node.successors
-    print(pred1NodesList)
-    for m in pred1NodesList:
-        for k in nx.ancestors(G, m):
-            print(G.node[k][name])
-            if G.node[k][name]==pred2:
-            #if so, call bingo
-                print("Found pred2 in ", G.node[k])
-                print("BINGO")
     
         
         
