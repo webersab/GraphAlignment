@@ -159,6 +159,8 @@ def getRightGraphFile(typePair,lambdaValue):
     return outputFile
 
 def hasEntailment(pred1, pred2, G):
+    print("in hasEntailment")
+    print("len of G.nodes ", len(list(G.nodes)))
     # I'm using exact match here, althogh it probably wont work. 
     #Try other matches in case of low recall
     pred1NodesList=[]
