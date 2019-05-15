@@ -143,11 +143,11 @@ def getRightGraphFile(typePair,lambdaValue):
         
     try:
         outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"+lambdaValue
-    except:
+    except FileNotFoundError:
         pass
     try:
         outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"+lambdaValue
-    except:
+    except FileNotFoundError:
         outputFile=""
     
     return outputFile
