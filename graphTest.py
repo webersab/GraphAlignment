@@ -83,12 +83,13 @@ def testGraphWithLevy(lambdaValue):
                     #retrieve right graph
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
-                        G=createGraph(graphFile)
-                        if hasEntailment(pred1, pred2, G):
-                            #At this point I am only counting true positives. 
-                            #I need to implement a more detailled view of that
-                            if line[2]=="y":
-                                hits+=1
+                        if graphFile!="":
+                            G=createGraph(graphFile)
+                            if hasEntailment(pred1, pred2, G):
+                                #At this point I am only counting true positives. 
+                                #I need to implement a more detailled view of that
+                                if line[2]=="y":
+                                    hits+=1
                                 
         if hits>0:
             counterMap["hitcounter"]+=1
