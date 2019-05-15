@@ -69,11 +69,12 @@ def testGraphWithLevy(lambdaValue):
                     if len(overlapOfTypes)>0:
                         typePairList=overlapOfTypes
                     else:
-                        typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
+                        #typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
+                        typePairList=list(set(firstPredicates[pred1].append(secondPredicates[pred2]))
                         
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
-                        
+                    print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
