@@ -85,6 +85,7 @@ def testGraphWithLevy(lambdaValue):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         if graphFile!="":
                             G=createGraph(graphFile)
+                            print(pred1,pred2)
                             if hasEntailment(pred1, pred2, G):
                                 #At this point I am only counting true positives. 
                                 #I need to implement a more detailled view of that
@@ -162,8 +163,8 @@ def hasEntailment(pred1, pred2, G):
     #Try other matches in case of low recall
     pred1NodesList=[]
     for n in list(G.nodes):
-        #print("n ",n)
-        #print("gnode name ",G.node[n][name])
+        print("n ",n)
+        print("gnode name ",G.node[n][name])
         for k, v in G.node[n]: 
             print("v ", v, "pred1 ", pred1)
             if v==pred1:
