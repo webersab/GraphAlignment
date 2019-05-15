@@ -195,7 +195,7 @@ def createSmallTestGraph():
 if __name__ == "__main__":
     print("Hello Levy Graph Test!")
     print("begin: ",datetime.datetime.now())
-    lambd=sys.argv[1]
+    lamb=sys.argv[1]
     testGraphWithLevy(lamb)
     
     
