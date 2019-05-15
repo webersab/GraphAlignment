@@ -42,7 +42,7 @@ def testGraphWithLevy(lambdaValue):
     
     with open(inFile) as file:
         #4894 is the number of lines in the levy data set, change accordingly
-        for line in tqdm(file,total=4894):
+        for line in tqdm(file,total=1948):
             line=line.rstrip()
             line=line.split(". ")
             print("line ",line)
@@ -165,6 +165,7 @@ def hasEntailment(pred1, pred2, G):
         #print("n ",n)
         #print("gnode name ",G.node[n][name])
         for k, v in G.node[n]: 
+            print("v ", v, "pred1 ", pred1)
             if v==pred1:
                 pred1NodesList.append(n)
                 print("Found pred 1 in ", G.node[n])
@@ -175,6 +176,7 @@ def hasEntailment(pred1, pred2, G):
         for k in nx.ancestors(G, m):
             #print(G.node[k][name])
             for k, v in G.node[k]:
+                print("v ", v, "pred2 ", pred2)
                 if v==pred2:
                     return True
     return False
