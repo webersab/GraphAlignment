@@ -74,6 +74,7 @@ def testGraphWithLevy(lambdaValue):
                         
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
+                                          
                     print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
