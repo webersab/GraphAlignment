@@ -70,7 +70,7 @@ def testGraphWithLevy(lambdaValue):
                         typePairList=overlapOfTypes
                     else:
                         #typePairList = list(set(firstPredicates[pred1]) | set(secondPredicates[pred2])) 
-                        typePairList=list(set(firstPredicates[pred1].append(secondPredicates[pred2]))
+                        typePairList=list(set(firstPredicates[pred1].append(secondPredicates[pred2])))
                         
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
