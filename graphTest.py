@@ -25,7 +25,7 @@ def testGraphWithLevy(lambdaValue):
     score=0
     
     #TODO
-    inFile="PUTlevyCorpusHere!!"
+    inFile="googleTranslationReduced2.txt"
     
     counterMap={
     "hitcounter":0,
@@ -52,6 +52,8 @@ def testGraphWithLevy(lambdaValue):
             
             listOfFoundClusters=[]
             typePairList=[]
+            counterMap["totalcounter"]+=1
+            hits=0
             
             #each predicate has a list of type pairs
             firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
@@ -79,24 +81,21 @@ def testGraphWithLevy(lambdaValue):
                     #retrieve right cluster list
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
-                        g=createGraph(graphFile)
-                        #make graph from graph file
-                        for cluster in clusterList:
-                            if len(cluster.predicates)<21:
-                                predicateSet,listOfFoundClusters=checkClusters(pred1,pred2,cluster,listOfFoundClusters)
-                                if predicateSet != set():
-                                    for p in predicateSet:
-                                        totalPredicateSet.add(p)
-                #print(" total predicates Set", totalPredicateSet)
-                print(" list of found clusters ",listOfFoundClusters)
-            counterMap, mapOffalsePositives, mapOffalseNegatives = xnliTest.controlForEntailmentInLevy(listOfFoundClusters,line,firstPredicates,secondPredicates,
-                                                                                           mapOffalsePositives,mapOffalseNegatives,counterMap, typePairList,totalPredicateSet)
-            
+                        G=createGraph(graphFile)
+                        if hasEntailment(pred1, pred2, G):
+                            #At this point I am only counting true positives. 
+                            #I need to implement a more detailled view of that
+                            if line[2]=="y":
+                                hits+=1
+                                
+        if hits>0:
+            counterMap["hitcounter"]+=1
+
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
         print("score ",str(score))
-
     return score,mapOffalsePositives, mapOffalseNegatives
+
 
 def createGraph(graphFile):
     counter=0
@@ -152,6 +151,29 @@ def getRightGraphFile(typePair,lambdaValue):
         outputFile=""
     
     return outputFile
+
+def hasEntailment(pred1, pred2, G):
+    # I'm using exact match here, althogh it probably wont work. 
+    #Try other matches in case of low recall
+    pred1NodesList=[]
+    for n in list(G.nodes):
+        #print("n ",n)
+        #print("gnode name ",G.node[n][name])
+        for k, v in G.node[n]: 
+            if v==pred1:
+                pred1NodesList.append(n)
+                print("Found pred 1 in ", G.node[n])
+            
+    #go trough list and check if pred2 is in node.successors
+    print(pred1NodesList)
+    for m in pred1NodesList:
+        for k in nx.ancestors(G, m):
+            #print(G.node[k][name])
+            for k, v in G.node[k]:
+                if v==pred2:
+                    return True
+    return False
+
 
 if __name__ == "__main__":
     #create small directed graph with two disconected components
