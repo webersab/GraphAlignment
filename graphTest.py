@@ -151,7 +151,7 @@ def getRightGraphFile(typePair,lambdaValue):
         pass
     try:
         outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"+lambdaValue
-        fh=open(outputFolder+type1+"#"+type1+"_sim_HTLFRG"+lambdaValue, "r")
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG"+lambdaValue, "r")
     except FileNotFoundError:
         outputFile=""
     
