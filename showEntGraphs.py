@@ -7,7 +7,7 @@ def constructGraphFromFile(filename,lambdaValue):
     G = nx.Graph()
     counter=0
     passedComponent=False
-    passedRightLambda=False
+    passedRightLamda=False
     
     with open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename, 'r') as inF:
             number=-100
