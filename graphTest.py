@@ -169,7 +169,7 @@ def hasEntailment(pred1, pred2, G):
         #print("n ",n)
         #print("gnode name ",G.node[n])
         for k, v in G.node[n].items(): 
-            print("v ", v, "pred1 ", pred1)
+            #print("v ", v, "pred1 ", pred1)
             if pred1 in v:
                 pred1NodesList.append(n)
                 print("Found pred 1 in ", G.node[n])
@@ -179,7 +179,7 @@ def hasEntailment(pred1, pred2, G):
     for m in pred1NodesList:
         for k in nx.ancestors(G, m):
             #print(G.node[k][name])
-            for k, v in G.node[k].items():
+            for ke, va in G.node[k].items():
                 #print("v ", v, "pred2 ", pred2)
                 if pred2 in v:
                     print("Found pred 2 in ", G.node[k])
