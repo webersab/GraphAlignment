@@ -17,6 +17,7 @@ def constructGraphFromFile(filename,lambdaValue):
                     passedComponent=False
                     passedRightLamda=True
                     firstLine=line
+                    continue
                 elif "lambda" in line and passedRightLambda:
                     E=nx.connected_components(G)
                     return E
