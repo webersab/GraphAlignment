@@ -7,7 +7,7 @@ def constructGraphFromFile(filename,lambdaValue):
     G = nx.Graph()
     counter=0
     passedComponent=False
-    passedRightLamda=False
+    passedRightLambda=False
     
     with open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename, 'r') as inF:
             number=-100
@@ -17,27 +17,27 @@ def constructGraphFromFile(filename,lambdaValue):
                     print(line)
                     G = nx.Graph()
                     passedComponent=False
-                    passedRightLamda=True
+                    passedRightLambda=True
                     firstLine=line
                     continue
                 elif "lambda" in line and passedRightLambda:
                     print("eject here ",line)
                     E=nx.connected_components(G)
                     return E, G
-                elif "component" in line and passedRightLamda:
+                elif "component" in line and passedRightLambda:
                     print(line)
                     passedComponent=True
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
                     print("added ",number)
-                elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLamda:
+                elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLambda:
                     print(line)
                     name="verb"+str(counter)
                     counter+=1
                     if line!="\n" and number!=-100:
                         G.node[number][name]=line
-                elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLamda: 
+                elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLambda: 
                     print(line)
                     lineSplit=line.split()
                     component=lineSplit[1]
