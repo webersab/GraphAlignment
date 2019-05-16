@@ -12,6 +12,7 @@ def constructGraphFromFile(filename,lambdaValue):
     with open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename, 'r') as inF:
             number=-100
             for line in inF:
+                print(line)
                 if "lambda" in line and str(lambdaValue)==line[8:12]:
                     print("Passed the right lambda", lambdaValue)
                     G = nx.Graph()
@@ -27,7 +28,7 @@ def constructGraphFromFile(filename,lambdaValue):
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
-                    #print("added ",number)
+                    print("added ",number)
                 elif "component" not in line and passedComponent and line!="" and "=>" not in line:
                     name="verb"+str(counter)
                     counter+=1
