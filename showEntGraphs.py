@@ -13,32 +13,32 @@ def constructGraphFromFile(filename,lambdaValue):
             number=-100
             for line in inF:
                 if "lambda" in line and str(lambdaValue)==line[8:12]:
-                    print("Passed the right lambda", lambdaValue)
-                    print(line)
+                    #print("Passed the right lambda", lambdaValue)
+                    #print(line)
                     G = nx.Graph()
                     passedComponent=False
                     passedRightLambda=True
                     firstLine=line
                     continue
                 elif "lambda" in line and passedRightLambda:
-                    print("eject here ",line)
+                    #print("eject here ",line)
                     E=nx.connected_components(G)
                     return E, G
                 elif "component" in line and passedRightLambda:
-                    print(line)
+                    #print(line)
                     passedComponent=True
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
                     print("added ",number)
                 elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLambda:
-                    print(line)
+                    #print(line)
                     name="verb"+str(counter)
                     counter+=1
                     if line!="\n" and number!=-100:
                         G.node[number][name]=line
                 elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLambda: 
-                    print(line)
+                    #print(line)
                     lineSplit=line.split()
                     component=lineSplit[1]
                     G.add_edge(number, component)
@@ -109,6 +109,6 @@ if __name__ == "__main__":
     print("Hup hup graph Construct!")
     E , G = constructGraphFromFile("EVENT#LOCATION_sim_HTLFRG",0.07)
     for a in E:
-        print(a)
+        print(G.nodes[a])
                 
                 
