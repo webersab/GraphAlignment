@@ -43,7 +43,8 @@ def constructGraphFromFile(filename,lambdaValue):
                     line=line.rstrip()
                     lineSplit=line.split()
                     component=lineSplit[1]
-                    G.add_edge(number, component)
+                    #G.add_edge(number, component)
+                    G.add_edge(component, number)
                 elif line=="":
                     passedComponent=False
 
