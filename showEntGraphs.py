@@ -9,7 +9,7 @@ def constructGraphFromFile(filename,lambdaValue):
     passedComponent=False
     passedRightLambda=False
     
-    with open("/disk/scratch_big/sweber/entGraph/justGraphs/"+filename, 'r') as inF:
+    with open(filename, 'r') as inF:
             number=-100
             for line in inF:
                 if "lambda" in line and str(lambdaValue)==line[8:12]:
