@@ -172,7 +172,7 @@ def hasEntailment(pred1, pred2, G):
             #print("v ", v, "pred1 ", pred1)
             if pred1 in v:
                 pred1NodesList.append(n)
-                print("Found pred 1 in ", G.node[n])
+                #print("Found pred 1 in ", G.node[n])
             
     #go trough list and check if pred2 is in node.successors
     #print(pred1NodesList)
