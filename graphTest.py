@@ -167,7 +167,7 @@ def hasEntailment(pred1, pred2, G):
     pred1NodesList=[]
     for n in list(G.nodes):
         print("n ",n)
-        print("gnode name ",G.node[n][name])
+        print("gnode name ",G.node[n])
         for k, v in G.node[n]: 
             print("v ", v, "pred1 ", pred1)
             if v==pred1:

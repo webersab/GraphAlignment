@@ -31,7 +31,7 @@ def constructGraphFromFile(filename,lambdaValue):
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
-                    print("added ",number)
+                    #print("added ",number)
                 elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLambda:
                     #print(line)
                     name="verb"+str(counter)
