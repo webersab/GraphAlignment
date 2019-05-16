@@ -27,6 +27,7 @@ def constructGraphFromFile(filename,lambdaValue):
                 elif "component" in line and passedRightLambda:
                     #print(line)
                     passedComponent=True
+                    line=line.rstrip()
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
@@ -39,6 +40,7 @@ def constructGraphFromFile(filename,lambdaValue):
                         G.node[number][name]=line
                 elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLambda: 
                     #print(line)
+                    line=line.rstrip()
                     lineSplit=line.split()
                     component=lineSplit[1]
                     G.add_edge(number, component)

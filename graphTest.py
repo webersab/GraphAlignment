@@ -18,6 +18,7 @@ from itertools import chain
 import numpy
 import xnliTest
 import networkx as nx
+import showEntGraphs
 
 def testGraphWithLevy(lambdaValue):
     mapOffalsePositives={}
@@ -41,7 +42,7 @@ def testGraphWithLevy(lambdaValue):
     model = udp.UDPipeModel(modelfile)
     
     with open(inFile) as file:
-        #4894 is the number of lines in the levy data set, change accordingly
+        #1948 is the number of lines in the levy data set, change accordingly
         for line in tqdm(file,total=1948):
             line=line.rstrip()
             line=line.split(". ")
@@ -84,7 +85,7 @@ def testGraphWithLevy(lambdaValue):
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         if graphFile!="":
-                            G=createGraph(graphFile)
+                            E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
                             print(pred1,pred2)
                             if hasEntailment(pred1, pred2, G):
                                 #At this point I am only counting true positives. 
@@ -146,13 +147,13 @@ def getRightGraphFile(typePair,lambdaValue):
         type2=typePair[1]
         
     try:
-        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"+lambdaValue
-        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG"+lambdaValue, "r")
+        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"
+        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG", "r")
     except FileNotFoundError:
         pass
     try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"+lambdaValue
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG"+lambdaValue, "r")
+        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG", "r")
     except FileNotFoundError:
         outputFile=""
     
