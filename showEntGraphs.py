@@ -3,7 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import os
 
-def constructGraphFromFile(fileName,lambdaValue):
+def constructGraphFromFile(filename,lambdaValue):
     G = nx.Graph()
     counter=0
     passedComponent=False
