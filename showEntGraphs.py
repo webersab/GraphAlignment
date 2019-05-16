@@ -21,23 +21,23 @@ def constructGraphFromFile(filename,lambdaValue):
                     firstLine=line
                     continue
                 elif "lambda" in line and passedRightLambda:
-                    print(line)
+                    print("eject here ",line)
                     E=nx.connected_components(G)
                     return E, G
-                elif "component" in line and passedRightLambda:
+                elif "component" in line and passedRightLamda:
                     print(line)
                     passedComponent=True
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
                     print("added ",number)
-                elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLambda:
+                elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLamda:
                     print(line)
                     name="verb"+str(counter)
                     counter+=1
                     if line!="\n" and number!=-100:
                         G.node[number][name]=line
-                elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLambda: 
+                elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLamda: 
                     print(line)
                     lineSplit=line.split()
                     component=lineSplit[1]
