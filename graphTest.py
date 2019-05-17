@@ -46,7 +46,7 @@ def testGraphWithLevy(lambdaValue):
         for line in tqdm(file,total=1948):
             line=line.rstrip()
             line=line.split(". ")
-            print("line ",line)
+            #print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -75,7 +75,7 @@ def testGraphWithLevy(lambdaValue):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
                                           
-                    print(typePairList)   
+                    #print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
@@ -85,12 +85,13 @@ def testGraphWithLevy(lambdaValue):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         if graphFile!="":
                             E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                            print(pred1,pred2)
+                            #print(pred1,pred2)
                             if hasEntailment(pred1, pred2, G):
                                 #At this point I am only counting true positives. 
                                 #I need to implement a more detailled view of that
                                 if line[2]=="y":
                                     hits+=1
+                                    print("BINGO!")
                                 
         if hits>0:
             counterMap["hitcounter"]+=1
@@ -185,13 +186,13 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                print("IN SAME CLUSTER")
+                #print("IN SAME CLUSTER")
                 return True
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    print("IN GRAPH ANCESTORS")
+                    #print("IN GRAPH ANCESTORS")
                     return True
     return False
 
