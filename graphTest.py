@@ -64,7 +64,6 @@ def testGraphWithLevy(lambdaValue):
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which graph to pick dependent on predicate types
-                    print(firstPredicates[pred1],secondPredicates[pred2])
                     overlapOfTypes = [value for value in firstPredicates[pred1] if value in secondPredicates[pred2]] 
                     
                     if len(overlapOfTypes)>0:
@@ -160,10 +159,8 @@ def getRightGraphFile(typePair,lambdaValue):
     return outputFile
 
 def hasEntailment(pred1, pred2, G):
-    print("in hasEntailment")
     print("len of G.nodes ", len(list(G.nodes)))
-    # I'm using exact match here, althogh it probably wont work. 
-    #Try other matches in case of low recall
+
     pred1NodesList=[]
     for n in list(G.nodes):
         #print("n ",n)
@@ -172,13 +169,13 @@ def hasEntailment(pred1, pred2, G):
             #print("v ", v, "pred1 ", pred1)
             if pred1 in v:
                 pred1NodesList.append(n)
-                #print("Found pred 1 in ", G.node[n])
+                print("Found pred 1 in ", G.node[n])
             
     #go trough list and check if pred2 is in node.successors
-    #print(pred1NodesList)
+    print(pred1NodesList)
     for m in pred1NodesList:
         for k in nx.ancestors(G, m):
-            #print(G.node[k][name])
+            print(G.node[k])
             for ke, va in G.node[k].items():
                 #print("v ", v, "pred2 ", pred2)
                 if pred2 in v:
