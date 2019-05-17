@@ -158,6 +158,18 @@ def getRightGraphFile(typePair,lambdaValue):
     
     return outputFile
 
+def bothNegated(a,b):
+    if ("NEG" in a) and ("NEG" in b):
+        return True
+    else:
+        return False
+
+def bothNonNegated(a,b):
+    if "NEG" not in a and "NEG" not in b:
+        return True
+    else:
+        return False
+
 def hasEntailment(pred1, pred2, G):
     print("len of G.nodes ", len(list(G.nodes)))
 
@@ -167,17 +179,15 @@ def hasEntailment(pred1, pred2, G):
         #print("gnode name ",G.node[n])
         for k, v in G.node[n].items(): 
             #print("v ", v, "pred1 ", pred1)
-            if pred1 in v:
+            if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
                 pred1NodesList.append(n)
             
     #go trough list and check if pred2 is in node.successors
     print("pred1 nodes list",pred1NodesList)
     for m in pred1NodesList:
         for k in nx.ancestors(G, m):
-            #print("G.node[k]",G.node[k])
             for ke, va in G.node[k].items():
-                #print("v ", v, "pred2 ", pred2)
-                if pred2 in va:
+                if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
                     print("Found pred 2 in ", G.node[k])
                     return True
     return False
