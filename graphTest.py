@@ -172,7 +172,7 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
-    print("len of G.nodes ", len(list(G.nodes)))
+    #print("len of G.nodes ", len(list(G.nodes)))
 
     pred1NodesList=[]
     for n in list(G.nodes):
