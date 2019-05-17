@@ -25,25 +25,27 @@ def constructGraphFromFile(filename,lambdaValue):
                     E=nx.connected_components(G)
                     return E, G
                 elif "component" in line and passedRightLambda:
-                    #print(line)
+                    print(line)
                     passedComponent=True
                     line=line.rstrip()
                     lineSplit=line.split()
                     number=int(lineSplit[1])
                     G.add_node(number)
-                    #print("added ",number)
+                    print("added ",number)
                 elif "component" not in line and passedComponent and line!="" and "=>" not in line and passedRightLambda:
-                    #print(line)
+                    print(line)
+                    print("added line to number ", number)
                     name="verb"+str(counter)
                     counter+=1
                     if line!="\n" and number!=-100:
                         G.node[number][name]=line
                 elif "component" not in line and passedComponent and line!="" and "=>" in line and passedRightLambda: 
-                    #print(line)
+                    print(line)
                     line=line.rstrip()
                     lineSplit=line.split()
                     component=lineSplit[1]
                     #G.add_edge(number, component)
+                    print("added edge between ", component, number)
                     G.add_edge(component, number)
                 elif line=="":
                     passedComponent=False

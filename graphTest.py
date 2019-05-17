@@ -181,7 +181,6 @@ def hasEntailment(pred1, pred2, G):
                 pred1NodesList.append(n)
             
     #go trough list and check if pred2 is in node.successors
-    print("pred1 nodes list",pred1NodesList)
     for m in pred1NodesList:
         #test if word is in cluster
         for value in G.nodes[m].values():
@@ -193,7 +192,6 @@ def hasEntailment(pred1, pred2, G):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
                     print("IN GRAPH ANCESTORS")
-                    print("Found pred 2 in ", G.node[k])
                     return True
     return False
 
