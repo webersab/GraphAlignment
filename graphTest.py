@@ -169,16 +169,16 @@ def hasEntailment(pred1, pred2, G):
             #print("v ", v, "pred1 ", pred1)
             if pred1 in v:
                 pred1NodesList.append(n)
-                print("Found pred 1 in ", G.node[n])
+                print("Found pred 1 ")
             
     #go trough list and check if pred2 is in node.successors
     print("pred1 nodes list",pred1NodesList)
     for m in pred1NodesList:
         for k in nx.ancestors(G, m):
-            print("G.node[k]",G.node[k])
+            #print("G.node[k]",G.node[k])
             for ke, va in G.node[k].items():
                 #print("v ", v, "pred2 ", pred2)
-                if pred2 in v:
+                if pred2 in va:
                     print("Found pred 2 in ", G.node[k])
                     return True
     return False
