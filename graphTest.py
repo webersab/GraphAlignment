@@ -91,15 +91,35 @@ def testGraphWithLevy(lambdaValue):
                                 #I need to implement a more detailled view of that
                                 if line[2]=="y":
                                     hits+=1
-                                    print("BINGO!")
+                            else:
+                                if line[2]=="n":
+                                    hits+=1
                                 
-        if hits>0:
-            counterMap["hitcounter"]+=1
+            if hits>0:
+                counterMap["hitcounter"]+=1
+                if line[2]=="y":
+                    counterMap["truePositives"]+=1
+                else:
+                    counterMap["trueNegatives"]+=1
+            else:
+                if line[2]=="n":
+                    counterMap["trueNegatives"]+=1
+                else:
+                    counterMap["falseNegatives"]+=1
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
         print("score ",str(score))
-    return score,mapOffalsePositives, mapOffalseNegatives
+        precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["trueNegatives"])
+        recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
+        print("precision, recall ", precision, recall)
+    with open("outputforLambda"+lambdaValue, "a") as f:
+        for a, b in counterMap.items():
+            f.write(a+"\t"+b+"\n")
+            f.write("score: "+score+"\n")
+            f.write("precision: "+precision+"\n")
+            f.write("recall: "+recall+"\n")
+    return score
 
 
 def createGraph(graphFile):
