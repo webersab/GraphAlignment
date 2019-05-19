@@ -21,6 +21,7 @@ import networkx as nx
 import showEntGraphs
 
 def testGraphWithLevy(lambdaValue):
+    # parallel python graphTest.py ::: 0.200 0.100 0.050 0.059 0.070 0.079 0.090
     score=0
     
     inFile="googleTranslationReduced2.txt"

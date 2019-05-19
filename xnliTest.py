@@ -20,6 +20,7 @@ from pygermanet.germanet import load_germanet
 import os
 from itertools import chain
 import numpy
+import random
 
 
 #this method is fully taken from Lianes pipeline
@@ -608,14 +609,15 @@ def extractPredicateFromSentence(model, sentence):
         model.tag(s)
         model.parse(s)
     conllu = model.write(sent, "conllu")
-    outfile = "conllOut.txt"
+    ran=random.randint(1,200)
+    outfile = "conllOut"+str(ran)+".txt"
     with codecs.open(outfile, 'w', 'utf-8') as o:
         o.write(conllu)
     #print("wrote conllu file")
     
     #predicateList=[]
     predicateMap={}
-    dtree = dependency_parse_to_graph("conllOut.txt")
+    dtree = dependency_parse_to_graph("conllOut"+str(ran)+".txt")
     i=0
     for d in dtree:
         predicateMap=treeToPredMapSimple(d)
