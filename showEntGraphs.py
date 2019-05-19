@@ -12,13 +12,12 @@ def constructGraphFromFile(filename,lambdaValue):
     with open(filename, 'r') as inF:
             number=-100
             for line in inF:
-                if "lambda" in line and str(lambdaValue)==line[8:12]:
+                if "lambda" in line and str(lambdaValue)==line[8:13]:
                     #print("Passed the right lambda", lambdaValue)
                     #print(line)
                     G = nx.Graph()
                     passedComponent=False
                     passedRightLambda=True
-                    firstLine=line
                     continue
                 elif "lambda" in line and passedRightLambda:
                     #print("eject here ",line)

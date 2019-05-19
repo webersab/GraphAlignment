@@ -115,10 +115,12 @@ def testGraphWithLevy(lambdaValue):
         print("precision, recall ", precision, recall)
     with open("outputforLambda"+lambdaValue, "a") as f:
         for a, b in counterMap.items():
-            f.write(a+"\t"+b+"\n")
+            f.write(str(a)+"\t"+str(b)+"\n")
             f.write("score: "+score+"\n")
             f.write("precision: "+precision+"\n")
             f.write("recall: "+recall+"\n")
+            f1=(2*precision*recall)/(precision+recall)
+            f.write("F1: "+str(f1))
     return score
 
 
