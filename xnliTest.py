@@ -609,7 +609,7 @@ def extractPredicateFromSentence(model, sentence):
         model.tag(s)
         model.parse(s)
     conllu = model.write(sent, "conllu")
-    ran=random.randint(1,200)
+    ran=random.randint(1,50000)
     outfile = "conllOut"+str(ran)+".txt"
     with codecs.open(outfile, 'w', 'utf-8') as o:
         o.write(conllu)
