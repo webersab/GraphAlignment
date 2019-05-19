@@ -21,11 +21,8 @@ import networkx as nx
 import showEntGraphs
 
 def testGraphWithLevy(lambdaValue):
-    mapOffalsePositives={}
-    mapOffalseNegatives={}
     score=0
     
-    #TODO
     inFile="googleTranslationReduced2.txt"
     
     counterMap={
@@ -51,7 +48,6 @@ def testGraphWithLevy(lambdaValue):
                 print("oopsie! ",line)
                 continue
             
-            listOfFoundClusters=[]
             typePairList=[]
             counterMap["totalcounter"]+=1
             hits=0
@@ -59,7 +55,7 @@ def testGraphWithLevy(lambdaValue):
             #each predicate has a list of type pairs
             firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
-            totalPredicateSet=set()
+
             #for each combination of predictates from sentence one and two
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
@@ -116,9 +112,9 @@ def testGraphWithLevy(lambdaValue):
     with open("outputforLambda"+lambdaValue, "a") as f:
         for a, b in counterMap.items():
             f.write(str(a)+"\t"+str(b)+"\n")
-            f.write("score: "+score+"\n")
-            f.write("precision: "+precision+"\n")
-            f.write("recall: "+recall+"\n")
+            f.write("score: "+str(score)+"\n")
+            f.write("precision: "+str(precision)+"\n")
+            f.write("recall: "+str(recall)+"\n")
             f1=(2*precision*recall)/(precision+recall)
             f.write("F1: "+str(f1))
     return score
