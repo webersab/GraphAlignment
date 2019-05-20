@@ -79,24 +79,28 @@ def testGraphWithLevy(lambdaValue):
                     #retrieve right graph
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
-                        if graphFile!="":
-                            E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                            #print(pred1,pred2)
-                            if hasEntailment(pred1, pred2, G):
-                                #At this point I am only counting true positives. 
-                                #I need to implement a more detailled view of that
-                                if line[2]=="y":
-                                    hits+=1
-                            else:
-                                if line[2]=="n":
-                                    hits+=1
+                        try:
+                            if graphFile!="":
+                                E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
+                                #print(pred1,pred2)
+                                if hasEntailment(pred1, pred2, G):
+                                    #At this point I am only counting true positives. 
+                                    #I need to implement a more detailled view of that
+                                    if line[2]=="y":
+                                        hits+=1
+                                else:
+                                    if line[2]=="n":
+                                        hits+=1
+                        except TypeError:
+                            print("Type error in ", typePair, lambdaValue)
+                            continue
                                 
             if hits>0:
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
                 else:
-                    counterMap["trueNegatives"]+=1
+                    counterMap["falsePositives"]+=1
             else:
                 if line[2]=="n":
                     counterMap["trueNegatives"]+=1
@@ -106,7 +110,7 @@ def testGraphWithLevy(lambdaValue):
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
         print("score ",str(score))
-        precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["trueNegatives"])
+        precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
         recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
         print("precision, recall ", precision, recall)
     with open("outputforLambda"+lambdaValue, "a") as f:
