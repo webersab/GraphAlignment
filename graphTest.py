@@ -33,8 +33,7 @@ def testGraphWithLevy(lambdaValue):
     "trueNegatives":0,
     "falsePositives":0,
     "falseNegatives":0,
-    "entCounter":0,
-    "neuCounter":0}
+    }
     
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
@@ -113,11 +112,11 @@ def testGraphWithLevy(lambdaValue):
     with open("outputforLambda"+lambdaValue, "a") as f:
         for a, b in counterMap.items():
             f.write(str(a)+"\t"+str(b)+"\n")
-            f.write("score: "+str(score)+"\n")
-            f.write("precision: "+str(precision)+"\n")
-            f.write("recall: "+str(recall)+"\n")
-            f1=(2*precision*recall)/(precision+recall)
-            f.write("F1: "+str(f1))
+        f.write("score: "+str(score)+"\n")
+        f.write("precision: "+str(precision)+"\n")
+        f.write("recall: "+str(recall)+"\n")
+        f1=(2*precision*recall)/(precision+recall)
+        f.write("F1: "+str(f1)+"\n")
     return score
 
 
