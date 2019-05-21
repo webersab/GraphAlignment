@@ -178,7 +178,7 @@ def getRightGraphFile(typePair,lambdaValue):
         fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGX", "r")
     except FileNotFoundError:
         outputFile=""
-    
+    print("Output file ",outputFile)
     return outputFile
 
 def bothNegated(a,b):
