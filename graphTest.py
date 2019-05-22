@@ -102,14 +102,14 @@ def testGraphWithLevy(lambdaValue):
                     print("true pos",hits)
                 else:
                     counterMap["trueNegatives"]+=1
-                    print("false pos",hits)
+                    print("true pos",hits)
             else:
                 if line[2]=="n":
                     counterMap["falseNegatives"]+=1
-                    print("true neg",hits)
+                    print("false neg",hits)
                 else:
                     counterMap["falsePositives"]+=1
-                    print("false neg",hits)
+                    print("false pos",hits)
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
