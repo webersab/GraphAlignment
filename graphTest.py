@@ -88,9 +88,9 @@ def testGraphWithLevy(lambdaValue):
                                 if hasEntailment(pred1, pred2, G):
                                     if line[2]=="y":
                                         hits+=1
-                                else:
-                                    if line[2]=="n":
-                                        hits+=1
+                                #else:
+                                    #if line[2]=="n":
+                                        #hits+=1
                         except TypeError:
                             print("Type error in ", typePair, lambdaValue)
                             continue
@@ -99,17 +99,17 @@ def testGraphWithLevy(lambdaValue):
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
-                    #print("true pos",hits)
+                    print("true pos. hits",hits, "entailment ", line[2])
                 else:
-                    counterMap["trueNegatives"]+=1
-                    #print("true neg",hits)
+                    counterMap["falsePositives"]+=1
+                    print("false positives",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
-                    #print("false neg",hits)
+                    print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
-                    counterMap["falsePositives"]+=1
-                    print("false pos",hits, "entailment ", line[2])
+                    counterMap["trueNegatives"]+=1
+                    print("false pos. hits ",hits, "entailment ", line[2])
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
