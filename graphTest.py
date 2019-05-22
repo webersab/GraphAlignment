@@ -99,17 +99,17 @@ def testGraphWithLevy(lambdaValue):
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
-                    print("true pos. hits",hits, "entailment ", line[2])
+                    #print("true pos. hits",hits, "entailment ", line[2])
                 else:
                     counterMap["falsePositives"]+=1
-                    print("false pos. hits ",hits, "entailment ", line[2])
+                    #print("false pos. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
-                    print("false neg. hits ",hits, "entailment ", line[2] )
+                    #print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
-                    print("true neg. hits ",hits, "entailment ", line[2])
+                    #print("true neg. hits ",hits, "entailment ", line[2])
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
@@ -211,15 +211,15 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                print("IN SAME CLUSTER")
-                print(value)
+                #print("IN SAME CLUSTER")
+                #print(value)
                 return True
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    print("IN GRAPH ANCESTORS")
-                    print(va)
+                    #print("IN GRAPH ANCESTORS")
+                    #print(va)
                     return True
     return False
 
