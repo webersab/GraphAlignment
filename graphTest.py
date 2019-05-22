@@ -57,7 +57,7 @@ def testGraphWithLevy(lambdaValue):
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
 
             #for each combination of predictates from sentence one and two
-            print("all predicates", firstPredicates.keys(), secondPredicates.keys())
+            print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which graph to pick dependent on predicate types
@@ -102,7 +102,7 @@ def testGraphWithLevy(lambdaValue):
                     print("true pos",hits)
                 else:
                     counterMap["trueNegatives"]+=1
-                    print("true pos",hits)
+                    print("true neg",hits)
             else:
                 if line[2]=="n":
                     counterMap["falseNegatives"]+=1
