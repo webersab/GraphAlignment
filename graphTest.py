@@ -74,8 +74,8 @@ def testGraphWithLevy(lambdaValue):
                                           
                     #print(typePairList)   
                     #Do this in case of way too low recall:
-                    #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
-                    #typePairList.remove(("EVENT","EVENT"))
+                    typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
+                    typePairList.remove(("EVENT","EVENT"))
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
@@ -117,7 +117,7 @@ def testGraphWithLevy(lambdaValue):
         precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
         recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
         print("precision, recall ", precision, recall)
-    with open("outputforLambda"+lambdaValue, "a") as f:
+    with open("MOREoutputforLambda"+lambdaValue, "a") as f:
         for a, b in counterMap.items():
             f.write(str(a)+"\t"+str(b)+"\n")
         f.write("score: "+str(score)+"\n")
