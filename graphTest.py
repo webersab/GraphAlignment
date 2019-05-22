@@ -104,7 +104,7 @@ def testGraphWithLevy(lambdaValue):
                     counterMap["trueNegatives"]+=1
                     print("true neg",hits)
             else:
-                if line[2]=="n":
+                if line[2]=="y":
                     counterMap["falseNegatives"]+=1
                     print("false neg",hits)
                 else:
