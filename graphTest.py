@@ -101,14 +101,14 @@ def testGraphWithLevy(lambdaValue):
                     counterMap["truePositives"]+=1
                     print("true pos",hits)
                 else:
-                    counterMap["falsePositives"]+=1
+                    counterMap["trueNegatives"]+=1
                     print("false pos",hits)
             else:
                 if line[2]=="n":
-                    counterMap["trueNegatives"]+=1
+                    counterMap["falseNegatives"]+=1
                     print("true neg",hits)
                 else:
-                    counterMap["falseNegatives"]+=1
+                    counterMap["falsePositives"]+=1
                     print("false neg",hits)
 
     if counterMap["totalcounter"]>0:
