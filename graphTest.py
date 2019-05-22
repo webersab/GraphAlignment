@@ -57,7 +57,7 @@ def testGraphWithLevy(lambdaValue):
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
 
             #for each combination of predictates from sentence one and two
-            print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
+            #print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which graph to pick dependent on predicate types
@@ -79,7 +79,7 @@ def testGraphWithLevy(lambdaValue):
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
-                        print("hits number A", hits)
+                        #print("hits number A", hits)
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         try:
                             if graphFile!="":
@@ -94,22 +94,22 @@ def testGraphWithLevy(lambdaValue):
                         except TypeError:
                             print("Type error in ", typePair, lambdaValue)
                             continue
-            print("hits number B", hits)                    
+            #print("hits number B", hits)                    
             if hits>0:
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
-                    print("true pos",hits)
+                    #print("true pos",hits)
                 else:
                     counterMap["trueNegatives"]+=1
-                    print("true neg",hits)
+                    #print("true neg",hits)
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
-                    print("false neg",hits)
+                    #print("false neg",hits)
                 else:
                     counterMap["falsePositives"]+=1
-                    print("false pos",hits)
+                    #print("false pos",hits)
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
