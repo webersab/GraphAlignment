@@ -82,10 +82,8 @@ def testGraphWithLevy(lambdaValue):
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                #print(pred1,pred2)
+                                print("predicates ",pred1,pred2)
                                 if hasEntailment(pred1, pred2, G):
-                                    #At this point I am only counting true positives. 
-                                    #I need to implement a more detailled view of that
                                     if line[2]=="y":
                                         hits+=1
                                 else:
@@ -99,13 +97,17 @@ def testGraphWithLevy(lambdaValue):
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
+                    print("true pos")
                 else:
                     counterMap["falsePositives"]+=1
+                    print("false pos")
             else:
                 if line[2]=="n":
                     counterMap["trueNegatives"]+=1
+                    print("true neg")
                 else:
                     counterMap["falseNegatives"]+=1
+                    print("false neg")
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
@@ -207,13 +209,15 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                #print("IN SAME CLUSTER")
+                print("IN SAME CLUSTER")
+                print(value)
                 return True
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    #print("IN GRAPH ANCESTORS")
+                    print("IN GRAPH ANCESTORS")
+                    print(va)
                     return True
     return False
 
