@@ -79,7 +79,7 @@ def testGraphWithLevy(lambdaValue):
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
-                        print("hits number", hits)
+                        print("hits number A", hits)
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         try:
                             if graphFile!="":
@@ -94,22 +94,22 @@ def testGraphWithLevy(lambdaValue):
                         except TypeError:
                             print("Type error in ", typePair, lambdaValue)
                             continue
-                                
+            print("hits number B", hits)                    
             if hits>0:
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
-                    print("true pos")
+                    print("true pos",hits)
                 else:
                     counterMap["falsePositives"]+=1
-                    print("false pos")
+                    print("false pos",hits)
             else:
                 if line[2]=="n":
                     counterMap["trueNegatives"]+=1
-                    print("true neg")
+                    print("true neg",hits)
                 else:
                     counterMap["falseNegatives"]+=1
-                    print("false neg")
+                    print("false neg",hits)
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
