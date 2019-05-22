@@ -92,7 +92,7 @@ def testGraphWithLevy(lambdaValue):
                                     #if line[2]=="n":
                                         #hits+=1
                         except TypeError:
-                            print("Type error in ", typePair, lambdaValue)
+                            #print("Type error in ", typePair, lambdaValue)
                             continue
             #print("hits number B", hits)                    
             if hits>0:
@@ -173,13 +173,13 @@ def getRightGraphFile(typePair,lambdaValue):
         type2=typePair[1]
         
     try:
-        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRGX"
-        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRGX", "r")
+        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRGZ"
+        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRGZ", "r")
     except FileNotFoundError:
         pass
     try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRGX"
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGX", "r")
+        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRGZ"
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGZ", "r")
     except FileNotFoundError:
         outputFile=""
     return outputFile
