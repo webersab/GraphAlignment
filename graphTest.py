@@ -57,6 +57,7 @@ def testGraphWithLevy(lambdaValue):
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
 
             #for each combination of predictates from sentence one and two
+            print("all predicates", firstPredicates.keys(), secondPredicates.keys())
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which graph to pick dependent on predicate types
@@ -78,11 +79,12 @@ def testGraphWithLevy(lambdaValue):
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
+                        print("hits number", hits)
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                print("predicates ",pred1,pred2)
+                                #print("predicates ",pred1,pred2)
                                 if hasEntailment(pred1, pred2, G):
                                     if line[2]=="y":
                                         hits+=1
