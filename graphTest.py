@@ -99,17 +99,17 @@ def testGraphWithLevy(lambdaValue):
                 counterMap["hitcounter"]+=1
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
-                    #print("true pos. hits",hits, "entailment ", line[2])
+                    print("true pos. hits",hits, "entailment ", line[2])
                 else:
                     counterMap["falsePositives"]+=1
-                    #print("false pos. hits ",hits, "entailment ", line[2])
+                    print("false pos. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
-                    #print("false neg. hits ",hits, "entailment ", line[2] )
+                    print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
-                    #print("true neg. hits ",hits, "entailment ", line[2])
+                    print("true neg. hits ",hits, "entailment ", line[2])
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
@@ -117,7 +117,7 @@ def testGraphWithLevy(lambdaValue):
         precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
         recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
         print("precision, recall ", precision, recall)
-    with open("MOREoutputforLambda"+lambdaValue, "a") as f:
+    with open("outputforLambda"+lambdaValue, "a") as f:
         for a, b in counterMap.items():
             f.write(str(a)+"\t"+str(b)+"\n")
         f.write("score: "+str(score)+"\n")
