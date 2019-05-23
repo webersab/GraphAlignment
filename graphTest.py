@@ -86,8 +86,8 @@ def testGraphWithLevy(lambdaValue):
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
                                 #print("predicates ",pred1,pred2)
                                 if hasEntailment(pred1, pred2, G):
-                                    if line[2]=="y":
-                                        hits+=1
+                                    #if line[2]=="y":
+                                    hits+=1
                                 #else:
                                     #if line[2]=="n":
                                         #hits+=1
