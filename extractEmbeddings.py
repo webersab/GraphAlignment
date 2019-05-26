@@ -13,10 +13,11 @@ if __name__ == "__main__":
     #print(entities_dict)"\t"
     
     np.savetxt("ent_embeddings.tsv",ent_embeddings,delimiter="\t")
-    od = collections.OrderedDict(sorted(entities_dict.items()))
     f=open("entities_dict.tsv", "a")
-    for k, v in od.items():
-        f.write(v+"\n")
+    sorted_x = sorted(entities_dict.items(), key=lambda kv: kv[1])
+    sorted_dict = collections.OrderedDict(sorted_x)
+    for k, v in sorted_dict.items():
+        f.write(k+"\n")
     
     
     #centroids,_ = kmeans(ent_embeddings,50000)
