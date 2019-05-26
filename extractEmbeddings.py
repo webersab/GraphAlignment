@@ -1,6 +1,6 @@
 import numpy as np
 import pickle
-from numpy import vstack,array
+from numpy import vstack,array,savetxt
 from scipy.cluster.vq import kmeans,vq
 import collections
 
@@ -12,7 +12,7 @@ if __name__ == "__main__":
     print("Length : %d" % len(entities_dict))
     #print(entities_dict)"\t"
     
-    np.savetext("ent_embeddings.tsv",ent_embeddings,delimiter="\t")
+    np.savetxt("ent_embeddings.tsv",ent_embeddings,delimiter="\t")
     od = collections.OrderedDict(sorted(entities_dict.items()))
     f=open("entities_dict.tsv", "a")
     for k, v in od.items():
