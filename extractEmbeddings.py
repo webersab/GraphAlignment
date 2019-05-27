@@ -28,7 +28,7 @@ if __name__ == "__main__":
     """
     u = AnnoyIndex(f)
     u.load('test.ann') # super fast, will just mmap the file
-    for i in range(100):
+    for i in range(20000,20100):
         nns=u.get_nns_by_item(i, 3)
         print("----------------------------------")
         for n in nns:
