@@ -97,20 +97,20 @@ def testGraphWithLevy(lambdaValue):
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
                     #print(line[0],line[1])
-                    #print("true pos. hits",hits, "entailment ", line[2])
+                    print("true pos. hits",hits, "entailment ", line[2])
                 else:
                     counterMap["falsePositives"]+=1
                     #print(line[0],line[1])
-                    #print("FALSE POS. hits ",hits, "entailment ", line[2])
+                    print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
                     #print(line[0],line[1])
-                    #print("false neg. hits ",hits, "entailment ", line[2] )
+                    print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
                     #print(line[0],line[1])
-                    #print("true neg. hits ",hits, "entailment ", line[2])
+                    print("true neg. hits ",hits, "entailment ", line[2])
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
