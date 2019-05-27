@@ -18,11 +18,10 @@ if __name__ == "__main__":
     f = 200
     
     t = AnnoyIndex(f)  # Length of item vector that will be indexed
-    for i in range(419112):
+    for i in range(226690):
         v = rel_embeddings[i]
-        print(i)
         t.add_item(i, v)
-
+    print("done adding")
     t.build(100) 
     t.save('testEnt.ann')
     
