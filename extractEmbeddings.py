@@ -8,15 +8,15 @@ import random
 
 
 if __name__ == "__main__":
-    rel_embeddings = np.load('/disk/scratch_big/sweber/rel_embeddings.npy')
+    rel_embeddings = np.load('/disk/scratch_big/sweber/ent_embeddings.npy')
     print(rel_embeddings.shape)
-    relations_dict = pickle.load( open( "/disk/scratch_big/sweber/relations_dict.p", "rb" ) )
+    relations_dict = pickle.load( open( "/disk/scratch_big/sweber/entities_dict.p", "rb" ) )
     print("Length : %d" % len(relations_dict))
     #print(entities_dict)"\t"
     reversed_relations_dict = dict((v,k) for k,v in relations_dict.items())
     
     f = 200
-    """
+    
     t = AnnoyIndex(f)  # Length of item vector that will be indexed
     for i in range(419112):
         v = rel_embeddings[i]
@@ -24,15 +24,15 @@ if __name__ == "__main__":
         t.add_item(i, v)
 
     t.build(100) 
-    t.save('test.ann')
-    """
+    t.save('testEnt.ann')
+    
     u = AnnoyIndex(f)
-    u.load('test.ann') # super fast, will just mmap the file
+    u.load('testEnt.ann') # super fast, will just mmap the file
     for i in range(200000,200100):
         nns=u.get_nns_by_item(i, 100)
         print("-------",reversed_relations_dict[i],"-------")
         for n in nns:
-            if "::de" in reversed_relations_dict[n]:
+            if "::en" in reversed_relations_dict[n] or "::bi" in reversed_relations_dict[n]:
                 print(reversed_relations_dict[n])
     
     
