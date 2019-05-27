@@ -208,9 +208,9 @@ def hasEntailment(pred1, pred2, G):
                 #print("found in ", v)
                 pred1NodesList.append(n)
                 connectedCompnent=nx.node_connected_component(G, n)
-                if len(connectedCompnent)>1:
-                    for k in connectedCompnent:
-                        print(G.node[k])
+                #if len(connectedCompnent)>1:
+                    #for k in connectedCompnent:
+                        #print(G.node[k])
                 
     #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
