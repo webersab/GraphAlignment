@@ -16,7 +16,7 @@ if __name__ == "__main__":
     reversed_relations_dict = dict((v,k) for k,v in relations_dict.items())
     
     f = 200
-    
+    """
     t = AnnoyIndex(f)  # Length of item vector that will be indexed
     for i in range(226690):
         v = rel_embeddings[i]
@@ -24,10 +24,10 @@ if __name__ == "__main__":
     print("done adding")
     t.build(100) 
     t.save('testEnt.ann')
-    
+    """
     u = AnnoyIndex(f)
     u.load('testEnt.ann') # super fast, will just mmap the file
-    for i in range(200000,200100):
+    for i in range(0,100):
         nns=u.get_nns_by_item(i, 100)
         print("-------",reversed_relations_dict[i],"-------")
         for n in nns:
