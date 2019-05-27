@@ -14,6 +14,35 @@ if __name__ == "__main__":
     print("Length : %d" % len(relations_dict))
     #print(entities_dict)"\t"
     reversed_relations_dict = dict((v,k) for k,v in relations_dict.items())
+
+    f = 200
+    t = AnnoyIndex(f)  # Length of item vector that will be indexed
+    for i in range(419112):
+        v = rel_embeddings[i]
+        print(i)
+        t.add_item(i, v)
+
+    t.build(100) 
+    t.save('test.ann')
+    
+    u = AnnoyIndex(f)
+    u.load('test.ann') # super fast, will just mmap the file
+    print(u.get_nns_by_item(0, 10))
+    
+    
+    """
+    np.savetxt("ent_embeddings.tsv",ent_embeddings,delimiter="\t")
+    f=open("entities_dict.tsv", "a")
+    sorted_x = sorted(entities_dict.items(), key=lambda kv: kv[1])
+    sorted_dict = collections.OrderedDict(sorted_x)
+    for k, v in sorted_dict.items():
+        f.write(k+"\n")
+    
+    
+    #centroids,_ = kmeans(ent_embeddings,50000)
+    #idx,_ = vq(data,centroids)
+    
+    #print(idx)
     
     f = 40
     t = AnnoyIndex(f)  # Length of item vector that will be indexed
@@ -31,32 +60,5 @@ if __name__ == "__main__":
     print(u.get_nns_by_item(0, 1000)) # will find the 1000 nearest neighbors
     
     """
-    f = 200
-    t = AnnoyIndex(f)  # Length of item vector that will be indexed
-    for i in range(419112):
-        v = rel_embeddings[i]
-        t.add_item(i, v)
-
-        t.build(100) 
-        t.save('test.ann')
-    
-    u = AnnoyIndex(f)
-    u.load('test.ann') # super fast, will just mmap the file
-    print(u.get_nns_by_item(0, 10))
-    
-    
-
-    np.savetxt("ent_embeddings.tsv",ent_embeddings,delimiter="\t")
-    f=open("entities_dict.tsv", "a")
-    sorted_x = sorted(entities_dict.items(), key=lambda kv: kv[1])
-    sorted_dict = collections.OrderedDict(sorted_x)
-    for k, v in sorted_dict.items():
-        f.write(k+"\n")
-    """
-    
-    #centroids,_ = kmeans(ent_embeddings,50000)
-    #idx,_ = vq(data,centroids)
-    
-    #print(idx)
     
     
