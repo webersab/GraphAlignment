@@ -14,8 +14,9 @@ if __name__ == "__main__":
     print("Length : %d" % len(relations_dict))
     #print(entities_dict)"\t"
     reversed_relations_dict = dict((v,k) for k,v in relations_dict.items())
-
+    
     f = 200
+    """
     t = AnnoyIndex(f)  # Length of item vector that will be indexed
     for i in range(419112):
         v = rel_embeddings[i]
@@ -24,10 +25,13 @@ if __name__ == "__main__":
 
     t.build(100) 
     t.save('test.ann')
-    
+    """
     u = AnnoyIndex(f)
     u.load('test.ann') # super fast, will just mmap the file
     print(u.get_nns_by_item(0, 10))
+    nns=u.get_nns_by_item(0, 10)
+    for n in nns:
+        print(reversed_relations_dict[n])
     
     
     """
@@ -37,28 +41,6 @@ if __name__ == "__main__":
     sorted_dict = collections.OrderedDict(sorted_x)
     for k, v in sorted_dict.items():
         f.write(k+"\n")
-    
-    
-    #centroids,_ = kmeans(ent_embeddings,50000)
-    #idx,_ = vq(data,centroids)
-    
-    #print(idx)
-    
-    f = 40
-    t = AnnoyIndex(f)  # Length of item vector that will be indexed
-    for i in range(500000):
-        v = [random.gauss(0, 1) for z in range(f)]
-        t.add_item(i, v)
-    
-    t.build(10) # 10 trees
-    t.save('test.ann')
-    
-    # ...
-    
-    u = AnnoyIndex(f)
-    u.load('test.ann') # super fast, will just mmap the file
-    print(u.get_nns_by_item(0, 1000)) # will find the 1000 nearest neighbors
-    
     """
     
     
