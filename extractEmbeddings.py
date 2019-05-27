@@ -28,10 +28,11 @@ if __name__ == "__main__":
     """
     u = AnnoyIndex(f)
     u.load('test.ann') # super fast, will just mmap the file
-    print(u.get_nns_by_item(0, 10))
-    nns=u.get_nns_by_item(0, 10)
-    for n in nns:
-        print(reversed_relations_dict[n])
+    for i in range(100):
+        nns=u.get_nns_by_item(i, 3)
+        print("----------------------------------")
+        for n in nns:
+            print(reversed_relations_dict[n])
     
     
     """
