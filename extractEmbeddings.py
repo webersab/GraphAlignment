@@ -31,7 +31,7 @@ if __name__ == "__main__":
         nns=u.get_nns_by_item(i, 100)
         print("-------",reversed_relations_dict[i],"-------")
         for n in nns:
-            if "::en" in reversed_relations_dict[n] or "::bi" in reversed_relations_dict[n]:
+            if "::en" in reversed_relations_dict[n]:
                 print(reversed_relations_dict[n])
     
     
