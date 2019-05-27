@@ -206,6 +206,7 @@ def hasEntailment(pred1, pred2, G):
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
                 print("v ", v, "pred1 ", pred1)
                 pred1NodesList.append(n)
+                print(nx.node_connected_component(G, n))
             
     #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
