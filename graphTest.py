@@ -40,7 +40,8 @@ def testGraphWithLevy(lambdaValue):
     
     with open(inFile) as file:
         #1948 is the number of lines in the levy data set, change accordingly
-        for line in tqdm(file,total=1948):
+        #for line in tqdm(file,total=1948):
+        for line in file:
             line=line.rstrip()
             line=line.split(". ")
             print("line ",line)
@@ -206,7 +207,8 @@ def hasEntailment(pred1, pred2, G):
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
                 print("v ", v, "pred1 ", pred1)
                 pred1NodesList.append(n)
-                print(nx.node_connected_component(G, n))
+                connectedCompnent=nx.node_connected_component(G, n)
+                print(G.node[connectedCompnent])
             
     #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
@@ -214,14 +216,14 @@ def hasEntailment(pred1, pred2, G):
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
                 print("IN SAME CLUSTER")
-                print(value)
+                print(value,pred2)
                 return True
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
                     print("IN GRAPH ANCESTORS")
-                    print(va)
+                    print(va,pred2)
                     return True
     return False
 
