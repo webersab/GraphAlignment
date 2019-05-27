@@ -205,7 +205,7 @@ def hasEntailment(pred1, pred2, G):
         for k, v in G.node[n].items(): 
             #print("v ", v, "pred1 ", pred1)
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
-                print("found in ", v)
+                #print("found in ", v)
                 pred1NodesList.append(n)
                 connectedCompnent=nx.node_connected_component(G, n)
                 if len(connectedCompnent)>1:
