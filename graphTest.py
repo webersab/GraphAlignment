@@ -48,6 +48,7 @@ def testGraphWithLevy(lambdaValue):
         #1948 is the number of lines in the levy data set, change accordingly
         #for line in tqdm(file,total=1948):
         for line in file:
+            globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
             print("line ",line)
@@ -95,6 +96,8 @@ def testGraphWithLevy(lambdaValue):
                                 bool, clusterInfo = hasEntailment(pred1, pred2, G)
                                 if bool:
                                     hits+=1
+                                if len(clusterInfo)>0:
+                                    globalClusterInfo=clusterInfo
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue
@@ -103,14 +106,14 @@ def testGraphWithLevy(lambdaValue):
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
                     truePosDict[" ".join(line)]=hits
-                    truePosDict.update(clusterInfo)
+                    truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
                     print("true pos. hits",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
                 else:
                     counterMap["falsePositives"]+=1
                     falsePosDict[" ".join(line)]=hits
-                    falsePosDict.update(clusterInfo)
+                    falsePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
                     print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
@@ -132,16 +135,16 @@ def testGraphWithLevy(lambdaValue):
         recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
         print("precision, recall ", precision, recall)
     with open("outputforLambda"+lambdaValue, "a") as f:
-        f.write("------------TRUE PODITIVES ----------------")
+        f.write("------------TRUE PODITIVES ----------------\n")
         for a, b in truePosDict.items():
             f.write(str(a)+"\t"+str(b)+"\n")
-        f.write("------------- FALSE POSITIVES -------------")
+        f.write("------------- FALSE POSITIVES -------------\n")
         for a,b in falsePosDict.items():
             f.write(str(a)+"\t"+str(b)+"\n")
-        f.write("------------ FALSE NEGATIVES --------------")
+        f.write("------------ FALSE NEGATIVES --------------\n")
         for a,b in falseNegDict.items():
             f.write(str(a)+"\t"+str(b)+"\n")
-        f.write("------------- overall Count -------------")
+        f.write("------------- overall Count -------------\n")
         for a, b in counterMap.items():
             f.write(str(a)+"\t"+str(b)+"\n")
         f.write("score: "+str(score)+"\n")
