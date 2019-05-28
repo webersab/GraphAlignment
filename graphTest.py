@@ -36,7 +36,8 @@ def testGraphWithLevy(lambdaValue):
     "falsePositives":0,
     "falseNegatives":0,
     "samePredicatesEntail":0,
-    "samePredicatesNonEntail":0
+    "samePredicatesNonEntail":0,
+    "samePredicateTotal":0
     }
     
     truePosDict={"totalNumber":0, "samePredicates":0}
@@ -54,7 +55,8 @@ def testGraphWithLevy(lambdaValue):
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            #print("line ",line)
+            print("-------------------------------------------")
+            print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -95,13 +97,15 @@ def testGraphWithLevy(lambdaValue):
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                #print("predicates ",pred1,pred2)
+                                print("predicates ",pred1,pred2)
                                 if pred1 in pred2 or pred2 in pred1:
                                     samePredicates=True
-                                bool, clusterInfo = hasEntailment(pred1, pred2, G)
-                                if bool:
+                                    print("Same Predicates!")
+                                boo, clusterInfo = hasEntailment(pred1, pred2, G)
+                                if boo:
                                     hits+=1
                                     globalClusterInfo.update(clusterInfo)
+                                    print(globalClusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue
