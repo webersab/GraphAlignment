@@ -37,9 +37,9 @@ def testGraphWithLevy(lambdaValue):
     "falseNegatives":0,
     }
     
-    truePosDict={}
-    falsePosDict={}
-    falseNegDict={}
+    truePosDict={"totalNumber":0, "samePredicates":0}
+    falsePosDict={"totalNumber":0, "samePredicates":0}
+    falseNegDict={"totalNumber":0, "samePredicates":0}
     
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
@@ -48,10 +48,11 @@ def testGraphWithLevy(lambdaValue):
         #1948 is the number of lines in the levy data set, change accordingly
         #for line in tqdm(file,total=1948):
         for line in file:
+            samePredicates=False
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            print("line ",line)
+            #print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -92,12 +93,13 @@ def testGraphWithLevy(lambdaValue):
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                print("predicates ",pred1,pred2)
+                                #print("predicates ",pred1,pred2)
+                                if pred1 in pred2 or pred2 in pred1:
+                                    samePredicates=True
                                 bool, clusterInfo = hasEntailment(pred1, pred2, G)
                                 if bool:
                                     hits+=1
-                                if len(clusterInfo)>0:
-                                    globalClusterInfo=clusterInfo
+                                    globalClusterInfo.update(clusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue
@@ -106,6 +108,9 @@ def testGraphWithLevy(lambdaValue):
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
                     truePosDict[" ".join(line)]=hits
+                    truePosDict["totalNumber"]+=1
+                    if samePredicates:
+                        truePosDict["samePredicates"]+=1
                     truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
                     print("true pos. hits",hits, "entailment ", line[2])
@@ -114,12 +119,18 @@ def testGraphWithLevy(lambdaValue):
                     counterMap["falsePositives"]+=1
                     falsePosDict[" ".join(line)]=hits
                     falsePosDict.update(globalClusterInfo)
+                    falsePosDict["totalNumber"]+=1
+                    if samePredicates:
+                        falsePosDict["samePredicates"]+=1
                     #print(line[0],line[1])
                     print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
                     falseNegDict[" ".join(line)]=hits
+                    falseNegDict["totalNumber"]+=1
+                    if samePredicates:
+                        falseNegDict["samePredicates"]+=1
                     #print(line[0],line[1])
                     print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
@@ -244,18 +255,18 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                print("IN SAME CLUSTER")
-                print(value,pred2)
+                #print("IN SAME CLUSTER")
+                #print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    print("IN GRAPH ANCESTORS")
-                    print(va,pred2)
+                    #print("IN GRAPH ANCESTORS")
+                    #print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
-                    return True
+                    return True, clusterInfo
     return False, clusterInfo
 
 def createSmallTestGraph():
