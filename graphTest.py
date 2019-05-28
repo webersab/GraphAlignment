@@ -103,16 +103,14 @@ def testGraphWithLevy(lambdaValue):
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
                     truePosDict[line]=hits
-                    newTruePositiveDict= {**truePosDict, **clusterInfo}
-                    truePosDict=newTruePositiveDict
+                    truePosDict.update(clusterInfo)
                     #print(line[0],line[1])
                     print("true pos. hits",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
                 else:
                     counterMap["falsePositives"]+=1
                     falsePosDict[line]=hits
-                    newFalsePositiveDict= {**falsePosDict, **clusterInfo}
-                    falsePosDict=newFalsePositiveDict
+                    falsePosDict.update(clusterInfo)
                     #print(line[0],line[1])
                     print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
