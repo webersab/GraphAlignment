@@ -35,6 +35,8 @@ def testGraphWithLevy(lambdaValue):
     "trueNegatives":0,
     "falsePositives":0,
     "falseNegatives":0,
+    "samePredicatesEntail":0,
+    "samePredicatesNonEntail":0
     }
     
     truePosDict={"totalNumber":0, "samePredicates":0}
@@ -111,6 +113,7 @@ def testGraphWithLevy(lambdaValue):
                     truePosDict["totalNumber"]+=1
                     if samePredicates:
                         truePosDict["samePredicates"]+=1
+                        counterMap["samePredicatesEntail"]+=1
                     truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
                     print("true pos. hits",hits, "entailment ", line[2])
@@ -122,6 +125,7 @@ def testGraphWithLevy(lambdaValue):
                     falsePosDict["totalNumber"]+=1
                     if samePredicates:
                         falsePosDict["samePredicates"]+=1
+                        counterMap["samePredicatesNonEntail"]+=1
                     #print(line[0],line[1])
                     print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
@@ -131,11 +135,14 @@ def testGraphWithLevy(lambdaValue):
                     falseNegDict["totalNumber"]+=1
                     if samePredicates:
                         falseNegDict["samePredicates"]+=1
+                        counterMap["samePredicatesEntail"]+=1
                     #print(line[0],line[1])
                     print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
                     #print(line[0],line[1])
+                    if samePredicates:
+                        counterMap["samePredicatesNonEntail"]+=1
                     print("true neg. hits ",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
 
