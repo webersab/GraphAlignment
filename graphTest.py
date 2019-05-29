@@ -20,7 +20,9 @@ import xnliTest
 import networkx as nx
 import showEntGraphs
 import pprint
-import matplotlib as plt
+import matplotlib 
+import matplotlib.pyplot as plt
+
 
 
 def testGraphWithLevy(lambdaValue):
