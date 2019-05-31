@@ -12,7 +12,7 @@ import pprint
 
 def main(lmbda):
     # constants
-    inFile="translatedSnippet.txt"
+    inFile="googleTranslationReduced2.txt"
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
@@ -111,22 +111,7 @@ if __name__ == "__main__":
     main(lamb)
    
     """
-    lambdaList= [0.019,
-                 0.029,
-                 0.039,
-                 0.050,
-                 0.059,
-                 0.070,
-                 0.079,
-                 0.090,
-                 0.100,
-                 0.200,
-                 0.300,
-                 0.400,
-                 0.600,
-                 0.699,
-                 0.800,
-                 0.899]
+    lambdaList= [0.019,0.029,0.039,0.050,0.059,0.070,0.079,0.090,0.100,0.200,0.300,0.400,0.600,0.699,0.800,0.899]
     """
     
     
