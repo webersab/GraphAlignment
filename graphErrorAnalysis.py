@@ -71,10 +71,10 @@ def main(lmbda):
                                         globalConnCompList1.append(connectedComponent1)
                                     nodesList2, connectedComponent2 = findPredicateInGraph(pred2, G)
                                     if len(nodesList2)>0 and not passedPred2:
-                                        globalNodesList1.append(nodesList2)
+                                        globalNodesList2.append(nodesList2)
                                         passedPred2=True
                                     if len(connectedComponent2)>0:
-                                        globalConnCompList1.append(connectedComponent1)
+                                        globalConnCompList2.append(connectedComponent2)
                 lineDict["predicates"]=predicatesSet
                 lineDict["nodes of "+pred1]=globalNodesList1
                 lineDict["nodes of "+pred2]=globalNodesList2
