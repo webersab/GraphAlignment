@@ -6,6 +6,7 @@ import showEntGraphs
 import sys
 from collections import OrderedDict
 import networkx as nx
+from scipy.special.basic import lmbda
 
 def main(lmbda):
     # constants
@@ -43,7 +44,7 @@ def main(lmbda):
                                 continue
                             boo, clusterInfo = graphTest.hasEntailment(pred1, pred2, G)
                             if boo:
-                                lineDict["clusterInfo"+clusterInfoCounter]=clusterInfo
+                                lineDict["clusterInfo"+str(clusterInfoCounter)]=clusterInfo
                                 clusterInfoCounter+=1
                             else:
                                 #look for pred1 in graph,
@@ -60,7 +61,7 @@ def main(lmbda):
     
             documentDict[lineNumber]=lineDict
     
-    f=open("errorAnalysis.txt","a")
+    f=open("errorAnalysis"+str(lmbda)+".txt","a")
     for k,v in documentDict:
         f.write(str(k)+"\t"+str(v))
 
