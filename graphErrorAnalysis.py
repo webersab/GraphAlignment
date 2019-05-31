@@ -65,13 +65,13 @@ def main(lmbda):
                                     #look for pred1 in graph,
                                     nodesList1, connectedComponent1 = findPredicateInGraph(pred1, G)
                                     if len(nodesList1)>0 and not passedPred1:
-                                        globalNodesList1.append(nodesList1)
+                                        globalNodesList1.append((nodesList1,typePair))
                                         passedPred1=True
                                     if len(connectedComponent1)>0 :
                                         globalConnCompList1.append(connectedComponent1)
                                     nodesList2, connectedComponent2 = findPredicateInGraph(pred2, G)
                                     if len(nodesList2)>0 and not passedPred2:
-                                        globalNodesList2.append(nodesList2)
+                                        globalNodesList2.append((nodesList2,typePair))
                                         passedPred2=True
                                     if len(connectedComponent2)>0:
                                         globalConnCompList2.append(connectedComponent2)
