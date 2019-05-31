@@ -22,6 +22,7 @@ def main(lmbda):
     lineNumber=0
     with open(inFile) as file:
         for line in tqdm(file,total=1948):
+            print("line "+lineNumber)
             lineDict=OrderedDict({})
             lineDict["line"]=line
             lineNumber+=1
@@ -31,6 +32,7 @@ def main(lmbda):
                 print("oopsie! ",line)
                 continue
             if line[2]=="y":
+                #print("1")
                 firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
                 secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
                 predicatesSet=set()
@@ -44,12 +46,14 @@ def main(lmbda):
                     lineDict["error "]="Parsing Error occurred"
                 for pred1 in firstPredicates.keys():
                     for pred2 in secondPredicates.keys():
+                        #print(2)
                         predicatesSet.add(pred1)
                         predicatesSet.add(pred2)
                         typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                         typePairList.remove(("EVENT","EVENT"))
                         clusterInfoCounter=0
                         for typePair in set(typePairList):
+                            #print(3)
                             graphFile=graphTest.getRightGraphFile(typePair,lmbda)
                             G=nx.Graph()
                             try:
@@ -57,6 +61,7 @@ def main(lmbda):
                                     E, G=showEntGraphs.constructGraphFromFile(graphFile, lmbda)
                             except TypeError:
                                 lineDict["type Error"]=str(typePair)+str(lmbda)
+                                documentDict[lineNumber]=lineDict
                                 continue
                             if len(G)>0:
                                 boo, clusterInfo = graphTest.hasEntailment(pred1, pred2, G)
