@@ -40,6 +40,7 @@ def main(lmbda):
                         clusterInfoCounter=0
                         for typePair in set(typePairList):
                             graphFile=graphTest.getRightGraphFile(typePair,lmbda)
+                            G=nx.Graph()
                             try:
                                 if graphFile!="":
                                     E, G=showEntGraphs.constructGraphFromFile(graphFile, lmbda)
