@@ -36,6 +36,10 @@ def main(lmbda):
                 predicatesSet=set()
                 passedPred1=False
                 passedPred2=False
+                globalNodesList1=[]
+                globalConnCompList1=[]
+                globalNodesList2=[]
+                globalConnCompList2=[]
                 for pred1 in firstPredicates.keys():
                     for pred2 in secondPredicates.keys():
                         predicatesSet.add(pred1)
@@ -61,17 +65,21 @@ def main(lmbda):
                                     #look for pred1 in graph,
                                     nodesList1, connectedComponent1 = findPredicateInGraph(pred1, G)
                                     if len(nodesList1)>0 and not passedPred1:
-                                        lineDict[" ".join(str(nodesList1))]=pred1
+                                        globalNodesList1.append(nodesList1)
                                         passedPred1=True
                                     if len(connectedComponent1)>0 :
-                                        lineDict[" ".join(str(connectedComponent1))]="Connected component of "+pred1
+                                        globalConnCompList1.append(connectedComponent1)
                                     nodesList2, connectedComponent2 = findPredicateInGraph(pred2, G)
                                     if len(nodesList2)>0 and not passedPred2:
-                                        lineDict[" ".join(str(nodesList2))]=pred2
+                                        globalNodesList1.append(nodesList2)
                                         passedPred2=True
                                     if len(connectedComponent2)>0:
-                                        lineDict[" ".join(str(connectedComponent2))]="Connected component of "+pred2
+                                        globalConnCompList1.append(connectedComponent1)
                 lineDict["predicates"]=predicatesSet
+                lineDict["nodes of "+pred1]=globalNodesList1
+                lineDict["nodes of "+pred2]=globalNodesList2
+                lineDict["connected component of "+pred1]=globalConnCompList1
+                lineDict["connected component of "+pred2]=globalConnCompList2
             documentDict[lineNumber]=lineDict
     
     f=open("errorAnalysis"+str(lmbda)+".txt","a")
