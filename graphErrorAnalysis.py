@@ -67,7 +67,7 @@ def main(lmbda):
             documentDict[lineNumber]=lineDict
     
     f=open("errorAnalysis"+str(lmbda)+".txt","a")
-    for k,v in documentDict:
+    for k,v in documentDict.items():
         f.write(str(k)+"\t"+str(v))
 
 def findPredicateInGraph(pred,G):
