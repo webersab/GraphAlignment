@@ -42,22 +42,23 @@ def main(lmbda):
                             except TypeError:
                                 lineDict["type Error"]=str(typePair)+str(lmbda)
                                 continue
-                            boo, clusterInfo = graphTest.hasEntailment(pred1, pred2, G)
-                            if boo:
-                                lineDict["clusterInfo"+str(clusterInfoCounter)]=clusterInfo
-                                clusterInfoCounter+=1
-                            else:
-                                #look for pred1 in graph,
-                                nodesList1, connectedComponent1 = findPredicateInGraph(pred1, G)
-                                if len(nodesList1)>0:
-                                    lineDict[" ".join(str(nodesList1))]=pred1
-                                if len(connectedComponent1)>0:
-                                    lineDict[" ".join(str(connectedComponent1))]="Connected component of "+pred1
-                                nodesList2, connectedComponent2 = findPredicateInGraph(pred2, G)
-                                if len(nodesList2)>0:
-                                    lineDict[" ".join(str(nodesList2))]=pred2
-                                if len(connectedComponent2)>0:
-                                    lineDict[" ".join(str(connectedComponent2))]="Connected component of "+pred2
+                            if len(G)>0:
+                                boo, clusterInfo = graphTest.hasEntailment(pred1, pred2, G)
+                                if boo:
+                                    lineDict["clusterInfo"+str(clusterInfoCounter)]=clusterInfo
+                                    clusterInfoCounter+=1
+                                else:
+                                    #look for pred1 in graph,
+                                    nodesList1, connectedComponent1 = findPredicateInGraph(pred1, G)
+                                    if len(nodesList1)>0:
+                                        lineDict[" ".join(str(nodesList1))]=pred1
+                                    if len(connectedComponent1)>0:
+                                        lineDict[" ".join(str(connectedComponent1))]="Connected component of "+pred1
+                                    nodesList2, connectedComponent2 = findPredicateInGraph(pred2, G)
+                                    if len(nodesList2)>0:
+                                        lineDict[" ".join(str(nodesList2))]=pred2
+                                    if len(connectedComponent2)>0:
+                                        lineDict[" ".join(str(connectedComponent2))]="Connected component of "+pred2
     
             documentDict[lineNumber]=lineDict
     
