@@ -23,16 +23,16 @@ def main(lmbda):
     with open(inFile) as file:
         #for line in tqdm(file,total=1948):
         for line in file:
-            print("line "+str(lineNumber))
-            lineDict=OrderedDict({})
-            lineDict["line"]=line
-            lineNumber+=1
-            line=line.rstrip()
-            line=line.split(". ")
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
             if line[2]=="y":
+                print("line "+str(lineNumber))
+                lineDict=OrderedDict({})
+                lineDict["line"]=line
+                lineNumber+=1
+                line=line.rstrip()
+                line=line.split(". ")
                 print("1")
                 firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
                 secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
