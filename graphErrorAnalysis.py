@@ -40,6 +40,8 @@ def main(lmbda):
                 globalConnCompList1=[]
                 globalNodesList2=[]
                 globalConnCompList2=[]
+                if len(firstPredicates.keys())==0 or len(secondPredicates.keys())==0:
+                    lineDict["error "]="Parsing Error occurred"
                 for pred1 in firstPredicates.keys():
                     for pred2 in secondPredicates.keys():
                         predicatesSet.add(pred1)
