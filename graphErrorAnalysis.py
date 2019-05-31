@@ -23,7 +23,6 @@ def main(lmbda):
     with open(inFile) as file:
         #for line in tqdm(file,total=1948):
         for line in file:
-            print("line "+str(lineNumber))
             lineDict=OrderedDict({})
             lineNumber+=1
             line=line.rstrip()
