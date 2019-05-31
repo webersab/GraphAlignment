@@ -25,7 +25,6 @@ def main(lmbda):
         for line in file:
             print("line "+str(lineNumber))
             lineDict=OrderedDict({})
-            lineDict["line"]=line
             lineNumber+=1
             line=line.rstrip()
             line=line.split(". ")
@@ -33,7 +32,6 @@ def main(lmbda):
                 print("oopsie! ",line)
                 continue
             if line[2]=="y":
-                print("1")
                 firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
                 secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
                 predicatesSet=set()
@@ -47,18 +45,15 @@ def main(lmbda):
                     lineDict["error "]="Parsing Error occurred"
                 for pred1 in firstPredicates.keys():
                     for pred2 in secondPredicates.keys():
-                        print("2")
                         predicatesSet.add(pred1)
                         predicatesSet.add(pred2)
                         typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                         typePairList.remove(("EVENT","EVENT"))
                         clusterInfoCounter=0
                         for typePair in set(typePairList):
-                            print("3")
                             graphFile=graphTest.getRightGraphFile(typePair,lmbda)
                             G=nx.Graph()
                             try:
-                                print("4")
                                 if graphFile!="":
                                     E, G=showEntGraphs.constructGraphFromFile(graphFile, lmbda)
                             except TypeError:
@@ -66,7 +61,6 @@ def main(lmbda):
                                 documentDict[lineNumber]=lineDict
                                 continue
                             if len(G)>0:
-                                print("5")
                                 boo, clusterInfo = graphTest.hasEntailment(pred1, pred2, G)
                                 if boo:
                                     lineDict["clusterInfo"+str(clusterInfoCounter)]=clusterInfo
@@ -85,13 +79,12 @@ def main(lmbda):
                                         passedPred2=True
                                     if len(connectedComponent2)>0:
                                         globalConnCompList2.append(connectedComponent2)
-                print("6")
+                lineDict["line"]=line
                 lineDict["predicates"]=predicatesSet
                 lineDict["nodes of "+pred1]=globalNodesList1
                 lineDict["nodes of "+pred2]=globalNodesList2
                 lineDict["connected component of "+pred1]=globalConnCompList1
                 lineDict["connected component of "+pred2]=globalConnCompList2
-            print("7")
             documentDict[lineNumber]=lineDict
     
     f=open("errorAnalysis"+str(lmbda)+".txt","a")
