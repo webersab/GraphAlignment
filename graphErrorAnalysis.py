@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 def main(lmbda):
     # constants
-    inFile="googleTranslationReduced2.txt"
+    inFile="translatedSnippet.txt"
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
@@ -26,6 +26,9 @@ def main(lmbda):
             lineNumber+=1
             line=line.rstrip()
             line=line.split(". ")
+            if len(line)<3:
+                print("oopsie! ",line)
+                continue
             if line[2]=="y":
                 firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
                 secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])

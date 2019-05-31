@@ -117,22 +117,22 @@ Tier jagt Eichhörnchen. Nagetiere sind Ziesel. n
 Tier jagt Eichhörnchen. Eichhörnchen sind auch Nagetiere. n
 Tier jagt Eichhörnchen. die Drachen ernährten sich von Eichhörnchen. y
 Tier jagt Eichhörnchen. die Eichhörnchen beißen die Eichhörnchen. y
-Tierjagd Antilopen. Pumas bekommen selten Antilopen. n
-Tierjagd Antilopen. Viele Kräne wurden mit einer Antilope gesehen. n
-Tierjagd Antilopen. Viele Kräne wurden mit einigen Antilopen gesehen. n
-Tierjagd Antilopen. ein Löwe ergreift eine Antilope. y
-Tierjagd Antilopen. Die Antilope entkam einem Löwen. y
-Tierjagd Antilopen. Antilopen sind wie Schafe. n
-Tierjagd Antilopen. Der Löwe tötet eine Antilope. y
-Tierjagd Antilopen. Die Soldaten gingen und brachten eine Antilope mit. n
-Tierjagd Antilopen. Kojoten Beute auf Antilope. y
-Tierjagd Antilopen. Eine riesige Python hatte eine Antilope gefangen. y
-Tierjagd Antilopen. Eine Pythonschlange hatte eine Antilope gefangen. y
-Tierjagd Antilopen. Antilope schritt auf die Soldaten zu. n
-Tierjagd Antilopen. Bären gedeihen Antilopen. n
-Tierjagd Antilopen. Elefant bat erneut um Antilope. n
-Tierjagd Antilopen. Pferde laufen eine Antilope hinunter. y
-Tierjagd Antilopen. gewöhnliche Pferde werden eine Antilope hinunterlaufen. y
+Tier jagt Antilopen. Pumas bekommen selten Antilopen. n
+Tier jagt Antilopen. Viele Kräne wurden mit einer Antilope gesehen. n
+Tier jagt Antilopen. Viele Kräne wurden mit einigen Antilopen gesehen. n
+Tier jagt Antilopen. ein Löwe ergreift eine Antilope. y
+Tier jagt Antilopen. Die Antilope entkam einem Löwen. y
+Tier jagt Antilopen. Antilopen sind wie Schafe. n
+Tier jagt Antilopen. Der Löwe tötet eine Antilope. y
+Tier jagt Antilopen. Die Soldaten gingen und brachten eine Antilope mit. n
+Tier jagt Antilopen. Kojoten Beute auf Antilope. y
+Tier jagt Antilopen. Eine riesige Python hatte eine Antilope gefangen. y
+Tier jagt Antilopen. Eine Pythonschlange hatte eine Antilope gefangen. y
+Tier jagt Antilopen. Antilope schritt auf die Soldaten zu. n
+Tier jagt Antilopen. Bären gedeihen Antilopen. n
+Tier jagt Antilopen. Elefant bat erneut um Antilope. n
+Tier jagt Antilopen. Pferde laufen eine Antilope hinunter. y
+Tier jagt Antilopen. gewöhnliche Pferde werden eine Antilope hinunterlaufen. y
 Tier lebt in Afrika. menschen stammen aus afrika. y
 Tier lebt in Afrika. homo sapiens stammt aus afrika. y
 Tier lebt in Afrika. der moderne mensch entstand in afrika. y
@@ -1944,5 +1944,3 @@ Person kämpfte in einem Krieg. Hamilton diente während des ganzen Krieges. y
 Person kämpfte in einem Krieg. der Krieg war zu einem erfolgreichen Problem gebracht worden. n
 Person kämpfte in einem Krieg. Der älteste Bruder war im Krieg gefallen. y
 Person kämpfte in einem Krieg. Die Vasallen führten häufig Krieg. y
-
-
