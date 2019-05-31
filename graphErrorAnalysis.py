@@ -7,6 +7,7 @@ import sys
 from collections import OrderedDict
 import networkx as nx
 from scipy.special.basic import lmbda
+from tqdm import tqdm
 
 def main(lmbda):
     # constants
@@ -19,7 +20,7 @@ def main(lmbda):
     
     lineNumber=0
     with open(inFile) as file:
-        for line in file:
+        for line in tqdm(file,total=1948):
             lineDict=OrderedDict({})
             lineDict["line"]=line
             lineNumber+=1
