@@ -23,12 +23,13 @@ def main(lmbda):
     with open(inFile) as file:
         #for line in tqdm(file,total=1948):
         for line in file:
+            lineDict=OrderedDict({})
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
             if line[2]=="y":
                 print("line "+str(lineNumber))
-                lineDict=OrderedDict({})
+
                 lineDict["line"]=line
                 lineNumber+=1
                 line=line.rstrip()
@@ -91,8 +92,8 @@ def main(lmbda):
                 lineDict["nodes of "+pred2]=globalNodesList2
                 lineDict["connected component of "+pred1]=globalConnCompList1
                 lineDict["connected component of "+pred2]=globalConnCompList2
-                print("7")
-                documentDict[lineNumber]=lineDict
+            print("7")
+            documentDict[lineNumber]=lineDict
     
     f=open("errorAnalysis"+str(lmbda)+".txt","a")
     pprint.pprint(documentDict, f)
