@@ -91,8 +91,8 @@ def main(lmbda):
                 lineDict["nodes of "+pred2]=globalNodesList2
                 lineDict["connected component of "+pred1]=globalConnCompList1
                 lineDict["connected component of "+pred2]=globalConnCompList2
-            print("7")
-            documentDict[lineNumber]=lineDict
+                print("7")
+                documentDict[lineNumber]=lineDict
     
     f=open("errorAnalysis"+str(lmbda)+".txt","a")
     pprint.pprint(documentDict, f)
