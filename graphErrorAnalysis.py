@@ -27,7 +27,7 @@ def main(lmbda):
             if line[2]=="y":
                 firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
                 secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
-                lineDict["predicates"]=firstPredicates.keys().append(secondPredicates.keys())
+                lineDict["predicates"]=list(firstPredicates.keys()).append(list(secondPredicates.keys()))
                 for pred1 in firstPredicates.keys():
                     for pred2 in secondPredicates.keys():
                         typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
