@@ -22,7 +22,6 @@ def main(lmbda):
     lineNumber=0
     with open(inFile) as file:
         for line in tqdm(file,total=1948):
-            print("line "+lineNumber)
             lineDict=OrderedDict({})
             lineDict["line"]=line
             lineNumber+=1
