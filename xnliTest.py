@@ -860,12 +860,12 @@ if __name__ == "__main__":
     except:
         print("woop")
     """
-    score,mapOffalsePositives, mapOffalseNegatives=testWithLevy("googleTranslationReduced2.txt")
+    score,mapOffalsePositives, mapOffalseNegatives=testGermanClusters("/disk/scratch_big/sweber/15Handcrafted.tsv")
     
     
-    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePosSimilaritiesLevy.txt",'w'))
+    pp = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalsePos15Handcrafted.txt",'w'))
     pp.pprint(mapOffalsePositives)
-    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNegSimilaritiesLevy.txt",'w'))
+    pp1 = pprint.PrettyPrinter(stream=open("xnliDetailedoutputFalseNeg15Handracted.txt",'w'))
     pp1.pprint(mapOffalseNegatives)
     
 
