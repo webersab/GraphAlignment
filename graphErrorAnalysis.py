@@ -10,6 +10,35 @@ from scipy.special.basic import lmbda
 from tqdm import tqdm
 import pprint
 
+def moreDetails(lmbda):
+    # constants
+    inFile="googleTranslationReduced2.txt"
+    modelfile ="germanModel.udpipe"
+    model = udp.UDPipeModel(modelfile)
+    
+    a=open("typeInfo"+lmbda+".txt","a")
+    b=open("totalOccurrence"+lmbda+".txt","a")
+    c=open("overlapOfEntities"+lmbda+".txt","a")
+    
+    lineNumber=0
+    with open(inFile) as file:
+        for line in file:
+            lineNumber+=1
+            line=line.rstrip()
+            line=line.split(". ")
+            if len(line)<3:
+                print("oopsie! ",line)
+                continue
+            if line[2]=="y":
+                firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
+                secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
+                recognizedTypesSet=set()
+                recognizedTypesSet.add(firstPredicates.values())
+                recognizedTypesSet.add(secondPredicates.values())
+    
+    
+    
+
 def main(lmbda):
     # constants
     inFile="googleTranslationReduced2.txt"
