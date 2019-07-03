@@ -12,7 +12,7 @@ import pprint
 
 def moreDetails(lmbda):
     # constants
-    inFile="googleTranslationReduced2.txt"
+    inFile="deepLTranslationOfWholeDataset.txt"
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
