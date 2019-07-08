@@ -115,7 +115,7 @@ def main(lmbda):
                 lineDict["connected component of "+pred2]=globalConnCompList2
             documentDict[lineNumber]=lineDict
     
-    f=open("errorAnalysis"+str(lmbda)+".txt","a")
+    f=open("errorAnalysisBig"+str(lmbda)+".txt","a")
     pprint.pprint(documentDict, f)
     #for k,v in documentDict.items():
     #    f.write(str(k)+"\t"+str(v))
