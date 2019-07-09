@@ -29,7 +29,7 @@ def testGraphWithLevy(lambdaValue):
     # parallel python graphTest.py ::: 0.200 0.100 0.050 0.059 0.070 0.079 0.090
     score=0
     
-    inFile="googleTranslationReduced2.txt"
+    inFile="deepLTranslationOfWholeDataset.txt"
     
     counterMap={
     "hitcounter":0,
@@ -159,7 +159,7 @@ def testGraphWithLevy(lambdaValue):
         precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
         recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
         print("precision, recall ", precision, recall)
-    with open("outputforLambda"+lambdaValue, "a") as f:
+    with open("BIGoutputforLambda"+lambdaValue, "a") as f:
         f.write("------------TRUE PODITIVES ----------------\n")
         for a, b in truePosDict.items():
             f.write(str(a)+"\t"+str(b)+"\n")
