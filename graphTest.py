@@ -304,11 +304,11 @@ def createSmallTestGraph():
 if __name__ == "__main__":
     print("Hello Levy Graph Test!")
     print("begin: ",datetime.datetime.now())
-    plt.plot([0.397,0.4224,0.3958,0.3437,0.3155,0.27,0.288,0.288,0.167,0.1510,0.1438,0.1428,0.1429],[0.58,0.588,0.5987,0.601,0.63,0.67,0.62,0.69,0.7477,0.76,0.786,0.7988,0.7988])
-    plt.savefig('precision recall.png')
+    #plt.plot([0.397,0.4224,0.3958,0.3437,0.3155,0.27,0.288,0.288,0.167,0.1510,0.1438,0.1428,0.1429],[0.58,0.588,0.5987,0.601,0.63,0.67,0.62,0.69,0.7477,0.76,0.786,0.7988,0.7988])
+    #plt.savefig('precision recall.png')
     
-    #lamb=sys.argv[1]
-    #testGraphWithLevy(lamb)
+    lamb=sys.argv[1]
+    testGraphWithLevy(lamb)
     
     
         
