@@ -26,7 +26,8 @@ import matplotlib.pyplot as plt
 
 
 def testGraphWithLevy(lambdaValue):
-    # parallel python graphTest.py ::: 0.200 0.100 0.050 0.059 0.070 0.079 0.090
+    # parallel python graphTest.py ::: 0.150 0.25 0.349 0.449 0.550 0.649 0.75 0.850 0.125 0.224 0.324 0.425 0.524 0.625 0.725 0.824 0.174 0.275 0.375 0.474 0.574 0.675 0.774 0.875 
+
     score=0
     
     inFile="deepLTranslationOfWholeDataset.txt"
@@ -225,13 +226,13 @@ def getRightGraphFile(typePair,lambdaValue):
         type2=typePair[1]
         
     try:
-        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRGZ"
-        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRGZ", "r")
+        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRGA"
+        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRGA", "r")
     except FileNotFoundError:
         pass
     try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRGZ"
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGZ", "r")
+        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRGA"
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGA", "r")
     except FileNotFoundError:
         outputFile=""
     return outputFile
