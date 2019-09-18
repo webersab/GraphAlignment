@@ -186,7 +186,7 @@ if __name__ == "__main__":
     combinationList=itertools.product(["#PERSON","#LOCATION","#ORGANIZATION","#EVENT","#MISC"],repeat=2)
     for i in combinationList:
         combination=i[0]+i[1]
-        p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/all.txt", "/disk/scratch_big/sweber/preprocessingOutput/german"+combination+".txt",combination)
+        p.generate_input("/disk/scratch_big/sweber/pipelineOutputTyped/binary_relations_Wiki.txt", "/disk/scratch_big/sweber/preprocessingOutputWiki/german"+combination+".txt",combination)
          
     print("end : ",datetime.datetime.now())
 
