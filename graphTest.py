@@ -124,7 +124,7 @@ def testGraphWithLevy(lambdaValue):
                         counterMap["samePredicatesEntail"]+=1
                     truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
-                    print("true pos. hits",hits, "entailment ", line[2])
+                    #print("true pos. hits",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
                 else:
                     counterMap["falsePositives"]+=1
@@ -135,7 +135,7 @@ def testGraphWithLevy(lambdaValue):
                         falsePosDict["samePredicates"]+=1
                         counterMap["samePredicatesNonEntail"]+=1
                     #print(line[0],line[1])
-                    print("FALSE POS. hits ",hits, "entailment ", line[2])
+                    #print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
@@ -145,21 +145,24 @@ def testGraphWithLevy(lambdaValue):
                         falseNegDict["samePredicates"]+=1
                         counterMap["samePredicatesEntail"]+=1
                     #print(line[0],line[1])
-                    print("false neg. hits ",hits, "entailment ", line[2] )
+                    #print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
                     #print(line[0],line[1])
                     if samePredicates:
                         counterMap["samePredicatesNonEntail"]+=1
-                    print("true neg. hits ",hits, "entailment ", line[2])
+                    #print("true neg. hits ",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
 
     if counterMap["totalcounter"]>0:
         score=counterMap["hitcounter"]/counterMap["totalcounter"]
         print("score ",str(score))
-        precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
-        recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
-        print("precision, recall ", precision, recall)
+        try:
+            precision=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falsePositives"])
+            recall=counterMap["truePositives"]/(counterMap["truePositives"]+counterMap["falseNegatives"])
+        except ZeroDivisionError:
+            precision=0.000001
+            recall=0.0000001
     with open("BIGoutputforLambda"+lambdaValue, "a") as f:
         f.write("------------TRUE PODITIVES ----------------\n")
         for a, b in truePosDict.items():
