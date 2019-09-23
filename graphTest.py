@@ -59,8 +59,8 @@ def testGraphWithLevy(lambdaValue):
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            print("-------------------------------------------")
-            print("line ",line)
+            #print("-------------------------------------------")
+            #print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -89,7 +89,7 @@ def testGraphWithLevy(lambdaValue):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
                                           
-                    print(typePairList)   
+                    #print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
