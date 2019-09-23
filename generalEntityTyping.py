@@ -5,6 +5,7 @@ from nltk.corpus.reader.wordnet import Lemma
 import re
 import os
 from pygermanet.germanet import load_germanet
+import time
 
 class GeneralEntityTyping():
     

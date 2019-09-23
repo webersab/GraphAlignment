@@ -21,6 +21,7 @@ import os
 from itertools import chain
 import numpy
 import random
+import time
 
 
 #this method is fully taken from Lianes pipeline
@@ -525,6 +526,7 @@ def getAllTypePairsOfSentence(d):
     for j in d.nodes: 
         if d.nodes[j]['ctag']=='NOUN' or d.nodes[j]['ctag']=='PRON': 
             word=d.nodes[j]['lemma']
+            time.sleep(.300)
             typ=G.typeEntity(word,gn)
             #stupid hack to make up for not having EventXEvent graph
             if typ=='EVENT' and not foundEvent: 
@@ -622,7 +624,7 @@ def extractPredicateFromSentence(model, sentence):
     for d in dtree:
         predicateMap=treeToPredMapSimple(d)
     #print("done extracting predicates") 
-    
+    os.remove("conllOut"+str(ran)+".txt")
     #pp = pprint.PrettyPrinter()
     #pp.pprint(predicateMap)
     return predicateMap
