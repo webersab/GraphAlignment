@@ -99,7 +99,7 @@ def testGraphWithLevy(lambdaValue):
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                print("predicates ",pred1,pred2)
+                                #print("predicates ",pred1,pred2)
                                 if pred1 in pred2 or pred2 in pred1:
                                     samePredicates=True
                                     #print("Same Predicates!")
@@ -109,9 +109,9 @@ def testGraphWithLevy(lambdaValue):
                                     globalClusterInfo.update(clusterInfo)
                                     print(globalClusterInfo)
                         except TypeError:
-                            print("Type error in ", typePair, lambdaValue)
+                            #print("Type error in ", typePair, lambdaValue)
                             continue
-            print("hits number B", hits)                    
+            #print("hits number B", hits)                    
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
@@ -259,7 +259,7 @@ def hasEntailment(pred1, pred2, G):
     pred1NodesList=[]
     for n in list(G.nodes):
         for k, v in G.node[n].items(): 
-            print("v ", v, "pred1 ", pred1)
+            #print("v ", v, "pred1 ", pred1)
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
                 #print("found in ", v)
                 pred1NodesList.append(n)
