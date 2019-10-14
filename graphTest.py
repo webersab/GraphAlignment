@@ -250,15 +250,15 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
-    #print("len of G.nodes ", len(list(G.nodes)))
+    print("len of G.nodes ", len(list(G.nodes)))
     clusterInfo={}
 
     pred1NodesList=[]
     for n in list(G.nodes):
         for k, v in G.node[n].items(): 
-            #print("v ", v, "pred1 ", pred1)
+            print("v ", v, "pred1 ", pred1)
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
-                #print("found in ", v)
+                print("found in ", v)
                 pred1NodesList.append(n)
                 connectedCompnent=nx.node_connected_component(G, n)
                 #if len(connectedCompnent)>1:
@@ -270,16 +270,16 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                #print("IN SAME CLUSTER")
-                #print(value,pred2)
+                print("IN SAME CLUSTER")
+                print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    #print("IN GRAPH ANCESTORS")
-                    #print(va,pred2)
+                    print("IN GRAPH ANCESTORS")
+                    print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
                     return True, clusterInfo
     return False, clusterInfo
