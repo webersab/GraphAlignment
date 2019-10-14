@@ -95,6 +95,7 @@ def testGraphWithLevy(lambdaValue):
                     #retrieve right graph
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
+                        print("graph file ",graphFile)
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
