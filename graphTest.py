@@ -58,7 +58,7 @@ def testGraphWithLevy(lambdaValue):
             line=line.rstrip()
             line=line.split(". ")
             #print("-------------------------------------------")
-           # print("line ",line)
+            # print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -107,7 +107,7 @@ def testGraphWithLevy(lambdaValue):
                                 if boo:
                                     hits+=1
                                     globalClusterInfo.update(clusterInfo)
-                                    print(globalClusterInfo)
+                                    #print(globalClusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue
@@ -230,7 +230,7 @@ def getRightGraphFile(typePair,lambdaValue):
         outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"
         fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG", "r")
     except FileNotFoundError:
-        print("couldnt find file ",outputFile)
+        #print("couldnt find file ",outputFile)
         pass
     try:
         outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
