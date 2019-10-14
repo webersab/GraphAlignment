@@ -227,13 +227,14 @@ def getRightGraphFile(typePair,lambdaValue):
         type2=typePair[1]
         
     try:
-        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG1"
-        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG1", "r")
+        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"
+        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG", "r")
     except FileNotFoundError:
+        print("couldnt find file ",outputFile)
         pass
     try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG1"
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG1", "r")
+        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG", "r")
     except FileNotFoundError:
         outputFile=""
     return outputFile
