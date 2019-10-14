@@ -57,8 +57,8 @@ def testGraphWithLevy(lambdaValue):
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            print("-------------------------------------------")
-            print("line ",line)
+            #print("-------------------------------------------")
+           # print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -70,7 +70,7 @@ def testGraphWithLevy(lambdaValue):
             #each predicate has a list of type pairs
             firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
-            print("Type pairs ", firstPredicates, secondPredicates)
+            #print("Type pairs ", firstPredicates, secondPredicates)
             #for each combination of predictates from sentence one and two
             #print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
             for pred1 in firstPredicates.keys():
@@ -87,7 +87,7 @@ def testGraphWithLevy(lambdaValue):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
                                           
-                    print(typePairList)   
+                    #print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
@@ -95,14 +95,14 @@ def testGraphWithLevy(lambdaValue):
                     #retrieve right graph
                     for typePair in set(typePairList):
                         graphFile=getRightGraphFile(typePair,lambdaValue)
-                        print("graph file ",graphFile)
+                        #print("graph file ",graphFile)
                         try:
                             if graphFile!="":
                                 E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
                                 print("predicates ",pred1,pred2)
                                 if pred1 in pred2 or pred2 in pred1:
                                     samePredicates=True
-                                    print("Same Predicates!")
+                                    #print("Same Predicates!")
                                 boo, clusterInfo = hasEntailment(pred1, pred2, G)
                                 if boo:
                                     hits+=1
@@ -122,7 +122,7 @@ def testGraphWithLevy(lambdaValue):
                         counterMap["samePredicatesEntail"]+=1
                     truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
-                    print("true pos. hits",hits, "entailment ", line[2])
+                    #print("true pos. hits",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
                 else:
                     counterMap["falsePositives"]+=1
@@ -133,7 +133,7 @@ def testGraphWithLevy(lambdaValue):
                         falsePosDict["samePredicates"]+=1
                         counterMap["samePredicatesNonEntail"]+=1
                     #print(line[0],line[1])
-                    print("FALSE POS. hits ",hits, "entailment ", line[2])
+                    #print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
@@ -143,13 +143,13 @@ def testGraphWithLevy(lambdaValue):
                         falseNegDict["samePredicates"]+=1
                         counterMap["samePredicatesEntail"]+=1
                     #print(line[0],line[1])
-                    print("false neg. hits ",hits, "entailment ", line[2] )
+                    #print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
                     #print(line[0],line[1])
                     if samePredicates:
                         counterMap["samePredicatesNonEntail"]+=1
-                    print("true neg. hits ",hits, "entailment ", line[2])
+                    #print("true neg. hits ",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
 
     if counterMap["totalcounter"]>0:
@@ -252,8 +252,8 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
-    print("IN hasEntailment")
-    print("len of G.nodes ", len(list(G.nodes)))
+    #print("IN hasEntailment")
+    #print("len of G.nodes ", len(list(G.nodes)))
     clusterInfo={}
 
     pred1NodesList=[]
@@ -261,7 +261,7 @@ def hasEntailment(pred1, pred2, G):
         for k, v in G.node[n].items(): 
             print("v ", v, "pred1 ", pred1)
             if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
-                print("found in ", v)
+                #print("found in ", v)
                 pred1NodesList.append(n)
                 connectedCompnent=nx.node_connected_component(G, n)
                 #if len(connectedCompnent)>1:
@@ -273,16 +273,16 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                print("IN SAME CLUSTER")
-                print(value,pred2)
+                #print("IN SAME CLUSTER")
+                #print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    print("IN GRAPH ANCESTORS")
-                    print(va,pred2)
+                    #print("IN GRAPH ANCESTORS")
+                    #print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
                     return True, clusterInfo
     return False, clusterInfo
