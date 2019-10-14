@@ -52,15 +52,13 @@ def testGraphWithLevy(lambdaValue):
     model = udp.UDPipeModel(modelfile)
     
     with open(inFile) as file:
-        #1948 is the number of lines in the levy data set, change accordingly
-        #for line in tqdm(file,total=1948):
         for line in file:
             samePredicates=False
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            #print("-------------------------------------------")
-            #print("line ",line)
+            print("-------------------------------------------")
+            print("line ",line)
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -72,7 +70,7 @@ def testGraphWithLevy(lambdaValue):
             #each predicate has a list of type pairs
             firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
-
+            print("Type pairs ", firstPredicates, secondPredicates)
             #for each combination of predictates from sentence one and two
             #print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
             for pred1 in firstPredicates.keys():
@@ -89,14 +87,13 @@ def testGraphWithLevy(lambdaValue):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
                                           
-                    #print(typePairList)   
+                    print(typePairList)   
                     #Do this in case of way too low recall:
                     #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
                     #typePairList.remove(("EVENT","EVENT"))
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
-                        #print("hits number A", hits)
                         graphFile=getRightGraphFile(typePair,lambdaValue)
                         try:
                             if graphFile!="":
@@ -111,9 +108,9 @@ def testGraphWithLevy(lambdaValue):
                                     globalClusterInfo.update(clusterInfo)
                                     print(globalClusterInfo)
                         except TypeError:
-                            #print("Type error in ", typePair, lambdaValue)
+                            print("Type error in ", typePair, lambdaValue)
                             continue
-            #print("hits number B", hits)                    
+            print("hits number B", hits)                    
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
@@ -124,7 +121,7 @@ def testGraphWithLevy(lambdaValue):
                         counterMap["samePredicatesEntail"]+=1
                     truePosDict.update(globalClusterInfo)
                     #print(line[0],line[1])
-                    #print("true pos. hits",hits, "entailment ", line[2])
+                    print("true pos. hits",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
                 else:
                     counterMap["falsePositives"]+=1
@@ -135,7 +132,7 @@ def testGraphWithLevy(lambdaValue):
                         falsePosDict["samePredicates"]+=1
                         counterMap["samePredicatesNonEntail"]+=1
                     #print(line[0],line[1])
-                    #print("FALSE POS. hits ",hits, "entailment ", line[2])
+                    print("FALSE POS. hits ",hits, "entailment ", line[2])
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
@@ -145,13 +142,13 @@ def testGraphWithLevy(lambdaValue):
                         falseNegDict["samePredicates"]+=1
                         counterMap["samePredicatesEntail"]+=1
                     #print(line[0],line[1])
-                    #print("false neg. hits ",hits, "entailment ", line[2] )
+                    print("false neg. hits ",hits, "entailment ", line[2] )
                 else:
                     counterMap["trueNegatives"]+=1
                     #print(line[0],line[1])
                     if samePredicates:
                         counterMap["samePredicatesNonEntail"]+=1
-                    #print("true neg. hits ",hits, "entailment ", line[2])
+                    print("true neg. hits ",hits, "entailment ", line[2])
                     counterMap["hitcounter"]+=1
 
     if counterMap["totalcounter"]>0:
@@ -229,13 +226,13 @@ def getRightGraphFile(typePair,lambdaValue):
         type2=typePair[1]
         
     try:
-        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRGA"
-        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRGA", "r")
+        outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG1"
+        fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG1", "r")
     except FileNotFoundError:
         pass
     try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRGA"
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRGA", "r")
+        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG1"
+        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG1", "r")
     except FileNotFoundError:
         outputFile=""
     return outputFile
