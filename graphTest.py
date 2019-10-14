@@ -250,6 +250,7 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
+    print("IN hasEntailment")
     print("len of G.nodes ", len(list(G.nodes)))
     clusterInfo={}
 
