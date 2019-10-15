@@ -40,8 +40,19 @@ def generateAllGraphs(lambdaValue):
             graphDict[typePair]=G
 
     return graphDict
-        
-        
+    
+def removeDoubeBe(firstPredicates,secondPredicates):
+    preds1=firstPredicates.keys()
+    preds2=secondPredicates.keys()
+    
+    if ("sein" in preds1) and ("sein" in preds2):
+        if (len(preds1)>len(preds2)):
+            del firstPredicates["sein"]
+        elif (len(preds2)>len(preds1)):
+            del secondPredicates["sein"]
+            
+    return firstPredicates, secondPredicates
+                    
 def testGraphWithLevy(lambdaValue):
     # parallel python graphTest.py ::: 0.150 0.25 0.349 0.449 0.550 0.649 0.75 0.850 0.125 0.224 0.324 0.425 0.524 0.625 0.725 0.824 0.174 0.275 0.375 0.474 0.574 0.675 0.774 0.875 
 
@@ -76,8 +87,7 @@ def testGraphWithLevy(lambdaValue):
             globalClusterInfo={}
             line=line.rstrip()
             line=line.split(". ")
-            #print("-------------------------------------------")
-            # print("line ",line)
+            
             if len(line)<3:
                 print("oopsie! ",line)
                 continue
@@ -89,9 +99,11 @@ def testGraphWithLevy(lambdaValue):
             #each predicate has a list of type pairs
             firstPredicates=xnliTest.extractPredicateFromSentence(model,line[0])
             secondPredicates=xnliTest.extractPredicateFromSentence(model,line[1])
-            #print("Type pairs ", firstPredicates, secondPredicates)
+            
+            #this is a hacky fix for removing spurious "be" predicates. We need an actual solution for this eventually
+            firstPredicates, secondPredicates=removeDoubeBe(firstPredicates,secondPredicates)
+
             #for each combination of predictates from sentence one and two
-            #print("all predicates", firstPredicates.keys(), secondPredicates.keys(), "entailment ",line[2])
             for pred1 in firstPredicates.keys():
                 for pred2 in secondPredicates.keys():
                     #determine which graph to pick dependent on predicate types
