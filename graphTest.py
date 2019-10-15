@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 def generateAllGraphs(lambdaValue):
     graphFileDict={}
     graphDict={}
-    typePairList=list(itertools.permutations(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],2))
+    typePairList=list(itertools.combinations_with_replacement(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],2))
     typePairList.remove(("EVENT","EVENT"))
     
     for typePair in set(typePairList):
