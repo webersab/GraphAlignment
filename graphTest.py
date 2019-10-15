@@ -123,8 +123,7 @@ def testGraphWithLevy(lambdaValue):
                                     #print(globalClusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
-                            continue
-            print("processed line ",datetime.datetime.now())                   
+                            continue                  
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
