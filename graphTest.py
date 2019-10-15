@@ -35,8 +35,9 @@ def generateAllGraphs(lambdaValue):
         graphFileDict[typePair]=graphFile
     
     for typePair in graphFileDict.keys():
-        E, G=showEntGraphs.constructGraphFromFile(graphFileDict[typePair], lambdaValue)
-        graphDict[typePair]=G
+        if graphFileDict[typePair]!= "":
+            E, G=showEntGraphs.constructGraphFromFile(graphFileDict[typePair], lambdaValue)
+            graphDict[typePair]=G
         
     return graphDict
         
