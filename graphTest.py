@@ -26,6 +26,7 @@ import matplotlib.pyplot as plt
 
 def generateAllGraphs(lambdaValue):
     graphFileDict={}
+    graphDict={}
     typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
     typePairList.remove(("EVENT","EVENT"))
     
@@ -33,7 +34,11 @@ def generateAllGraphs(lambdaValue):
         graphFile=getRightGraphFile(typePair,lambdaValue)
         graphFileDict[typePair]=graphFile
     
-    return graphFileDict
+    for typePair, graphFile in graphFileDict:
+        E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
+        graphDict[typePair]=G
+        
+    return graphDict
         
         
 def testGraphWithLevy(lambdaValue):
@@ -62,7 +67,7 @@ def testGraphWithLevy(lambdaValue):
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
     
-    graphFileDict=generateAllGraphs(lambdaValue)
+    graphDict=generateAllGraphs(lambdaValue)
     
     with open(inFile) as file:
         for line in file:
@@ -107,20 +112,17 @@ def testGraphWithLevy(lambdaValue):
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
-                        graphFile=graphFileDict[typePair]
-                        #print("graph file ",graphFile)
                         try:
-                            if graphFile!="":
-                                E, G=showEntGraphs.constructGraphFromFile(graphFile, lambdaValue)
-                                #print("predicates ",pred1,pred2)
-                                if pred1 in pred2 or pred2 in pred1:
-                                    samePredicates=True
-                                    #print("Same Predicates!")
-                                boo, clusterInfo = hasEntailment(pred1, pred2, G)
-                                if boo:
-                                    hits+=1
-                                    globalClusterInfo.update(clusterInfo)
-                                    #print(globalClusterInfo)
+                            G=graphDict[typePair]
+                            #print("predicates ",pred1,pred2)
+                            if pred1 in pred2 or pred2 in pred1:
+                                samePredicates=True
+                                #print("Same Predicates!")
+                            boo, clusterInfo = hasEntailment(pred1, pred2, G)
+                            if boo:
+                                hits+=1
+                                globalClusterInfo.update(clusterInfo)
+                                #print(globalClusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue                  
