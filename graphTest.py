@@ -24,7 +24,18 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-
+def generateAllGraphs(lambdaValue):
+    graphFileDict={}
+    typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
+    typePairList.remove(("EVENT","EVENT"))
+    
+    for typePair in set(typePairList):
+        graphFile=getRightGraphFile(typePair,lambdaValue)
+        graphFileDict[typePair]=graphFile
+    
+    return graphFileDict
+        
+        
 def testGraphWithLevy(lambdaValue):
     # parallel python graphTest.py ::: 0.150 0.25 0.349 0.449 0.550 0.649 0.75 0.850 0.125 0.224 0.324 0.425 0.524 0.625 0.725 0.824 0.174 0.275 0.375 0.474 0.574 0.675 0.774 0.875 
 
@@ -50,6 +61,8 @@ def testGraphWithLevy(lambdaValue):
     
     modelfile ="germanModel.udpipe"
     model = udp.UDPipeModel(modelfile)
+    
+    graphFileDict=generateAllGraphs(lambdaValue)
     
     with open(inFile) as file:
         for line in file:
@@ -94,7 +107,7 @@ def testGraphWithLevy(lambdaValue):
                     
                     #retrieve right graph
                     for typePair in set(typePairList):
-                        graphFile=getRightGraphFile(typePair,lambdaValue)
+                        graphFile=graphFileDict[typePair]
                         #print("graph file ",graphFile)
                         try:
                             if graphFile!="":
@@ -111,7 +124,7 @@ def testGraphWithLevy(lambdaValue):
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
                             continue
-            #print("hits number B", hits)                    
+            print("processed line ",datetime.datetime.now())                   
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
