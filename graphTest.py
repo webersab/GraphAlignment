@@ -46,12 +46,9 @@ def removeDoubeBe(firstPredicates,secondPredicates):
     preds2=secondPredicates.keys()
     
     if ("sein" in preds1) and ("sein" in preds2):
-        print("REMOVAL preds ",preds1,preds2)
         if (len(preds1)>len(preds2)):
-            print("1")
             del firstPredicates["sein"]
         elif (len(preds2)>len(preds1)):
-            print("2")
             del secondPredicates["sein"]
             
     return firstPredicates, secondPredicates
