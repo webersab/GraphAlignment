@@ -233,6 +233,7 @@ def createGraph(graphFile):
 
 def getRightGraphFile(typePair,lambdaValue):
     outputFolder= "/disk/scratch_big/sweber/entGraph/justGraphs/"
+    notFound=False
     
     if typePair[0] == "NoSubj":
         type1="MISC"
@@ -247,14 +248,17 @@ def getRightGraphFile(typePair,lambdaValue):
         outputFile=outputFolder+type1+"#"+type2+"_sim_HTLFRG"
         fh=open(outputFolder+type1+"#"+type2+"_sim_HTLFRG", "r")
     except FileNotFoundError:
-        #print("couldnt find file ",outputFile)
-        pass
-    try:
-        outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
-        fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG", "r")
-    except FileNotFoundError:
-        print("couldnt find file ",outputFile)
-        outputFile=""
+        notFound=True
+        #pass
+    
+    if notFound:
+        try:
+            outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
+            fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG", "r")
+        except FileNotFoundError:
+            print("couldnt find file ",outputFile)
+            outputFile=""
+            
     return outputFile
 
 def bothNegated(a,b):
