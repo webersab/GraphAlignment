@@ -27,10 +27,10 @@ import matplotlib.pyplot as plt
 def generateAllGraphs(lambdaValue):
     graphFileDict={}
     graphDict={}
-    typePairList=list(itertools.combinations_with_replacement(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],2))
+    typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
     typePairList.remove(("EVENT","EVENT"))
     
-    for typePair in set(typePairList):
+    for typePair in typePairList:
         graphFile=getRightGraphFile(typePair,lambdaValue)
         graphFileDict[typePair]=graphFile
     
