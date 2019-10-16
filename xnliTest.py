@@ -526,7 +526,7 @@ def getAllTypePairsOfSentence(d):
     for j in d.nodes: 
         if d.nodes[j]['ctag']=='NOUN' or d.nodes[j]['ctag']=='PRON': 
             word=d.nodes[j]['lemma']
-            #time.sleep(.300)
+            time.sleep(.100)
             typ=G.typeEntity(word,gn)
             #stupid hack to make up for not having EventXEvent graph
             if typ=='EVENT' and not foundEvent: 

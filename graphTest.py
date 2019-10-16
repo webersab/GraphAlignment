@@ -89,7 +89,7 @@ def testGraphWithLevy(lambdaValue):
             line=line.split(". ")
             
             if len(line)<3:
-                print("oopsie! ",line)
+                #print("oopsie! ",line)
                 continue
             
             typePairList=[]
@@ -159,9 +159,9 @@ def testGraphWithLevy(lambdaValue):
                     if samePredicates:
                         falsePosDict["samePredicates"]+=1
                         counterMap["samePredicatesNonEntail"]+=1
-                    print(line[0],line[1],line[2])
-                    print("FALSE POS. hits ",hits, "preds, types ", firstPredicates, secondPredicates)
-                    print("type pair list ", typePairList)
+                    #print(line[0],line[1],line[2])
+                    #print("FALSE POS. hits ",hits, "preds, types ", firstPredicates, secondPredicates)
+                    #print("type pair list ", typePairList)
             else:
                 if line[2]=="y":
                     counterMap["falseNegatives"]+=1
@@ -267,7 +267,7 @@ def getRightGraphFile(typePair,lambdaValue):
             outputFile=outputFolder+type2+"#"+type1+"_sim_HTLFRG"
             fh=open(outputFolder+type2+"#"+type1+"_sim_HTLFRG", "r")
         except FileNotFoundError:
-            print("couldnt find file ",outputFile)
+            #print("couldnt find file ",outputFile)
             outputFile=""
             
     return outputFile
@@ -339,7 +339,7 @@ def createSmallTestGraph():
 
 
 if __name__ == "__main__":
-    print("Hello Levy Graph Test!")
+    print("Hello Levy Graph Test!!!")
     print("begin: ",datetime.datetime.now())
     #plt.plot([0.397,0.4224,0.3958,0.3437,0.3155,0.27,0.288,0.288,0.167,0.1510,0.1438,0.1428,0.1429],[0.58,0.588,0.5987,0.601,0.63,0.67,0.62,0.69,0.7477,0.76,0.786,0.7988,0.7988])
     #plt.savefig('precision recall.png')
