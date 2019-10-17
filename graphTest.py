@@ -52,6 +52,65 @@ def removeDoubeBe(firstPredicates,secondPredicates):
             del secondPredicates["sein"]
             
     return firstPredicates, secondPredicates
+
+def predicatesInSameGraph(pred1,pred2, G):
+    pred1inGraph=False
+    pred2inGraph=False
+    for n in list(G.nodes):
+        for k, v in G.node[n].items(): 
+            if (bothNegated(pred1,v)or bothNonNegated(pred1,v)) and pred1 in v:
+                pred1inGraph=True
+            elif (bothNegated(pred2,v)or bothNonNegated(pred2,v)) and pred2 in v:
+                pred2inGraph=True
+    if pred1inGraph and pred2inGraph:
+        return True
+    else:
+        return False
+
+def calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo):
+    hits=0
+    inGraph=False
+    for typePair in set(typePairList):
+        try:
+            G=graphDict[typePair]
+            #print("predicates ",pred1,pred2)
+            if pred1 in pred2 or pred2 in pred1:
+                samePredicates=True
+                #print("Same Predicates!")
+            boo, clusterInfo = hasEntailment(pred1, pred2, G)
+            inGraph=predicatesInSameGraph(pred1, pred2, G)
+            if boo:
+                hits+=1
+                globalClusterInfo.update(clusterInfo)
+                #print(globalClusterInfo)
+        except TypeError:
+            #print("Type error in ", typePair, lambdaValue)
+            continue 
+        
+    #I know I could write this better.
+    if not inGraph:
+        #Do this in case of way too low recall:
+        typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
+        typePairList.remove(("EVENT","EVENT"))
+        
+        for typePair in set(typePairList):
+            try:
+                G=graphDict[typePair]
+                #print("predicates ",pred1,pred2)
+                if pred1 in pred2 or pred2 in pred1:
+                    samePredicates=True
+                    #print("Same Predicates!")
+                boo, clusterInfo = hasEntailment(pred1, pred2, G)
+                inGraph=predicatesInSameGraph(pred1, pred2, G)
+                if boo:
+                    hits+=1
+                    globalClusterInfo.update(clusterInfo)
+                    #print(globalClusterInfo)
+            except TypeError:
+                #print("Type error in ", typePair, lambdaValue)
+                continue 
+        
+    return hits, globalClusterInfo                 
                     
 def testGraphWithLevy(lambdaValue):
     # parallel python graphTest.py ::: 0.150 0.25 0.349 0.449 0.550 0.649 0.75 0.850 0.125 0.224 0.324 0.425 0.524 0.625 0.725 0.824 0.174 0.275 0.375 0.474 0.574 0.675 0.774 0.875 
@@ -117,13 +176,11 @@ def testGraphWithLevy(lambdaValue):
                         
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
-                                          
-                    #print(typePairList)   
-                    #Do this in case of way too low recall:
-                    #typePairList=list(itertools.product(["PERSON","LOCATION","ORGANIZATION","EVENT","MISC"],repeat=2))
-                    #typePairList.remove(("EVENT","EVENT"))
+
                     
                     #retrieve right graph
+                    hits, globalClusterInfo=calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo)
+                    """
                     for typePair in set(typePairList):
                         try:
                             G=graphDict[typePair]
@@ -138,7 +195,8 @@ def testGraphWithLevy(lambdaValue):
                                 #print(globalClusterInfo)
                         except TypeError:
                             #print("Type error in ", typePair, lambdaValue)
-                            continue                  
+                            continue  
+                    """                
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
