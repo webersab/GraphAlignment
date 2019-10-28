@@ -147,7 +147,7 @@ def testGraphWithLevy(lambdaValue):
     
     with open(inFile) as file:
         for line in file:
-            print("noooot " + line)
+            #print("noooot " + line)
             samePredicates=False
             globalClusterInfo={}
             line=line.rstrip()
@@ -352,12 +352,12 @@ def hasEntailment(pred1, pred2, G):
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
-        #for k in nx.ancestors(G, m):
-        for k in nx.node_connected_component(G, m):
+        for k in nx.ancestors(G, m):
+        #for k in nx.node_connected_component(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and "("+pred2+".1" in va:
-                    print("IN GRAPH ANCESTORS")
-                    print(va,pred2)
+                    #print("IN GRAPH ANCESTORS")
+                    #print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
                     return True, clusterInfo
     return False, clusterInfo
