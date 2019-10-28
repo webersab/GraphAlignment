@@ -22,6 +22,7 @@ from itertools import chain
 import numpy
 import random
 import time
+import predicateExtractionUtil
 
 
 #this method is fully taken from Lianes pipeline
@@ -523,9 +524,12 @@ def getAllTypePairsOfSentence(d):
     gn = load_germanet() 
     typeList=[]
     foundEvent=False
+    listOfEnts=[]
     for j in d.nodes: 
         if d.nodes[j]['ctag']=='NOUN' or d.nodes[j]['ctag']=='PRON': 
             word=d.nodes[j]['lemma']
+            miniDict={"starttok":j}
+            listOfEnts.append(miniDict)
             time.sleep(.300)
             typ=G.typeEntity(word,gn)
             #stupid hack to make up for not having EventXEvent graph
@@ -535,7 +539,19 @@ def getAllTypePairsOfSentence(d):
             elif typ!='EVENT':
                 typeList.append(typ)        
     typeList=list(itertools.combinations(typeList,2))
-    return typeList
+    return typeList, listOfEnts
+
+def treeToPredMapExtended(d):
+    mapOfPredicates={}
+    typePairList, listOfEnts =getAllTypePairsOfSentence(d)
+    entList=list(itertools.combinations(listOfEnts,2))
+    for i in entList:
+        predicate, pred_index, passive=predicateExtractionUtil.get_predicate(d, i[0], i[1])
+        if get_negation(d, i, False):
+            predicate="NEG_"+predicate
+        mapOfPredicates[predicate]=typePairList
+    return mapOfPredicates
+
 
 def treeToPredMapSimple(d):
     mapOfPredicates={}
@@ -623,7 +639,7 @@ def extractPredicateFromSentence(model, sentence):
     dtree = dependency_parse_to_graph("conllOut"+str(ran)+".txt")
     i=0
     for d in dtree:
-        predicateMap=treeToPredMapSimple(d)
+        predicateMap=treeToPredMapExtended(d)
     #print("done extracting predicates") 
     try:
         os.remove("conllOut"+str(ran)+".txt")

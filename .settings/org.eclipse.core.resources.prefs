@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding/dbPediaChecker.py=utf-8
+encoding/predicateExtractionUtil.py=utf-8
 encoding/preprocess.py=utf-8
 encoding/udpipe_model.py=utf-8
