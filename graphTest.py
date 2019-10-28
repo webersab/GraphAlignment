@@ -330,6 +330,7 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
+    print("preds ",pred1, pred2)
     clusterInfo={}
     pred1NodesList=[]
     for n in list(G.nodes):
