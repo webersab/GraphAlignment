@@ -530,7 +530,7 @@ def getAllTypePairsOfSentence(d):
             word=d.nodes[j]['lemma']
             miniDict={"starttok":j}
             listOfEnts.append(miniDict)
-            time.sleep(.300)
+            #time.sleep(.300)
             typ=G.typeEntity(word,gn)
             #stupid hack to make up for not having EventXEvent graph
             if typ=='EVENT' and not foundEvent: 
