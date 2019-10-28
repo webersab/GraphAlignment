@@ -558,7 +558,7 @@ def treeToPredMapExtended(d):
 
 def treeToPredMapSimple(d):
     mapOfPredicates={}
-    typePairList=getAllTypePairsOfSentence(d)
+    typePairList, listOfEnts=getAllTypePairsOfSentence(d)
     for i in d.nodes:
         if d.nodes[i]['ctag']=='VERB' or  d.nodes[i]['tag']=='VVPP':
             predicate=d.nodes[i]['lemma']
