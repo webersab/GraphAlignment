@@ -74,15 +74,16 @@ def calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo):
         try:
             G=graphDict[typePair]
             #print("predicates ",pred1,pred2)
-            if pred1 in pred2 or pred2 in pred1:
-                samePredicates=True
-                #print("Same Predicates!")
-            boo, clusterInfo = hasEntailment(pred1, pred2, G)
-            inGraph=predicatesInSameGraph(pred1, pred2, G)
-            if boo:
-                hits+=1
-                globalClusterInfo.update(clusterInfo)
-                #print(globalClusterInfo)
+            if pred1!="" and pred2!="":
+                if pred1 in pred2 or pred2 in pred1:
+                    samePredicates=True
+                    #print("Same Predicates!")
+                boo, clusterInfo = hasEntailment(pred1, pred2, G)
+                inGraph=predicatesInSameGraph(pred1, pred2, G)
+                if boo:
+                    hits+=1
+                    globalClusterInfo.update(clusterInfo)
+                    #print(globalClusterInfo)
         except TypeError:
             #print("Type error in ", typePair, lambdaValue)
             continue 
