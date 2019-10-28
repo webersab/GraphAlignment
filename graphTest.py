@@ -347,7 +347,7 @@ def hasEntailment(pred1, pred2, G):
     for m in pred1NodesList:
         #test if word is in cluster
         for value in G.nodes[m].values():
-            if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2+".1" in value:
+            if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and "("+pred2+".1" in value:
                 print("IN SAME CLUSTER")
                 print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
@@ -355,7 +355,7 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
-                if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
+                if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and "("+pred2+".1" in va:
                     print("IN GRAPH ANCESTORS")
                     print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
