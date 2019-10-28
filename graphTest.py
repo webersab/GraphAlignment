@@ -74,7 +74,9 @@ def calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo):
         try:
             G=graphDict[typePair]
             print("predicates ",pred1,pred2)
-            if pred1.strip()!="" and pred2.strip()!="":
+            pred1.replace(" ","")
+            pred2.replace(" ","")
+            if pred1!="" and pred2!="":
                 if pred1 in pred2 or pred2 in pred1:
                     samePredicates=True
                     #print("Same Predicates!")
