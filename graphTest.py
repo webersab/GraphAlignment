@@ -79,7 +79,7 @@ def calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo):
                 if pred1 in pred2 or pred2 in pred1:
                     samePredicates=True
                     #print("Same Predicates!")
-                print("predicates ",pred1,pred2)
+                print("1 predicates ",pred1,pred2)
                 boo, clusterInfo = hasEntailment(pred1, pred2, G)
                 inGraph=predicatesInSameGraph(pred1, pred2, G)
                 if boo:
@@ -328,7 +328,7 @@ def bothNonNegated(a,b):
 
 def hasEntailment(pred1, pred2, G):
     clusterInfo={}
-    print("predicates ",pred1,pred2)
+    print("2 predicates ",pred1,pred2)
     pred1NodesList=[]
     for n in list(G.nodes):
         for k, v in G.node[n].items(): 
@@ -344,7 +344,7 @@ def hasEntailment(pred1, pred2, G):
     for m in pred1NodesList:
         #test if word is in cluster
         for value in G.nodes[m].values():
-            print("predicates ",pred1,pred2)
+            print("3 predicates ",pred1,pred2)
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
                 print("IN SAME CLUSTER")
                 print(value,pred2)
