@@ -147,6 +147,7 @@ def testGraphWithLevy(lambdaValue):
     
     with open(inFile) as file:
         for line in file:
+            print("noooot " + line)
             samePredicates=False
             globalClusterInfo={}
             line=line.rstrip()
@@ -345,7 +346,7 @@ def hasEntailment(pred1, pred2, G):
     for m in pred1NodesList:
         #test if word is in cluster
         for value in G.nodes[m].values():
-            if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
+            if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2+".1" in value:
                 print("IN SAME CLUSTER")
                 print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
