@@ -2,23 +2,12 @@
 # -*- coding: utf-8 -*-
 
 # Standard
-import io
-import sys
-import codecs
-import csv
-import ConfigParser
-import logging
-import json
 from itertools import chain
 from itertools import product
 from collections import OrderedDict
-import pprint
 import pickle
-import ConfigParser
-from datetime import datetime
 from pygermanet.germanet import load_germanet
-import copy_reg
-import types
+
     
  
 def get_modifiers_to_verb(self, dt, i, mods):
