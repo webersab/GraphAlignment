@@ -551,6 +551,7 @@ def treeToPredMapSimple(d):
 def treeToPredMap(d):
     #in the simplest case root is predicate
     mapOfPredicates={}
+    typePairList=getAllTypePairsOfSentence(d)
     root=d.nodes[0]['deps']['ROOT'][0]
     predicate=d.nodes[root]['lemma']
     if get_negation(d, root, False):
@@ -568,13 +569,13 @@ def treeToPredMap(d):
                 predicate="NEG_"+predicate
             if predicate not in mapOfPredicates.keys():
                 typePair=getTypePairforPredicate(d,predicate)
-                mapOfPredicates[predicate]=typePair
+                mapOfPredicates[predicate]=typePairList
         elif d.nodes[n]['ctag']=='VERB' and (d.nodes[n]['lemma']!='sein'):
             if get_negation(d, root, False) and not ("NEG_" in predicate):
                 predicate="NEG_"+predicate
             if predicate not in mapOfPredicates.keys():
                 typePair=getTypePairforPredicate(d,predicate)
-                mapOfPredicates[predicate]=typePair
+                mapOfPredicates[predicate]=typePairList
                 
     return mapOfPredicates
 
