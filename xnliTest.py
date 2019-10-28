@@ -622,7 +622,7 @@ def extractPredicateFromSentence(model, sentence):
     dtree = dependency_parse_to_graph("conllOut"+str(ran)+".txt")
     i=0
     for d in dtree:
-        predicateMap=treeToPredMap(d)
+        predicateMap=treeToPredMapSimple(d)
     #print("done extracting predicates") 
     try:
         os.remove("conllOut"+str(ran)+".txt")
