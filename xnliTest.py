@@ -547,7 +547,7 @@ def treeToPredMapExtended(d):
     entList=list(itertools.combinations(listOfEnts,2))
     for i in entList:
         predicate, pred_index, passive=predicateExtractionUtil.get_predicate(d, i[0], i[1])
-        if get_negation(d, i, False):
+        if get_negation(d, pred_index, False):
             predicate="NEG_"+predicate
         mapOfPredicates[predicate]=typePairList
     return mapOfPredicates
