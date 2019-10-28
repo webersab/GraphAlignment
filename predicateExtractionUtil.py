@@ -70,7 +70,7 @@ def get_predicate(dt, ent1, ent2):
     pred_index = -1
     passive = False
     with open("/disk/scratch_big/sweber/GraphAlignment/verbMap.dat", "rb") as f:
-        verbMap=pickle.load(f)
+        verbMap=pickle.load(f,encoding='latin1')
     #new1=""
     #new2=""
     ent1rel = dt.nodes[int(ent1['starttok'])]['rel']
