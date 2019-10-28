@@ -24,7 +24,7 @@ def get_modifiers_to_verb( dt, i, mods):
                 mods = get_modifiers_to_verb(dt, n, mods)
     return mods
 
-def checkForSeinPlusObject(self, dt, ent1, ent2):
+def checkForSeinPlusObject(dt, ent1, ent2):
     pred_string=""
     pred_index=dt.nodes[int(ent1['starttok'])]['head']
     if ("cop" in dt.nodes[pred_index]['deps'].keys()) and ("nmod" in dt.nodes[pred_index]['deps'].keys() or "advmod" in dt.nodes[pred_index]['deps'].keys()):
@@ -36,17 +36,17 @@ def checkForSeinPlusObject(self, dt, ent1, ent2):
         if dt.nodes[copulaWordIndex[0]]["lemma"]== "sein":
             for i in nmodWordIndex:
                 if int(i)==int(ent2['starttok']):
-                    caseAttachment=self.get_case_attachment(dt, ent2)
+                    caseAttachment=get_case_attachment(dt, ent2)
                     pred_string=dt.nodes[pred_index]['lemma']+"_sein"+caseAttachment
     return pred_string, pred_index
 
-def get_case_attachment(self,dt,ent2):
+def get_case_attachment(dt,ent2):
     if "case" in dt.nodes[int(ent2['starttok'])]['deps'].keys():
         for i in dt.nodes[int(ent2['starttok'])]['deps']['case']:
             return "_"+dt.nodes[i]["lemma"]
     return""
 
-def checkForHabenPlusObject(self, dt, ent1, ent2):
+def checkForHabenPlusObject(dt, ent1, ent2):
     pred_string=""
     pred_index=dt.nodes[int(ent1['starttok'])]['head']
     if "obj" in dt.nodes[pred_index]['deps'].keys():
@@ -57,7 +57,7 @@ def checkForHabenPlusObject(self, dt, ent1, ent2):
                 pred_string = dt.nodes[pred_index]['lemma']
                 ent2Dependencies=dt.nodes[int(ent2['starttok'])]['deps']
                 if (int(ent2['starttok']) in nounDependencies) and pred_string=="haben" and ('case' in ent2Dependencies):
-                    caseAttachment=self.get_case_attachment(dt, ent2)
+                    caseAttachment=get_case_attachment(dt, ent2)
                     pred_string+="_"+dt.nodes[node]['lemma']+caseAttachment
     return pred_string, pred_index
     
