@@ -549,7 +549,10 @@ def treeToPredMapExtended(d):
         predicate, pred_index, passive=predicateExtractionUtil.get_predicate(d, i[0], i[1])
         if get_negation(d, pred_index, False):
             predicate="NEG_"+predicate
-        mapOfPredicates[predicate]=typePairList
+        if predicate.strip()!="" and predicate.strip()!="NEG_":
+            mapOfPredicates[predicate]=typePairList  
+    if mapOfPredicates=={}:
+        mapOfPredicates=treeToPredMapSimple(d)
     return mapOfPredicates
 
 
