@@ -330,7 +330,6 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
-    print("preds ",pred1, pred2)
     clusterInfo={}
     pred1NodesList=[]
     for n in list(G.nodes):
@@ -348,8 +347,8 @@ def hasEntailment(pred1, pred2, G):
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and "("+pred2+".1" in value:
-                print("IN SAME CLUSTER")
-                print(value,pred2)
+                #print("IN SAME CLUSTER")
+                #print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
