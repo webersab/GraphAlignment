@@ -177,26 +177,7 @@ def testGraphWithLevy(lambdaValue):
                     if len(typePairList)==0:
                         typePairList=[("MISC","MISC")]
 
-                    
-                    #retrieve right graph
-                    hits, globalClusterInfo=calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo)
-                    """
-                    for typePair in set(typePairList):
-                        try:
-                            G=graphDict[typePair]
-                            #print("predicates ",pred1,pred2)
-                            if pred1 in pred2 or pred2 in pred1:
-                                samePredicates=True
-                                #print("Same Predicates!")
-                            boo, clusterInfo = hasEntailment(pred1, pred2, G)
-                            if boo:
-                                hits+=1
-                                globalClusterInfo.update(clusterInfo)
-                                #print(globalClusterInfo)
-                        except TypeError:
-                            #print("Type error in ", typePair, lambdaValue)
-                            continue  
-                    """                
+                    hits, globalClusterInfo=calculateHits(typePairList,graphDict,pred1,pred2,globalClusterInfo)               
             if hits>0:
                 if line[2]=="y":
                     counterMap["truePositives"]+=1
@@ -343,8 +324,6 @@ def bothNonNegated(a,b):
         return False
 
 def hasEntailment(pred1, pred2, G):
-    #print("IN hasEntailment")
-    #print("len of G.nodes ", len(list(G.nodes)))
     clusterInfo={}
 
     pred1NodesList=[]
@@ -359,21 +338,20 @@ def hasEntailment(pred1, pred2, G):
                     #for k in connectedCompnent:
                         #print(G.node[k])
                 
-    #go trough list and check if pred2 is in node.successors
     for m in pred1NodesList:
         #test if word is in cluster
         for value in G.nodes[m].values():
             if (bothNegated(pred2,value)or bothNonNegated(pred2,value)) and pred2 in value:
-                #print("IN SAME CLUSTER")
-                #print(value,pred2)
+                print("IN SAME CLUSTER")
+                print(value,pred2)
                 clusterInfo["IN SAME CLUSTER"]=[G.nodes[m].values()]
                 return True, clusterInfo
         #test if word is in agraph ancestors
         for k in nx.ancestors(G, m):
             for ke, va in G.node[k].items():
                 if (bothNegated(pred2,va)or bothNonNegated(pred2,va)) and pred2 in va:
-                    #print("IN GRAPH ANCESTORS")
-                    #print(va,pred2)
+                    print("IN GRAPH ANCESTORS")
+                    print(va,pred2)
                     clusterInfo["IN GRAPH ANCESTORS"]=[nx.node_connected_component(G, k)]
                     return True, clusterInfo
     return False, clusterInfo

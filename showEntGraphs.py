@@ -112,6 +112,9 @@ def constructPrintoutsFromFile():
 if __name__ == "__main__":
     print("Hup hup graph Construct!")
     E , G = constructGraphFromFile("EVENT#LOCATION_sim_HTLFRG",0.07)
+    
+    
+    
     for a in E:
         print("------------------")
         for b in a:
