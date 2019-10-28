@@ -10,7 +10,7 @@ from pygermanet.germanet import load_germanet
 
     
  
-def get_modifiers_to_verb(self, dt, i, mods):
+def get_modifiers_to_verb( dt, i, mods):
     """
     Get open clausal components of the verb (i.e. the predicate)
     Look for the "xcomp" dependency
@@ -21,7 +21,7 @@ def get_modifiers_to_verb(self, dt, i, mods):
             #if dt.nodes[n]['tag'] != 'PTKNEG':
             if dt.nodes[n]['tag'] == 'VVINF':
                 mods.append(n)
-                mods = self.get_modifiers_to_verb(dt, n, mods)
+                mods = get_modifiers_to_verb(dt, n, mods)
     return mods
 
 def checkForSeinPlusObject(self, dt, ent1, ent2):
